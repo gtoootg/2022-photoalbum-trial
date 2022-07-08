@@ -8,6 +8,9 @@ const port = process.env.PORT || 3000;
 
 app.prepare().then(() => {
   const server = express();
+  const showRoute = require("./routes/index");
+
+  server.use("/api", showRoute);
 
   server.all("*", (req: Request, res: Response) => {
     return handle(req, res);
