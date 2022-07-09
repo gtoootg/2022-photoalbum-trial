@@ -1,5 +1,6 @@
 import express, { Request, Response } from "express";
 import next from "next";
+import env from "../env";
 
 const dev = process.env.NODE_ENV !== "production";
 const app = next({ dev });
@@ -18,5 +19,9 @@ app.prepare().then(() => {
   server.listen(port, (err?: any) => {
     if (err) throw err;
     console.log(`> Ready on localhost:${port} - env ${process.env.NODE_ENV}`);
+    console.log(env);
+  });
+  server.get("api/movie", (req, res) => {
+    res.end("this is movie");
   });
 });

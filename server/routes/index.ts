@@ -1,4 +1,5 @@
 import express, { Request, Response } from "express";
+import { connection } from "../mysql";
 
 const router = express.Router();
 
@@ -11,7 +12,15 @@ router.get("/countries", (req, res) => {
     { name: "japan", capital: "tokyo" },
     { name: "germany", capital: "berlin" },
   ];
-  res.json(countries);
+
+  connection.query("SELECT * FROM new_table", (error, rows) => {
+    if (!error) {
+      res.json(rows);
+    }
+    if (error) {
+      console.log(error);
+    }
+  });
 });
 
 module.exports = router;
