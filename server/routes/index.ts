@@ -1,26 +1,29 @@
 import express, { Request, Response } from "express";
-import { connection } from "../mysql";
+// import { connection } from "../mysql";
 
 const router = express.Router();
 
-router.get("/movie", (req, res) => {
-  res.end("this is movie");
-});
+// router.post("/country", (req, res) => {
+//   res.setHeader("Content-Type", "text/plain");
+//   const newCountry = {
+//     name: "France",
+//     capital: "paris",
+//   };
 
-router.get("/countries", (req, res) => {
-  const countries = [
-    { name: "japan", capital: "tokyo" },
-    { name: "germany", capital: "berlin" },
-  ];
+//   console.log(req.body);
 
-  connection.query("SELECT * FROM new_table", (error, rows) => {
-    if (!error) {
-      res.json(rows);
-    }
-    if (error) {
-      console.log(error);
-    }
-  });
-});
+//   // connection.query(
+//   //   "INSERT INTO `heroku_cd8e62582467f27`.`new_table` (`name`, `capital`) VALUES (?,?);",
+//   //   [req.body.name, req.body.capital],
+//   //   (error, data) => {
+//   //     if (!error) {
+//   //       res.json(data);
+//   //     }
+//   //     if (error) {
+//   //       console.log(error);
+//   //     }
+//   //   }
+//   // );
+// });
 
-module.exports = router;
+// module.exports = router;
