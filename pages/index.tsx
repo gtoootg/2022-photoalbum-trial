@@ -2,6 +2,7 @@ import axios from "axios";
 import type { NextPage } from "next";
 import { useEffect, useState } from "react";
 import Image from "next/image";
+import { serverSideTranslations } from "next-i18next/serverSideTranslations";
 
 const Home: NextPage = () => {
   const [countries, setCountries] = useState([]);
@@ -62,3 +63,11 @@ const Home: NextPage = () => {
 };
 
 export default Home;
+
+export async function getStaticProps({ locale }: { locale: string }) {
+  return {
+    props: {
+      ...(await serverSideTranslations(locale)),
+    },
+  };
+}
