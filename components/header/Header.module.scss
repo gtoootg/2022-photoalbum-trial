@@ -20,7 +20,8 @@
     &_navigation {
       display: flex;
       align-items: center;
-
+      color: variables.$white;
+      text-decoration: none;
       &_icon {
         margin-left: 2rem;
         opacity: 0.9;
