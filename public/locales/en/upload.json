@@ -1,0 +1,11 @@
+{
+  "stepper": {
+    "secondStep": {
+      "uploadData": {
+        "title": "Title",
+        "defaultTitle": "Title",
+        "description": "description"
+      }
+    }
+  }
+}

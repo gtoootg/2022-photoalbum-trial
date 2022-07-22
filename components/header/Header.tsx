@@ -66,6 +66,11 @@ export default function Header() {
               <h3>{t("header.navigation.top")}</h3>
             </Link>
           </Button>
+          <Button variant="contained">
+            <Link href="/upload">
+              <h3>{t("header.navigation.upload")}</h3>
+            </Link>
+          </Button>
           <RegionMenu
             anchorEl={anchorEl}
             handleClick={handleClick}
