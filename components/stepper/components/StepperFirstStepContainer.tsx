@@ -1,9 +1,11 @@
 import { FlickrImagesProps } from "../../../pages/flickrApi";
 import ImageListBox from "../../image-list-box/ImageListBox";
 import Image from "next/image";
-import { Box } from "@mui/material";
+import { StepperFirstStepContainerProps } from "../Stepper.types";
 
-export default function StepperFirstStepContainer(props: any) {
+export default function StepperFirstStepContainer(
+  props: StepperFirstStepContainerProps
+) {
   const {
     activeStep,
     images,
@@ -19,7 +21,6 @@ export default function StepperFirstStepContainer(props: any) {
   );
 
   if (activeStep !== 0) {
-    console.log(FilterSelectedFlickrImages);
     return (
       <div style={{ display: "flex" }}>
         {FilterSelectedFlickrImages.map(
@@ -27,8 +28,8 @@ export default function StepperFirstStepContainer(props: any) {
             <div
               key={i}
               style={{
-                width: 150,
-                height: 100,
+                width: 300,
+                height: "auto",
                 borderRadius: 10,
                 overflow: "hidden",
                 margin: 10,
@@ -37,8 +38,9 @@ export default function StepperFirstStepContainer(props: any) {
               <Image
                 alt="image"
                 src={uploadingDataImages["url_h"]}
-                width={150}
-                height={100}
+                width={300}
+                height={200}
+                layout="responsive"
               />
             </div>
           )

@@ -12,6 +12,7 @@ import { FlickrImagesProps } from "../../pages/flickrApi";
 import StepperButtonGroup from "./components/StepperButtonGroup";
 import StepperSecondStepContainer from "./components/StepperSecondStepContainer";
 import StepperFirstStepContainer from "./components/StepperFirstStepContainer";
+import StepperThirdStepContainer from "./components/StepperThirdStepContainer";
 
 interface HorizontalStepperProps {
   flickrImages: FlickrImagesProps[];
@@ -45,8 +46,8 @@ export default function HorizontalStepper({
 
   const steps = [
     {
-      label: t("upload.photo.label"),
-      description: t("upload.photo.description"),
+      label: t("stepper.firstStep.label", { ns: "upload" }),
+      description: t("stepper.firstStep.description", { ns: "upload" }),
       content: (
         <StepperFirstStepContainer
           activeStep={activeStep}
@@ -58,14 +59,19 @@ export default function HorizontalStepper({
       ),
     },
     {
-      label: t("upload.title.label"),
-      description: t("upload.title.description"),
+      label: t("stepper.secondStep.label", { ns: "upload" }),
+      description: t("stepper.secondStep.description", { ns: "upload" }),
       content: (
         <StepperSecondStepContainer
           setUploadingDataTitle={setUploadingDataTitle}
           setUploadingDataDescription={setUploadingDataDescription}
         />
       ),
+    },
+    {
+      label: t("stepper.thirdStep.label", { ns: "upload" }),
+      description: t("stepper.thirdStep.description", { ns: "upload" }),
+      content: <StepperThirdStepContainer />,
     },
   ];
 

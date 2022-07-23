@@ -51,10 +51,7 @@ export default function ImageListBox({
               style={{
                 margin: "5px",
                 transition: "0.3s",
-                opacity: uploadingDataImages.includes(i) ? "1" : "0.8",
-                border: uploadingDataImages.includes(i)
-                  ? "solid red"
-                  : undefined,
+                opacity: uploadingDataImages.includes(i) ? "1" : "0.6",
                 borderRadius: "10px",
                 overflow: "hidden",
                 boxSizing: "border-box",

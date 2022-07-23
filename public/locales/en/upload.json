@@ -1,10 +1,23 @@
 {
   "stepper": {
+    "firstStep": {
+      "label": "Select your photo",
+      "description": "Select photos of your favourite places from Flickr. You can select up to 5 photos per post"
+    },
     "secondStep": {
+      "label": "Input Title and Explanation",
+      "description": "Attract viewer's attentions! Input the title of this post and some explanation of the speciality for this place, so that viewers will set the next destination to this place.",
       "uploadData": {
         "title": "Title",
         "defaultTitle": "Title",
-        "description": "description"
+        "description": "Explanation"
+      }
+    },
+    "thirdStep": {
+      "label": "Where is this place?",
+      "description": "Specify the country of this place, as well as putting a PIN on the map",
+      "uploadData": {
+        "country": "Country"
       }
     }
   }
