@@ -51,17 +51,6 @@ export default function Upload() {
         setUploadingDataCountry={setUploadingDataCountry}
         setUploadingDataCategory={setUploadingDataCategory}
       />
-      <button
-        onClick={() => {
-          console.log(uploadingDataImages);
-          console.log(uploadingDataTitle);
-          console.log(uploadingDataDescription);
-          console.log(uploadingDataCountry);
-          console.log(uploadingDataCategory);
-        }}
-      >
-        button
-      </button>
     </Container>
   );
 }
