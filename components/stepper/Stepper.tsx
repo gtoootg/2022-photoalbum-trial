@@ -5,10 +5,7 @@ import Button from "@mui/material/Button";
 import Paper from "@mui/material/Paper";
 import Typography from "@mui/material/Typography";
 import { useTranslation } from "next-i18next";
-import { Step, StepContent, StepLabel, styled, TextField } from "@mui/material";
-import StepperImageContainer from "./StepperImageContainer";
-import ImageListBox from "../image-list-box/ImageListBox";
-import { FlickrImagesProps } from "../../pages/flickrApi";
+import { Step, StepContent, StepLabel } from "@mui/material";
 import StepperButtonGroup from "./components/StepperButtonGroup";
 import StepperSecondStepContainer from "./components/StepperSecondStepContainer";
 import StepperFirstStepContainer from "./components/StepperFirstStepContainer";
@@ -17,11 +14,15 @@ import { VerticalStepperProps } from "./Stepper.types";
 
 export default function VerticalStepper({
   flickrImages,
+  countries,
   uploadingDataImages,
+  uploadingDataCountry,
+  uploadingDataCategory,
   setUploadingDataImages,
   setUploadingDataTitle,
   setUploadingDataDescription,
   setUploadingDataCountry,
+  setUploadingDataCategory,
 }: VerticalStepperProps) {
   const { t } = useTranslation();
   const [activeStep, setActiveStep] = useState<number>(0);
@@ -67,7 +68,11 @@ export default function VerticalStepper({
       description: t("stepper.thirdStep.description", { ns: "upload" }),
       content: (
         <StepperThirdStepContainer
-          handleChange={() => setUploadingDataCountry}
+          countries={countries}
+          setUploadingDataCountry={setUploadingDataCountry}
+          setUploadingDataCategory={setUploadingDataCategory}
+          uploadingDataCountry={uploadingDataCountry}
+          uploadingDataCategory={uploadingDataCategory}
         />
       ),
     },

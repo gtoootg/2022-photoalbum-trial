@@ -9,11 +9,15 @@ export interface StepProps {
 
 export interface VerticalStepperProps {
   flickrImages: FlickrImagesProps[];
+  countries: any[] | undefined;
   uploadingDataImages: number[];
+  uploadingDataCountry: string;
+  uploadingDataCategory: string;
   setUploadingDataImages: (value: number[]) => void;
   setUploadingDataTitle: (value: string) => void;
   setUploadingDataDescription: (value: string) => void;
   setUploadingDataCountry: (value: string) => void;
+  setUploadingDataCategory: (value: string) => void;
 }
 
 export interface StepperButtonGroupProps {
@@ -39,5 +43,9 @@ export interface StepperSecondStepContainerProps {
 }
 
 export interface StepperThirdStepContainerProps {
-  handleChange: ChangeEventHandler<HTMLInputElement | HTMLTextAreaElement>;
+  countries: any[] | undefined;
+  setUploadingDataCountry: (value: string) => void;
+  setUploadingDataCategory: (value: string) => void;
+  uploadingDataCountry: string;
+  uploadingDataCategory: string;
 }

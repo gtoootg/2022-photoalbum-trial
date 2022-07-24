@@ -5,24 +5,31 @@ interface SelectBoxProps {
   selectOptions: any[];
   parentKeyName?: string;
   childKeyName?: string;
-  handleChange: ChangeEventHandler<HTMLInputElement | HTMLTextAreaElement>;
+  handleChange: (value: string) => void;
   helperText?: string;
+  label: string;
+  value: string;
 }
 
-export default function SelectBox({
+export function SelectBox({
   selectOptions,
   parentKeyName,
   childKeyName,
   handleChange,
   helperText,
+  label,
+  value,
 }: SelectBoxProps) {
   return (
     <TextField
       id="outlined-select"
       select
-      label="Native select"
-      // value={currency}
-      onChange={handleChange}
+      label={label}
+      value={value}
+      onChange={(e) => {
+        handleChange(e.target.value);
+        console.log(e.target.value);
+      }}
       SelectProps={{
         native: true,
       }}

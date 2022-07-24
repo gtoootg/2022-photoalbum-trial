@@ -1,42 +1,47 @@
-import { TextField } from "@mui/material";
+import { Box, Container, styled, TextField } from "@mui/material";
 import axios from "axios";
 import { useTranslation } from "next-i18next";
 import { useEffect, useState } from "react";
-import SelectBox from "../../text-field/SelectBox";
+import { SelectBox } from "../../text-field/SelectBox";
 import { StepperThirdStepContainerProps } from "../Stepper.types";
 
 export default function StepperThirdStepContainer({
-  handleChange,
+  countries,
+  setUploadingDataCountry,
+  setUploadingDataCategory,
+  uploadingDataCountry,
+  uploadingDataCategory,
 }: StepperThirdStepContainerProps) {
-  const { t } = useTranslation();
-  const [countries, setCountries] = useState();
-
-  const restCountriesUrl = "https://restcountries.com/v3.1/all";
-
   const categories = ["City", "Nature", "Night View"];
 
-  useEffect(() => {
-    axios
-      .get(restCountriesUrl)
-      .then((res) => {
-        setCountries(res.data);
-      })
-      .catch(() => {
-        throw Error;
-      });
-  }, []);
-
   return (
-    <>
-      {countries && (
+    <Container
+      sx={{
+        display: "flex",
+        flexDirection: "row",
+        justifyContent: "space-between",
+      }}
+    >
+      <Box sx={{ display: "flex", flexDirection: "column", width: "25rem" }}>
+        {countries && (
+          <SelectBox
+            selectOptions={countries}
+            parentKeyName={"name"}
+            childKeyName={"common"}
+            handleChange={setUploadingDataCountry}
+            label="Country"
+            value={uploadingDataCountry}
+          />
+        )}
+        <br />
         <SelectBox
-          selectOptions={countries}
-          parentKeyName={"name"}
-          childKeyName={"common"}
-          handleChange={handleChange}
+          selectOptions={categories}
+          handleChange={setUploadingDataCategory}
+          label="Category"
+          value={uploadingDataCategory}
         />
-      )}
-      <SelectBox selectOptions={categories} handleChange={handleChange} />
-    </>
+      </Box>
+      <Box>hello</Box>
+    </Container>
   );
 }

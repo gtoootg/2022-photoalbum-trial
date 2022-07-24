@@ -18,9 +18,6 @@ export default function StepperSecondStepContainer({
         required
         id="outlined-required"
         label={t("stepper.secondStep.uploadData.title", { ns: "upload" })}
-        defaultValue={t("stepper.secondStep.uploadData.title", {
-          ns: "upload",
-        })}
         onChange={(e) => setUploadingDataTitle(e.target.value)}
       />
       <StepperSecondStepTextFieldStyled
@@ -29,9 +26,6 @@ export default function StepperSecondStepContainer({
         rows={6}
         id="outlined-required"
         label={t("stepper.secondStep.uploadData.description", { ns: "upload" })}
-        defaultValue={t("stepper.secondStep.uploadData.description", {
-          ns: "upload",
-        })}
         onChange={(e) => setUploadingDataDescription(e.target.value)}
       />
     </Box>
