@@ -13,22 +13,16 @@ import StepperButtonGroup from "./components/StepperButtonGroup";
 import StepperSecondStepContainer from "./components/StepperSecondStepContainer";
 import StepperFirstStepContainer from "./components/StepperFirstStepContainer";
 import StepperThirdStepContainer from "./components/StepperThirdStepContainer";
+import { VerticalStepperProps } from "./Stepper.types";
 
-interface HorizontalStepperProps {
-  flickrImages: FlickrImagesProps[];
-  uploadingDataImages: number[];
-  setUploadingDataImages: (value: number[]) => void;
-  setUploadingDataTitle: (value: string) => void;
-  setUploadingDataDescription: (value: string) => void;
-}
-
-export default function HorizontalStepper({
+export default function VerticalStepper({
   flickrImages,
   uploadingDataImages,
   setUploadingDataImages,
   setUploadingDataTitle,
   setUploadingDataDescription,
-}: HorizontalStepperProps) {
+  setUploadingDataCountry,
+}: VerticalStepperProps) {
   const { t } = useTranslation();
   const [activeStep, setActiveStep] = useState<number>(0);
 
@@ -71,7 +65,11 @@ export default function HorizontalStepper({
     {
       label: t("stepper.thirdStep.label", { ns: "upload" }),
       description: t("stepper.thirdStep.description", { ns: "upload" }),
-      content: <StepperThirdStepContainer />,
+      content: (
+        <StepperThirdStepContainer
+          handleChange={() => setUploadingDataCountry}
+        />
+      ),
     },
   ];
 

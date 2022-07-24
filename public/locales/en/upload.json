@@ -17,7 +17,9 @@
       "label": "Where is this place?",
       "description": "Specify the country of this place, as well as putting a PIN on the map",
       "uploadData": {
-        "country": "Country"
+        "country": {
+          "helpText": "select the counry"
+        }
       }
     }
   }

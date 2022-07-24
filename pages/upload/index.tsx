@@ -6,25 +6,6 @@ import { useRef, useState } from "react";
 import VerticalStepper from "../../components/stepper/Stepper";
 import { getFlickrImages } from "../flickrApi";
 
-interface FlickrIDInputFieldProps {
-  setFlickrID: (e: string) => void;
-}
-
-const FlickrIDInputField = ({ setFlickrID }: FlickrIDInputFieldProps) => {
-  return (
-    <TextField
-      id="outlined-search"
-      label="ID of your photo in Flickr"
-      type="search"
-      style={{ margin: "2rem" }}
-      onChange={(e) => {
-        e.preventDefault();
-        setFlickrID(e.target.value);
-      }}
-    />
-  );
-};
-
 export default function Upload() {
   const [flickrImages, setFlickrImages] = useState([]);
 
@@ -32,7 +13,7 @@ export default function Upload() {
   const [uploadingDataTitle, setUploadingDataTitle] = useState<string>();
   const [uploadingDataDescription, setUploadingDataDescription] =
     useState<string>();
-
+  const [uploadingDataCountry, setUploadingDataCountry] = useState<string>();
   useEffect(() => {
     async function onGetFlickrImages() {
       setFlickrImages(await getFlickrImages());
@@ -48,6 +29,7 @@ export default function Upload() {
         setUploadingDataImages={setUploadingDataImages}
         setUploadingDataTitle={setUploadingDataTitle}
         setUploadingDataDescription={setUploadingDataDescription}
+        setUploadingDataCountry={setUploadingDataCountry}
       />
     </Container>
   );

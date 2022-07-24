@@ -1,6 +1,20 @@
+import { ChangeEventHandler } from "react";
 import { FlickrImagesProps } from "../../pages/flickrApi";
 
-export interface StepProps {}
+export interface StepProps {
+  label: string;
+  description: string;
+  content: JSX.Element;
+}
+
+export interface VerticalStepperProps {
+  flickrImages: FlickrImagesProps[];
+  uploadingDataImages: number[];
+  setUploadingDataImages: (value: number[]) => void;
+  setUploadingDataTitle: (value: string) => void;
+  setUploadingDataDescription: (value: string) => void;
+  setUploadingDataCountry: (value: string) => void;
+}
 
 export interface StepperButtonGroupProps {
   index: number;
@@ -22,4 +36,8 @@ export interface StepperFirstStepContainerProps {
 export interface StepperSecondStepContainerProps {
   setUploadingDataTitle: (value: string) => void;
   setUploadingDataDescription: (value: string) => void;
+}
+
+export interface StepperThirdStepContainerProps {
+  handleChange: ChangeEventHandler<HTMLInputElement | HTMLTextAreaElement>;
 }
