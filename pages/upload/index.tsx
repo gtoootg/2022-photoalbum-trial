@@ -18,6 +18,7 @@ export default function Upload() {
   const [uploadingDataCountry, setUploadingDataCountry] = useState<string>("");
   const [uploadingDataCategory, setUploadingDataCategory] =
     useState<string>("");
+  const [uploadingDataLatLng, setUploadingDataLatLng] = useState(undefined);
 
   useEffect(() => {
     async function onGetFlickrImages() {
@@ -45,11 +46,13 @@ export default function Upload() {
         uploadingDataImages={uploadingDataImages}
         uploadingDataCountry={uploadingDataCountry}
         uploadingDataCategory={uploadingDataCategory}
+        uploadingDataLatLng={uploadingDataLatLng}
         setUploadingDataImages={setUploadingDataImages}
         setUploadingDataTitle={setUploadingDataTitle}
         setUploadingDataDescription={setUploadingDataDescription}
         setUploadingDataCountry={setUploadingDataCountry}
         setUploadingDataCategory={setUploadingDataCategory}
+        setUploadingDataLatLng={setUploadingDataLatLng}
       />
     </Container>
   );

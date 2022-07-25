@@ -18,11 +18,13 @@ export default function VerticalStepper({
   uploadingDataImages,
   uploadingDataCountry,
   uploadingDataCategory,
+  uploadingDataLatLng,
   setUploadingDataImages,
   setUploadingDataTitle,
   setUploadingDataDescription,
   setUploadingDataCountry,
   setUploadingDataCategory,
+  setUploadingDataLatLng,
 }: VerticalStepperProps) {
   const { t } = useTranslation();
   const [activeStep, setActiveStep] = useState<number>(0);
@@ -73,6 +75,8 @@ export default function VerticalStepper({
           setUploadingDataCategory={setUploadingDataCategory}
           uploadingDataCountry={uploadingDataCountry}
           uploadingDataCategory={uploadingDataCategory}
+          uploadingDataLatLng={uploadingDataLatLng}
+          setUploadingDataLatLng={setUploadingDataLatLng}
         />
       ),
     },

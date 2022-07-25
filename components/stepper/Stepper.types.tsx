@@ -13,11 +13,13 @@ export interface VerticalStepperProps {
   uploadingDataImages: number[];
   uploadingDataCountry: string;
   uploadingDataCategory: string;
+  uploadingDataLatLng: { lat: number; lng: number };
   setUploadingDataImages: (value: number[]) => void;
   setUploadingDataTitle: (value: string) => void;
   setUploadingDataDescription: (value: string) => void;
   setUploadingDataCountry: (value: string) => void;
   setUploadingDataCategory: (value: string) => void;
+  setUploadingDataLatLng: (e: string) => void;
 }
 
 export interface StepperButtonGroupProps {
@@ -46,6 +48,8 @@ export interface StepperThirdStepContainerProps {
   countries: any[] | undefined;
   setUploadingDataCountry: (value: string) => void;
   setUploadingDataCategory: (value: string) => void;
+  setUploadingDataLatLng: (e: string) => void;
   uploadingDataCountry: string;
   uploadingDataCategory: string;
+  uploadingDataLatLng: { lat: number; lng: number };
 }
