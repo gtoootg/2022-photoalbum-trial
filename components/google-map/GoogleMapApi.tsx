@@ -12,7 +12,7 @@ type GoogleMapApiProps = {
   zoom: number;
   onClickAction?: boolean;
   uploadingDataLatLng: { lat: number; lng: number };
-  setUploadingDataLatLng: (e: any) => void;
+  setUploadingDataLatLng?: (e: any) => void;
 };
 
 const API_KEY = "AIzaSyAhf8RgW3KVsaUK5Oqr-JKTpASBBrHlXd8"; // TODO: 自分のキーをここに入力

@@ -4,13 +4,16 @@ import { FlickrImagesProps } from "../../pages/flickrApi";
 export interface StepProps {
   label: string;
   description: string;
-  content: JSX.Element;
+  content?: JSX.Element;
+  isButtonDisabledCondition?: any;
 }
 
 export interface VerticalStepperProps {
   flickrImages: FlickrImagesProps[];
   countries: any[] | undefined;
   uploadingDataImages: number[];
+  uploadingDataTitle: string;
+  uploadingDataDescription: string;
   uploadingDataCountry: string;
   uploadingDataCategory: string;
   uploadingDataLatLng: { lat: number; lng: number };
@@ -29,6 +32,7 @@ export interface StepperButtonGroupProps {
   handleBack: () => void;
   uploadingDataImages: number[];
   activeStep: number;
+  isButtonDisabledCondition?: any;
 }
 
 export interface StepperFirstStepContainerProps {
@@ -40,11 +44,15 @@ export interface StepperFirstStepContainerProps {
 }
 
 export interface StepperSecondStepContainerProps {
+  activeStep: number;
+  uploadingDataTitle: string;
+  uploadingDataDescription: string;
   setUploadingDataTitle: (value: string) => void;
   setUploadingDataDescription: (value: string) => void;
 }
 
 export interface StepperThirdStepContainerProps {
+  activeStep: number;
   countries: any[] | undefined;
   setUploadingDataCountry: (value: string) => void;
   setUploadingDataCategory: (value: string) => void;

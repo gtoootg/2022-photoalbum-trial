@@ -11,11 +11,14 @@ import StepperSecondStepContainer from "./components/StepperSecondStepContainer"
 import StepperFirstStepContainer from "./components/StepperFirstStepContainer";
 import StepperThirdStepContainer from "./components/StepperThirdStepContainer";
 import { VerticalStepperProps } from "./Stepper.types";
+import StepperFinalStepContainer from "./components/StepperFinalStepContainer";
 
 export default function VerticalStepper({
   flickrImages,
   countries,
   uploadingDataImages,
+  uploadingDataTitle,
+  uploadingDataDescription,
   uploadingDataCountry,
   uploadingDataCategory,
   uploadingDataLatLng,
@@ -54,22 +57,29 @@ export default function VerticalStepper({
           flickrImages={flickrImages}
         />
       ),
+      isButtonDisabledCondition: uploadingDataImages.length === 0,
     },
     {
       label: t("stepper.secondStep.label", { ns: "upload" }),
       description: t("stepper.secondStep.description", { ns: "upload" }),
       content: (
         <StepperSecondStepContainer
+          activeStep={activeStep}
+          uploadingDataTitle={uploadingDataTitle}
+          uploadingDataDescription={uploadingDataDescription}
           setUploadingDataTitle={setUploadingDataTitle}
           setUploadingDataDescription={setUploadingDataDescription}
         />
       ),
+      isButtonDisabledCondition:
+        !uploadingDataTitle || !uploadingDataDescription,
     },
     {
       label: t("stepper.thirdStep.label", { ns: "upload" }),
       description: t("stepper.thirdStep.description", { ns: "upload" }),
       content: (
         <StepperThirdStepContainer
+          activeStep={activeStep}
           countries={countries}
           setUploadingDataCountry={setUploadingDataCountry}
           setUploadingDataCategory={setUploadingDataCategory}
@@ -79,6 +89,12 @@ export default function VerticalStepper({
           setUploadingDataLatLng={setUploadingDataLatLng}
         />
       ),
+      isButtonDisabledCondition:
+        !uploadingDataCountry || !uploadingDataCategory || !uploadingDataLatLng,
+    },
+    {
+      label: t("stepper.finalStep.label", { ns: "upload" }),
+      description: t("stepper.finalStep.description", { ns: "upload" }),
     },
   ];
 
@@ -87,8 +103,13 @@ export default function VerticalStepper({
       <Stepper activeStep={activeStep} orientation="vertical">
         {steps &&
           steps.map((step, index) => (
-            <Step key={index} active={index === 0 || index === activeStep}>
-              <StepLabel>{step.label}</StepLabel>
+            <Step
+              key={index}
+              active={index <= activeStep || index === activeStep}
+            >
+              <StepLabel>
+                <Typography variant={"h6"}>{step.label}</Typography>
+              </StepLabel>
               <Box>
                 <StepContent>
                   {index === activeStep && (
@@ -104,6 +125,7 @@ export default function VerticalStepper({
                     handleBack={handleBack}
                     uploadingDataImages={uploadingDataImages}
                     activeStep={activeStep}
+                    isButtonDisabledCondition={step.isButtonDisabledCondition}
                   />
                 </StepContent>
               </Box>
@@ -112,9 +134,11 @@ export default function VerticalStepper({
       </Stepper>
       {steps && activeStep === steps.length && (
         <Paper square elevation={0} sx={{ p: 3 }}>
-          <Typography>All steps completed - you&apos;re finished</Typography>
+          <Typography>
+            {t("stepper.completed.explanation", { ns: "upload" })}
+          </Typography>
           <Button onClick={handleReset} sx={{ mt: 1, mr: 1 }}>
-            Reset
+            {t("stepper.completed.link", { ns: "upload" })}
           </Button>
         </Paper>
       )}

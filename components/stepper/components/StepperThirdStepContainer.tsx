@@ -1,4 +1,4 @@
-import { Box, Container, styled, TextField } from "@mui/material";
+import { Box, Container, styled, TextField, Typography } from "@mui/material";
 import axios from "axios";
 import { KeyObject } from "crypto";
 import { useTranslation } from "next-i18next";
@@ -8,6 +8,7 @@ import { SelectBox } from "../../text-field/SelectBox";
 import { StepperThirdStepContainerProps } from "../Stepper.types";
 
 export default function StepperThirdStepContainer({
+  activeStep,
   countries,
   setUploadingDataCountry,
   setUploadingDataCategory,
@@ -16,6 +17,8 @@ export default function StepperThirdStepContainer({
   uploadingDataCategory,
   uploadingDataLatLng,
 }: StepperThirdStepContainerProps) {
+  const { t } = useTranslation();
+
   const categories = ["City", "Nature", "Night View"];
 
   const filterUploadingDataCountryInfo = countries
@@ -25,6 +28,34 @@ export default function StepperThirdStepContainer({
         return country.name.common === uploadingDataCountry;
       }
     });
+
+  if (activeStep >= 3) {
+    return (
+      <Box sx={{ display: "flex", flexDirection: "row" }}>
+        <Box sx={{ display: "flex", flexDirection: "column", width: "15rem" }}>
+          <Typography variant={"subtitle2"}>
+            {t("stepper.secondStep.uploadData.title", { ns: "upload" })}
+          </Typography>
+          <Typography variant={"body2"}>{uploadingDataCountry}</Typography>
+          <br />
+          <Typography variant={"subtitle2"}>
+            {t("stepper.secondStep.uploadData.description", { ns: "upload" })}
+          </Typography>
+          <Typography variant={"body2"}>{uploadingDataCategory}</Typography>
+        </Box>
+        <Box sx={{ width: "30rem", height: "15rem" }}>
+          <GoogleMapApi
+            center={{
+              lat: filterUploadingDataCountryInfo[0].latlng[0] as number,
+              lng: filterUploadingDataCountryInfo[0].latlng[1] as number,
+            }}
+            zoom={5}
+            uploadingDataLatLng={uploadingDataLatLng}
+          />
+        </Box>
+      </Box>
+    );
+  }
 
   return (
     <Container

@@ -21,6 +21,14 @@
           "helpText": "select the counry"
         }
       }
+    },
+    "finalStep": {
+      "label": "Complete the upload!",
+      "description": "Is everything ok with all the input data?"
+    },
+    "completed": {
+      "explanation": "Upload is completed!",
+      "link": "Go to Top"
     }
   }
 }

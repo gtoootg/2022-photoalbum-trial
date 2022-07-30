@@ -12,12 +12,14 @@ export default function Upload() {
   const [flickrImages, setFlickrImages] = useState([]);
   const [countries, setCountries] = useState();
   const [uploadingDataImages, setUploadingDataImages] = useState<number[]>([]);
-  const [uploadingDataTitle, setUploadingDataTitle] = useState<string>("");
+  const [uploadingDataTitle, setUploadingDataTitle] =
+    useState<string>(undefined);
   const [uploadingDataDescription, setUploadingDataDescription] =
-    useState<string>("");
-  const [uploadingDataCountry, setUploadingDataCountry] = useState<string>("");
+    useState<string>(undefined);
+  const [uploadingDataCountry, setUploadingDataCountry] =
+    useState<string>(undefined);
   const [uploadingDataCategory, setUploadingDataCategory] =
-    useState<string>("");
+    useState<string>(undefined);
   const [uploadingDataLatLng, setUploadingDataLatLng] = useState(undefined);
 
   useEffect(() => {
@@ -44,6 +46,8 @@ export default function Upload() {
         flickrImages={flickrImages}
         countries={countries}
         uploadingDataImages={uploadingDataImages}
+        uploadingDataTitle={uploadingDataTitle}
+        uploadingDataDescription={uploadingDataDescription}
         uploadingDataCountry={uploadingDataCountry}
         uploadingDataCategory={uploadingDataCategory}
         uploadingDataLatLng={uploadingDataLatLng}

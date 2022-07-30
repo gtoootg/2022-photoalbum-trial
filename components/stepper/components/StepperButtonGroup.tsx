@@ -7,8 +7,8 @@ export default function StepperButtonGroup(props: StepperButtonGroupProps) {
     steps,
     handleNext,
     handleBack,
-    uploadingDataImages,
     activeStep,
+    isButtonDisabledCondition,
   } = props;
 
   if (activeStep !== index) {
@@ -20,9 +20,9 @@ export default function StepperButtonGroup(props: StepperButtonGroupProps) {
         variant="contained"
         onClick={handleNext}
         sx={{ mt: 1, mr: 1 }}
-        disabled={uploadingDataImages.length ? false : true}
+        disabled={isButtonDisabledCondition}
       >
-        {index === steps.length - 1 ? "Finish" : "Continue"}
+        {index === steps.length - 1 ? "Upload" : "Next"}
       </Button>
       <Button disabled={index === 0} onClick={handleBack} sx={{ mt: 1, mr: 1 }}>
         Back
