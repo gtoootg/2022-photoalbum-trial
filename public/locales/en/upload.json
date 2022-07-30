@@ -17,8 +17,18 @@
       "label": "Where is this place?",
       "description": "Specify the country of this place, as well as putting a PIN on the map",
       "uploadData": {
-        "country": "Country"
+        "country": {
+          "helpText": "select the counry"
+        }
       }
+    },
+    "finalStep": {
+      "label": "Complete the upload!",
+      "description": "Is everything ok with all the input data?"
+    },
+    "completed": {
+      "explanation": "Upload is completed!",
+      "link": "Go to Top"
     }
   }
 }

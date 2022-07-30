@@ -6,48 +6,57 @@ import { useRef, useState } from "react";
 import VerticalStepper from "../../components/stepper/Stepper";
 import { getFlickrImages } from "../flickrApi";
 
-interface FlickrIDInputFieldProps {
-  setFlickrID: (e: string) => void;
-}
-
-const FlickrIDInputField = ({ setFlickrID }: FlickrIDInputFieldProps) => {
-  return (
-    <TextField
-      id="outlined-search"
-      label="ID of your photo in Flickr"
-      type="search"
-      style={{ margin: "2rem" }}
-      onChange={(e) => {
-        e.preventDefault();
-        setFlickrID(e.target.value);
-      }}
-    />
-  );
-};
+const restCountriesUrl = "https://restcountries.com/v3.1/all";
 
 export default function Upload() {
   const [flickrImages, setFlickrImages] = useState([]);
-
+  const [countries, setCountries] = useState();
   const [uploadingDataImages, setUploadingDataImages] = useState<number[]>([]);
-  const [uploadingDataTitle, setUploadingDataTitle] = useState<string>();
+  const [uploadingDataTitle, setUploadingDataTitle] =
+    useState<string>(undefined);
   const [uploadingDataDescription, setUploadingDataDescription] =
-    useState<string>();
+    useState<string>(undefined);
+  const [uploadingDataCountry, setUploadingDataCountry] =
+    useState<string>(undefined);
+  const [uploadingDataCategory, setUploadingDataCategory] =
+    useState<string>(undefined);
+  const [uploadingDataLatLng, setUploadingDataLatLng] = useState(undefined);
 
   useEffect(() => {
     async function onGetFlickrImages() {
       setFlickrImages(await getFlickrImages());
     }
+
+    const getCountries = axios
+      .get(restCountriesUrl)
+      .then((res) => {
+        setCountries(res.data);
+      })
+      .catch(() => {
+        throw Error;
+      });
+
     onGetFlickrImages();
+    getCountries;
   }, []);
 
   return (
     <Container>
       <VerticalStepper
         flickrImages={flickrImages}
+        countries={countries}
         uploadingDataImages={uploadingDataImages}
+        uploadingDataTitle={uploadingDataTitle}
+        uploadingDataDescription={uploadingDataDescription}
+        uploadingDataCountry={uploadingDataCountry}
+        uploadingDataCategory={uploadingDataCategory}
+        uploadingDataLatLng={uploadingDataLatLng}
         setUploadingDataImages={setUploadingDataImages}
         setUploadingDataTitle={setUploadingDataTitle}
         setUploadingDataDescription={setUploadingDataDescription}
+        setUploadingDataCountry={setUploadingDataCountry}
+        setUploadingDataCategory={setUploadingDataCategory}
+        setUploadingDataLatLng={setUploadingDataLatLng}
       />
     </Container>
   );
