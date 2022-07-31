@@ -12,6 +12,7 @@ import StepperFirstStepContainer from "./components/StepperFirstStepContainer";
 import StepperThirdStepContainer from "./components/StepperThirdStepContainer";
 import { VerticalStepperProps } from "./Stepper.types";
 import StepperFinalStepContainer from "./components/StepperFinalStepContainer";
+import axios from "axios";
 
 export default function VerticalStepper({
   flickrImages,
@@ -32,8 +33,30 @@ export default function VerticalStepper({
   const { t } = useTranslation();
   const [activeStep, setActiveStep] = useState<number>(0);
 
+  const fetchFlickrImageIdOfSelectedImages = uploadingDataImages.map(
+    (uploadingDataImage) => flickrImages[uploadingDataImage].id
+  );
+
+  const uploadingData = {
+    flickr_image_id: fetchFlickrImageIdOfSelectedImages,
+    title: uploadingDataTitle,
+    description: uploadingDataDescription,
+    country: uploadingDataCountry,
+    category: uploadingDataCategory,
+    lat: uploadingDataLatLng ? uploadingDataLatLng.lat : null,
+    lng: uploadingDataLatLng ? uploadingDataLatLng.lng : null,
+  };
+
   const handleNext = () => {
     setActiveStep((prevActiveStep) => prevActiveStep + 1);
+  };
+
+  const handleUpload = () => {
+    console.log(uploadingData.flickr_image_id);
+
+    axios.post("/api/upload", uploadingData).then(() => {
+      alert("completed");
+    });
   };
 
   const handleBack = () => {
@@ -122,6 +145,7 @@ export default function VerticalStepper({
                     index={index}
                     steps={steps}
                     handleNext={handleNext}
+                    handleUpload={handleUpload}
                     handleBack={handleBack}
                     uploadingDataImages={uploadingDataImages}
                     activeStep={activeStep}
@@ -142,6 +166,9 @@ export default function VerticalStepper({
           </Button>
         </Paper>
       )}
+      <button onClick={() => console.log(fetchFlickrImageIdOfSelectedImages)}>
+        button
+      </button>
     </Box>
   );
 }

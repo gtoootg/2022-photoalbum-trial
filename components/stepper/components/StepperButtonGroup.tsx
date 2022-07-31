@@ -6,6 +6,7 @@ export default function StepperButtonGroup(props: StepperButtonGroupProps) {
     index,
     steps,
     handleNext,
+    handleUpload,
     handleBack,
     activeStep,
     isButtonDisabledCondition,
@@ -18,7 +19,7 @@ export default function StepperButtonGroup(props: StepperButtonGroupProps) {
     <Box>
       <Button
         variant="contained"
-        onClick={handleNext}
+        onClick={index === steps.length - 1 ? handleUpload : handleNext}
         sx={{ mt: 1, mr: 1 }}
         disabled={isButtonDisabledCondition}
       >
