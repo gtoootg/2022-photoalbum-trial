@@ -42,7 +42,7 @@ export default function ImageListBox({
   return (
     <Box sx={{ margin: "2rem" }}>
       <ImageList
-        sx={{ width: "50rem", height: "30rem", margin: "0 auto" }}
+        sx={{ width: "50rem", height: "25rem", margin: "0 auto" }}
         cols={3}
       >
         {images.map((image, i) => (
