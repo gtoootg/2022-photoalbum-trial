@@ -1,15 +1,15 @@
 import { Container, TextField } from "@mui/material";
 import axios from "axios";
 import { serverSideTranslations } from "next-i18next/serverSideTranslations";
-import { useEffect } from "react";
-import { useRef, useState } from "react";
+import { useRef, useState, useEffect, useContext } from "react";
 import VerticalStepper from "../../components/stepper/Stepper";
 import { getFlickrImages } from "../flickrApi";
+import { flickrImagesContext } from "../_app";
 
 const restCountriesUrl = "https://restcountries.com/v3.1/all";
 
 export default function Upload() {
-  const [flickrImages, setFlickrImages] = useState([]);
+  const [flickrImages, setFlickrImages] = useContext(flickrImagesContext);
   const [countries, setCountries] = useState();
   const [uploadingDataImages, setUploadingDataImages] = useState<number[]>([]);
   const [uploadingDataTitle, setUploadingDataTitle] =
@@ -23,10 +23,6 @@ export default function Upload() {
   const [uploadingDataLatLng, setUploadingDataLatLng] = useState(undefined);
 
   useEffect(() => {
-    async function onGetFlickrImages() {
-      setFlickrImages(await getFlickrImages());
-    }
-
     const getCountries = axios
       .get(restCountriesUrl)
       .then((res) => {
@@ -36,7 +32,6 @@ export default function Upload() {
         throw Error;
       });
 
-    onGetFlickrImages();
     getCountries;
   }, []);
 

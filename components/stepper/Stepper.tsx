@@ -122,7 +122,7 @@ export default function VerticalStepper({
   ];
 
   return (
-    <Box sx={{ border: "solid" }}>
+    <Box sx={{ display: "flex", justifyContent: "center" }}>
       <Stepper activeStep={activeStep} orientation="vertical">
         {steps &&
           steps.map((step, index) => (
@@ -166,9 +166,6 @@ export default function VerticalStepper({
           </Button>
         </Paper>
       )}
-      <button onClick={() => console.log(fetchFlickrImageIdOfSelectedImages)}>
-        button
-      </button>
     </Box>
   );
 }

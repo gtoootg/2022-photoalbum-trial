@@ -34,12 +34,11 @@ export default function StepperThirdStepContainer({
       <Box sx={{ display: "flex", flexDirection: "row" }}>
         <Box sx={{ display: "flex", flexDirection: "column", width: "15rem" }}>
           <Typography variant={"subtitle2"}>
-            {t("stepper.secondStep.uploadData.title", { ns: "upload" })}
+            {t("stepper.thirdStep.uploadData.country", { ns: "upload" })}
           </Typography>
           <Typography variant={"body2"}>{uploadingDataCountry}</Typography>
-          <br />
           <Typography variant={"subtitle2"}>
-            {t("stepper.secondStep.uploadData.description", { ns: "upload" })}
+            {t("stepper.thirdStep.uploadData.category", { ns: "upload" })}
           </Typography>
           <Typography variant={"body2"}>{uploadingDataCategory}</Typography>
         </Box>
