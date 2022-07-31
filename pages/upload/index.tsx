@@ -23,7 +23,7 @@ export default function Upload() {
   const [uploadingDataLatLng, setUploadingDataLatLng] = useState(undefined);
 
   useEffect(() => {
-    const getCountries = axios
+    axios
       .get(restCountriesUrl)
       .then((res) => {
         setCountries(res.data);
@@ -31,8 +31,6 @@ export default function Upload() {
       .catch(() => {
         throw Error;
       });
-
-    getCountries;
   }, []);
 
   return (
