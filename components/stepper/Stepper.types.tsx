@@ -29,6 +29,7 @@ export interface StepperButtonGroupProps {
   index: number;
   steps: StepProps[];
   handleNext: () => void;
+  handleUpload: () => void;
   handleBack: () => void;
   uploadingDataImages: number[];
   activeStep: number;
