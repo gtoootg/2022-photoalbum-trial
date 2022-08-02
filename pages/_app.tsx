@@ -6,15 +6,19 @@ import Layout from "../components/layout/Layout";
 import { createContext, useState } from "react";
 
 export const flickrImagesContext = createContext([]);
+export const uploadedPostsContext = createContext([]);
 
 function MyApp({ Component, pageProps }: AppProps) {
   const [flickrImages, setFlickrImages] = useState([]);
+  const [uploadedPosts, setUploadedPosts] = useState([]);
 
   return (
     <flickrImagesContext.Provider value={[flickrImages, setFlickrImages]}>
-      <Layout>
-        <Component {...pageProps} />
-      </Layout>
+      <uploadedPostsContext.Provider value={[flickrImages, setFlickrImages]}>
+        <Layout>
+          <Component {...pageProps} />
+        </Layout>
+      </uploadedPostsContext.Provider>
     </flickrImagesContext.Provider>
   );
 }
