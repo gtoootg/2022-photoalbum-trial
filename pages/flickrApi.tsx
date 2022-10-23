@@ -27,6 +27,15 @@ export async function getFlickrImages() {
   return imagesArray;
 }
 
+export function getFlickrImageUrlById(
+  uploadDataImageId: string,
+  flickrImages
+): string[] {
+  return flickrImages.filter(
+    (flickrImage) => flickrImage.id === uploadDataImageId
+  );
+}
+
 export async function getFlickrPhotoByID(
   flickrPhotoID0: string,
   flickrPhotoID1: string,

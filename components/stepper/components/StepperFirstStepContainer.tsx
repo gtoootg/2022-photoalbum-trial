@@ -9,17 +9,17 @@ export default function StepperFirstStepContainer(
 ) {
   const {
     activeStep,
-    images,
     uploadingDataImages,
     setUploadingDataImages,
     flickrImages,
   } = props;
 
-  const FilterSelectedFlickrImages = flickrImages.filter(
-    (flickrImage: FlickrImagesProps) => {
-      return uploadingDataImages.includes(flickrImages.indexOf(flickrImage));
-    }
-  );
+  const FilterSelectedFlickrImages = [];
+  // flickrImages.filter(
+  //   (flickrImage: FlickrImagesProps) => {
+  //     return uploadingDataImages.includes(flickrImages.indexOf(flickrImage));
+  //   }
+  // );
 
   if (activeStep !== 0) {
     return (
@@ -53,7 +53,7 @@ export default function StepperFirstStepContainer(
   return (
     <ImageListBox
       activeStep={activeStep}
-      images={images}
+      images={flickrImages}
       uploadingDataImages={uploadingDataImages}
       setUploadingDataImages={setUploadingDataImages}
     />

@@ -6,7 +6,6 @@ import CardMedia from "@mui/material/CardMedia";
 import Button from "@mui/material/Button";
 import Typography from "@mui/material/Typography";
 import Image from "next/image";
-import gorira from "../../public/asset/00.jpg";
 
 interface MediaCardProps {
   imageSrc: string;

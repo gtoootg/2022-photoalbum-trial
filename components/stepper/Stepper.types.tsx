@@ -38,7 +38,6 @@ export interface StepperButtonGroupProps {
 
 export interface StepperFirstStepContainerProps {
   activeStep: number;
-  images: FlickrImagesProps[];
   uploadingDataImages: number[];
   setUploadingDataImages: (value: number[]) => void;
   flickrImages: FlickrImagesProps[];

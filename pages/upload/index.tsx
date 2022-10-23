@@ -6,8 +6,6 @@ import VerticalStepper from "../../components/stepper/Stepper";
 import { getFlickrImages } from "../flickrApi";
 import { flickrImagesContext } from "../_app";
 
-const restCountriesUrl = "https://restcountries.com/v3.1/all";
-
 export default function Upload() {
   const [flickrImages, setFlickrImages] = useContext(flickrImagesContext);
   const [countries, setCountries] = useState();
@@ -22,16 +20,8 @@ export default function Upload() {
     useState<string>(undefined);
   const [uploadingDataLatLng, setUploadingDataLatLng] = useState(undefined);
 
-  useEffect(() => {
-    axios
-      .get(restCountriesUrl)
-      .then((res) => {
-        setCountries(res.data);
-      })
-      .catch(() => {
-        throw Error;
-      });
-  }, []);
+  useGetFlickrImages(setFlickrImages);
+  useGetCountries(setCountries);
 
   return (
     <Container>
@@ -62,3 +52,30 @@ export async function getStaticProps({ locale }: { locale: string }) {
     },
   };
 }
+
+const useGetCountries = (setCountries) => {
+  const restCountriesUrl = "https://restcountries.com/v3.1/all";
+  useEffect(() => {
+    const handleGetCountries = async () => {
+      const res = await axios
+        .get(restCountriesUrl)
+        .then((res) => {
+          setCountries(res.data);
+        })
+        .catch(() => {
+          throw Error;
+        });
+    };
+    handleGetCountries();
+  }, [setCountries]);
+};
+
+const useGetFlickrImages = (setFlickrImages) => {
+  useEffect(() => {
+    const handleGetFlickrImages = async () => {
+      const res = await getFlickrImages();
+      setFlickrImages(res);
+    };
+    handleGetFlickrImages();
+  }, [setFlickrImages]);
+};

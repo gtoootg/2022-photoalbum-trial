@@ -8,38 +8,43 @@ import { uploadedPostsContext, flickrImagesContext } from "./_app";
 import MediaCard from "../components/media-card/MediaCard";
 
 const Home: NextPage = () => {
-  const [countries, setCountries] = useState([]);
-  const [photos, setPhotos] = useState([]);
-  const [flickrImages, setFlickrImages] = useContext(flickrImagesContext);
   const [uploadedPosts, setUploadedPosts] = useContext(uploadedPostsContext);
 
-  async function onGetFlickrImages() {
-    setFlickrImages(await getFlickrImages());
-  }
-
-  function fetchUploadedPosts() {
-    axios.get("/api/get-uploaded-posts").then((res) => {
-      // setUploadedPosts(res.data);
+  function getFlickrPhotoID() {
+    axios.get("/api/get/flickr-photo-id").then((res) => {
       console.log(res.data);
     });
   }
 
-  useEffect(() => {
-    onGetFlickrImages();
-    fetchUploadedPosts();
-  }, []);
+  const getAlbumPostsWithFlickId = async () => {
+    const albumPosts = await axios
+      .get("/api/get/album-posts")
+      .then((res) => res.data);
+    const flickrPhotoIdOfAlbumPosts = await axios
+      .get("/api/get/flickr-photo-id")
+      .then((res) => res.data);
 
-  return (
-    <>
-      <button
-        onClick={() => {
-          console.log(uploadedPosts);
-        }}
-      >
-        button
-      </button>
-    </>
-  );
+    if (albumPosts && flickrPhotoIdOfAlbumPosts) {
+      const newArray = albumPosts.map((albumPost) => {
+        const arrayOfFlickrPhotoIdForAlbumPost =
+          flickrPhotoIdOfAlbumPosts.filter((flickrPhotoIdOfAlbumPost) => {
+            return albumPost.id === flickrPhotoIdOfAlbumPost.postId;
+          });
+
+        albumPost.flickrPhotoId = arrayOfFlickrPhotoIdForAlbumPost;
+      });
+      return newArray;
+    }
+  };
+
+  useEffect(() => {
+    console.log(getAlbumPostsWithFlickId());
+  }, []);
+  // useEffect(() => {
+  //   console.log(uploadedPosts);
+  // }, [setUploadedPosts]);
+
+  return <></>;
 };
 
 export default Home;

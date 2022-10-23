@@ -37,8 +37,7 @@ export default function VerticalStepper({
     (uploadingDataImage) => flickrImages[uploadingDataImage].id
   );
 
-  const uploadingData = {
-    flickr_image_id: fetchFlickrImageIdOfSelectedImages,
+  const uploadingDataForPostTable = {
     title: uploadingDataTitle,
     description: uploadingDataDescription,
     country: uploadingDataCountry,
@@ -47,16 +46,32 @@ export default function VerticalStepper({
     lng: uploadingDataLatLng ? uploadingDataLatLng.lng : null,
   };
 
+  const uploadingDataForFlickrPhotoIdTable = (postId: number) => ({
+    postId: postId,
+    flickrPhotoIds: fetchFlickrImageIdOfSelectedImages,
+  });
+
   const handleNext = () => {
     setActiveStep((prevActiveStep) => prevActiveStep + 1);
   };
 
-  const handleUpload = () => {
-    console.log(uploadingData.flickr_image_id);
-
-    axios.post("/api/upload", uploadingData).then(() => {
+  const handleUpload = async () => {
+    await axios.post("/api/upload", uploadingDataForPostTable).then(() => {
       alert("completed");
     });
+
+    const autoIncrementedId = await axios
+      .get("/api/latest-post-id")
+      .then((res) => {
+        const responseDataArray = res.data;
+        const lastInsertId = responseDataArray[0]["last_insert_id()"];
+        return lastInsertId;
+      });
+
+    axios.post(
+      "/api/flickr-photo-id",
+      uploadingDataForFlickrPhotoIdTable(autoIncrementedId)
+    );
   };
 
   const handleBack = () => {
@@ -74,7 +89,6 @@ export default function VerticalStepper({
       content: (
         <StepperFirstStepContainer
           activeStep={activeStep}
-          images={flickrImages}
           uploadingDataImages={uploadingDataImages}
           setUploadingDataImages={setUploadingDataImages}
           flickrImages={flickrImages}
