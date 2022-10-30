@@ -1,8 +1,8 @@
 import mysql from "mysql";
 
 export const connection = mysql.createConnection({
-  host: "eu-cdbr-west-03.cleardb.net",
-  user: "b90983c39c9b08",
-  password: "28f3387b",
-  database: "heroku_cd8e62582467f27",
+  host: "localhost",
+  user: "root",
+  password: "9ZmL08RDk3Kf9nei5sJg",
+  database: "photoalbum",
 });
