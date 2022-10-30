@@ -38,11 +38,15 @@ const Home: NextPage = () => {
   };
 
   useEffect(() => {
-    console.log(getAlbumPostsWithFlickId());
+    const getPosts = async () => {
+      const res = axios.get("/api/get/album-posts");
+      return res;
+    };
+
+    axios.get("/api/get/album-posts").then((res) => {
+      console.log(res.data);
+    });
   }, []);
-  // useEffect(() => {
-  //   console.log(uploadedPosts);
-  // }, [setUploadedPosts]);
 
   return <></>;
 };
