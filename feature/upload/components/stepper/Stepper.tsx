@@ -56,22 +56,26 @@ export default function VerticalStepper({
   };
 
   const handleUpload = async () => {
-    await axios.post("/api/upload", uploadingDataForPostTable).then(() => {
-      alert("completed");
-    });
+    const uploadNewPost = axios
+      .post("/api/upload", uploadingDataForPostTable)
+      .catch((e) => console.log(e));
 
-    const autoIncrementedId = await axios
+    const getLastInsertId = await axios
       .get("/api/latest-post-id")
       .then((res) => {
         const responseDataArray = res.data;
-        const lastInsertId = responseDataArray[0]["last_insert_id()"];
+        const lastInsertId = responseDataArray[0]["LAST_INSERT_ID()"];
+
         return lastInsertId;
       });
 
-    axios.post(
+    const uploadFlickrPhotoIdOfUploadedPost = axios.post(
       "/api/flickr-photo-id",
-      uploadingDataForFlickrPhotoIdTable(autoIncrementedId)
+      uploadingDataForFlickrPhotoIdTable(getLastInsertId)
     );
+
+    await uploadNewPost;
+    uploadFlickrPhotoIdOfUploadedPost;
   };
 
   const handleBack = () => {

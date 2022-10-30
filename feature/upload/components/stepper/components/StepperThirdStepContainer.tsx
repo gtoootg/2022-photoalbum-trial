@@ -3,8 +3,8 @@ import axios from "axios";
 import { KeyObject } from "crypto";
 import { useTranslation } from "next-i18next";
 import { useEffect, useState } from "react";
-import GoogleMapApi from "../../google-map/GoogleMapApi";
-import { SelectBox } from "../../text-field/SelectBox";
+import GoogleMapApi from "../../../../../components/google-map/GoogleMapApi";
+import { SelectBox } from "../../../../../components/text-field/SelectBox";
 import { StepperThirdStepContainerProps } from "../Stepper.types";
 
 export default function StepperThirdStepContainer({

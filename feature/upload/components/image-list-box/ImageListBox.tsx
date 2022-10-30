@@ -3,7 +3,7 @@ import ImageList from "@mui/material/ImageList";
 import ImageListItem from "@mui/material/ImageListItem";
 import Image from "next/image";
 import { SetStateAction } from "react";
-import { FlickrImagesProps } from "../../pages/flickrApi";
+import { FlickrImagesProps } from "../../../../pages/flickrApi";
 
 interface ImageListBoxProps {
   images: FlickrImagesProps[];

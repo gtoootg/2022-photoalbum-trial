@@ -1,4 +1,3 @@
-import { FlickrImagesProps } from "../../../pages/flickrApi";
 import ImageListBox from "../../image-list-box/ImageListBox";
 import Image from "next/image";
 import { StepperFirstStepContainerProps } from "../Stepper.types";
