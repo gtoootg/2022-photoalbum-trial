@@ -19,8 +19,22 @@ export default function MediaCard({
   description,
 }: MediaCardProps) {
   return (
-    <Card sx={{ maxWidth: 300 }}>
-      <Image height={200} width={300} src={imageSrc} alt="image" />
+    <Card>
+      <div
+        style={{
+          width: "100%",
+          position: "relative",
+        }}
+      >
+        <Image
+          width={3}
+          height={2}
+          layout="responsive"
+          objectFit="contain"
+          src={imageSrc}
+          alt="image"
+        />
+      </div>
       <CardContent>
         <Typography gutterBottom variant="h5" component="div">
           {title}

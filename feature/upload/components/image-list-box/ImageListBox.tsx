@@ -3,7 +3,7 @@ import ImageList from "@mui/material/ImageList";
 import ImageListItem from "@mui/material/ImageListItem";
 import Image from "next/image";
 import { SetStateAction } from "react";
-import { FlickrImagesProps } from "../../pages/flickrApi";
+import { FlickrImagesProps } from "../../../../pages/flickrApi";
 
 interface ImageListBoxProps {
   images: FlickrImagesProps[];
@@ -45,7 +45,7 @@ export default function ImageListBox({
         sx={{ width: "50rem", height: "25rem", margin: "0 auto" }}
         cols={3}
       >
-        {images.map((image, i) => (
+        {(images || []).map((image, i) => (
           <ImageListItem key={i}>
             <div
               style={{

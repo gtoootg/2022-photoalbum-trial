@@ -1,4 +1,3 @@
-import { FlickrImagesProps } from "../../../pages/flickrApi";
 import ImageListBox from "../../image-list-box/ImageListBox";
 import Image from "next/image";
 import { StepperFirstStepContainerProps } from "../Stepper.types";
@@ -15,11 +14,6 @@ export default function StepperFirstStepContainer(
   } = props;
 
   const FilterSelectedFlickrImages = [];
-  // flickrImages.filter(
-  //   (flickrImage: FlickrImagesProps) => {
-  //     return uploadingDataImages.includes(flickrImages.indexOf(flickrImage));
-  //   }
-  // );
 
   if (activeStep !== 0) {
     return (
