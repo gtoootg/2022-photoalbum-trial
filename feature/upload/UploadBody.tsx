@@ -35,7 +35,6 @@ const useGetCountries = (setCountries) => {
       const res = await axios
         .get(restCountriesUrl)
         .then((res) => {
-          console.log(res.data[0]);
           setCountries(res.data);
         })
         .catch(() => {
