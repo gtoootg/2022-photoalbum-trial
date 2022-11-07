@@ -11,120 +11,28 @@ import StepperSecondStepContainer from "./components/StepperSecondStepContainer"
 import StepperFirstStepContainer from "./components/StepperFirstStepContainer";
 import StepperThirdStepContainer from "./components/StepperThirdStepContainer";
 import { VerticalStepperProps } from "./Stepper.types";
-import StepperFinalStepContainer from "./components/StepperFinalStepContainer";
 import axios from "axios";
 
 export default function VerticalStepper({
   flickrImages,
   countries,
-  uploadingDataImages,
-  uploadingDataTitle,
-  uploadingDataDescription,
-  uploadingDataCountry,
-  uploadingDataCategory,
-  uploadingDataLatLng,
-  setUploadingDataImages,
-  setUploadingDataTitle,
-  setUploadingDataDescription,
-  setUploadingDataCountry,
-  setUploadingDataCategory,
-  setUploadingDataLatLng,
+  uploadingData,
+  setUploadingData,
 }: VerticalStepperProps) {
   const { t } = useTranslation();
   const [activeStep, setActiveStep] = useState<number>(0);
 
-  const fetchFlickrImageIdOfSelectedImages = uploadingDataImages.map(
-    (uploadingDataImage) => flickrImages[uploadingDataImage].id
-  );
-
-  const uploadingDataForPostTable = {
-    title: uploadingDataTitle,
-    description: uploadingDataDescription,
-    country: uploadingDataCountry,
-    category: uploadingDataCategory,
-    lat: uploadingDataLatLng ? uploadingDataLatLng.lat : null,
-    lng: uploadingDataLatLng ? uploadingDataLatLng.lng : null,
-    flickrPhotoIds: fetchFlickrImageIdOfSelectedImages,
-  };
+  const { steps } = useStepperConfig({
+    activeStep,
+    uploadingData,
+    setUploadingData,
+    flickrImages,
+    countries,
+  });
 
   const handleNext = () => {
     setActiveStep((prevActiveStep) => prevActiveStep + 1);
   };
-
-  const handleUpload = () => {
-    const uploadPost = () =>
-      axios
-        .post("/api/upload", uploadingDataForPostTable)
-        .then((res) => {
-          console.log(res.status);
-        })
-        .catch((error) => {
-          console.log(error);
-        });
-
-    uploadPost();
-  };
-
-  const handleBack = () => {
-    setActiveStep((prevActiveStep) => prevActiveStep - 1);
-  };
-
-  const handleReset = () => {
-    setActiveStep(0);
-  };
-
-  const steps = [
-    {
-      label: t("stepper.firstStep.label", { ns: "upload" }),
-      description: t("stepper.firstStep.description", { ns: "upload" }),
-      content: (
-        <StepperFirstStepContainer
-          activeStep={activeStep}
-          uploadingDataImages={uploadingDataImages}
-          setUploadingDataImages={setUploadingDataImages}
-          flickrImages={flickrImages}
-        />
-      ),
-      isButtonDisabledCondition: uploadingDataImages.length === 0,
-    },
-    {
-      label: t("stepper.secondStep.label", { ns: "upload" }),
-      description: t("stepper.secondStep.description", { ns: "upload" }),
-      content: (
-        <StepperSecondStepContainer
-          activeStep={activeStep}
-          uploadingDataTitle={uploadingDataTitle}
-          uploadingDataDescription={uploadingDataDescription}
-          setUploadingDataTitle={setUploadingDataTitle}
-          setUploadingDataDescription={setUploadingDataDescription}
-        />
-      ),
-      isButtonDisabledCondition:
-        !uploadingDataTitle || !uploadingDataDescription,
-    },
-    {
-      label: t("stepper.thirdStep.label", { ns: "upload" }),
-      description: t("stepper.thirdStep.description", { ns: "upload" }),
-      content: (
-        <StepperThirdStepContainer
-          activeStep={activeStep}
-          countries={countries}
-          setUploadingDataCountry={setUploadingDataCountry}
-          setUploadingDataCategory={setUploadingDataCategory}
-          uploadingDataCountry={uploadingDataCountry}
-          uploadingDataCategory={uploadingDataCategory}
-          uploadingDataLatLng={uploadingDataLatLng}
-          setUploadingDataLatLng={setUploadingDataLatLng}
-        />
-      ),
-      isButtonDisabledCondition:
-        !uploadingDataCountry || !uploadingDataCategory || !uploadingDataLatLng,
-    },
-    {
-      label: t("stepper.finalStep.label", { ns: "upload" }),
-      description: t("stepper.finalStep.description", { ns: "upload" }),
-    },
-  ];
 
   return (
     <Box sx={{ display: "flex", justifyContent: "center" }}>
@@ -150,9 +58,8 @@ export default function VerticalStepper({
                     index={index}
                     steps={steps}
                     handleNext={handleNext}
-                    handleUpload={handleUpload}
-                    handleBack={handleBack}
-                    uploadingDataImages={uploadingDataImages}
+                    handleUpload={() => handleUpload(uploadingData)}
+                    handleBack={() => handleBack(setActiveStep)}
                     activeStep={activeStep}
                     isButtonDisabledCondition={step.isButtonDisabledCondition}
                   />
@@ -166,7 +73,10 @@ export default function VerticalStepper({
           <Typography>
             {t("stepper.completed.explanation", { ns: "upload" })}
           </Typography>
-          <Button onClick={handleReset} sx={{ mt: 1, mr: 1 }}>
+          <Button
+            onClick={() => handleReset(setActiveStep)}
+            sx={{ mt: 1, mr: 1 }}
+          >
             {t("stepper.completed.link", { ns: "upload" })}
           </Button>
         </Paper>
@@ -174,3 +84,86 @@ export default function VerticalStepper({
     </Box>
   );
 }
+
+const useStepperConfig = ({
+  activeStep,
+  uploadingData,
+  setUploadingData,
+  flickrImages,
+  countries,
+}) => {
+  const { t } = useTranslation();
+  const steps = [
+    {
+      label: t("stepper.firstStep.label", { ns: "upload" }),
+      description: t("stepper.firstStep.description", { ns: "upload" }),
+      content: (
+        <StepperFirstStepContainer
+          activeStep={activeStep}
+          uploadingData={uploadingData}
+          setUploadingData={setUploadingData}
+          flickrImages={flickrImages}
+        />
+      ),
+      isButtonDisabledCondition: uploadingData.flickrImageIds.length === 0,
+    },
+    {
+      label: t("stepper.secondStep.label", { ns: "upload" }),
+      description: t("stepper.secondStep.description", { ns: "upload" }),
+      content: (
+        <StepperSecondStepContainer
+          activeStep={activeStep}
+          uploadingData={uploadingData}
+          setUploadingData={setUploadingData}
+        />
+      ),
+      isButtonDisabledCondition:
+        !uploadingData.title || !uploadingData.description,
+    },
+    {
+      label: t("stepper.thirdStep.label", { ns: "upload" }),
+      description: t("stepper.thirdStep.description", { ns: "upload" }),
+      content: (
+        <StepperThirdStepContainer
+          activeStep={activeStep}
+          countries={countries}
+          uploadingData={uploadingData}
+          setUploadingData={setUploadingData}
+        />
+      ),
+      isButtonDisabledCondition:
+        !uploadingData.country ||
+        !uploadingData.category ||
+        !uploadingData.lat ||
+        !uploadingData.lng,
+    },
+    {
+      label: t("stepper.finalStep.label", { ns: "upload" }),
+      description: t("stepper.finalStep.description", { ns: "upload" }),
+    },
+  ];
+
+  return { steps };
+};
+
+const handleUpload = (uploadingData) => {
+  const uploadPost = () =>
+    axios
+      .post("/api/upload", uploadingData)
+      .then((res) => {
+        console.log(res.status);
+      })
+      .catch((error) => {
+        console.log(error);
+      });
+
+  uploadPost();
+};
+
+const handleBack = (setActiveStep) => {
+  setActiveStep((prevActiveStep) => prevActiveStep - 1);
+};
+
+const handleReset = (setActiveStep) => {
+  setActiveStep(0);
+};

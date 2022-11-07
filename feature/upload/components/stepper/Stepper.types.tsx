@@ -1,5 +1,7 @@
 import { ChangeEventHandler } from "react";
-import { FlickrImagesProps } from "../../pages/flickrApi";
+import { FlickrImageProps } from "../../../../pages/flickrApi";
+import { UploadingDataProps } from "../../upload.types";
+import { ImageListBoxProps } from "../image-list-box/ImageListBox.type";
 
 export interface StepProps {
   label: string;
@@ -8,21 +10,21 @@ export interface StepProps {
   isButtonDisabledCondition?: any;
 }
 
-export interface VerticalStepperProps {
-  flickrImages: FlickrImagesProps[];
+export interface VerticalStepperProps extends ImageListBoxProps {
   countries: any[] | undefined;
-  uploadingDataImages: number[];
-  uploadingDataTitle: string;
-  uploadingDataDescription: string;
-  uploadingDataCountry: string;
-  uploadingDataCategory: string;
-  uploadingDataLatLng: { lat: number; lng: number };
-  setUploadingDataImages: (value: number[]) => void;
-  setUploadingDataTitle: (value: string) => void;
-  setUploadingDataDescription: (value: string) => void;
-  setUploadingDataCountry: (value: string) => void;
-  setUploadingDataCategory: (value: string) => void;
-  setUploadingDataLatLng: (e: string) => void;
+
+  // uploadingDataImages: string[];
+  // uploadingDataTitle: string;
+  // uploadingDataDescription: string;
+  // uploadingDataCountry: string;
+  // uploadingDataCategory: string;
+  // uploadingDataLatLng: { lat: number; lng: number };
+  // setUploadingDataImages: (value: number[]) => void;
+  // setUploadingDataTitle: (value: string) => void;
+  // setUploadingDataDescription: (value: string) => void;
+  // setUploadingDataCountry: (value: string) => void;
+  // setUploadingDataCategory: (value: string) => void;
+  // setUploadingDataLatLng: (e: string) => void;
 }
 
 export interface StepperButtonGroupProps {
@@ -31,33 +33,20 @@ export interface StepperButtonGroupProps {
   handleNext: () => void;
   handleUpload: () => void;
   handleBack: () => void;
-  uploadingDataImages: number[];
   activeStep: number;
   isButtonDisabledCondition?: any;
 }
 
-export interface StepperFirstStepContainerProps {
+export interface StepperFirstStepContainerProps extends ImageListBoxProps {
   activeStep: number;
-  uploadingDataImages: number[];
-  setUploadingDataImages: (value: number[]) => void;
-  flickrImages: FlickrImagesProps[];
 }
 
-export interface StepperSecondStepContainerProps {
-  activeStep: number;
-  uploadingDataTitle: string;
-  uploadingDataDescription: string;
-  setUploadingDataTitle: (value: string) => void;
-  setUploadingDataDescription: (value: string) => void;
-}
+export type StepperSecondStepContainerProps = Omit<
+  StepperFirstStepContainerProps,
+  "flickrImages"
+>;
 
-export interface StepperThirdStepContainerProps {
-  activeStep: number;
+export interface StepperThirdStepContainerProps
+  extends StepperSecondStepContainerProps {
   countries: any[] | undefined;
-  setUploadingDataCountry: (value: string) => void;
-  setUploadingDataCategory: (value: string) => void;
-  setUploadingDataLatLng: (e: string) => void;
-  uploadingDataCountry: string;
-  uploadingDataCategory: string;
-  uploadingDataLatLng: { lat: number; lng: number };
 }

@@ -8,10 +8,8 @@ const StepperSecondStepTextFieldStyled = styled(TextField)(() => ({
 }));
 
 export default function StepperSecondStepContainer({
-  uploadingDataTitle,
-  uploadingDataDescription,
-  setUploadingDataTitle,
-  setUploadingDataDescription,
+  uploadingData,
+  setUploadingData,
   activeStep,
 }: StepperSecondStepContainerProps) {
   const { t } = useTranslation();
@@ -22,12 +20,12 @@ export default function StepperSecondStepContainer({
         <Typography variant={"subtitle2"}>
           {t("stepper.secondStep.uploadData.title", { ns: "upload" })}
         </Typography>
-        <Typography variant={"body2"}>{uploadingDataTitle}</Typography>
+        <Typography variant={"body2"}>{uploadingData.title}</Typography>
         <br />
         <Typography variant={"subtitle2"}>
           {t("stepper.secondStep.uploadData.description", { ns: "upload" })}
         </Typography>
-        <Typography variant={"body2"}>{uploadingDataDescription}</Typography>
+        <Typography variant={"body2"}>{uploadingData.description}</Typography>
       </Box>
     );
   }
@@ -38,7 +36,9 @@ export default function StepperSecondStepContainer({
         required
         id="outlined-required"
         label={t("stepper.secondStep.uploadData.title", { ns: "upload" })}
-        onChange={(e) => setUploadingDataTitle(e.target.value)}
+        onChange={(e) =>
+          setUploadingData({ ...uploadingData, title: e.target.value })
+        }
       />
       <StepperSecondStepTextFieldStyled
         required
@@ -46,7 +46,9 @@ export default function StepperSecondStepContainer({
         rows={6}
         id="outlined-required"
         label={t("stepper.secondStep.uploadData.description", { ns: "upload" })}
-        onChange={(e) => setUploadingDataDescription(e.target.value)}
+        onChange={(e) =>
+          setUploadingData({ ...uploadingData, description: e.target.value })
+        }
       />
     </Box>
   );
