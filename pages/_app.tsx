@@ -12,12 +12,12 @@ export const flickrImagesContext = createContext([]);
 export const uploadedPostsContext = createContext([]);
 
 function MyApp({ Component, pageProps }: AppProps) {
-  const [flickrImages, setFlickrImages] = useState([]);
-  const [posts, setPosts] = useState([]);
+  const [flickrImages, setFlickrImages] = useState(undefined);
+  const [uploadedPosts, setUploadedPosts] = useState(undefined);
 
   return (
     <flickrImagesContext.Provider value={[flickrImages, setFlickrImages]}>
-      <uploadedPostsContext.Provider value={[flickrImages, setFlickrImages]}>
+      <uploadedPostsContext.Provider value={[uploadedPosts, setUploadedPosts]}>
         <Layout>
           <Component {...pageProps} />
         </Layout>

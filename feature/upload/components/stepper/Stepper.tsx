@@ -44,38 +44,25 @@ export default function VerticalStepper({
     category: uploadingDataCategory,
     lat: uploadingDataLatLng ? uploadingDataLatLng.lat : null,
     lng: uploadingDataLatLng ? uploadingDataLatLng.lng : null,
-  };
-
-  const uploadingDataForFlickrPhotoIdTable = (postId: number) => ({
-    postId: postId,
     flickrPhotoIds: fetchFlickrImageIdOfSelectedImages,
-  });
+  };
 
   const handleNext = () => {
     setActiveStep((prevActiveStep) => prevActiveStep + 1);
   };
 
-  const handleUpload = async () => {
-    const uploadNewPost = axios
-      .post("/api/upload", uploadingDataForPostTable)
-      .catch((e) => console.log(e));
+  const handleUpload = () => {
+    const uploadPost = () =>
+      axios
+        .post("/api/upload", uploadingDataForPostTable)
+        .then((res) => {
+          console.log(res.status);
+        })
+        .catch((error) => {
+          console.log(error);
+        });
 
-    const getLastInsertId = await axios
-      .get("/api/latest-post-id")
-      .then((res) => {
-        const responseDataArray = res.data;
-        const lastInsertId = responseDataArray[0]["LAST_INSERT_ID()"];
-
-        return lastInsertId;
-      });
-
-    const uploadFlickrPhotoIdOfUploadedPost = axios.post(
-      "/api/flickr-photo-id",
-      uploadingDataForFlickrPhotoIdTable(getLastInsertId)
-    );
-
-    await uploadNewPost;
-    uploadFlickrPhotoIdOfUploadedPost;
+    uploadPost();
   };
 
   const handleBack = () => {

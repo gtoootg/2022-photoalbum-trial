@@ -5,50 +5,31 @@ import Image from "next/image";
 import { serverSideTranslations } from "next-i18next/serverSideTranslations";
 import { getFlickrImages } from "./flickrApi";
 import { uploadedPostsContext, flickrImagesContext } from "./_app";
-import MediaCard from "../components/media-card/MediaCard";
+import { HomeBody } from "../feature/home/home-body";
 
 const Home: NextPage = () => {
-  const [uploadedPosts, setUploadedPosts] = useContext(uploadedPostsContext);
+  // const getAlbumPostsWithFlickId = async () => {
+  //   const albumPosts = await axios
+  //     .get("/api/get/album-posts")
+  //     .then((res) => res.data);
+  //   const flickrPhotoIdOfAlbumPosts = await axios
+  //     .get("/api/get/flickr-photo-id")
+  //     .then((res) => res.data);
 
-  function getFlickrPhotoID() {
-    axios.get("/api/get/flickr-photo-id").then((res) => {
-      console.log(res.data);
-    });
-  }
+  //   if (albumPosts && flickrPhotoIdOfAlbumPosts) {
+  //     const newArray = albumPosts.map((albumPost) => {
+  //       const arrayOfFlickrPhotoIdForAlbumPost =
+  //         flickrPhotoIdOfAlbumPosts.filter((flickrPhotoIdOfAlbumPost) => {
+  //           return albumPost.id === flickrPhotoIdOfAlbumPost.postId;
+  //         });
 
-  const getAlbumPostsWithFlickId = async () => {
-    const albumPosts = await axios
-      .get("/api/get/album-posts")
-      .then((res) => res.data);
-    const flickrPhotoIdOfAlbumPosts = await axios
-      .get("/api/get/flickr-photo-id")
-      .then((res) => res.data);
+  //       albumPost.flickrPhotoId = arrayOfFlickrPhotoIdForAlbumPost;
+  //     });
+  //     return newArray;
+  //   }
+  // };
 
-    if (albumPosts && flickrPhotoIdOfAlbumPosts) {
-      const newArray = albumPosts.map((albumPost) => {
-        const arrayOfFlickrPhotoIdForAlbumPost =
-          flickrPhotoIdOfAlbumPosts.filter((flickrPhotoIdOfAlbumPost) => {
-            return albumPost.id === flickrPhotoIdOfAlbumPost.postId;
-          });
-
-        albumPost.flickrPhotoId = arrayOfFlickrPhotoIdForAlbumPost;
-      });
-      return newArray;
-    }
-  };
-
-  useEffect(() => {
-    const getPosts = async () => {
-      const res = axios.get("/api/get/album-posts");
-      return res;
-    };
-
-    axios.get("/api/get/album-posts").then((res) => {
-      console.log(res.data);
-    });
-  }, []);
-
-  return <></>;
+  return <HomeBody />;
 };
 
 export default Home;

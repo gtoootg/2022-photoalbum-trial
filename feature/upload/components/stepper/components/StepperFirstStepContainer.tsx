@@ -14,11 +14,6 @@ export default function StepperFirstStepContainer(
   } = props;
 
   const FilterSelectedFlickrImages = [];
-  // flickrImages.filter(
-  //   (flickrImage: FlickrImagesProps) => {
-  //     return uploadingDataImages.includes(flickrImages.indexOf(flickrImage));
-  //   }
-  // );
 
   if (activeStep !== 0) {
     return (

@@ -45,7 +45,7 @@ export default function ImageListBox({
         sx={{ width: "50rem", height: "25rem", margin: "0 auto" }}
         cols={3}
       >
-        {images.map((image, i) => (
+        {(images || []).map((image, i) => (
           <ImageListItem key={i}>
             <div
               style={{
