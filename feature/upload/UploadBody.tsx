@@ -1,6 +1,5 @@
-import { Container, TextField } from "@mui/material";
+import { Container } from "@mui/material";
 import axios from "axios";
-import { serverSideTranslations } from "next-i18next/serverSideTranslations";
 import { useState, useEffect, useContext } from "react";
 import { flickrImagesContext } from "../../pages/_app";
 import { useGetFlickrImages } from "../home/HomeBody";
@@ -36,6 +35,7 @@ const useGetCountries = (setCountries) => {
       const res = await axios
         .get(restCountriesUrl)
         .then((res) => {
+          console.log(res.data[0]);
           setCountries(res.data);
         })
         .catch(() => {

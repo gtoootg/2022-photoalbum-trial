@@ -15,6 +15,8 @@ export default function StepperThirdStepContainer({
 
   const categories = ["City", "Nature", "Night View"];
 
+  console.log(countries);
+
   const filterUploadingDataCountryInfo = countries
     ?.slice()
     .filter((country) => {
