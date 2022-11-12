@@ -41,7 +41,7 @@ export const filterImageSourcesOfPostForMediaCard = (
   flickrImages,
   uploadedPost
 ) => {
-  return flickrImages.filter((flickrImage) => {
+  return (flickrImages || []).filter((flickrImage) => {
     const flickrPhotoIdOfUploadedPostInArray = uploadedPost?.flickrPhotoId?.map(
       (e) => e.toString()
     );

@@ -1,0 +1,24 @@
+.imageSlider {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.mainImage {
+  width: 45rem;
+  position: relative;
+  border-radius: 0.8rem;
+  overflow: hidden;
+}
+
+.subImageGroup {
+  margin-top: 2rem;
+  display: flex;
+
+  &_image {
+    width: 7rem;
+    position: relative;
+    margin-left: 0.5rem;
+    margin-right: 0.5rem;
+  }
+}

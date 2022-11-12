@@ -7,11 +7,11 @@ export default function AlbumPostWithId() {
   const router = useRouter();
   const { postId } = router.query;
 
-  return;
-  <>
-    {postId}
-    <AlbumPostBody />
-  </>;
+  return (
+    <>
+      <AlbumPostBody />
+    </>
+  );
 }
 
 export async function getStaticProps({ locale }: { locale: string }) {

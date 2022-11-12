@@ -9,12 +9,16 @@ const AlbumPostBody = () => {
   const [flickrImages, setFlickrImages] = useContext(flickrImagesContext);
   const [uploadedPosts, setUploadedPosts] = useContext(uploadedPostsContext);
   const { postId } = router.query;
-  const uploadedPost = uploadedPosts[Number(postId as string)];
+  const uploadedPost = (uploadedPosts || [])[Number(postId)];
 
   const imagesSrc = filterImageSourcesOfPostForMediaCard(
     flickrImages,
     uploadedPost
   ).map((flickrImage) => flickrImage["url_h"]);
+
+  if (!uploadedPosts || !flickrImages) {
+    return null;
+  }
 
   return (
     <>
