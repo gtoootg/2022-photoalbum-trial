@@ -106,7 +106,7 @@ const useStepperConfig = ({
           flickrImages={flickrImages}
         />
       ),
-      isButtonDisabledCondition: uploadingData.flickrImageIds.length === 0,
+      isButtonDisabledCondition: !uploadingData.flickrImageIds.length,
     },
     {
       label: t("stepper.secondStep.label", { ns: "upload" }),
@@ -134,7 +134,7 @@ const useStepperConfig = ({
       ),
       isButtonDisabledCondition:
         !uploadingData.country ||
-        !uploadingData.category ||
+        uploadingData.category.length === 0 ||
         !uploadingData.lat ||
         !uploadingData.lng,
     },

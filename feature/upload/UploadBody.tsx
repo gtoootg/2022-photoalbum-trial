@@ -59,7 +59,7 @@ const initialUploadingDataState: UploadingDataProps = {
   title: undefined,
   description: undefined,
   country: undefined,
-  category: undefined,
+  category: [],
   lat: undefined,
   lng: undefined,
 };

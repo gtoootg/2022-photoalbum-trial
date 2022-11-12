@@ -1,6 +1,5 @@
 import {
   Autocomplete,
-  AutocompleteRenderInputParams,
   Box,
   Container,
   TextField,
@@ -8,7 +7,8 @@ import {
 } from "@mui/material";
 
 import { useTranslation } from "next-i18next";
-import { ReactNode } from "react";
+import { useEffect } from "react";
+import { CheckboxGroup } from "../../../../../components/checkbox-group/CheckboxGroup";
 import GoogleMapApi from "../../../../../components/google-map/GoogleMapApi";
 import { SelectBox } from "../../../../../components/text-field/SelectBox";
 import { StepperThirdStepContainerProps } from "../UploadStepper.types";
@@ -35,6 +35,10 @@ export default function StepperThirdStepContainer({
         return country.ccn3 === uploadingData.country;
       }
     });
+
+  useEffect(() => {
+    console.log(uploadingData);
+  }, [uploadingData]);
 
   if (activeStep >= 3) {
     return (
@@ -93,15 +97,21 @@ export default function StepperThirdStepContainer({
             });
           }}
         />
-
         <br />
-        <SelectBox
-          selectOptions={categories}
-          handleChange={(value) => {
-            setUploadingData({ ...uploadingData, category: value });
+        <CheckboxGroup
+          options={[
+            { label: "City", value: "0" },
+            { label: "Night view", value: "1" },
+            { label: "Nature", value: "2" },
+          ]}
+          handleClickCheckbox={(eventTargetValue, eventTargetChecked) => {
+            handleClickCheckboxOfCategory(
+              eventTargetValue,
+              eventTargetChecked,
+              uploadingData,
+              setUploadingData
+            );
           }}
-          label="Category"
-          value={uploadingData.category}
         />
       </Box>
       <Box sx={{ width: "30rem", height: "20rem" }}>
@@ -147,3 +157,25 @@ export default function StepperThirdStepContainer({
     </Container>
   );
 }
+
+const handleClickCheckboxOfCategory = (
+  eventTargetValue,
+  eventTargetChecked,
+  uploadingData,
+  setUploadingData
+) => {
+  let currentSelectedCategories = uploadingData.category.slice();
+  if (!eventTargetChecked) {
+    const removeSelectedCategory = currentSelectedCategories.filter(
+      (category) => {
+        return category !== eventTargetValue;
+      }
+    );
+    setUploadingData({ ...uploadingData, category: removeSelectedCategory });
+    return;
+  }
+
+  currentSelectedCategories.push(eventTargetValue);
+
+  setUploadingData({ ...uploadingData, category: currentSelectedCategories });
+};
