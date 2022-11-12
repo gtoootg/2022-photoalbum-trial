@@ -1,6 +1,7 @@
 import styled from "@emotion/styled";
 import { Box, TextField, Typography } from "@mui/material";
 import { useTranslation } from "next-i18next";
+import { Text } from "../../../../../components/text/Text";
 import { StepperSecondStepContainerProps } from "../UploadStepper.types";
 
 import styles from "./StepperSecondStepContainer.module.scss";
@@ -19,15 +20,20 @@ export default function StepperSecondStepContainer({
   if (activeStep >= 2) {
     return (
       <Box className={styles.box}>
-        <Typography variant={"subtitle2"} className={styles.preview_title}>
-          {t("stepper.secondStep.uploadData.title", { ns: "upload" })}
-        </Typography>
-        <Typography variant={"body2"}>{uploadingData.title}</Typography>
+        <Text
+          variant={"subtitle2"}
+          className={styles.preview_title}
+          content={t("stepper.secondStep.uploadData.title", { ns: "upload" })}
+        />
+        <Text variant={"body2"} content={uploadingData.title} />
         <br />
-        <Typography variant={"subtitle2"}>
-          {t("stepper.secondStep.uploadData.description", { ns: "upload" })}
-        </Typography>
-        <Typography variant={"body2"}>{uploadingData.description}</Typography>
+        <Text
+          variant={"subtitle2"}
+          content={t("stepper.secondStep.uploadData.description", {
+            ns: "upload",
+          })}
+        />
+        <Text variant={"body2"} content={uploadingData.description} />
       </Box>
     );
   }

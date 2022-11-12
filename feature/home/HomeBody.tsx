@@ -40,15 +40,3 @@ const useGetUploadedPosts = (setUploadedPosts) => {
     getUploadedPosts();
   }, []);
 };
-
-// const useGetUploadedPosts = (setUploadedPosts) => {
-//   useEffect(() => {
-//     const getUploadedPosts = async () => {
-//       const res = await axios.get("/api/get/album-posts");
-
-//       setUploadedPosts(res.data);
-//     };
-
-//     getUploadedPosts();
-//   }, []);
-// };

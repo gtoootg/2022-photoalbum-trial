@@ -11,6 +11,7 @@ import { useTranslation } from "next-i18next";
 import { useEffect, useState } from "react";
 import { CheckboxGroup } from "../../../../../components/checkbox-group/CheckboxGroup";
 import GoogleMapApi from "../../../../../components/google-map/GoogleMapApi";
+import { Text } from "../../../../../components/text/Text";
 import { StepperThirdStepContainerProps } from "../UploadStepper.types";
 import styles from "./StepperThirdStepContainer.module.scss";
 
@@ -44,14 +45,22 @@ export default function StepperThirdStepContainer({
     return (
       <Box sx={{ display: "flex", flexDirection: "row" }}>
         <Box sx={{ display: "flex", flexDirection: "column", width: "15rem" }}>
-          <Typography variant={"subtitle2"}>
-            {t("stepper.thirdStep.uploadData.country", { ns: "upload" })}
-          </Typography>
-          <Typography variant={"body2"}>{uploadingData.country}</Typography>
-          <Typography variant={"subtitle2"}>
-            {t("stepper.thirdStep.uploadData.category", { ns: "upload" })}
-          </Typography>
-          <Typography variant={"body2"}>{uploadingData.categories}</Typography>
+          <Text
+            variant={"subtitle2"}
+            content={t("stepper.thirdStep.uploadData.country", {
+              ns: "upload",
+            })}
+          />
+          <Text variant={"body2"} content={uploadingData.country} />
+          <Text
+            variant={"subtitle2"}
+            content={t("stepper.thirdStep.uploadData.category", {
+              ns: "upload",
+            })}
+          />
+          {/* <Text variant={"body2"} content={uploadingData.categories} />
+
+          <Typography variant={"body2"}>{uploadingData.categories}</Typography> */}
         </Box>
         <Box sx={{ width: "30rem", height: "15rem" }}>
           <GoogleMapApi
@@ -79,11 +88,13 @@ export default function StepperThirdStepContainer({
       }}
     >
       <Box sx={{ display: "flex", flexDirection: "column", width: "25rem" }}>
-        <Typography variant={"h6"} className={styles.formField_headline}>
-          {t("stepper.thirdStep.uploadData.country.headline", {
+        <Text
+          variant={"h6"}
+          className={styles.formField_headline}
+          content={t("stepper.thirdStep.uploadData.country.headline", {
             ns: "upload",
           })}
-        </Typography>
+        />
         <Autocomplete
           className={styles.formField}
           renderInput={(params) => (
@@ -104,11 +115,13 @@ export default function StepperThirdStepContainer({
           }}
         />
         <br />
-        <Typography variant={"h6"}>
-          {t("stepper.thirdStep.uploadData.category.headline", {
+        <Text
+          variant={"h6"}
+          content={t("stepper.thirdStep.uploadData.category.headline", {
             ns: "upload",
           })}
-        </Typography>
+        />
+
         <CheckboxGroup
           className={styles.formField}
           options={categoriesForSelectField}

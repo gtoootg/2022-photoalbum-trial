@@ -28,6 +28,7 @@ export const MediaCardGroup = () => {
               imageSrc={imageSrcForMediaCard}
               title={uploadedPost.title}
               description={uploadedPost.description}
+              index={index}
             />
           </Grid>
         );
@@ -36,7 +37,10 @@ export const MediaCardGroup = () => {
   );
 };
 
-const filterImageSourcesOfPostForMediaCard = (flickrImages, uploadedPost) => {
+export const filterImageSourcesOfPostForMediaCard = (
+  flickrImages,
+  uploadedPost
+) => {
   return flickrImages.filter((flickrImage) => {
     const flickrPhotoIdOfUploadedPostInArray = uploadedPost?.flickrPhotoId?.map(
       (e) => e.toString()

@@ -6,18 +6,22 @@ import CardMedia from "@mui/material/CardMedia";
 import Button from "@mui/material/Button";
 import Typography from "@mui/material/Typography";
 import Image from "next/image";
+import { useRouter } from "next/router";
 
 interface MediaCardProps {
   imageSrc: string;
   title: string;
   description: string;
+  index: number;
 }
 
 export default function MediaCard({
   imageSrc,
   title,
   description,
+  index,
 }: MediaCardProps) {
+  const router = useRouter();
   return (
     <Card>
       <div
@@ -39,12 +43,17 @@ export default function MediaCard({
         <Typography gutterBottom variant="h5" component="div">
           {title}
         </Typography>
-        <Typography variant="body2" color="text.secondary">
-          {description}
+        <Typography noWrap variant="body2" color="text.secondary">
+          <span style={{}}>{description}</span>
         </Typography>
       </CardContent>
       <CardActions>
-        <Button size="small">Learn More</Button>
+        <Button
+          size="small"
+          onClick={() => router.push(`/album-posts/${index}`)}
+        >
+          Learn More
+        </Button>
       </CardActions>
     </Card>
   );
