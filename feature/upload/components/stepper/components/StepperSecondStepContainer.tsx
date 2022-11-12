@@ -1,7 +1,9 @@
 import styled from "@emotion/styled";
 import { Box, TextField, Typography } from "@mui/material";
 import { useTranslation } from "next-i18next";
-import { StepperSecondStepContainerProps } from "../Stepper.types";
+import { StepperSecondStepContainerProps } from "../UploadStepper.types";
+
+import styles from "./StepperSecondStepContainer.module.scss";
 
 const StepperSecondStepTextFieldStyled = styled(TextField)(() => ({
   marginBottom: "1rem",
@@ -16,8 +18,8 @@ export default function StepperSecondStepContainer({
 
   if (activeStep >= 2) {
     return (
-      <Box sx={{ display: "flex", flexDirection: "column" }}>
-        <Typography variant={"subtitle2"}>
+      <Box className={styles.box}>
+        <Typography variant={"subtitle2"} className={styles.preview_title}>
           {t("stepper.secondStep.uploadData.title", { ns: "upload" })}
         </Typography>
         <Typography variant={"body2"}>{uploadingData.title}</Typography>
@@ -31,7 +33,7 @@ export default function StepperSecondStepContainer({
   }
 
   return (
-    <Box sx={{ display: "flex", flexDirection: "column" }}>
+    <Box className={styles.box}>
       <StepperSecondStepTextFieldStyled
         required
         id="outlined-required"
@@ -39,6 +41,7 @@ export default function StepperSecondStepContainer({
         onChange={(e) =>
           setUploadingData({ ...uploadingData, title: e.target.value })
         }
+        value={uploadingData.title}
       />
       <StepperSecondStepTextFieldStyled
         required
@@ -49,6 +52,7 @@ export default function StepperSecondStepContainer({
         onChange={(e) =>
           setUploadingData({ ...uploadingData, description: e.target.value })
         }
+        value={uploadingData.description}
       />
     </Box>
   );

@@ -1,9 +1,17 @@
-import { Box, Container, Typography } from "@mui/material";
+import {
+  Autocomplete,
+  AutocompleteRenderInputParams,
+  Box,
+  Container,
+  TextField,
+  Typography,
+} from "@mui/material";
 
 import { useTranslation } from "next-i18next";
+import { ReactNode } from "react";
 import GoogleMapApi from "../../../../../components/google-map/GoogleMapApi";
 import { SelectBox } from "../../../../../components/text-field/SelectBox";
-import { StepperThirdStepContainerProps } from "../Stepper.types";
+import { StepperThirdStepContainerProps } from "../UploadStepper.types";
 
 export default function StepperThirdStepContainer({
   activeStep,
@@ -15,13 +23,16 @@ export default function StepperThirdStepContainer({
 
   const categories = ["City", "Nature", "Night View"];
 
-  console.log(countries);
+  const countriesForAutoCompleteOptions = countries?.map((country) => ({
+    label: country.name.common,
+    value: country.ccn3,
+  }));
 
   const filterUploadingDataCountryInfo = countries
     ?.slice()
     .filter((country) => {
       if (uploadingData.country) {
-        return country.name.common === uploadingData.country;
+        return country.ccn3 === uploadingData.country;
       }
     });
 
@@ -64,18 +75,25 @@ export default function StepperThirdStepContainer({
       }}
     >
       <Box sx={{ display: "flex", flexDirection: "column", width: "25rem" }}>
-        {countries && (
-          <SelectBox
-            selectOptions={countries}
-            parentKeyName={"name"}
-            childKeyName={"common"}
-            handleChange={(value) => {
-              setUploadingData({ ...uploadingData, country: value });
-            }}
-            label="Country"
-            value={uploadingData.country}
-          />
-        )}
+        <Autocomplete
+          renderInput={(params) => <TextField {...params} label="Movie" />}
+          options={countriesForAutoCompleteOptions}
+          onChange={(event, selectedCountry) => {
+            if (!selectedCountry) {
+              setUploadingData({
+                ...uploadingData,
+                country: undefined,
+              });
+              return;
+            }
+
+            setUploadingData({
+              ...uploadingData,
+              country: selectedCountry["value"],
+            });
+          }}
+        />
+
         <br />
         <SelectBox
           selectOptions={categories}

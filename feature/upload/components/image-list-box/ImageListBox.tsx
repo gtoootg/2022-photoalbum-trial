@@ -3,38 +3,28 @@ import ImageList from "@mui/material/ImageList";
 import ImageListItem from "@mui/material/ImageListItem";
 import Image from "next/image";
 import { useEffect } from "react";
-import { UploadingDataProps } from "../../upload.types";
+import { UploadingDataProps } from "../../Upload.types";
 import { ImageListBoxProps } from "./ImageListBox.type";
+import styles from "./ImageListBox.module.scss";
 
 export default function ImageListBox({
   flickrImages,
   uploadingData,
   setUploadingData,
 }: ImageListBoxProps) {
-  useEffect(() => {
-    console.log(uploadingData);
-  }, [uploadingData]);
-
   return (
-    <Box sx={{ margin: "2rem" }}>
-      <ImageList
-        sx={{ width: "50rem", height: "25rem", margin: "0 auto" }}
-        cols={3}
-      >
+    <Box className={styles.box}>
+      <ImageList className={styles.box_imageList} cols={3}>
         {flickrImages?.map((flickrImage, i) => (
           <ImageListItem key={i}>
             <div
+              className={styles.box_imageList_item}
               style={{
-                margin: "5px",
-                transition: "0.3s",
                 opacity: uploadingData.flickrImageIds.includes(
                   flickrImage["id"]
                 )
                   ? "1"
                   : "0.6",
-                borderRadius: "10px",
-                overflow: "hidden",
-                boxSizing: "border-box",
               }}
             >
               <Image

@@ -1,6 +1,3 @@
-import { ChangeEventHandler } from "react";
-import { FlickrImageProps } from "../../../../pages/flickrApi";
-import { UploadingDataProps } from "../../upload.types";
 import { ImageListBoxProps } from "../image-list-box/ImageListBox.type";
 
 export interface StepProps {
@@ -10,7 +7,7 @@ export interface StepProps {
   isButtonDisabledCondition?: any;
 }
 
-export interface VerticalStepperProps extends ImageListBoxProps {
+export interface UploadStepperProps extends ImageListBoxProps {
   countries: any[] | undefined;
 
   // uploadingDataImages: string[];

@@ -10,15 +10,16 @@ import StepperButtonGroup from "./components/StepperButtonGroup";
 import StepperSecondStepContainer from "./components/StepperSecondStepContainer";
 import StepperFirstStepContainer from "./components/StepperFirstStepContainer";
 import StepperThirdStepContainer from "./components/StepperThirdStepContainer";
-import { VerticalStepperProps } from "./Stepper.types";
+import { UploadStepperProps } from "./UploadStepper.types";
 import axios from "axios";
+import styles from "./UploadStepper.module.scss";
 
-export default function VerticalStepper({
+export default function UploadStepperGroup({
   flickrImages,
   countries,
   uploadingData,
   setUploadingData,
-}: VerticalStepperProps) {
+}: UploadStepperProps) {
   const { t } = useTranslation();
   const [activeStep, setActiveStep] = useState<number>(0);
 
@@ -35,7 +36,7 @@ export default function VerticalStepper({
   };
 
   return (
-    <Box sx={{ display: "flex", justifyContent: "center" }}>
+    <Box className={styles.uploadStepperBox}>
       <Stepper activeStep={activeStep} orientation="vertical">
         {steps &&
           steps.map((step, index) => (

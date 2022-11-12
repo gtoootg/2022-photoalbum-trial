@@ -1,8 +1,9 @@
 import ImageListBox from "../../image-list-box/ImageListBox";
 import Image from "next/image";
-import { StepperFirstStepContainerProps } from "../Stepper.types";
+import { StepperFirstStepContainerProps } from "../UploadStepper.types";
 import { Box } from "@mui/material";
 import { filterFlickrImagesByUploadDataImageId } from "../../../../../pages/flickrApi";
+import styles from "./StepperFirstStepContainer.module.scss";
 
 export default function StepperFirstStepContainer({
   activeStep,
@@ -18,19 +19,10 @@ export default function StepperFirstStepContainer({
   if (activeStep !== 0) {
     return (
       <>
-        <Box style={{ display: "flex" }}>
+        <Box className={styles.preview_box}>
           {filterSetectedFlickrImages.map(
             (uploadingDataImages: any, i: number) => (
-              <div
-                key={i}
-                style={{
-                  width: 300,
-                  height: "auto",
-                  borderRadius: 10,
-                  overflow: "hidden",
-                  margin: 10,
-                }}
-              >
+              <div key={i} className={styles.preview_image}>
                 <Image
                   alt="image"
                   src={uploadingDataImages["url_h"]}
