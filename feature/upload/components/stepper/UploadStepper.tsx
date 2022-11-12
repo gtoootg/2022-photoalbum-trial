@@ -7,9 +7,9 @@ import Typography from "@mui/material/Typography";
 import { useTranslation } from "next-i18next";
 import { Step, StepContent, StepLabel } from "@mui/material";
 import StepperButtonGroup from "./components/StepperButtonGroup";
-import StepperSecondStepContainer from "./components/StepperSecondStepContainer";
-import StepperFirstStepContainer from "./components/StepperFirstStepContainer";
-import StepperThirdStepContainer from "./components/StepperThirdStepContainer";
+import StepperSecondStepContainer from "./second-stepper/StepperSecondStepContainer";
+import StepperFirstStepContainer from "./first-stepper/StepperFirstStepContainer";
+import StepperThirdStepContainer from "./third-stepper/StepperThirdStepContainer";
 import { UploadStepperProps } from "./UploadStepper.types";
 import axios from "axios";
 import styles from "./UploadStepper.module.scss";
@@ -134,7 +134,7 @@ const useStepperConfig = ({
       ),
       isButtonDisabledCondition:
         !uploadingData.country ||
-        !uploadingData.category ||
+        uploadingData.categories.length === 0 ||
         !uploadingData.lat ||
         !uploadingData.lng,
     },

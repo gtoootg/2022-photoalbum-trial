@@ -22,7 +22,11 @@
       "description": "Specify the country of this place, as well as putting a PIN on the map",
       "uploadData": {
         "country": {
-          "helpText": "select the counry"
+          "headline": "Country",
+          "helpText": "Select the counry"
+        },
+        "category": {
+          "headline": "Category"
         }
       }
     },

@@ -9,18 +9,21 @@ export default async function handler(
   let responseOfAllPosts;
 
   const getAllFlickrPhotoIdsOfAllPosts = new Promise((resolve, reject) => {
-    connection.query("SELECT * from flickr_photo_id", (error, data) => {
-      if (error) {
-        return reject(error);
-      }
+    connection.query(
+      "SELECT * from photoalbum.flickr_photo_id",
+      (error, data) => {
+        if (error) {
+          return reject(error);
+        }
 
-      responseOfFlickrPhotoIdOfAllPosts = data;
-      resolve(responseOfFlickrPhotoIdOfAllPosts);
-    });
+        responseOfFlickrPhotoIdOfAllPosts = data;
+        resolve(responseOfFlickrPhotoIdOfAllPosts);
+      }
+    );
   });
 
   const getAllPosts = new Promise((resolve, reject) => {
-    connection.query("SELECT * FROM post", (error, data) => {
+    connection.query("SELECT * FROM photoalbum.post", (error, data) => {
       if (error) {
         reject(error);
       }

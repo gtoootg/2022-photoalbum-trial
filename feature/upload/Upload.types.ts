@@ -3,7 +3,7 @@ export interface UploadingDataProps {
   title: string;
   description: string;
   country: string;
-  category: string;
+  categories: number[];
   lat: number;
   lng: number;
 }
