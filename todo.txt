@@ -1,0 +1,2 @@
+- make component of Typography
+- scss

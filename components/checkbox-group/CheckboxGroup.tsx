@@ -9,14 +9,16 @@ interface CheckboxGroupProps {
     eventTargetValue: string | number,
     eventTargetChecked: boolean
   ) => void;
+  className?: string;
 }
 
 export const CheckboxGroup = ({
   options,
   handleClickCheckbox,
+  className,
 }: CheckboxGroupProps) => {
   return (
-    <FormGroup>
+    <FormGroup className={className}>
       {options.map((option) => {
         return (
           <FormControlLabel

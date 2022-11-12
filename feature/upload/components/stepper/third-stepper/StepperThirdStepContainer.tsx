@@ -5,13 +5,14 @@ import {
   TextField,
   Typography,
 } from "@mui/material";
+import axios from "axios";
 
 import { useTranslation } from "next-i18next";
-import { useEffect } from "react";
+import { useEffect, useState } from "react";
 import { CheckboxGroup } from "../../../../../components/checkbox-group/CheckboxGroup";
 import GoogleMapApi from "../../../../../components/google-map/GoogleMapApi";
-import { SelectBox } from "../../../../../components/text-field/SelectBox";
 import { StepperThirdStepContainerProps } from "../UploadStepper.types";
+import styles from "./StepperThirdStepContainer.module.scss";
 
 export default function StepperThirdStepContainer({
   activeStep,
@@ -20,8 +21,7 @@ export default function StepperThirdStepContainer({
   setUploadingData,
 }: StepperThirdStepContainerProps) {
   const { t } = useTranslation();
-
-  const categories = ["City", "Nature", "Night View"];
+  const { categoriesForSelectField } = useCategoriesForSelectField();
 
   const countriesForAutoCompleteOptions = countries?.map((country) => ({
     label: country.name.common,
@@ -51,7 +51,7 @@ export default function StepperThirdStepContainer({
           <Typography variant={"subtitle2"}>
             {t("stepper.thirdStep.uploadData.category", { ns: "upload" })}
           </Typography>
-          <Typography variant={"body2"}>{uploadingData.category}</Typography>
+          <Typography variant={"body2"}>{uploadingData.categories}</Typography>
         </Box>
         <Box sx={{ width: "30rem", height: "15rem" }}>
           <GoogleMapApi
@@ -79,31 +79,39 @@ export default function StepperThirdStepContainer({
       }}
     >
       <Box sx={{ display: "flex", flexDirection: "column", width: "25rem" }}>
+        <Typography variant={"h6"} className={styles.formField_headline}>
+          {t("stepper.thirdStep.uploadData.country.headline", {
+            ns: "upload",
+          })}
+        </Typography>
         <Autocomplete
-          renderInput={(params) => <TextField {...params} label="Movie" />}
+          className={styles.formField}
+          renderInput={(params) => (
+            <TextField
+              {...params}
+              label={t("stepper.thirdStep.uploadData.country.helpText", {
+                ns: "upload",
+              })}
+            />
+          )}
           options={countriesForAutoCompleteOptions}
           onChange={(event, selectedCountry) => {
-            if (!selectedCountry) {
-              setUploadingData({
-                ...uploadingData,
-                country: undefined,
-              });
-              return;
-            }
-
-            setUploadingData({
-              ...uploadingData,
-              country: selectedCountry["value"],
-            });
+            handleChangeSelectedCountry(
+              selectedCountry,
+              uploadingData,
+              setUploadingData
+            );
           }}
         />
         <br />
+        <Typography variant={"h6"}>
+          {t("stepper.thirdStep.uploadData.category.headline", {
+            ns: "upload",
+          })}
+        </Typography>
         <CheckboxGroup
-          options={[
-            { label: "City", value: "0" },
-            { label: "Night view", value: "1" },
-            { label: "Nature", value: "2" },
-          ]}
+          className={styles.formField}
+          options={categoriesForSelectField}
           handleClickCheckbox={(eventTargetValue, eventTargetChecked) => {
             handleClickCheckboxOfCategory(
               eventTargetValue,
@@ -164,18 +172,56 @@ const handleClickCheckboxOfCategory = (
   uploadingData,
   setUploadingData
 ) => {
-  let currentSelectedCategories = uploadingData.category.slice();
+  let currentSelectedCategories = uploadingData.categories.slice();
   if (!eventTargetChecked) {
     const removeSelectedCategory = currentSelectedCategories.filter(
       (category) => {
         return category !== eventTargetValue;
       }
     );
-    setUploadingData({ ...uploadingData, category: removeSelectedCategory });
+    setUploadingData({ ...uploadingData, categories: removeSelectedCategory });
     return;
   }
 
   currentSelectedCategories.push(eventTargetValue);
 
-  setUploadingData({ ...uploadingData, category: currentSelectedCategories });
+  setUploadingData({ ...uploadingData, categories: currentSelectedCategories });
+};
+
+const useCategoriesForSelectField = () => {
+  const [categoriesForSelectField, setCategoriesForSelectField] = useState([]);
+
+  useEffect(() => {
+    axios.get("api/get/common/category").then((res) => {
+      const getCategoriesForSelectField = res.data.map((category) => {
+        return {
+          value: category.id,
+          label: category.label,
+        };
+      });
+
+      setCategoriesForSelectField(getCategoriesForSelectField);
+    });
+  }, []);
+
+  return { categoriesForSelectField };
+};
+
+const handleChangeSelectedCountry = (
+  selectedCountry,
+  uploadingData,
+  setUploadingData
+) => {
+  if (!selectedCountry) {
+    setUploadingData({
+      ...uploadingData,
+      country: undefined,
+    });
+    return;
+  }
+
+  setUploadingData({
+    ...uploadingData,
+    country: selectedCountry["value"],
+  });
 };

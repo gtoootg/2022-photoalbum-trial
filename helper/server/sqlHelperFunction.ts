@@ -15,8 +15,9 @@ export interface SqlValueProps {
 }
 
 export enum Table {
-  POST = "post",
-  FLICKR_PHOTO_ID = "flickr_photo_id",
+  POST = "photoalbum.post",
+  FLICKR_PHOTO_ID = "photoalbum.flickr_photo_id",
+  CATEGORY_ID = "photoalbum.category_id",
 }
 
 const transFormValueForSqlStringAccordingToDataType = (

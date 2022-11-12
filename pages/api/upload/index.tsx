@@ -12,7 +12,9 @@ export default async function uploadHandler(
 ) {
   let responseOfUploadPost;
   let responseOfUploadFlickrPhotoId;
+  let responseOfUploadCategoryId;
   let lastInsertIdOfPostTable;
+
   const uploadPost = () => {
     return new Promise((resolve, reject) => {
       connection.query(
@@ -53,20 +55,40 @@ export default async function uploadHandler(
         buildSqlInsertQuery(
           Table.FLICKR_PHOTO_ID,
           sqlColumnsAndDataTypeForFlickrPhotoIdTable,
-          valuesForMultipleRowsOfFlickrPhotoIdTable(
+          valuesForMultipleRowsWithPostId(
             req.body.flickrImageIds,
             lastInsertIdOfPostTable
           )
         ),
         (error, data) => {
-          if (!error) {
-            responseOfUploadFlickrPhotoId = data;
-            resolve("uploaded flickrPhotoId");
-          }
           if (error) {
             console.log(error);
             reject("uploading flickrPhotoId error!");
           }
+          responseOfUploadFlickrPhotoId = data;
+          resolve("uploaded flickrPhotoId");
+        }
+      );
+    });
+  };
+
+  const uploadCategoryIdAndPostId = () => {
+    return new Promise((resolve, reject) => {
+      connection.query(
+        buildSqlInsertQuery(
+          Table.CATEGORY_ID,
+          sqlColumnsAndDataTypeForCategoryTable,
+          valuesForMultipleRowsWithPostId(
+            req.body.categories,
+            lastInsertIdOfPostTable
+          )
+        ),
+        (error, data) => {
+          if (error) {
+            console.log(error);
+            reject("uploading categoryId error!");
+          }
+          responseOfUploadCategoryId = data;
         }
       );
     });
@@ -75,10 +97,12 @@ export default async function uploadHandler(
   await uploadPost(),
     await getLastInsertId(),
     uploadFlickrPhotoIdAndPostId(),
-    res.json({
-      post: responseOfUploadPost,
-      flickrPhotoId: responseOfUploadFlickrPhotoId,
-    });
+    uploadCategoryIdAndPostId();
+  res.json({
+    post: responseOfUploadPost,
+    flickrPhotoId: responseOfUploadFlickrPhotoId,
+    categoryId: responseOfUploadCategoryId,
+  });
 }
 
 const sqlValuesForPostTable = (req: NextApiRequest) => [
@@ -95,11 +119,6 @@ const sqlValuesForPostTable = (req: NextApiRequest) => [
   {
     key: "country",
     value: req.body.country,
-    dataType: SqlValueDataType.VARCHAR,
-  },
-  {
-    key: "category",
-    value: req.body.category,
     dataType: SqlValueDataType.VARCHAR,
   },
   {
@@ -125,11 +144,22 @@ const sqlColumnsAndDataTypeForFlickrPhotoIdTable = [
   },
 ];
 
-const valuesForMultipleRowsOfFlickrPhotoIdTable = (
-  flickrPhotoIds: number[],
+const sqlColumnsAndDataTypeForCategoryTable = [
+  {
+    key: "categoryId",
+    dataType: SqlValueDataType.INT,
+  },
+  {
+    key: "postId",
+    dataType: SqlValueDataType.INT,
+  },
+];
+
+const valuesForMultipleRowsWithPostId = (
+  multipleValues: number[],
   postId: number
 ) => {
-  let valuesForMultipleRows = flickrPhotoIds
+  let valuesForMultipleRows = multipleValues
     .map((flickrPhotoId) => {
       return `(${flickrPhotoId}, ${postId})`;
     })
