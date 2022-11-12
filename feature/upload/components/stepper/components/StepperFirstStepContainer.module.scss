@@ -1,0 +1,13 @@
+.preview {
+  &_box {
+    display: flex;
+  }
+
+  &_image {
+    width: 300px;
+    height: auto;
+    border-radius: 10px;
+    overflow: hidden;
+    margin: 1rem;
+  }
+}

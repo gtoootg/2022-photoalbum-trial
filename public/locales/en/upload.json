@@ -1,4 +1,8 @@
 {
+  "headlineAndCaption": {
+    "headline": "Post your most favourite places",
+    "caption": "you can upload photos of your favourite places with adding a comment and geo-data"
+  },
   "stepper": {
     "firstStep": {
       "label": "Select your photo",

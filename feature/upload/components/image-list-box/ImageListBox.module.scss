@@ -1,0 +1,17 @@
+.box {
+  margin: 2rem;
+
+  &_imageList {
+    width: 50rem;
+    height: 25rem;
+    margin: 0 auto;
+
+    &_item {
+      margin: 5px;
+      transition: 0.3s;
+      border-radius: 10px;
+      overflow: hidden;
+      box-sizing: border-box;
+    }
+  }
+}

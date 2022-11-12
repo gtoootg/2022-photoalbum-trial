@@ -1,31 +1,38 @@
-import { Box, Container, styled, TextField, Typography } from "@mui/material";
-import axios from "axios";
-import { KeyObject } from "crypto";
+import {
+  Autocomplete,
+  AutocompleteRenderInputParams,
+  Box,
+  Container,
+  TextField,
+  Typography,
+} from "@mui/material";
+
 import { useTranslation } from "next-i18next";
-import { useEffect, useState } from "react";
+import { ReactNode } from "react";
 import GoogleMapApi from "../../../../../components/google-map/GoogleMapApi";
 import { SelectBox } from "../../../../../components/text-field/SelectBox";
-import { StepperThirdStepContainerProps } from "../Stepper.types";
+import { StepperThirdStepContainerProps } from "../UploadStepper.types";
 
 export default function StepperThirdStepContainer({
   activeStep,
   countries,
-  setUploadingDataCountry,
-  setUploadingDataCategory,
-  setUploadingDataLatLng,
-  uploadingDataCountry,
-  uploadingDataCategory,
-  uploadingDataLatLng,
+  uploadingData,
+  setUploadingData,
 }: StepperThirdStepContainerProps) {
   const { t } = useTranslation();
 
   const categories = ["City", "Nature", "Night View"];
 
+  const countriesForAutoCompleteOptions = countries?.map((country) => ({
+    label: country.name.common,
+    value: country.ccn3,
+  }));
+
   const filterUploadingDataCountryInfo = countries
     ?.slice()
     .filter((country) => {
-      if (uploadingDataCountry) {
-        return country.name.common === uploadingDataCountry;
+      if (uploadingData.country) {
+        return country.ccn3 === uploadingData.country;
       }
     });
 
@@ -36,11 +43,11 @@ export default function StepperThirdStepContainer({
           <Typography variant={"subtitle2"}>
             {t("stepper.thirdStep.uploadData.country", { ns: "upload" })}
           </Typography>
-          <Typography variant={"body2"}>{uploadingDataCountry}</Typography>
+          <Typography variant={"body2"}>{uploadingData.country}</Typography>
           <Typography variant={"subtitle2"}>
             {t("stepper.thirdStep.uploadData.category", { ns: "upload" })}
           </Typography>
-          <Typography variant={"body2"}>{uploadingDataCategory}</Typography>
+          <Typography variant={"body2"}>{uploadingData.category}</Typography>
         </Box>
         <Box sx={{ width: "30rem", height: "15rem" }}>
           <GoogleMapApi
@@ -49,7 +56,10 @@ export default function StepperThirdStepContainer({
               lng: filterUploadingDataCountryInfo[0].latlng[1] as number,
             }}
             zoom={5}
-            uploadingDataLatLng={uploadingDataLatLng}
+            uploadingDataLatLng={{
+              lat: uploadingData.lat,
+              lng: uploadingData.lng,
+            }}
           />
         </Box>
       </Box>
@@ -65,43 +75,72 @@ export default function StepperThirdStepContainer({
       }}
     >
       <Box sx={{ display: "flex", flexDirection: "column", width: "25rem" }}>
-        {countries && (
-          <SelectBox
-            selectOptions={countries}
-            parentKeyName={"name"}
-            childKeyName={"common"}
-            handleChange={setUploadingDataCountry}
-            label="Country"
-            value={uploadingDataCountry}
-          />
-        )}
+        <Autocomplete
+          renderInput={(params) => <TextField {...params} label="Movie" />}
+          options={countriesForAutoCompleteOptions}
+          onChange={(event, selectedCountry) => {
+            if (!selectedCountry) {
+              setUploadingData({
+                ...uploadingData,
+                country: undefined,
+              });
+              return;
+            }
+
+            setUploadingData({
+              ...uploadingData,
+              country: selectedCountry["value"],
+            });
+          }}
+        />
+
         <br />
         <SelectBox
           selectOptions={categories}
-          handleChange={setUploadingDataCategory}
+          handleChange={(value) => {
+            setUploadingData({ ...uploadingData, category: value });
+          }}
           label="Category"
-          value={uploadingDataCategory}
+          value={uploadingData.category}
         />
       </Box>
       <Box sx={{ width: "30rem", height: "20rem" }}>
-        {uploadingDataCountry && filterUploadingDataCountryInfo ? (
+        {uploadingData.country && filterUploadingDataCountryInfo ? (
           <GoogleMapApi
             center={{
               lat: filterUploadingDataCountryInfo[0].latlng[0] as number,
               lng: filterUploadingDataCountryInfo[0].latlng[1] as number,
             }}
             zoom={5}
-            uploadingDataLatLng={uploadingDataLatLng}
+            uploadingDataLatLng={{
+              lat: uploadingData.lat,
+              lng: uploadingData.lng,
+            }}
             onClickAction={true}
-            setUploadingDataLatLng={setUploadingDataLatLng}
+            setUploadingDataLatLng={(e) => {
+              setUploadingData({
+                ...uploadingData,
+                lat: e.lat,
+                lng: e.lng,
+              });
+            }}
           />
         ) : (
           <GoogleMapApi
             center={{ lat: 0, lng: 0 }}
             zoom={5}
-            uploadingDataLatLng={uploadingDataLatLng}
+            uploadingDataLatLng={{
+              lat: uploadingData.lat,
+              lng: uploadingData.lng,
+            }}
             onClickAction={true}
-            setUploadingDataLatLng={setUploadingDataLatLng}
+            setUploadingDataLatLng={(e) => {
+              setUploadingData({
+                ...uploadingData,
+                lat: e.lat,
+                lng: e.lng,
+              });
+            }}
           />
         )}
       </Box>

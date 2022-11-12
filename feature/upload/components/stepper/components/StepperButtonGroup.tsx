@@ -1,5 +1,5 @@
 import { Box, Button } from "@mui/material";
-import { StepperButtonGroupProps } from "../Stepper.types";
+import { StepperButtonGroupProps } from "../UploadStepper.types";
 
 export default function StepperButtonGroup(props: StepperButtonGroupProps) {
   const {

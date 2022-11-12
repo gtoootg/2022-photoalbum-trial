@@ -54,7 +54,7 @@ export default async function uploadHandler(
           Table.FLICKR_PHOTO_ID,
           sqlColumnsAndDataTypeForFlickrPhotoIdTable,
           valuesForMultipleRowsOfFlickrPhotoIdTable(
-            req.body.flickrPhotoIds,
+            req.body.flickrImageIds,
             lastInsertIdOfPostTable
           )
         ),
