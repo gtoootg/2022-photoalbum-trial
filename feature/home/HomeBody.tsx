@@ -8,9 +8,9 @@ export const HomeBody = () => {
   const [flickrImages, setFlickrImages] = useContext(flickrImagesContext);
   const [uploadedPosts, setUploadedPosts] = useContext(uploadedPostsContext);
 
-  useGetUploadedPosts(setUploadedPosts);
+  useGetUploadedPosts(setUploadedPosts, uploadedPosts);
 
-  useGetFlickrImages(setFlickrImages);
+  useGetFlickrImages(setFlickrImages, flickrImages);
 
   return (
     <>
@@ -19,24 +19,31 @@ export const HomeBody = () => {
   );
 };
 
-export const useGetFlickrImages = (setFlickrImages) => {
+export const useGetFlickrImages = (setFlickrImages, flickrImages) => {
   useEffect(() => {
     const handleGetFlickrImages = async () => {
       const res = await getFlickrImages();
       setFlickrImages(res);
     };
 
+    if (flickrImages) {
+      return;
+    }
+
     handleGetFlickrImages();
   }, []);
 };
 
-const useGetUploadedPosts = (setUploadedPosts) => {
+export const useGetUploadedPosts = (setUploadedPosts, uploadedPosts) => {
   useEffect(() => {
     const getUploadedPosts = async () => {
       const res = await axios.get("/api/get/album-posts");
 
       setUploadedPosts(res.data);
     };
+    if (uploadedPosts) {
+      return;
+    }
     getUploadedPosts();
   }, []);
 };

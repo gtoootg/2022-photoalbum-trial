@@ -4,9 +4,6 @@ import { useRouter } from "next/router";
 import AlbumPostBody from "../../../feature/album-post/AlbumPostBody";
 
 export default function AlbumPostWithId() {
-  const router = useRouter();
-  const { postId } = router.query;
-
   return (
     <>
       <AlbumPostBody />

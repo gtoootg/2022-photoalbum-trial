@@ -1,7 +1,7 @@
 import axios from "axios";
 
 export const apiPath =
-  "https://api.flickr.com/services/rest?api_key=3bbbbcbca484db8972d0a979c293030f&method=flickr.photos.search&user_id=135315222@N04&format=json&nojsoncallback=?&extras=url_h,date_taken";
+  "https://api.flickr.com/services/rest?api_key=3bbbbcbca484db8972d0a979c293030f&method=flickr.photos.search&user_id=135315222@N04&format=json&nojsoncallback=?&extras=url_h,date_taken,original_format";
 
 export interface FlickrImageProps {
   datetaken: string;
@@ -34,28 +34,4 @@ export function filterFlickrImagesByUploadDataImageId(
   return flickrImages?.filter((flickrImage) =>
     uploadingDataImageIds.includes(flickrImage.id)
   );
-}
-
-export async function getFlickrPhotoByID(
-  flickrPhotoID0: string,
-  flickrPhotoID1: string,
-  flickrPhotoID2: string,
-  flickrPhotoID3: string,
-  flickrPhotoID4: string
-) {
-  const res = await axios.get(apiPath);
-  const photosArray = res.data.photos.photo;
-  const filterPhotoByID = photosArray.filter(function (
-    photo: FlickrImageProps
-  ) {
-    return (
-      photo.id === flickrPhotoID0 ||
-      photo.id === flickrPhotoID1 ||
-      photo.id === flickrPhotoID2 ||
-      photo.id === flickrPhotoID3 ||
-      photo.id === flickrPhotoID4
-    );
-  });
-
-  return filterPhotoByID;
 }

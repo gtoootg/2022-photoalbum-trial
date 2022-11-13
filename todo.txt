@@ -1,3 +1,6 @@
-- make component of Typography
 - scss
 -preview of category
+
+-sort
+
+-differ size of photo url_m, url_n ...

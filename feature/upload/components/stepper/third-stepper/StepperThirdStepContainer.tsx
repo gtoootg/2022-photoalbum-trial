@@ -58,9 +58,7 @@ export default function StepperThirdStepContainer({
               ns: "upload",
             })}
           />
-          {/* <Text variant={"body2"} content={uploadingData.categories} />
-
-          <Typography variant={"body2"}>{uploadingData.categories}</Typography> */}
+          {/* <Text variant={"body2"} content={uploadingData.categories} /> */}
         </Box>
         <Box sx={{ width: "30rem", height: "15rem" }}>
           <GoogleMapApi

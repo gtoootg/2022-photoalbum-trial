@@ -19,7 +19,7 @@ export default function Upload() {
   const { t } = useTranslation();
 
   useGetCountries(setCountries);
-  useGetFlickrImages(setFlickrImages);
+  useGetFlickrImages(setFlickrImages, flickrImages);
 
   return (
     <Container className={styles.uploadBody}>
