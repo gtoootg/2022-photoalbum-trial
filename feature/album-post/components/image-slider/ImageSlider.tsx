@@ -1,11 +1,23 @@
 import Image from "next/image";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import styles from "./ImageSlider.module.scss";
 
-const ImageSlider = ({ imagesSrc }) => {
+interface ImageSliderProps {
+  imagesSrc: string[];
+  handleChangeIndexOfMainImage: (indexOfMainImage: number) => void;
+}
+
+const ImageSlider = ({
+  imagesSrc,
+  handleChangeIndexOfMainImage,
+}: ImageSliderProps) => {
   const [indexOfMainImage, setIndexOfMainImage] = useState(0);
 
   const mainImageToRender = imagesSrc[indexOfMainImage];
+
+  useEffect(() => {
+    handleChangeIndexOfMainImage(indexOfMainImage);
+  }, [indexOfMainImage, handleChangeIndexOfMainImage]);
 
   return (
     <div className={styles.imageSlider}>

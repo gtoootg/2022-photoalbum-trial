@@ -1,6 +1,5 @@
 import { GetStaticPaths } from "next";
 import { serverSideTranslations } from "next-i18next/serverSideTranslations";
-import { useRouter } from "next/router";
 import AlbumPostBody from "../../../feature/album-post/AlbumPostBody";
 
 export default function AlbumPostWithId() {
