@@ -3,9 +3,10 @@ import { useContext } from "react";
 import { flickrImagesContext, uploadedPostsContext } from "../../pages/_app";
 import { filterImageSourcesOfPostForMediaCard } from "../home/components/media-card/MediaCardGroup";
 import ImageSlider from "./components/image-slider/ImageSlider";
-import TitleAndMetaData from "./components/title-and-meta-data/TitleAndMetadata";
 import styles from "./AlbumPostBody.module.scss";
 import { useGetFlickrImages, useGetUploadedPosts } from "../home/HomeBody";
+import axios from "axios";
+import TitleAndMetaData from "./components/title-and-meta-data/TitleAndMetaData";
 
 const AlbumPostBody = () => {
   const router = useRouter();
@@ -29,14 +30,18 @@ const AlbumPostBody = () => {
   return (
     <>
       <div className={styles.imageSliderAndTitleAndMetaData}>
-        <button
-          onClick={() => {
-            console.log(flickrImages[0]);
+        <ImageSlider
+          imagesSrc={imagesSrc}
+          handleChangeIndexOfMainImage={(indexOfMainImage) => {
+            axios
+              .get(
+                `http://localhost:3000/api/get/exif/${uploadedPost.flickrPhotoId[indexOfMainImage]}`
+              )
+              .then((res) => {
+                console.log(res.data);
+              });
           }}
-        >
-          click
-        </button>
-        <ImageSlider imagesSrc={imagesSrc} />
+        />
         <TitleAndMetaData
           title={uploadedPost.title}
           description={uploadedPost.description}
