@@ -1,0 +1,22 @@
+.camera {
+  display: flex;
+  align-items: center;
+
+  &_icon {
+    font-size: 3.5rem;
+    margin-right: 1rem;
+  }
+}
+
+.otherInfo {
+  width: 60%;
+  &_element {
+    display: flex;
+    align-items: center;
+  }
+
+  &_icon {
+    font-size: 2rem;
+    margin-right: 0.5rem;
+  }
+}

@@ -1,12 +1,15 @@
-import styles from "./TitleAndMetaData.module.scss";
+import styles from "./AlbumPostTitleAndDescription.module.scss";
 import { Text } from "../../../../components/text/Text";
 
-interface TitleAndMetadataProps {
+interface AlbumPostTitleAndDescriptionProps {
   title: string;
   description: string;
 }
 
-const TitleAndMetaData = ({ title, description }: TitleAndMetadataProps) => {
+const AlbumPostTitleAndDescription = ({
+  title,
+  description,
+}: AlbumPostTitleAndDescriptionProps) => {
   return (
     <div className={styles.titleAndMetaData}>
       <Text
@@ -23,4 +26,4 @@ const TitleAndMetaData = ({ title, description }: TitleAndMetadataProps) => {
   );
 };
 
-export default TitleAndMetaData;
+export default AlbumPostTitleAndDescription;

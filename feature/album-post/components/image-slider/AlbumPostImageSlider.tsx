@@ -1,23 +1,19 @@
 import Image from "next/image";
 import { useEffect, useState } from "react";
-import styles from "./ImageSlider.module.scss";
+import styles from "./AlbumPostImageSlider.module.scss";
 
-interface ImageSliderProps {
+interface AlbumPostImageSliderProps {
   imagesSrc: string[];
-  handleChangeIndexOfMainImage: (indexOfMainImage: number) => void;
+  indexOfMainImage: number;
+  handleClickSubImage: (index: number) => void;
 }
 
-const ImageSlider = ({
+const AlbumPostImageSlider = ({
   imagesSrc,
-  handleChangeIndexOfMainImage,
-}: ImageSliderProps) => {
-  const [indexOfMainImage, setIndexOfMainImage] = useState(0);
-
+  handleClickSubImage,
+  indexOfMainImage,
+}: AlbumPostImageSliderProps) => {
   const mainImageToRender = imagesSrc[indexOfMainImage];
-
-  useEffect(() => {
-    handleChangeIndexOfMainImage(indexOfMainImage);
-  }, [indexOfMainImage, handleChangeIndexOfMainImage]);
 
   return (
     <div className={styles.imageSlider}>
@@ -25,7 +21,7 @@ const ImageSlider = ({
       <SubImageGroup
         subImagesSrc={imagesSrc}
         indexOfMainImage={indexOfMainImage}
-        setIndexOfMainImage={setIndexOfMainImage}
+        handleClickSubImage={handleClickSubImage}
       />
     </div>
   );
@@ -49,7 +45,7 @@ const MainImage = ({ imageSrc }) => {
 const SubImageGroup = ({
   subImagesSrc,
   indexOfMainImage,
-  setIndexOfMainImage,
+  handleClickSubImage,
 }) => {
   return (
     <div className={styles.subImageGroup}>
@@ -62,7 +58,7 @@ const SubImageGroup = ({
               opacity: indexOfMainImage === index ? 1 : 0.6,
             }}
             onClick={() => {
-              setIndexOfMainImage(index);
+              handleClickSubImage(index);
             }}
           >
             <Image
@@ -80,4 +76,4 @@ const SubImageGroup = ({
   );
 };
 
-export default ImageSlider;
+export default AlbumPostImageSlider;
