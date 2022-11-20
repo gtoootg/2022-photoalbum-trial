@@ -1,5 +1,6 @@
 import { Checkbox, FormControlLabel, FormGroup } from "@mui/material";
 import { useState } from "react";
+import styles from "./CheckboxGroupWithSubComponent.module.scss";
 
 interface CheckboxGroupProps {
   options: {
@@ -44,7 +45,7 @@ const CheckBoxWithSubComponent = ({
   const [isChecked, setIsChecked] = useState(false);
 
   return (
-    <>
+    <div>
       <div>
         <FormControlLabel
           control={
@@ -58,7 +59,11 @@ const CheckBoxWithSubComponent = ({
           label={option.label}
         />
       </div>
-      {isChecked && <div style={{ border: "solid red" }}>{subComponent}</div>}
-    </>
+      <div
+        className={isChecked ? styles.subComponent : styles.subComponentHidden}
+      >
+        {subComponent}
+      </div>
+    </div>
   );
 };

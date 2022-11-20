@@ -7,7 +7,7 @@ import { useEffect, useState } from "react";
 export const PreviewImageListBox = ({
   imagesSrc,
   helperText,
-  handleClickImages = undefined,
+  handleClickImages,
 }: {
   imagesSrc: string[];
   helperText?: string;
@@ -26,7 +26,7 @@ export const PreviewImageListBox = ({
             <Grid key={i} item xs={2.4}>
               <div
                 className={`${styles.image} ${
-                  !isImageSelected(i) && styles.transparent
+                  handleClickImages && !isImageSelected(i) && styles.transparent
                 }`}
                 onClick={() => {
                   let newSelectedImagesId = [...selectedImagesId];

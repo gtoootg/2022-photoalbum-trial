@@ -164,6 +164,26 @@ export default function StepperThirdStepContainer({
                   console.log(selectedImages);
                 }}
               />,
+              <PreviewImageListBox
+                key={"a"}
+                imagesSrc={filterSetectedFlickrImages.map(
+                  (flickrImage) => flickrImage["url_n"]
+                )}
+                helperText="select photos"
+                handleClickImages={(selectedImages) => {
+                  console.log(selectedImages);
+                }}
+              />,
+              <PreviewImageListBox
+                key={"b"}
+                imagesSrc={filterSetectedFlickrImages.map(
+                  (flickrImage) => flickrImage["url_n"]
+                )}
+                helperText="select photos"
+                handleClickImages={(selectedImages) => {
+                  console.log(selectedImages);
+                }}
+              />,
             ]}
           />
         </Grid>
