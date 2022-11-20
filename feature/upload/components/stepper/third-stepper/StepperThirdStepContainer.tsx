@@ -199,7 +199,7 @@ const handleClickCheckboxOfCategory = (
   setUploadingData({ ...uploadingData, categories: currentSelectedCategories });
 };
 
-const useCategoriesForSelectField = () => {
+export const useCategoriesForSelectField = () => {
   const [categoriesForSelectField, setCategoriesForSelectField] = useState([]);
 
   useEffect(() => {

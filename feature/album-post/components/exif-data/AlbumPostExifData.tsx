@@ -15,12 +15,12 @@ const AlbumPostExifData = ({ exifDataOfMainImage }) => {
   const { camera, fNumber, exposure, focalLength, iso } = exifDataOfMainImage;
 
   return (
-    <>
-      <div className={styles.camera}>
+    <Grid className={styles.exifData} item xs={12} container>
+      <Grid className={styles.camera} container>
         <CameraAltIcon className={styles.camera_icon} />
         <Text content={camera} variant={"h6"} />
-      </div>
-      <Grid className={styles.otherInfo} container>
+      </Grid>
+      <Grid className={styles.otherInfo} container xs={12}>
         <IconAndExifData
           icon={<CameraIcon className={styles.otherInfo_icon} />}
           exifData={`f/${fNumber}`}
@@ -38,7 +38,7 @@ const AlbumPostExifData = ({ exifDataOfMainImage }) => {
           exifData={`ISO ${iso}`}
         />
       </Grid>
-    </>
+    </Grid>
   );
 };
 
@@ -46,7 +46,7 @@ export default AlbumPostExifData;
 
 const IconAndExifData = ({ icon, exifData }) => {
   return (
-    <Grid item className={styles.otherInfo_element} xs={6}>
+    <Grid item className={styles.otherInfo_element} xs={5}>
       {icon}
       <Text content={exifData} variant={"body1"} />
     </Grid>

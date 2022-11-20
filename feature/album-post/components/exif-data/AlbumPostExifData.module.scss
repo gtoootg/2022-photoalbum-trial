@@ -1,7 +1,12 @@
-.camera {
-  display: flex;
-  align-items: center;
+@use "/styles/variables.scss";
 
+.exifData {
+  padding-bottom: variables.$theme-spacing * 2;
+  border-bottom: variables.$border-line-gray;
+}
+
+.camera {
+  align-items: center;
   &_icon {
     font-size: 3.5rem;
     margin-right: 1rem;
@@ -9,7 +14,6 @@
 }
 
 .otherInfo {
-  width: 60%;
   &_element {
     display: flex;
     align-items: center;

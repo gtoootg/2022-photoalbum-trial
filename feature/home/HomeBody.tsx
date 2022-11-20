@@ -12,6 +12,8 @@ export const HomeBody = () => {
 
   useGetFlickrImages(setFlickrImages, flickrImages);
 
+  console.log(uploadedPosts);
+
   return (
     <>
       <MediaCardGroup />

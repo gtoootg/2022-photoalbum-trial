@@ -6,9 +6,12 @@ import AlbumPostImageSlider from "./components/image-slider/AlbumPostImageSlider
 import styles from "./AlbumPostBody.module.scss";
 import { useGetFlickrImages, useGetUploadedPosts } from "../home/HomeBody";
 import axios from "axios";
-import AlbumPostTitleAndDescription from "./components/title-and-meta-data/AlbumPostTitleAndDescription";
+import AlbumPostTitleAndDescription from "./components/title-and-description/AlbumPostTitleAndDescription";
 import { useEffect } from "react";
 import AlbumPostExifData from "./components/exif-data/AlbumPostExifData";
+import { Grid } from "@mui/material";
+import { CountryAndCategory } from "./components/country-and-category/CountryAndCategory";
+import { useCategoriesForSelectField } from "../upload/components/stepper/third-stepper/StepperThirdStepContainer";
 
 const AlbumPostBody = () => {
   const router = useRouter();
@@ -22,6 +25,9 @@ const AlbumPostBody = () => {
 
   useGetFlickrImages(setFlickrImages, flickrImages);
   useGetUploadedPosts(setUploadedPosts, uploadedPosts);
+
+  const { categoriesForSelectField: categoriesForClickableChip } =
+    useCategoriesForSelectField();
 
   const imagesSrc = filterImageSourcesOfPostForMediaCard(
     flickrImages,
@@ -43,8 +49,8 @@ const AlbumPostBody = () => {
   }
 
   return (
-    <>
-      <div className={styles.imageSlider}>
+    <Grid container spacing={2}>
+      <Grid item md={8} xs={12}>
         <AlbumPostImageSlider
           indexOfMainImage={indexOfMainImage}
           handleClickSubImage={(index) => {
@@ -57,15 +63,19 @@ const AlbumPostBody = () => {
           }}
           imagesSrc={imagesSrc}
         />
-        <div className={styles.titleAndDescriptionAndExifData}>
-          <AlbumPostTitleAndDescription
-            title={uploadedPost.title}
-            description={uploadedPost.description}
-          />
-          <AlbumPostExifData exifDataOfMainImage={exifDataOfMainImage} />
-        </div>
-      </div>
-    </>
+      </Grid>
+      <Grid item md={4} xs={12}>
+        <AlbumPostTitleAndDescription
+          title={uploadedPost.title}
+          description={uploadedPost.description}
+        />
+        <AlbumPostExifData exifDataOfMainImage={exifDataOfMainImage} />
+        <CountryAndCategory
+          uploadedPost={uploadedPost}
+          allCategories={categoriesForClickableChip}
+        />
+      </Grid>
+    </Grid>
   );
 };
 

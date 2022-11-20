@@ -1,0 +1,10 @@
+@use "/styles/variables.scss";
+.titleAndDescription {
+  height: 15rem;
+  flex-direction: column;
+  margin-bottom: variables.$theme-spacing;
+  border-bottom: variables.$border-line-gray;
+  &_title {
+    margin-bottom: variables.$theme-spacing;
+  }
+}

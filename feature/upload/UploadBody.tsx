@@ -63,6 +63,3 @@ const initialUploadingDataState: UploadingDataProps = {
   lat: undefined,
   lng: undefined,
 };
-function t(arg0: string, arg1: { ns: string }): string {
-  throw new Error("Function not implemented.");
-}

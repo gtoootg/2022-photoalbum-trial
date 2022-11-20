@@ -1,0 +1,9 @@
+@use "/styles/variables.scss";
+
+.green {
+  background-color: variables.$green-transparent;
+}
+
+.green:hover {
+  background-color: variables.$green;
+}

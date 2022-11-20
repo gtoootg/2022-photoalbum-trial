@@ -6,10 +6,25 @@ $background-black: #2a3139;
 
 $white: white;
 
+$green: rgb(122, 216, 122);
+$green-transparent: rgb(122, 216, 122, 0.7);
+
+$blue: rgb(60, 143, 225);
+$blue-transparent: rgb(60, 143, 225, 0.7);
+
+$orange: rgb(222, 92, 69);
+$orange-transparent: rgb(222, 92, 69, 0.7);
+
+//margin and padding unit
+$theme-spacing: 8px;
+
 //Resopnsive design
 $pc: 1024px; // PC
 $tab: 680px; // Tablet
 $sp: 480px; // SmartPhone
+
+//border-ling
+$border-line-gray: solid 0.5px gray;
 
 @mixin pc {
   @media (max-width: ($pc)) {

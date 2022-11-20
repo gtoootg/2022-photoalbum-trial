@@ -6,3 +6,8 @@ export const connection = mysql.createConnection({
   password: "9ZmL08RDk3Kf9nei5sJg",
   database: "photoalbum",
 });
+
+export enum PhotoAlbumTable {
+  FLICKR_PHOTO_ID = "photoalbum.flickr_photo_id",
+  CATEGORY_ID = "photoalbum.category_id",
+}
