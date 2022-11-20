@@ -57,6 +57,9 @@ export const useGetUploadedPosts = (setUploadedPosts, uploadedPosts) => {
 
 export const useGetCategories = (categories, setCategories) => {
   useEffect(() => {
+    if (categories) {
+      return;
+    }
     axios.get("api/get/common/category").then((res) => {
       const getCategoriesForSelectField = res.data.map((category) => {
         return {

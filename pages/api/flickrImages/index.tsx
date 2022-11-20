@@ -8,7 +8,11 @@ export default async function handler(
   res: NextApiResponse
 ) {
   flickr.people
-    .getPhotos({ user_id: "135315222@N04", extras: "url_h", per_page: 500 })
+    .getPhotos({
+      user_id: "135315222@N04",
+      extras: ["url_h", "url_n"],
+      per_page: 500,
+    })
     .then((response) => {
       res.json(response.body);
     })
