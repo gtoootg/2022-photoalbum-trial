@@ -31,7 +31,6 @@ export default async function handler(
           return reject(error);
         }
 
-        console.log(data);
         responseOfCategoryIdOfAllPosts = data;
         resolve(responseOfCategoryIdOfAllPosts);
       }
@@ -39,7 +38,7 @@ export default async function handler(
   });
 
   const getAllPosts = new Promise((resolve, reject) => {
-    connection.query("SELECT * FROM photoalbum.post", (error, data) => {
+    connection.query(`SELECT * FROM ${PhotoAlbumTable.POST}`, (error, data) => {
       if (error) {
         reject(error);
       }

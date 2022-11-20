@@ -1,6 +1,10 @@
 import { useRouter } from "next/router";
 import { useContext, useState } from "react";
-import { flickrImagesContext, uploadedPostsContext } from "../../pages/_app";
+import {
+  categoriesContext,
+  flickrImagesContext,
+  uploadedPostsContext,
+} from "../../pages/_app";
 import { filterImageSourcesOfPostForMediaCard } from "../home/components/media-card/MediaCardGroup";
 import AlbumPostImageSlider from "./components/image-slider/AlbumPostImageSlider";
 import styles from "./AlbumPostBody.module.scss";
@@ -11,7 +15,6 @@ import { useEffect } from "react";
 import AlbumPostExifData from "./components/exif-data/AlbumPostExifData";
 import { Grid } from "@mui/material";
 import { CountryAndCategory } from "./components/country-and-category/CountryAndCategory";
-import { useCategoriesForSelectField } from "../upload/components/stepper/third-stepper/StepperThirdStepContainer";
 
 const AlbumPostBody = () => {
   const router = useRouter();
@@ -26,8 +29,7 @@ const AlbumPostBody = () => {
   useGetFlickrImages(setFlickrImages, flickrImages);
   useGetUploadedPosts(setUploadedPosts, uploadedPosts);
 
-  const { categoriesForSelectField: categoriesForClickableChip } =
-    useCategoriesForSelectField();
+  const [categories, setCategories] = useContext(categoriesContext);
 
   const imagesSrc = filterImageSourcesOfPostForMediaCard(
     flickrImages,
@@ -72,7 +74,7 @@ const AlbumPostBody = () => {
         <AlbumPostExifData exifDataOfMainImage={exifDataOfMainImage} />
         <CountryAndCategory
           uploadedPost={uploadedPost}
-          allCategories={categoriesForClickableChip}
+          allCategories={categories}
         />
       </Grid>
     </Grid>

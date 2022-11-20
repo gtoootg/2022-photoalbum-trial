@@ -8,6 +8,7 @@ export const connection = mysql.createConnection({
 });
 
 export enum PhotoAlbumTable {
+  POST = "photoalbum.post",
   FLICKR_PHOTO_ID = "photoalbum.flickr_photo_id",
   CATEGORY_ID = "photoalbum.category_id",
 }

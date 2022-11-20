@@ -10,17 +10,21 @@ import { getFlickrImages } from "./flickrApi";
 
 export const flickrImagesContext = createContext([]);
 export const uploadedPostsContext = createContext([]);
+export const categoriesContext = createContext([]);
 
 function MyApp({ Component, pageProps }: AppProps) {
   const [flickrImages, setFlickrImages] = useState(undefined);
   const [uploadedPosts, setUploadedPosts] = useState(undefined);
+  const [categories, setCategories] = useState(undefined);
 
   return (
     <flickrImagesContext.Provider value={[flickrImages, setFlickrImages]}>
       <uploadedPostsContext.Provider value={[uploadedPosts, setUploadedPosts]}>
-        <Layout>
-          <Component {...pageProps} />
-        </Layout>
+        <categoriesContext.Provider value={[categories, setCategories]}>
+          <Layout>
+            <Component {...pageProps} />
+          </Layout>
+        </categoriesContext.Provider>
       </uploadedPostsContext.Provider>
     </flickrImagesContext.Provider>
   );

@@ -8,10 +8,11 @@ import {
 import axios from "axios";
 
 import { useTranslation } from "next-i18next";
-import { useEffect, useState } from "react";
+import { useContext, useEffect, useState } from "react";
 import { CheckboxGroup } from "../../../../../components/checkbox-group/CheckboxGroup";
 import GoogleMapApi from "../../../../../components/google-map/GoogleMapApi";
 import { Text } from "../../../../../components/text/Text";
+import { categoriesContext } from "../../../../../pages/_app";
 import { StepperThirdStepContainerProps } from "../UploadStepper.types";
 import styles from "./StepperThirdStepContainer.module.scss";
 
@@ -22,7 +23,7 @@ export default function StepperThirdStepContainer({
   setUploadingData,
 }: StepperThirdStepContainerProps) {
   const { t } = useTranslation();
-  const { categoriesForSelectField } = useCategoriesForSelectField();
+  const [categories, setCategories] = useContext(categoriesContext);
 
   const countriesForAutoCompleteOptions = countries?.map((country) => ({
     label: country.name.common,
@@ -122,7 +123,7 @@ export default function StepperThirdStepContainer({
 
         <CheckboxGroup
           className={styles.formField}
-          options={categoriesForSelectField}
+          options={categories && categories}
           handleClickCheckbox={(eventTargetValue, eventTargetChecked) => {
             handleClickCheckboxOfCategory(
               eventTargetValue,
@@ -197,25 +198,6 @@ const handleClickCheckboxOfCategory = (
   currentSelectedCategories.push(eventTargetValue);
 
   setUploadingData({ ...uploadingData, categories: currentSelectedCategories });
-};
-
-export const useCategoriesForSelectField = () => {
-  const [categoriesForSelectField, setCategoriesForSelectField] = useState([]);
-
-  useEffect(() => {
-    axios.get("api/get/common/category").then((res) => {
-      const getCategoriesForSelectField = res.data.map((category) => {
-        return {
-          value: category.id,
-          label: category.label,
-        };
-      });
-
-      setCategoriesForSelectField(getCategoriesForSelectField);
-    });
-  }, []);
-
-  return { categoriesForSelectField };
 };
 
 const handleChangeSelectedCountry = (

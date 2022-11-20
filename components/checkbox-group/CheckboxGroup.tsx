@@ -19,7 +19,7 @@ export const CheckboxGroup = ({
 }: CheckboxGroupProps) => {
   return (
     <FormGroup className={className}>
-      {options.map((option) => {
+      {(options || []).map((option) => {
         return (
           <FormControlLabel
             key={option.label}

@@ -2,12 +2,10 @@ import { Chip, CircularProgress, Grid } from "@mui/material";
 import { ClickableChip } from "../../../../components/ClickableChip/ClickableChip";
 
 import styles from "./CountryAndCategory.module.scss";
-import { Category, IconFactory } from "./IconFactory";
+import { Category, IconFactory } from "./CategoryIconFactory";
 
 export const CountryAndCategory = ({ uploadedPost, allCategories }) => {
-  // const { categories } = uploadedPost;
-
-  console.log(uploadedPost);
+  const { categoryId: arrayOfCategoryId } = uploadedPost;
 
   if (!uploadedPost || !allCategories) {
     return <CircularProgress />;
@@ -15,16 +13,17 @@ export const CountryAndCategory = ({ uploadedPost, allCategories }) => {
 
   return (
     <Grid container item xs={12}>
-      {/* <Grid item xs={6} className={styles.category}>
-        {categoriesOfUploadedPost?.map((categoryOfUploadedPost, i) => (
+      <Grid item xs={6} className={styles.category}>
+        {arrayOfCategoryId?.map((categoryId, i) => (
           <ClickableChip
             key={i}
-            label={allCategories[categoryOfUploadedPost].label}
-            color={chipColorByCategory(categoryOfUploadedPost)}
-            icon={<IconFactory iconType={categoryOfUploadedPost} />}
+            label={allCategories[categoryId].label}
+            color={chipColorByCategory(categoryId)}
+            icon={<IconFactory iconType={categoryId} />}
+            rootStyles={{ margin: "8px" }}
           />
         ))}
-      </Grid> */}
+      </Grid>
       <Grid item xs={6}></Grid>
     </Grid>
   );
@@ -40,7 +39,7 @@ const chipColorByCategory = (category: Category) => {
   }
 
   if (category === Category.CITY_VIEW) {
-    return "orance";
+    return "orange";
   }
 
   if (category === Category.TRAFFIC) {
