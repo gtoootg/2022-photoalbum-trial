@@ -7,7 +7,7 @@ interface CheckboxGroupProps {
     label: string;
     value: number | string;
   }[];
-  handleClickCheckbox: (
+  handleClickCheckbox?: (
     eventTargetValue: string | number,
     eventTargetChecked: boolean
   ) => void;
@@ -51,7 +51,8 @@ const CheckBoxWithSubComponent = ({
           control={
             <Checkbox
               onChange={(e) => {
-                handleClickCheckbox(option.value, e.target.checked);
+                handleClickCheckbox &&
+                  handleClickCheckbox(option.value, e.target.checked);
                 setIsChecked(e.target.checked);
               }}
             />

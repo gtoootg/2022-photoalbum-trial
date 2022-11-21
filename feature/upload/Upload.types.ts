@@ -3,7 +3,11 @@ export interface UploadingDataProps {
   title: string;
   description: string;
   country: string;
-  categories: number[];
+  categories: UploadingDataCategoryProps;
   lat: number;
   lng: number;
+}
+
+interface UploadingDataCategoryProps {
+  [key: string]: number[];
 }

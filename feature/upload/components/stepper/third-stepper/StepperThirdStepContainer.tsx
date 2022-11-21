@@ -135,56 +135,23 @@ export default function StepperThirdStepContainer({
           <CheckboxGroup
             className={styles.formField}
             options={categories && categories}
-            handleClickCheckbox={(eventTargetValue, eventTargetChecked) => {
-              handleClickCheckboxOfCategory(
-                eventTargetValue,
-                eventTargetChecked,
+            // handleClickCheckbox={(eventTargetValue, eventTargetChecked) => {
+            //   handleClickCheckboxOfCategory(
+            //     eventTargetValue,
+            //     eventTargetChecked,
+            //     uploadingData,
+            //     setUploadingData
+            //   );
+            // }}
+            subComponents={
+              categories &&
+              PreviewImageListBoxesForEachCategory(
+                categories,
+                filterSetectedFlickrImages,
                 uploadingData,
                 setUploadingData
-              );
-            }}
-            subComponents={[
-              <PreviewImageListBox
-                key={"a"}
-                imagesSrc={filterSetectedFlickrImages.map(
-                  (flickrImage) => flickrImage["url_n"]
-                )}
-                helperText="select photos"
-                handleClickImages={(selectedImages) => {
-                  console.log(selectedImages);
-                }}
-              />,
-              <PreviewImageListBox
-                key={"b"}
-                imagesSrc={filterSetectedFlickrImages.map(
-                  (flickrImage) => flickrImage["url_n"]
-                )}
-                helperText="select photos"
-                handleClickImages={(selectedImages) => {
-                  console.log(selectedImages);
-                }}
-              />,
-              <PreviewImageListBox
-                key={"a"}
-                imagesSrc={filterSetectedFlickrImages.map(
-                  (flickrImage) => flickrImage["url_n"]
-                )}
-                helperText="select photos"
-                handleClickImages={(selectedImages) => {
-                  console.log(selectedImages);
-                }}
-              />,
-              <PreviewImageListBox
-                key={"b"}
-                imagesSrc={filterSetectedFlickrImages.map(
-                  (flickrImage) => flickrImage["url_n"]
-                )}
-                helperText="select photos"
-                handleClickImages={(selectedImages) => {
-                  console.log(selectedImages);
-                }}
-              />,
-            ]}
+              )
+            }
           />
         </Grid>
         <Grid item xs={5}>
@@ -232,27 +199,55 @@ export default function StepperThirdStepContainer({
   );
 }
 
-const handleClickCheckboxOfCategory = (
-  eventTargetValue,
-  eventTargetChecked,
+const PreviewImageListBoxesForEachCategory = (
+  categories,
+  filterSetectedFlickrImages,
   uploadingData,
   setUploadingData
-) => {
-  let currentSelectedCategories = uploadingData.categories.slice();
-  if (!eventTargetChecked) {
-    const removeSelectedCategory = currentSelectedCategories.filter(
-      (category) => {
-        return category !== eventTargetValue;
-      }
+) =>
+  categories.map((category, i) => {
+    return (
+      <PreviewImageListBox
+        key={i}
+        imagesSrc={filterSetectedFlickrImages.map(
+          (flickrImage) => flickrImage["url_n"]
+        )}
+        helperText="select photos"
+        handleClickImages={(selectedImages) => {
+          console.log(uploadingData);
+          setUploadingData({
+            ...uploadingData,
+            categories: {
+              ...uploadingData.categories,
+              [category.value]: selectedImages,
+            },
+          });
+        }}
+      />
     );
-    setUploadingData({ ...uploadingData, categories: removeSelectedCategory });
-    return;
-  }
+  });
 
-  currentSelectedCategories.push(eventTargetValue);
+// const handleClickCheckboxOfCategory = (
+//   eventTargetValue,
+//   eventTargetChecked,
+//   uploadingData,
+//   setUploadingData
+// ) => {
+//   let currentSelectedCategories = uploadingData.categories.slice();
+//   if (!eventTargetChecked) {
+//     const removeSelectedCategory = currentSelectedCategories.filter(
+//       (category) => {
+//         return category !== eventTargetValue;
+//       }
+//     );
+//     setUploadingData({ ...uploadingData, categories: removeSelectedCategory });
+//     return;
+//   }
 
-  setUploadingData({ ...uploadingData, categories: currentSelectedCategories });
-};
+//   currentSelectedCategories.push(eventTargetValue);
+
+//   setUploadingData({ ...uploadingData, categories: currentSelectedCategories });
+// };
 
 const handleChangeSelectedCountry = (
   selectedCountry,
