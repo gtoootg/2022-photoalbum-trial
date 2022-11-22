@@ -5,6 +5,7 @@ import {
   Table,
 } from "../../../helper/server/sqlHelperFunction";
 import { connection } from "../../../server/mysql";
+import { getDataOfLastInsertedPostIdFromFlickrPhotoIdTable } from "./uploadHelper";
 
 export default async function uploadHandler(
   req: NextApiRequest,
@@ -14,6 +15,7 @@ export default async function uploadHandler(
   let responseOfUploadFlickrPhotoId;
   let responseOfUploadCategoryId;
   let lastInsertIdOfPostTable;
+  let dataOfLastInsertedPostIdFromFlickrPhotoIdTable;
 
   const uploadPost = () => {
     return new Promise((resolve, reject) => {
@@ -38,7 +40,6 @@ export default async function uploadHandler(
       connection.query("SELECT LAST_INSERT_ID()", (error, data) => {
         if (!error) {
           lastInsertIdOfPostTable = data[0]["LAST_INSERT_ID()"];
-          console.log(lastInsertIdOfPostTable);
           resolve("got last insert id");
         }
         if (error) {
@@ -96,12 +97,17 @@ export default async function uploadHandler(
 
   await uploadPost(),
     await getLastInsertId(),
-    uploadFlickrPhotoIdAndPostId(),
-    uploadCategoryIdAndPostId();
+    await uploadFlickrPhotoIdAndPostId(),
+    await getDataOfLastInsertedPostIdFromFlickrPhotoIdTable(
+      lastInsertIdOfPostTable,
+      dataOfLastInsertedPostIdFromFlickrPhotoIdTable
+    );
+  console.log(dataOfLastInsertedPostIdFromFlickrPhotoIdTable);
+  // uploadCategoryIdAndPostId();
   res.json({
     post: responseOfUploadPost,
     flickrPhotoId: responseOfUploadFlickrPhotoId,
-    categoryId: responseOfUploadCategoryId,
+    categoryId: dataOfLastInsertedPostIdFromFlickrPhotoIdTable,
   });
 }
 
