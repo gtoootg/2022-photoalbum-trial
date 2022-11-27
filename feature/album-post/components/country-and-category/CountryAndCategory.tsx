@@ -5,7 +5,7 @@ import styles from "./CountryAndCategory.module.scss";
 import { Category, IconFactory } from "./CategoryIconFactory";
 
 export const CountryAndCategory = ({ uploadedPost, allCategories }) => {
-  const { categoryId: arrayOfCategoryId } = uploadedPost;
+  const { categories } = uploadedPost;
 
   if (!uploadedPost || !allCategories) {
     return <CircularProgress />;
@@ -14,15 +14,18 @@ export const CountryAndCategory = ({ uploadedPost, allCategories }) => {
   return (
     <Grid container item xs={12}>
       <Grid item xs={6} className={styles.category}>
-        {arrayOfCategoryId?.map((categoryId, i) => (
-          <ClickableChip
-            key={i}
-            label={allCategories[categoryId].label}
-            color={chipColorByCategory(categoryId)}
-            icon={<IconFactory iconType={categoryId} />}
-            rootStyles={{ margin: "8px" }}
-          />
-        ))}
+        {Object.keys(categories)?.map((categoryId, i) => {
+          const categoryIdAsNumber = Number(categoryId);
+          return (
+            <ClickableChip
+              key={i}
+              label={allCategories[categoryId].label}
+              color={chipColorByCategory(categoryIdAsNumber)}
+              icon={<IconFactory iconType={categoryIdAsNumber} />}
+              rootStyles={{ margin: "8px" }}
+            />
+          );
+        })}
       </Grid>
       <Grid item xs={6}></Grid>
     </Grid>

@@ -6,9 +6,9 @@ export default async function handler(
   req: NextApiRequest,
   res: NextApiResponse
 ) {
-  let responseOfFlickrPhotoIdOfAllPosts;
-  let responseOfAllPosts;
-  let responseOfCategoryIdOfAllPosts;
+  let flickrImageIdsOfUploadedPosts;
+  let uploadedPosts;
+  let categoriesOfAllPosts;
 
   const connection = mysql.createConnection({
     host: "localhost",
@@ -57,10 +57,10 @@ export default async function handler(
       );
     });
 
-  const getCategories = () =>
+  const getCategoriesWithFlickrImageId = () =>
     new Promise((resolve, reject) => {
       connection.query(
-        `SELECT * FROM ${PhotoAlbumTable.CATEGORY}`,
+        `SELECT * FROM ${PhotoAlbumTable.CATEGORY} LEFT OUTER JOIN ${PhotoAlbumTable.FLICKR_IMAGE} ON  ${PhotoAlbumTable.CATEGORY}.flickrImageTablePrimaryKeyId = ${PhotoAlbumTable.FLICKR_IMAGE}.id`,
         (error, data) => {
           if (error) {
             reject(error);
@@ -71,24 +71,22 @@ export default async function handler(
     });
 
   await getAllPosts().then((res) => {
-    responseOfAllPosts = res;
+    uploadedPosts = res;
   });
 
   await getAllFlickrPhotoIdsOfAllPosts().then((res) => {
-    responseOfFlickrPhotoIdOfAllPosts = res;
+    flickrImageIdsOfUploadedPosts = res;
   });
 
-  await getCategories().then((res) => {
-    responseOfCategoryIdOfAllPosts = res;
+  await getCategoriesWithFlickrImageId().then((res) => {
+    categoriesOfAllPosts = res;
   });
-
-  console.log(responseOfCategoryIdOfAllPosts);
 
   res.json(
     jointPostWithFlickrPhotoId(
-      responseOfAllPosts,
-      responseOfFlickrPhotoIdOfAllPosts
-      // responseOfCategoryIdOfAllPosts
+      uploadedPosts,
+      flickrImageIdsOfUploadedPosts,
+      categoriesOfAllPosts
     )
   );
 }
@@ -114,24 +112,38 @@ const composeArrayOfIdToJointToUploadedPosts = (responseOfDataTable, keyId) =>
   }, {});
 
 const jointPostWithFlickrPhotoId = (
-  responseOfAllUploadedPosts,
-  responseOfFlickrPhotoIdOfAllUploadedPosts
-  // responseOfCategoryIdOfAllUploadedPosts
+  uploadedPosts,
+  flickrPhotoIdOfUploadedPosts,
+  categoriesOfAllPosts
 ) =>
-  responseOfAllUploadedPosts.map((responseOfUploadedPost) => {
+  uploadedPosts.map((uploadedPost) => {
     const arrayOfFlickrPhotoId = composeArrayOfIdToJointToUploadedPosts(
-      responseOfFlickrPhotoIdOfAllUploadedPosts,
+      flickrPhotoIdOfUploadedPosts,
       "flickrPhotoId"
-    )[responseOfUploadedPost.id];
+    )[uploadedPost.id];
 
-    // const arrayOfCategoryId = composeArrayOfIdToJointToUploadedPosts(
-    //   responseOfCategoryIdOfAllUploadedPosts,
-    //   "categoryId"
-    // )[responseOfUploadedPost.id];
+    const categoriesOfUploadedPost = categoriesOfAllPosts.filter(
+      (categoriesOfPost) => {
+        return categoriesOfPost.postId === uploadedPost.id;
+      }
+    );
+
+    const flickrImageIdsForEachCategory = categoriesOfUploadedPost.reduce(
+      (acc, cur) => {
+        if (!Object.keys(acc).includes(cur.categoryId.toString())) {
+          return { ...acc, [cur.categoryId]: [cur.flickrPhotoId] };
+        }
+        return {
+          ...acc,
+          [cur.categoryId]: acc[cur.categoryId].concat([cur.flickrPhotoId]),
+        };
+      },
+      {}
+    );
 
     return {
-      ...responseOfUploadedPost,
+      ...uploadedPost,
       flickrPhotoId: arrayOfFlickrPhotoId,
-      // categoryId: arrayOfCategoryId,
+      categories: flickrImageIdsForEachCategory,
     };
   });
