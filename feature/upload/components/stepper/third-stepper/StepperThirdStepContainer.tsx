@@ -214,40 +214,23 @@ const PreviewImageListBoxesForEachCategory = (
         )}
         helperText="select photos"
         handleClickImages={(selectedImages) => {
+          const getFlickrImagesIdOfSelectedImages = selectedImages.map(
+            (selectedImage) => {
+              return uploadingData.flickrImageIds[selectedImage];
+            }
+          );
           console.log(uploadingData);
           setUploadingData({
             ...uploadingData,
             categories: {
               ...uploadingData.categories,
-              [category.value]: selectedImages,
+              [category.value]: getFlickrImagesIdOfSelectedImages,
             },
           });
         }}
       />
     );
   });
-
-// const handleClickCheckboxOfCategory = (
-//   eventTargetValue,
-//   eventTargetChecked,
-//   uploadingData,
-//   setUploadingData
-// ) => {
-//   let currentSelectedCategories = uploadingData.categories.slice();
-//   if (!eventTargetChecked) {
-//     const removeSelectedCategory = currentSelectedCategories.filter(
-//       (category) => {
-//         return category !== eventTargetValue;
-//       }
-//     );
-//     setUploadingData({ ...uploadingData, categories: removeSelectedCategory });
-//     return;
-//   }
-
-//   currentSelectedCategories.push(eventTargetValue);
-
-//   setUploadingData({ ...uploadingData, categories: currentSelectedCategories });
-// };
 
 const handleChangeSelectedCountry = (
   selectedCountry,

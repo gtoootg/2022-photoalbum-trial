@@ -133,10 +133,7 @@ const useStepperConfig = ({
         />
       ),
       isButtonDisabledCondition:
-        !uploadingData.country ||
-        uploadingData.categories.length === 0 ||
-        !uploadingData.lat ||
-        !uploadingData.lng,
+        !uploadingData.country || !uploadingData.lat || !uploadingData.lng,
     },
     {
       label: t("stepper.finalStep.label", { ns: "upload" }),

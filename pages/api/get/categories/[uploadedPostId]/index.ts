@@ -1,11 +1,19 @@
 import { NextApiRequest, NextApiResponse } from "next";
-import { connection, PhotoAlbumTable } from "../../../../../server/mysql";
+import { PhotoAlbumTable } from "../../../../../server/mysql";
+import mysql from "mysql";
 
 export default async function handler(
   req: NextApiRequest,
   res: NextApiResponse
 ) {
   const { uploadedPostId } = req.query;
+
+  const connection = mysql.createConnection({
+    host: "localhost",
+    user: "root",
+    password: "9ZmL08RDk3Kf9nei5sJg",
+    database: "photoalbum",
+  });
 
   connection.query(
     // `SELECT * from ${PhotoAlbumTable.CATEGORY_ID} where id = ${uploadedPostId}`,

@@ -1,5 +1,6 @@
 import type { NextApiRequest, NextApiResponse } from "next";
-import { connection, PhotoAlbumTable } from "../../../../server/mysql";
+import { PhotoAlbumTable } from "../../../../server/mysql";
+import mysql from "mysql";
 
 export default async function handler(
   req: NextApiRequest,
@@ -8,6 +9,13 @@ export default async function handler(
   let responseOfFlickrPhotoIdOfAllPosts;
   let responseOfAllPosts;
   let responseOfCategoryIdOfAllPosts;
+
+  const connection = mysql.createConnection({
+    host: "localhost",
+    user: "root",
+    password: "9ZmL08RDk3Kf9nei5sJg",
+    database: "photoalbum",
+  });
 
   const getAllFlickrPhotoIdsOfAllPosts = new Promise((resolve, reject) => {
     connection.query(
