@@ -9,6 +9,6 @@ import mysql from "mysql";
 
 export enum PhotoAlbumTable {
   POST = "photoalbum.post",
-  FLICKR_PHOTO_ID = "photoalbum.flickr_photo_id",
-  CATEGORY_ID = "photoalbum.category_id",
+  FLICKR_IMAGE = "photoalbum.flickr_image",
+  CATEGORY = "photoalbum.category",
 }

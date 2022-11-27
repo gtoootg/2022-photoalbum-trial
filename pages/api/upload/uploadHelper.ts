@@ -1,14 +1,30 @@
-import { NextApiRequest } from "next";
 import {
-  buildSqlInsertQuery,
+  buildSqlInsertValue,
   SqlValueDataType,
-  Table,
+  TableColumnProps,
 } from "../../../helper/server/sqlHelperFunction";
+import { PhotoAlbumTable } from "../../../server/mysql";
 
 export const uploadPost = (connection, req) => {
+  const { title, description, country, lat, lng } = req.body;
+
+  const payload: (string | boolean | number)[][] = [
+    [title, description, country, lat, lng],
+  ];
+
+  const tableColumn: TableColumnProps[] = [
+    { key: "title", dataType: SqlValueDataType.VARCHAR },
+    { key: "description", dataType: SqlValueDataType.VARCHAR },
+    { key: "country", dataType: SqlValueDataType.VARCHAR },
+    { key: "lat", dataType: SqlValueDataType.BIG_INT },
+    { key: "lng", dataType: SqlValueDataType.BIG_INT },
+  ];
+
+  buildSqlInsertValue(PhotoAlbumTable.POST, tableColumn, payload);
+
   return new Promise((resolve, reject) => {
     connection.query(
-      buildSqlInsertQuery(Table.POST, sqlValuesForPostTable(req)),
+      buildSqlInsertValue(PhotoAlbumTable.POST, tableColumn, payload),
       (error, data) => {
         if (!error) {
           resolve(data);
@@ -41,16 +57,19 @@ export const uploadFlickrPhotoIdAndPostId = (
   req,
   lastInsertIdOfPostTable
 ) => {
+  const { flickrImageIds } = req.body;
+
+  const payload = flickrImageIds.map((flickrImageId) => {
+    return [flickrImageId, lastInsertIdOfPostTable];
+  });
+  const tableColumn: TableColumnProps[] = [
+    { key: "flickrPhotoId", dataType: SqlValueDataType.INT },
+    { key: "postId", dataType: SqlValueDataType.BIG_INT },
+  ];
+
   return new Promise((resolve, reject) => {
     connection.query(
-      buildSqlInsertQuery(
-        Table.FLICKR_PHOTO_ID,
-        sqlColumnsAndDataTypeForFlickrPhotoIdTable,
-        valuesForMultipleRowsWithPostId(
-          req.body.flickrImageIds,
-          lastInsertIdOfPostTable
-        )
-      ),
+      buildSqlInsertValue(PhotoAlbumTable.FLICKR_IMAGE, tableColumn, payload),
       (error, data) => {
         if (error) {
           console.log(error);
@@ -68,7 +87,7 @@ export const getDataFromFlickrPhotoIdTableWherePostIdIsLatest = (
 ) => {
   return new Promise((resolve, reject) => {
     connection.query(
-      `SELECT * from ${Table.FLICKR_PHOTO_ID} where postId= ${lastInsertIdOfPostTable}`,
+      `SELECT * from ${PhotoAlbumTable.FLICKR_IMAGE} where postId= ${lastInsertIdOfPostTable}`,
       (error, data) => {
         if (error) {
           reject("error");
@@ -79,7 +98,40 @@ export const getDataFromFlickrPhotoIdTableWherePostIdIsLatest = (
   });
 };
 
-export const composePayloadForCategoryIdTable = (
+export const insertIntoCategoryTable = (
+  connection,
+  req,
+  dataOfFlickrPhotoIdTableWherePostIdIsLatest
+) => {
+  const flickrPhotoIdsForSelectedCategories = req.body.categories;
+
+  const tableColumn: TableColumnProps[] = [
+    { key: "categoryId", dataType: SqlValueDataType.INT },
+    { key: "flickrImageTablePrimaryKeyId", dataType: SqlValueDataType.INT },
+  ];
+
+  const payload = composePayloadForCategoryTable(
+    dataOfFlickrPhotoIdTableWherePostIdIsLatest,
+    flickrPhotoIdsForSelectedCategories
+  ).map((data) => [data.categoryId, data.flickrImageTablePrimaryKeyId]);
+
+  return new Promise((resolve, reject) => {
+    connection.query(
+      buildSqlInsertValue(PhotoAlbumTable.CATEGORY, tableColumn, payload),
+      (error, data) => {
+        if (!error) {
+          resolve(data);
+        }
+        if (error) {
+          console.log(error);
+          reject("uploading post error!");
+        }
+      }
+    );
+  });
+};
+
+export const composePayloadForCategoryTable = (
   dataOfFlickrPhotoIdTableWherePostIdIsLatest,
   flickrPhotoIdsForSelectedCategories
 ) => {
@@ -94,14 +146,14 @@ export const composePayloadForCategoryIdTable = (
   ) =>
     flickrPhotoIdsForOneCategory.map((flickrPhotoId) => ({
       categoryId: categoryId,
-      tableRowIdOfFlickrPhotoIdTable:
+      flickrImageTablePrimaryKeyId:
         findPrimaryKeyIdOfFlickrPhotoId(flickrPhotoId),
     }));
 
   let payload = [];
 
   for (const categoryId in flickrPhotoIdsForSelectedCategories) {
-    payload.push(
+    payload = payload.concat(
       payloadOfFlickrPhotoIdsForOneCategory(
         flickrPhotoIdsForSelectedCategories[categoryId],
         categoryId
@@ -110,66 +162,4 @@ export const composePayloadForCategoryIdTable = (
   }
 
   return payload;
-};
-
-const sqlValuesForPostTable = (req: NextApiRequest) => [
-  {
-    key: "title",
-    value: req.body.title,
-    dataType: SqlValueDataType.VARCHAR,
-  },
-  {
-    key: "description",
-    value: req.body.description,
-    dataType: SqlValueDataType.VARCHAR,
-  },
-  {
-    key: "country",
-    value: req.body.country,
-    dataType: SqlValueDataType.VARCHAR,
-  },
-  {
-    key: "lat",
-    value: req.body.lat,
-    dataType: SqlValueDataType.DECIMAL,
-  },
-  {
-    key: "lng",
-    value: req.body.lng,
-    dataType: SqlValueDataType.DECIMAL,
-  },
-];
-
-const sqlColumnsAndDataTypeForFlickrPhotoIdTable = [
-  {
-    key: "flickrPhotoId",
-    dataType: SqlValueDataType.BIG_INT,
-  },
-  {
-    key: "postId",
-    dataType: SqlValueDataType.INT,
-  },
-];
-
-const sqlColumnsAndDataTypeForCategoryTable = [
-  {
-    key: "categoryId",
-    dataType: SqlValueDataType.INT,
-  },
-  {
-    key: "postId",
-    dataType: SqlValueDataType.INT,
-  },
-];
-
-const valuesForMultipleRowsWithPostId = (
-  multipleValues: number[],
-  postId: number
-) => {
-  let valuesForMultipleRows = multipleValues
-    .map((flickrPhotoId) => {
-      return `(${flickrPhotoId}, ${postId})`;
-    })
-    .join(", ");
-  return valuesForMultipleRows;
 };

@@ -17,57 +17,80 @@ export default async function handler(
     database: "photoalbum",
   });
 
-  const getAllFlickrPhotoIdsOfAllPosts = new Promise((resolve, reject) => {
-    connection.query(
-      `SELECT * from ${PhotoAlbumTable.FLICKR_PHOTO_ID}`,
-      (error, data) => {
-        if (error) {
-          return reject(error);
+  const getAllFlickrPhotoIdsOfAllPosts = () =>
+    new Promise((resolve, reject) => {
+      connection.query(
+        `SELECT * from ${PhotoAlbumTable.FLICKR_IMAGE}`,
+        (error, data) => {
+          if (error) {
+            return reject(error);
+          }
+          resolve(data);
         }
-
-        responseOfFlickrPhotoIdOfAllPosts = data;
-        resolve(responseOfFlickrPhotoIdOfAllPosts);
-      }
-    );
-  });
-
-  const getAllCategoryIdOfAllUpdatedPosts = new Promise((resolve, reject) => {
-    connection.query(
-      `SELECT * from ${PhotoAlbumTable.CATEGORY_ID}`,
-      (error, data) => {
-        if (error) {
-          return reject(error);
-        }
-
-        responseOfCategoryIdOfAllPosts = data;
-        resolve(responseOfCategoryIdOfAllPosts);
-      }
-    );
-  });
-
-  const getAllPosts = new Promise((resolve, reject) => {
-    connection.query(`SELECT * FROM ${PhotoAlbumTable.POST}`, (error, data) => {
-      if (error) {
-        reject(error);
-      }
-      responseOfAllPosts = data;
-      resolve(responseOfAllPosts);
+      );
     });
+
+  // const getAllCategoryIdOfAllUpdatedPosts = new Promise((resolve, reject) => {
+  //   connection.query(
+  //     `SELECT * from ${PhotoAlbumTable.CATEGORY}`,
+  //     (error, data) => {
+  //       if (error) {
+  //         return reject(error);
+  //       }
+
+  //       responseOfCategoryIdOfAllPosts = data;
+  //       resolve(responseOfCategoryIdOfAllPosts);
+  //     }
+  //   );
+  // });
+
+  const getAllPosts = () =>
+    new Promise((resolve, reject) => {
+      connection.query(
+        `SELECT * FROM ${PhotoAlbumTable.POST}`,
+        (error, data) => {
+          if (error) {
+            reject(error);
+          }
+          resolve(data);
+        }
+      );
+    });
+
+  const getCategories = () =>
+    new Promise((resolve, reject) => {
+      connection.query(
+        `SELECT * FROM ${PhotoAlbumTable.CATEGORY}`,
+        (error, data) => {
+          if (error) {
+            reject(error);
+          }
+          resolve(data);
+        }
+      );
+    });
+
+  await getAllPosts().then((res) => {
+    responseOfAllPosts = res;
   });
 
-  Promise.all([
-    getAllFlickrPhotoIdsOfAllPosts,
-    getAllCategoryIdOfAllUpdatedPosts,
-    getAllPosts,
-  ]).then(() => {
-    res.json(
-      jointPostWithFlickrPhotoId(
-        responseOfAllPosts,
-        responseOfFlickrPhotoIdOfAllPosts,
-        responseOfCategoryIdOfAllPosts
-      )
-    );
+  await getAllFlickrPhotoIdsOfAllPosts().then((res) => {
+    responseOfFlickrPhotoIdOfAllPosts = res;
   });
+
+  await getCategories().then((res) => {
+    responseOfCategoryIdOfAllPosts = res;
+  });
+
+  console.log(responseOfCategoryIdOfAllPosts);
+
+  res.json(
+    jointPostWithFlickrPhotoId(
+      responseOfAllPosts,
+      responseOfFlickrPhotoIdOfAllPosts
+      // responseOfCategoryIdOfAllPosts
+    )
+  );
 }
 
 const composeArrayOfIdToJointToUploadedPosts = (responseOfDataTable, keyId) =>
@@ -92,8 +115,8 @@ const composeArrayOfIdToJointToUploadedPosts = (responseOfDataTable, keyId) =>
 
 const jointPostWithFlickrPhotoId = (
   responseOfAllUploadedPosts,
-  responseOfFlickrPhotoIdOfAllUploadedPosts,
-  responseOfCategoryIdOfAllUploadedPosts
+  responseOfFlickrPhotoIdOfAllUploadedPosts
+  // responseOfCategoryIdOfAllUploadedPosts
 ) =>
   responseOfAllUploadedPosts.map((responseOfUploadedPost) => {
     const arrayOfFlickrPhotoId = composeArrayOfIdToJointToUploadedPosts(
@@ -101,14 +124,14 @@ const jointPostWithFlickrPhotoId = (
       "flickrPhotoId"
     )[responseOfUploadedPost.id];
 
-    const arrayOfCategoryId = composeArrayOfIdToJointToUploadedPosts(
-      responseOfCategoryIdOfAllUploadedPosts,
-      "categoryId"
-    )[responseOfUploadedPost.id];
+    // const arrayOfCategoryId = composeArrayOfIdToJointToUploadedPosts(
+    //   responseOfCategoryIdOfAllUploadedPosts,
+    //   "categoryId"
+    // )[responseOfUploadedPost.id];
 
     return {
       ...responseOfUploadedPost,
       flickrPhotoId: arrayOfFlickrPhotoId,
-      categoryId: arrayOfCategoryId,
+      // categoryId: arrayOfCategoryId,
     };
   });

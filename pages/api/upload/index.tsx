@@ -1,8 +1,8 @@
 import type { NextApiRequest, NextApiResponse } from "next";
 import {
-  composePayloadForCategoryIdTable,
   getDataFromFlickrPhotoIdTableWherePostIdIsLatest,
   getLastInsertId,
+  insertIntoCategoryTable,
   uploadFlickrPhotoIdAndPostId,
   uploadPost,
 } from "./uploadHelper";
@@ -44,13 +44,13 @@ export default async function uploadHandler(
     ).then((res) => {
       dataOfFlickrPhotoIdTableWherePostIdIsLatest = res;
     });
-  composePayloadForCategoryIdTable(
-    dataOfFlickrPhotoIdTableWherePostIdIsLatest,
-    req.body.categories
+  insertIntoCategoryTable(
+    connection,
+    req,
+    dataOfFlickrPhotoIdTableWherePostIdIsLatest
   );
   res.json({
     post: responseOfUploadPost,
     flickrPhotoId: responseOfUploadFlickrPhotoId,
-    // categoryId: dataOfLastInsertedPostIdFromFlickrPhotoIdTable,
   });
 }
