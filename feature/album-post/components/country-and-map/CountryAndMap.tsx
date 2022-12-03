@@ -1,10 +1,11 @@
 import { Chip, CircularProgress, Grid } from "@mui/material";
 import { ClickableChip } from "../../../../components/ClickableChip/ClickableChip";
 
-import styles from "./CountryAndCategory.module.scss";
+import styles from "./CountryAndMap.module.scss";
 import { Category, IconFactory } from "./CategoryIconFactory";
+import {AlbumPostMap} from "./components/map/AlbumPostMap";
 
-export const CountryAndCategory = ({ uploadedPost, allCategories }) => {
+export const CountryAndMap = ({ uploadedPost, allCategories }) => {
   const { categories } = uploadedPost;
 
   if (!uploadedPost || !allCategories) {
@@ -27,7 +28,10 @@ export const CountryAndCategory = ({ uploadedPost, allCategories }) => {
           );
         })}
       </Grid>
-      <Grid item xs={6}></Grid>
+      <Grid item xs={6}  className={styles.map}>
+        <AlbumPostMap/>
+
+      </Grid>
     </Grid>
   );
 };

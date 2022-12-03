@@ -11,7 +11,7 @@ type GoogleMapApiProps = {
   center: { lat: number; lng: number };
   zoom: number;
   onClickAction?: boolean;
-  uploadingDataLatLng: { lat: number; lng: number };
+  uploadingDataLatLng?: { lat: number; lng: number };
   setUploadingDataLatLng?: (e: any) => void;
 };
 
@@ -28,7 +28,6 @@ const GoogleMapAPI: React.FC<GoogleMapApiProps> = ({
     const lat = e.latLng.lat();
     const lng = e.latLng.lng();
     setUploadingDataLatLng({ ...uploadingDataLatLng, lat: lat, lng: lng });
-    console.log(uploadingDataLatLng);
   };
 
   return (

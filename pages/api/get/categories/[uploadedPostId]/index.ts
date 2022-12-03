@@ -11,7 +11,7 @@ export default async function handler(
   const connection = mysql.createConnection({
     host: "localhost",
     user: "root",
-    password: "9ZmL08RDk3Kf9nei5sJg",
+    password: "njVjyI5CstMQ4VaYl2m1",
     database: "photoalbum",
   });
 

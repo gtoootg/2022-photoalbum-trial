@@ -7,14 +7,14 @@ import {
 } from "../../pages/_app";
 import { filterImageSourcesOfPostForMediaCard } from "../home/components/media-card/MediaCardGroup";
 import AlbumPostImageSlider from "./components/image-slider/AlbumPostImageSlider";
-import styles from "./AlbumPostBody.module.scss";
 import { useGetFlickrImages, useGetUploadedPosts } from "../home/HomeBody";
 import axios from "axios";
 import AlbumPostTitleAndDescription from "./components/title-and-description/AlbumPostTitleAndDescription";
 import { useEffect } from "react";
 import AlbumPostExifData from "./components/exif-data/AlbumPostExifData";
 import { Grid } from "@mui/material";
-import { CountryAndCategory } from "./components/country-and-category/CountryAndCategory";
+import {CountryAndMap} from "./components/country-and-map/CountryAndMap";
+
 
 const AlbumPostBody = () => {
   const router = useRouter();
@@ -72,7 +72,7 @@ const AlbumPostBody = () => {
           description={uploadedPost.description}
         />
         <AlbumPostExifData exifDataOfMainImage={exifDataOfMainImage} />
-        <CountryAndCategory
+        <CountryAndMap
           uploadedPost={uploadedPost}
           allCategories={categories}
         />
