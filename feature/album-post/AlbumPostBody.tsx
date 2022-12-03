@@ -13,7 +13,7 @@ import AlbumPostTitleAndDescription from "./components/title-and-description/Alb
 import { useEffect } from "react";
 import AlbumPostExifData from "./components/exif-data/AlbumPostExifData";
 import { Grid } from "@mui/material";
-import {CountryAndMap} from "./components/country-and-map/CountryAndMap";
+import {CategoryAndMap} from "./components/category-and-map/CategoryAndMap";
 
 
 const AlbumPostBody = () => {
@@ -72,7 +72,7 @@ const AlbumPostBody = () => {
           description={uploadedPost.description}
         />
         <AlbumPostExifData exifDataOfMainImage={exifDataOfMainImage} />
-        <CountryAndMap
+        <CategoryAndMap
           uploadedPost={uploadedPost}
           allCategories={categories}
         />
