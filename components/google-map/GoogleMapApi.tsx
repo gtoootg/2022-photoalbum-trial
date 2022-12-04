@@ -1,21 +1,15 @@
-import React, { useState, useContext, useEffect, useCallback } from "react";
-import {
-  GoogleMap,
-  LoadScript,
-  InfoWindow,
-  Marker,
-  useJsApiLoader,
-} from "@react-google-maps/api";
+import React from "react";
+import { GoogleMap, LoadScript, Marker } from "@react-google-maps/api";
 
 type GoogleMapApiProps = {
   center: { lat: number; lng: number };
   zoom: number;
   onClickAction?: boolean;
-  uploadingDataLatLng: { lat: number; lng: number };
+  uploadingDataLatLng?: { lat: number; lng: number };
   setUploadingDataLatLng?: (e: any) => void;
 };
 
-const API_KEY = "AIzaSyAhf8RgW3KVsaUK5Oqr-JKTpASBBrHlXd8"; // TODO: 自分のキーをここに入力
+const API_KEY = "AIzaSyAhf8RgW3KVsaUK5Oqr-JKTpASBBrHlXd8";
 
 const GoogleMapAPI: React.FC<GoogleMapApiProps> = ({
   center,
@@ -28,7 +22,6 @@ const GoogleMapAPI: React.FC<GoogleMapApiProps> = ({
     const lat = e.latLng.lat();
     const lng = e.latLng.lng();
     setUploadingDataLatLng({ ...uploadingDataLatLng, lat: lat, lng: lng });
-    console.log(uploadingDataLatLng);
   };
 
   return (
