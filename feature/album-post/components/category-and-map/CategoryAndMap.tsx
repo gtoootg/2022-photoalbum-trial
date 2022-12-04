@@ -1,9 +1,9 @@
-import { Chip, CircularProgress, Grid } from "@mui/material";
+import { CircularProgress, Grid } from "@mui/material";
 import { ClickableChip } from "../../../../components/ClickableChip/ClickableChip";
 
 import styles from "./CategoryAndMap.module.scss";
 import { Category, IconFactory } from "./CategoryIconFactory";
-import {AlbumPostMap} from "./components/map/AlbumPostMap";
+import { AlbumPostMap } from "./components/map/AlbumPostMap";
 
 export const CategoryAndMap = ({ uploadedPost, allCategories }) => {
   const { categories } = uploadedPost;
@@ -28,9 +28,8 @@ export const CategoryAndMap = ({ uploadedPost, allCategories }) => {
           );
         })}
       </Grid>
-      <Grid item xs={6}  className={styles.map}>
-        <AlbumPostMap/>
-
+      <Grid item xs={6}>
+        <AlbumPostMap uploadedPost={uploadedPost} />
       </Grid>
     </Grid>
   );

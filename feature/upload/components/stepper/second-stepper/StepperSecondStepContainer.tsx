@@ -1,5 +1,5 @@
 import styled from "@emotion/styled";
-import { Box, TextField, Typography } from "@mui/material";
+import { Box, TextField } from "@mui/material";
 import { useTranslation } from "next-i18next";
 import { Text } from "../../../../../components/text/Text";
 import { StepperSecondStepContainerProps } from "../UploadStepper.types";

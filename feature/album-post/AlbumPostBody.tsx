@@ -13,8 +13,9 @@ import AlbumPostTitleAndDescription from "./components/title-and-description/Alb
 import { useEffect } from "react";
 import AlbumPostExifData from "./components/exif-data/AlbumPostExifData";
 import { Grid } from "@mui/material";
-import {CategoryAndMap} from "./components/category-and-map/CategoryAndMap";
-
+import { CategoryAndMap } from "./components/category-and-map/CategoryAndMap";
+import { AlbumPostDialogs } from "./dialog/AlbumPostDialogs";
+import { AlbumPostContextProvider } from "./context-provider/AlbumPostContextProvider";
 
 const AlbumPostBody = () => {
   const router = useRouter();
@@ -23,8 +24,9 @@ const AlbumPostBody = () => {
 
   const [exifDataOfMainImage, setexifDataOfMainImage] = useState(undefined);
   const [indexOfMainImage, setIndexOfMainImage] = useState(0);
+
   const { postId } = router.query;
-  const uploadedPost = (uploadedPosts || [])[Number(postId)];
+  const uploadedPost = uploadedPosts?.length && uploadedPosts[Number(postId)];
 
   useGetFlickrImages(setFlickrImages, flickrImages);
   useGetUploadedPosts(setUploadedPosts, uploadedPosts);
@@ -46,38 +48,41 @@ const AlbumPostBody = () => {
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [uploadedPosts]);
 
-  if (!uploadedPosts || !flickrImages) {
+  if (!uploadedPost || !flickrImages) {
     return null;
   }
 
   return (
-    <Grid container spacing={2}>
-      <Grid item md={8} xs={12}>
-        <AlbumPostImageSlider
-          indexOfMainImage={indexOfMainImage}
-          handleClickSubImage={(index) => {
-            setIndexOfMainImage(index);
-            getExifDataOfFlickrImage(uploadedPost, index).then((result) => {
-              setexifDataOfMainImage(
-                transformExifDataForAlbumPostContent(result)
-              );
-            });
-          }}
-          imagesSrc={imagesSrc}
-        />
+    <AlbumPostContextProvider>
+      <Grid container spacing={2}>
+        <Grid item md={8} xs={12}>
+          <AlbumPostImageSlider
+            indexOfMainImage={indexOfMainImage}
+            handleClickSubImage={(index) => {
+              setIndexOfMainImage(index);
+              getExifDataOfFlickrImage(uploadedPost, index).then((result) => {
+                setexifDataOfMainImage(
+                  transformExifDataForAlbumPostContent(result)
+                );
+              });
+            }}
+            imagesSrc={imagesSrc}
+          />
+        </Grid>
+        <Grid item md={4} xs={12}>
+          <AlbumPostTitleAndDescription
+            title={uploadedPost.title}
+            description={uploadedPost.description}
+          />
+          <AlbumPostExifData exifDataOfMainImage={exifDataOfMainImage} />
+          <CategoryAndMap
+            uploadedPost={uploadedPost}
+            allCategories={categories}
+          />
+        </Grid>
       </Grid>
-      <Grid item md={4} xs={12}>
-        <AlbumPostTitleAndDescription
-          title={uploadedPost.title}
-          description={uploadedPost.description}
-        />
-        <AlbumPostExifData exifDataOfMainImage={exifDataOfMainImage} />
-        <CategoryAndMap
-          uploadedPost={uploadedPost}
-          allCategories={categories}
-        />
-      </Grid>
-    </Grid>
+      <AlbumPostDialogs uploadedPost={uploadedPost} />
+    </AlbumPostContextProvider>
   );
 };
 

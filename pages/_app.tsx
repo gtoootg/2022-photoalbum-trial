@@ -1,12 +1,9 @@
-import axios from "axios";
 import "/styles/globals.scss";
 import { appWithTranslation } from "next-i18next";
 import type { AppProps } from "next/app";
 import Layout from "../components/layout/Layout";
 
 import { createContext, useState } from "react";
-import { useEffect } from "react";
-import { getFlickrImages } from "./flickrApi";
 
 export const flickrImagesContext = createContext([]);
 export const uploadedPostsContext = createContext([]);

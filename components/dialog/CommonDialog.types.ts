@@ -1,8 +1,6 @@
-
-
 export interface CommonDialogProps {
-
-  isOpen:boolean
-  maxWidth?: 'md'|'xs'|'sm'
-  content:JSX.Element
+  isOpen: boolean;
+  maxWidth?: "md" | "xs" | "sm" | "lg" | "xl";
+  content: JSX.Element;
+  handleClose?: () => void;
 }

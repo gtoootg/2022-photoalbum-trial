@@ -1,15 +1,7 @@
-import {
-  Autocomplete,
-  Box,
-  Container,
-  Grid,
-  TextField,
-  Typography,
-} from "@mui/material";
-import axios from "axios";
+import { Autocomplete, Box, Container, Grid, TextField } from "@mui/material";
 
 import { useTranslation } from "next-i18next";
-import { useContext, useEffect, useState } from "react";
+import { useContext } from "react";
 import { CheckboxGroup } from "../../../../../components/checkbox-group/CheckboxGroup";
 import GoogleMapApi from "../../../../../components/google-map/GoogleMapApi";
 import { PreviewImageListBox } from "../../../../../components/preview-image-list-box/PreviewImageListBox";

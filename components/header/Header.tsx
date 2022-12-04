@@ -1,7 +1,6 @@
 import classes from "./Header.module.scss";
 import { useTranslation } from "next-i18next";
 import Link from "next/link";
-import { useRouter } from "next/router";
 import Menu from "@mui/material/Menu";
 import MenuItem from "@mui/material/MenuItem";
 import Button from "@mui/material/Button";
@@ -41,7 +40,6 @@ function RegionMenu({ anchorEl, handleClick, handleClose }: any) {
 
 export default function Header() {
   const { t } = useTranslation();
-  const { route, locale } = useRouter();
   const [anchorEl, setAnchorEl] = useState<null | HTMLElement>(null);
   const handleClick = (event: React.MouseEvent<HTMLButtonElement>) => {
     setAnchorEl(event.currentTarget);
@@ -49,10 +47,6 @@ export default function Header() {
   const handleClose = () => {
     setAnchorEl(null);
   };
-
-  interface navigationItems {
-    text: string | JSX.Element;
-  }
 
   return (
     <div className={classes.header}>

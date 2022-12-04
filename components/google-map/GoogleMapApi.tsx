@@ -1,11 +1,5 @@
-import React, { useState, useContext, useEffect, useCallback } from "react";
-import {
-  GoogleMap,
-  LoadScript,
-  InfoWindow,
-  Marker,
-  useJsApiLoader,
-} from "@react-google-maps/api";
+import React from "react";
+import { GoogleMap, LoadScript, Marker } from "@react-google-maps/api";
 
 type GoogleMapApiProps = {
   center: { lat: number; lng: number };
@@ -15,7 +9,7 @@ type GoogleMapApiProps = {
   setUploadingDataLatLng?: (e: any) => void;
 };
 
-const API_KEY = "AIzaSyAhf8RgW3KVsaUK5Oqr-JKTpASBBrHlXd8"; // TODO: 自分のキーをここに入力
+const API_KEY = "AIzaSyAhf8RgW3KVsaUK5Oqr-JKTpASBBrHlXd8";
 
 const GoogleMapAPI: React.FC<GoogleMapApiProps> = ({
   center,
