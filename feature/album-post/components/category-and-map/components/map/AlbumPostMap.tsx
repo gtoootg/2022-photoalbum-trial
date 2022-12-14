@@ -7,7 +7,7 @@ import { useContext } from "react";
 import { AlbumPostDialogsType } from "../../../../dialog/AlbumPostDialogs";
 import { AlbumPostOpeningDialogContext } from "../../../../context-provider/AlbumPostContextProvider";
 
-export const AlbumPostMap = ({ uploadedPost }) => {
+export const AlbumPostMapWithLinkButton = ({ uploadedPost }) => {
   const { t } = useTranslation();
 
   const [openingDialog, setOpeningDialog] = useContext(
@@ -27,13 +27,23 @@ export const AlbumPostMap = ({ uploadedPost }) => {
           className={styles.mapContainer_dialogLink_button}
         />
       </div>
-      <div className={styles.mapContainer_map}>
-        <GoogleMapApi
-          center={{ lat: uploadedPost.lat, lng: uploadedPost.lng }}
-          zoom={0.3}
-          uploadingDataLatLng={{ lat: uploadedPost.lat, lng: uploadedPost.lng }}
-        />
-      </div>
+
+      <AlbumPostMap
+        uploadedPost={uploadedPost}
+        className={styles.mapContainer_map}
+      />
+    </div>
+  );
+};
+
+export const AlbumPostMap = ({ uploadedPost, className }) => {
+  return (
+    <div className={className}>
+      <GoogleMapApi
+        center={{ lat: uploadedPost.lat, lng: uploadedPost.lng }}
+        zoom={10}
+        uploadingDataLatLng={{ lat: uploadedPost.lat, lng: uploadedPost.lng }}
+      />
     </div>
   );
 };
