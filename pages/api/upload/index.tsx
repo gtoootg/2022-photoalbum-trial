@@ -13,10 +13,8 @@ export default async function uploadHandler(
   res: NextApiResponse
 ) {
   let responseOfUploadPost;
-  let responseOfUploadFlickrPhotoId;
 
-  let lastInsertIdOfPostTable;
-  let dataOfFlickrPhotoIdTableWherePostIdIsLatest;
+  let responseOfUploadFlickrPhotoId;
 
   const connection = mysql.createConnection({
     host: "localhost",
@@ -25,31 +23,32 @@ export default async function uploadHandler(
     database: "photoalbum",
   });
 
-
   await uploadPost(connection, req).then((res) => {
     responseOfUploadPost = res;
-  }),
-    await getLastInsertId(connection).then((res) => {
-      lastInsertIdOfPostTable = res;
-    }),
-    await uploadFlickrPhotoIdAndPostId(
-      connection,
-      req,
-      lastInsertIdOfPostTable
-    ).then((res) => {
-      responseOfUploadFlickrPhotoId = res;
-    }),
+  });
+
+  const lastInsertIdOfPostTable = await getLastInsertId(connection);
+
+  await uploadFlickrPhotoIdAndPostId(
+    connection,
+    req,
+    lastInsertIdOfPostTable
+  ).then((res) => {
+    responseOfUploadFlickrPhotoId = res;
+  });
+
+  const dataOfFlickrPhotoIdTableWherePostIdIsLatest =
     await getDataFromFlickrPhotoIdTableWherePostIdIsLatest(
       connection,
       lastInsertIdOfPostTable
-    ).then((res) => {
-      dataOfFlickrPhotoIdTableWherePostIdIsLatest = res;
-    });
+    );
+
   insertIntoCategoryTable(
     connection,
     req,
     dataOfFlickrPhotoIdTableWherePostIdIsLatest
   );
+
   res.json({
     post: responseOfUploadPost,
     flickrPhotoId: responseOfUploadFlickrPhotoId,

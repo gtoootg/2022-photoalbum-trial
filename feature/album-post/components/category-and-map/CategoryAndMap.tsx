@@ -3,7 +3,7 @@ import { ClickableChip } from "../../../../components/ClickableChip/ClickableChi
 
 import styles from "./CategoryAndMap.module.scss";
 import { Category, IconFactory } from "./CategoryIconFactory";
-import { AlbumPostMap } from "./components/map/AlbumPostMap";
+import { AlbumPostMapWithLinkButton } from "./components/map/AlbumPostMap";
 
 export const CategoryAndMap = ({ uploadedPost, allCategories }) => {
   const { categories } = uploadedPost;
@@ -29,7 +29,7 @@ export const CategoryAndMap = ({ uploadedPost, allCategories }) => {
         })}
       </Grid>
       <Grid item xs={6}>
-        <AlbumPostMap uploadedPost={uploadedPost} />
+        <AlbumPostMapWithLinkButton uploadedPost={uploadedPost} />
       </Grid>
     </Grid>
   );
