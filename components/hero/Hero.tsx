@@ -17,10 +17,9 @@ export const Hero = ({
   if (imageGroupForTransition) {
     return (
       <div className={style.hero}>
-        <ImageTransition
-          images={imageGroupForTransition}
-          className={style.hero_image}
-        />
+        <div className={style.hero_image}>
+          <ImageTransition images={imageGroupForTransition} />
+        </div>
         <div className={style.hero_text}>
           <Text variant={"h1"} content={title} />
           <Text variant={"h3"} content={caption} />

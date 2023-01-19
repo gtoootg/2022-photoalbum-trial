@@ -18,7 +18,7 @@ function Layout(props: {
     <div>
       <Header />
       {props.heroProps && <Hero {...props.heroProps} />}
-      <Container maxWidth="lg" style={{ border: "solid red" }}>
+      <Container maxWidth="xl" style={{ border: "solid red" }}>
         <main>{props.children}</main>
       </Container>
     </div>
