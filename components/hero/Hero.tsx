@@ -2,6 +2,7 @@ import style from "./Hero.module.scss";
 import Image from "next/image";
 import { HeroProps } from "./Hero.types";
 import { Text } from "../text/Text";
+import { ImageTransition } from "../image-transition/ImageTransition";
 
 export const Hero = ({
   image,
@@ -14,7 +15,18 @@ export const Hero = ({
   }
 
   if (imageGroupForTransition) {
-    return <></>;
+    return (
+      <div className={style.hero}>
+        <ImageTransition
+          images={imageGroupForTransition}
+          className={style.hero_image}
+        />
+        <div className={style.hero_text}>
+          <Text variant={"h1"} content={title} />
+          <Text variant={"h3"} content={caption} />
+        </div>
+      </div>
+    );
   }
 
   return (

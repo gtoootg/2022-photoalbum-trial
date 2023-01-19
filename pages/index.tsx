@@ -15,6 +15,10 @@ export async function getStaticProps({ locale }: { locale: string }) {
       ...(await serverSideTranslations(locale)),
       pageProps: {
         heroProps: {
+          imageGroupForTransition: [
+            "https://live.staticflickr.com/65535/51973840381_5d45d75595_h.jpg",
+            "https://live.staticflickr.com/65535/51973839886_56f413f231_h.jpg",
+          ],
           image:
             "https://live.staticflickr.com/65535/51973839886_56f413f231_h.jpg",
           title: "hello",
