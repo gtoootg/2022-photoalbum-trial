@@ -1,6 +1,17 @@
+
+
+(TOP)
+
+HERO component with transition
+
+
+(upload)
+make Map size constant
+
+
 - scss
 -preview of category
 
--sort
+
 
 -differ size of photo url_m, url_n ...
