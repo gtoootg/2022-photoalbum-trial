@@ -28,14 +28,14 @@ export const ImageTransition = ({
       return;
     }
     set(index + 1);
-  }, 5000);
+  }, 10000);
 
   return (
-    <div>
+    <>
       {transitions((style, i) => (
-        <animated.div style={style}>
+        <animated.div style={style} className={className}>
           <Image
-            className={className}
+            style={{ bottom: "0" }}
             width={3}
             height={2}
             layout="responsive"
@@ -45,6 +45,6 @@ export const ImageTransition = ({
           />
         </animated.div>
       ))}
-    </div>
+    </>
   );
 };

@@ -17,8 +17,11 @@ export const Hero = ({
   if (imageGroupForTransition) {
     return (
       <div className={style.hero}>
-        <div className={style.hero_image}>
-          <ImageTransition images={imageGroupForTransition} />
+        <div className={style.hero_image_wrapper}>
+          <ImageTransition
+            images={imageGroupForTransition}
+            className={style.hero_image}
+          />
         </div>
         <div className={style.hero_text}>
           <Text variant={"h1"} content={title} />
@@ -30,15 +33,17 @@ export const Hero = ({
 
   return (
     <div className={style.hero}>
-      <Image
-        className={style.hero_image}
-        width={3}
-        height={2}
-        layout="responsive"
-        objectFit="contain"
-        src={image}
-        alt="image"
-      />
+      <div className={style.hero_image_wrapper}>
+        <Image
+          width={3}
+          height={2}
+          layout="responsive"
+          src={image}
+          alt="image"
+          className={style.image}
+        />
+      </div>
+
       <div className={style.hero_text}>
         <Text variant={"h1"} content={title} />
         <Text variant={"h3"} content={caption} />

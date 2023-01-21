@@ -22,12 +22,19 @@ $gray-transparent: rgb(192, 192, 192,0.7);
 $theme-spacing: 8px;
 
 //Resopnsive design
+$pc-lg: 1900px;
 $pc: 1024px; // PC
 $tab: 680px; // Tablet
 $sp: 480px; // SmartPhone
 
 //border-line
 $border-line-gray: solid 0.5px gray;
+
+@mixin pc-lg {
+  @media (max-width: ($pc-lg)) {
+    @content;
+  }
+}
 
 @mixin pc {
   @media (max-width: ($pc)) {
