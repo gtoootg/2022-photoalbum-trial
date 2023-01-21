@@ -3,7 +3,9 @@
     "navigation": {
       "top": "Top",
       "region": "Region",
-      "upload": "Upload"
+      "upload": "Upload",
+      "category": "Category",
+      "country": "Country"
     }
   }
 }

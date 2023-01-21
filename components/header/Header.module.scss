@@ -22,21 +22,8 @@
       align-items: center;
       color: variables.$white;
       text-decoration: none;
-      &_icon {
-        margin-left: 2rem;
-        opacity: 0.9;
-      }
-      &_text {
-        margin-left: 2rem;
-        opacity: 0.6;
-        h3 {
-          font-size: 1.2rem;
-        }
-      }
-      &_text:hover {
-        border-bottom: solid 1px variables.$white;
-        opacity: 1;
-      }
+      gap:1rem;
+
     }
   }
 }

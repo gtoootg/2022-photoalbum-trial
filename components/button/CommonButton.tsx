@@ -1,14 +1,17 @@
 import { Button, SvgIconProps } from "@mui/material";
 import React from "react";
+import Link from "next/link";
+import { Text } from "../text/Text";
 
 interface CommonButtonProps {
-  onClick: () => void;
+  onClick?: () => void;
   variant: "text" | "contained" | "outlined";
   text: string;
 
   startIcon?: React.ReactElement<SvgIconProps>;
   endIcon?: React.ReactElement<SvgIconProps>;
   className?: string;
+  link?: string;
 }
 
 export const CommonButton = ({
@@ -18,6 +21,7 @@ export const CommonButton = ({
   startIcon,
   endIcon,
   className,
+  link,
 }: CommonButtonProps) => {
   return (
     <Button
@@ -27,7 +31,13 @@ export const CommonButton = ({
       endIcon={endIcon}
       className={className}
     >
-      {text}
+      {link ? (
+        <Link href={link}>
+          <Text content={text} />
+        </Link>
+      ) : (
+        <Text content={text} />
+      )}
     </Button>
   );
 };
