@@ -13,6 +13,10 @@ export const HomeBody = () => {
   const [uploadedPosts, setUploadedPosts] = useContext(uploadedPostsContext);
   const [categories, setCategories] = useContext(categoriesContext);
 
+  useEffect(() => {
+    console.log(flickrImages);
+  }, [flickrImages]);
+
   useGetUploadedPosts(setUploadedPosts, uploadedPosts);
 
   useGetFlickrImages(setFlickrImages, flickrImages);
@@ -36,7 +40,6 @@ export const useGetFlickrImages = (setFlickrImages, flickrImages) => {
     if (flickrImages) {
       return;
     }
-
     handleGetFlickrImages();
   }, []);
 };
