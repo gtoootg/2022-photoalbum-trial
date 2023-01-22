@@ -6,7 +6,7 @@ import {
   flickrImagesContext,
   uploadedPostsContext,
 } from "../../pages/_app";
-import { MediaCardGroup } from "./components/media-card/MediaCardGroup";
+import { MediaCardGroup } from "../../components/media-card/MediaCardGroup";
 
 export const HomeBody = () => {
   const [flickrImages, setFlickrImages] = useContext(flickrImagesContext);
@@ -21,7 +21,10 @@ export const HomeBody = () => {
 
   return (
     <>
-      <MediaCardGroup />
+      <MediaCardGroup
+        flickrImages={flickrImages}
+        uploadedPosts={uploadedPosts}
+      />
     </>
   );
 };

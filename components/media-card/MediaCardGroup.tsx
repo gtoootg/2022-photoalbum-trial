@@ -1,15 +1,9 @@
 import { CircularProgress, Grid } from "@mui/material";
 import { useContext } from "react";
-import {
-  flickrImagesContext,
-  uploadedPostsContext,
-} from "../../../../pages/_app";
+import { flickrImagesContext, uploadedPostsContext } from "../../pages/_app";
 import MediaCard from "./MediaCard";
 
-export const MediaCardGroup = () => {
-  const [flickrImages, setFlickrImages] = useContext(flickrImagesContext);
-  const [uploadedPosts, setUploadedPosts] = useContext(uploadedPostsContext);
-
+export const MediaCardGroup = ({ flickrImages, uploadedPosts }) => {
   if (flickrImages === undefined || uploadedPosts === undefined) {
     return <CircularProgress />;
   }

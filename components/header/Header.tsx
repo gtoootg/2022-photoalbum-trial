@@ -3,9 +3,26 @@ import { useTranslation } from "next-i18next";
 import { DropDownMenu } from "../drop-down-menu/DropDownMenu";
 import { CommonButton } from "../button/CommonButton";
 import UploadIcon from "@mui/icons-material/Upload";
+import { useContext, useEffect, useState } from "react";
+import { UploadingDataProps } from "../../feature/upload/Upload.types";
+import { useGetCountries } from "../../feature/upload/UploadBody";
+import { getCountryDataOfAllUploadedPosts } from "../../helper/ui/UiHelperFunction.helper";
+import { uploadedPostsContext } from "../../pages/_app";
+import { useGetUploadedPosts } from "../../feature/home/HomeBody";
 
 export default function Header() {
   const { t } = useTranslation();
+
+  const [countries, setCountries] = useState();
+  const [uploadedPosts, setUploadedPosts] = useContext(uploadedPostsContext);
+
+  // useGetUploadedPosts(setUploadedPosts, uploadedPosts);
+  useGetCountries(setCountries);
+
+  useEffect(() => {
+    console.log(uploadedPosts);
+    console.log(getCountryDataOfAllUploadedPosts(uploadedPosts, countries));
+  }, [countries, uploadedPosts]);
 
   return (
     <div className={classes.header}>
