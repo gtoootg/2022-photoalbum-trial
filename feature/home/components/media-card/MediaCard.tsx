@@ -7,6 +7,7 @@ import Button from "@mui/material/Button";
 import Typography from "@mui/material/Typography";
 import Image from "next/image";
 import { useRouter } from "next/router";
+import Link from "next/link";
 
 interface MediaCardProps {
   imageSrc: string;
@@ -48,12 +49,9 @@ export default function MediaCard({
         </Typography>
       </CardContent>
       <CardActions>
-        <Button
-          size="small"
-          onClick={() => router.push(`/album-posts/${index}`)}
-        >
-          Learn More
-        </Button>
+        <Link href={`/album-posts/[index]`} as={`/album-posts/${index}`}>
+          See detail
+        </Link>
       </CardActions>
     </Card>
   );

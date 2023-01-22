@@ -1,6 +1,5 @@
-import { Button, SvgIconProps } from "@mui/material";
+import { Button, Link, SvgIconProps } from "@mui/material";
 import React from "react";
-import Link from "next/link";
 import { Text } from "../text/Text";
 
 interface CommonButtonProps {
@@ -32,11 +31,11 @@ export const CommonButton = ({
       className={className}
     >
       {link ? (
-        <Link href={link}>
-          <Text content={text} />
+        <Link href={link} variant={"body1"} color="inherit" underline="none">
+          {text}
         </Link>
       ) : (
-        <Text content={text} />
+        <Text content={text} variant={"body1"} />
       )}
     </Button>
   );

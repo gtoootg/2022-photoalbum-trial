@@ -20,10 +20,13 @@
     &_navigation {
       display: flex;
       align-items: center;
-      color: variables.$white;
+
       text-decoration: none;
       gap:1rem;
 
+      &_element {
+        color: variables.$white;
+      }
     }
   }
 }

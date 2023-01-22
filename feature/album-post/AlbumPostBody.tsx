@@ -28,6 +28,9 @@ const AlbumPostBody = () => {
   const { postId } = router.query;
   const uploadedPost = uploadedPosts?.length && uploadedPosts[Number(postId)];
 
+  // console.log(postId);
+  // console.log(uploadedPost);
+  // console.log(flickrImages);
   useGetFlickrImages(setFlickrImages, flickrImages);
   useGetUploadedPosts(setUploadedPosts, uploadedPosts);
 

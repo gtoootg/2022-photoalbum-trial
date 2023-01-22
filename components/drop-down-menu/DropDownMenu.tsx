@@ -3,7 +3,7 @@ import Menu from "@mui/material/Menu";
 import MenuItem from "@mui/material/MenuItem";
 import { useState } from "react";
 
-export const DropDownMenu = ({ label, menuItems }) => {
+export const DropDownMenu = ({ label, menuItems, classNameForLabelColor }) => {
   const [anchorEl, setAnchorEl] = useState<null | HTMLElement>(null);
   const handleClick = (event: React.MouseEvent<HTMLButtonElement>) => {
     setAnchorEl(event.currentTarget);
@@ -23,7 +23,7 @@ export const DropDownMenu = ({ label, menuItems }) => {
         aria-expanded={open ? "true" : undefined}
         onClick={handleClick}
       >
-        <h3>{label}</h3>
+        <h3 className={classNameForLabelColor}>{label}</h3>
       </Button>
       <Menu
         id="basic-menu"
