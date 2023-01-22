@@ -13,16 +13,21 @@ import { useGetUploadedPosts } from "../../feature/home/HomeBody";
 export default function Header() {
   const { t } = useTranslation();
 
-  const [countries, setCountries] = useState();
+  const [countries, setCountries] = useState<any[]>();
   const [uploadedPosts, setUploadedPosts] = useContext(uploadedPostsContext);
 
-  // useGetUploadedPosts(setUploadedPosts, uploadedPosts);
   useGetCountries(setCountries);
 
-  useEffect(() => {
-    console.log(uploadedPosts);
-    console.log(getCountryDataOfAllUploadedPosts(uploadedPosts, countries));
-  }, [countries, uploadedPosts]);
+  const countryDataOfAllUploadedPosts = getCountryDataOfAllUploadedPosts(
+    uploadedPosts,
+    countries
+  );
+
+  const countriesLabel =
+    countryDataOfAllUploadedPosts &&
+    countryDataOfAllUploadedPosts.map((country) => ({
+      label: country.name.common,
+    }));
 
   return (
     <div className={classes.header}>
@@ -40,7 +45,7 @@ export default function Header() {
           <DropDownMenu
             classNameForLabelColor={classes.header_container_navigation_element}
             label={t("header.navigation.country")}
-            menuItems={[{ label: "japan" }, { label: "germany" }]}
+            menuItems={countriesLabel ? countriesLabel : []}
           />
           <DropDownMenu
             classNameForLabelColor={classes.header_container_navigation_element}
