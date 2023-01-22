@@ -15,6 +15,10 @@ const nextConfig = {
     };
     return config;
   },
+
+  env: {
+    API_DEV: "http://localhost:3000/api/",
+  },
 };
 
 module.exports = nextConfig;

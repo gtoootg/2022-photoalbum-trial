@@ -7,7 +7,11 @@ import {
 } from "../../pages/_app";
 import { filterImageSourcesOfPostForMediaCard } from "../home/components/media-card/MediaCardGroup";
 import AlbumPostImageSlider from "./components/image-slider/AlbumPostImageSlider";
-import { useGetFlickrImages, useGetUploadedPosts } from "../home/HomeBody";
+import {
+  useGetCategories,
+  useGetFlickrImages,
+  useGetUploadedPosts,
+} from "../home/HomeBody";
 import axios from "axios";
 import AlbumPostTitleAndDescription from "./components/title-and-description/AlbumPostTitleAndDescription";
 import { useEffect } from "react";
@@ -24,17 +28,13 @@ const AlbumPostBody = () => {
 
   const [exifDataOfMainImage, setexifDataOfMainImage] = useState(undefined);
   const [indexOfMainImage, setIndexOfMainImage] = useState(0);
-
+  const [categories, setCategories] = useContext(categoriesContext);
   const { postId } = router.query;
   const uploadedPost = uploadedPosts?.length && uploadedPosts[Number(postId)];
 
-  // console.log(postId);
-  // console.log(uploadedPost);
-  // console.log(flickrImages);
   useGetFlickrImages(setFlickrImages, flickrImages);
   useGetUploadedPosts(setUploadedPosts, uploadedPosts);
-
-  const [categories, setCategories] = useContext(categoriesContext);
+  useGetCategories(categories, setCategories);
 
   const imagesSrc = filterImageSourcesOfPostForMediaCard(
     flickrImages,
@@ -49,7 +49,7 @@ const AlbumPostBody = () => {
       setexifDataOfMainImage(transformExifDataForAlbumPostContent(result));
     });
     // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [uploadedPosts]);
+  }, [flickrImages, uploadedPosts]);
 
   if (!uploadedPost || !flickrImages) {
     return null;
