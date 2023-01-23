@@ -15,8 +15,6 @@ export const getCountryDataOfAllUploadedPosts = (
     arrayOfCountryId.push(post.country);
   });
 
-  console.log(arrayOfCountryId);
-
   const countryDataOfAllUploadedPosts = arrayOfCountryId.map((countryId) => {
     const countryData = allCountries.find(
       (country) => country.ccn3 === countryId

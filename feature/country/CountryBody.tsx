@@ -24,9 +24,13 @@ export const CountryBody = () => {
 
   const { countryId } = router.query;
 
-  const uploadedPostOFCurrentCountry = uploadedPosts.filter(
-    (uploadedPost) => uploadedPost.country === countryId
-  );
+  const uploadedPostOFCurrentCountry =
+    uploadedPosts &&
+    uploadedPosts.filter((uploadedPost) => uploadedPost.country === countryId);
+
+  if (!uploadedPosts) {
+    return <></>;
+  }
 
   return (
     <>

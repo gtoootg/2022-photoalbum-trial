@@ -2,8 +2,22 @@ import Button from "@mui/material/Button";
 import Menu from "@mui/material/Menu";
 import MenuItem from "@mui/material/MenuItem";
 import { useState } from "react";
+import Link from "next/link";
 
-export const DropDownMenu = ({ label, menuItems, classNameForLabelColor }) => {
+interface DropDownMenuProps<DropDownMenuItemProps> {
+  label: string;
+  menuItems: (DropDownMenuItemProps & { label: string; link?: string })[];
+  classNameForLabelColor?: string;
+  handleClickMenuItem?: (value: DropDownMenuItemProps) => void;
+  linkWithoutParam?: string;
+}
+
+export const DropDownMenu = <T extends any>({
+  label,
+  menuItems,
+  classNameForLabelColor,
+  handleClickMenuItem,
+}: DropDownMenuProps<T>) => {
   const [anchorEl, setAnchorEl] = useState<null | HTMLElement>(null);
   const handleClick = (event: React.MouseEvent<HTMLButtonElement>) => {
     setAnchorEl(event.currentTarget);
@@ -35,7 +49,21 @@ export const DropDownMenu = ({ label, menuItems, classNameForLabelColor }) => {
         }}
       >
         {menuItems.map((item) => {
-          return <MenuItem onClick={handleClose}>{item.label}</MenuItem>;
+          return (
+            <MenuItem
+              onClick={() => {
+                handleClickMenuItem(item);
+              }}
+            >
+              {item.link ? (
+                <Link href={item.link} color="inherit">
+                  {item.label}
+                </Link>
+              ) : (
+                <>{item.label}</>
+              )}
+            </MenuItem>
+          );
         })}
       </Menu>
     </div>

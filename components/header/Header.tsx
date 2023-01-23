@@ -27,6 +27,7 @@ export default function Header() {
     countryDataOfAllUploadedPosts &&
     countryDataOfAllUploadedPosts.map((country) => ({
       label: country.name.common,
+      link: `/country/${country.ccn3}`,
     }));
 
   return (
@@ -46,6 +47,9 @@ export default function Header() {
             classNameForLabelColor={classes.header_container_navigation_element}
             label={t("header.navigation.country")}
             menuItems={countriesLabel ? countriesLabel : []}
+            handleClickMenuItem={(countryData) => {
+              console.log(countryData);
+            }}
           />
           <DropDownMenu
             classNameForLabelColor={classes.header_container_navigation_element}
