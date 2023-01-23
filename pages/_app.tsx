@@ -1,7 +1,7 @@
 import "/styles/globals.scss";
 import { appWithTranslation } from "next-i18next";
 import type { AppProps } from "next/app";
-import { getLayout } from "../components/layout/Layout";
+import Layout from "../components/layout/Layout";
 
 import { createContext, useState } from "react";
 
@@ -14,15 +14,16 @@ function MyApp({ Component, pageProps }: AppProps) {
   const [uploadedPosts, setUploadedPosts] = useState(undefined);
   const [categories, setCategories] = useState(undefined);
 
-  return getLayout(
+  return (
     <flickrImagesContext.Provider value={[flickrImages, setFlickrImages]}>
       <uploadedPostsContext.Provider value={[uploadedPosts, setUploadedPosts]}>
         <categoriesContext.Provider value={[categories, setCategories]}>
-          <Component {...pageProps} />
+          <Layout heroProps={pageProps.heroProps}>
+            <Component />
+          </Layout>
         </categoriesContext.Provider>
       </uploadedPostsContext.Provider>
-    </flickrImagesContext.Provider>,
-    pageProps
+    </flickrImagesContext.Provider>
   );
 }
 

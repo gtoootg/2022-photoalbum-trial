@@ -1,8 +1,5 @@
 import axios from "axios";
 
-// export const apiPath =
-// "https://api.flickr.com/services/rest?api_key=3bbbbcbca484db8972d0a979c293030f&method=flickr.photos.search&user_id=135315222@N04&format=json&nojsoncallback=?&extras=url_h,url_n,date_taken,media";
-
 export interface FlickrImageProps {
   datetaken: string;
   datetakengranularity: number;

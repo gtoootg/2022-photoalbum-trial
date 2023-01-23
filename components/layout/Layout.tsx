@@ -26,7 +26,3 @@ function Layout(props: {
 }
 
 export default Layout;
-
-export const getLayout = (childlen, { pageProps }) => {
-  return <Layout heroProps={pageProps?.heroProps}>{childlen}</Layout>;
-};

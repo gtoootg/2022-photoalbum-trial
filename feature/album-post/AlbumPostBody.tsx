@@ -5,7 +5,7 @@ import {
   flickrImagesContext,
   uploadedPostsContext,
 } from "../../pages/_app";
-import { filterImageSourcesOfPostForMediaCard } from "../home/components/media-card/MediaCardGroup";
+import { filterImageSourcesOfPostForMediaCard } from "../../components/media-card/MediaCardGroup";
 import AlbumPostImageSlider from "./components/image-slider/AlbumPostImageSlider";
 import {
   useGetCategories,
