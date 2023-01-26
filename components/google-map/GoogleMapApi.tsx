@@ -12,7 +12,8 @@ type GoogleMapApiProps = {
   onClickAction?: boolean;
   uploadingDataLatLng?: { lat: number; lng: number };
   setUploadingDataLatLng?: (e: any) => void;
-  clusterLocations?: { lat: number; lng: number }[];
+  clusterLocations?: { lat: number; lng: number; id: number }[];
+  handleClickMarkerOfCluster?: (id: number) => void;
 };
 
 const API_KEY = "AIzaSyAhf8RgW3KVsaUK5Oqr-JKTpASBBrHlXd8";
@@ -24,6 +25,7 @@ const GoogleMapAPI: React.FC<GoogleMapApiProps> = ({
   uploadingDataLatLng,
   setUploadingDataLatLng,
   clusterLocations,
+  handleClickMarkerOfCluster,
 }) => {
   const setMarkerPosition = (e) => {
     const lat = e.latLng.lat();
@@ -60,6 +62,7 @@ const GoogleMapAPI: React.FC<GoogleMapApiProps> = ({
                     key={createKey(location)}
                     position={location}
                     clusterer={clusterer}
+                    onClick={() => handleClickMarkerOfCluster(location.id)}
                   />
                 ))}
               </div>
