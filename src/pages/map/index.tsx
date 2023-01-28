@@ -1,4 +1,3 @@
-import { GetStaticPaths } from "next";
 import { serverSideTranslations } from "next-i18next/serverSideTranslations";
 import { MapBody } from "../../feature/map/MapBody";
 

@@ -15,8 +15,9 @@ export const AlbumPostMapDialog = ({ isOpen, uploadedPost }) => {
       content={
         <AlbumPostMap uploadedPost={uploadedPost} className={styles.map} />
       }
-      handleClose={() => setOpeningDialog(undefined)}
+      // handleCancel={() => setOpeningDialog(undefined)}
       maxWidth={"md"}
     />
+
   );
 };

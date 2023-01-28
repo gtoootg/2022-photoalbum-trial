@@ -94,7 +94,7 @@ export default AlbumPostBody;
 const getExifDataOfFlickrImage = async (uploadedPost, indexOfMainImage) => {
   let result;
   const res = () => {
-    return new Promise((resolve, reject) => {
+    return new Promise((resolve) => {
       axios
         .get(
           `http://localhost:3000/api/get/exif/${uploadedPost.flickrPhotoId[indexOfMainImage]}`

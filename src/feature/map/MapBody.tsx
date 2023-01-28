@@ -1,12 +1,10 @@
 import GoogleMapApi from "../../components/google-map/GoogleMapApi";
 import { useContext, useState } from "react";
 import {
-  categoriesContext,
   flickrImagesContext,
   uploadedPostsContext,
 } from "../../pages/_app";
 import {
-  useGetCategories,
   useGetFlickrImages,
   useGetUploadedPosts,
 } from "../home/HomeBody";

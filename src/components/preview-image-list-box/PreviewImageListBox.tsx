@@ -2,7 +2,7 @@ import { Box, Grid } from "@mui/material";
 import Image from "next/image";
 import styles from "./PreviewImageListBox.module.scss";
 import { Text } from "../text/Text";
-import { useEffect, useState } from "react";
+import { useState } from "react";
 
 export const PreviewImageListBox = ({
   imagesSrc,

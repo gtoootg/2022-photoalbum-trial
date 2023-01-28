@@ -1,11 +1,9 @@
 import { useContext } from "react";
 import {
-  categoriesContext,
   flickrImagesContext,
   uploadedPostsContext,
 } from "../../pages/_app";
 import {
-  useGetCategories,
   useGetFlickrImages,
   useGetUploadedPosts,
 } from "../home/HomeBody";
@@ -17,7 +15,6 @@ export const CountryBody = () => {
 
   const [flickrImages, setFlickrImages] = useContext(flickrImagesContext);
   const [uploadedPosts, setUploadedPosts] = useContext(uploadedPostsContext);
-  const [categories, setCategories] = useContext(categoriesContext);
 
   useGetUploadedPosts(setUploadedPosts, uploadedPosts);
   useGetFlickrImages(setFlickrImages, flickrImages);

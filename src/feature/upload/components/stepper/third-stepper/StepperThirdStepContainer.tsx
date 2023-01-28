@@ -23,7 +23,7 @@ export default function StepperThirdStepContainer({
 }: StepperThirdStepContainerProps) {
   const { t } = useTranslation();
   const [categories, setCategories] = useContext(categoriesContext);
-  const [flickrImages, setFlickrImages] = useContext(flickrImagesContext);
+  const [flickrImages] = useContext(flickrImagesContext);
   useGetCategories(categories, setCategories);
 
   const countriesForAutoCompleteOptions = countries?.map((country) => ({

@@ -7,7 +7,7 @@ export enum AlbumPostDialogsType {
 }
 
 export const AlbumPostDialogs = ({ uploadedPost }) => {
-  const [openingDialog, setOpeningDialog] = useContext(
+  const [openingDialog] = useContext(
     AlbumPostOpeningDialogContext
   );
 

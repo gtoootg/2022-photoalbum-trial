@@ -3,12 +3,10 @@ import { useTranslation } from "next-i18next";
 import { DropDownMenu } from "../drop-down-menu/DropDownMenu";
 import { CommonButton } from "../button/CommonButton";
 import UploadIcon from "@mui/icons-material/Upload";
-import { useContext, useEffect, useState } from "react";
-import { UploadingDataProps } from "../../feature/upload/Upload.types";
+import { useContext, useState } from "react";
 import { useGetCountries } from "../../feature/upload/UploadBody";
 import { getCountryDataOfAllUploadedPosts } from "../../helper/ui/UiHelperFunction.helper";
 import { uploadedPostsContext } from "../../pages/_app";
-import { useGetUploadedPosts } from "../../feature/home/HomeBody";
 
 export default function Header() {
   const { t } = useTranslation();
