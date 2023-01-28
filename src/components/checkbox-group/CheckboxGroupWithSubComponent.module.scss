@@ -1,0 +1,14 @@
+@use "src/styles/variables";
+
+.subComponent {
+  margin-bottom: variables.$theme-spacing * 2;
+  height: 6rem;
+  transition: 0.3s;
+  overflow: hidden;
+}
+
+.subComponentHidden {
+  height: 0;
+  overflow: hidden;
+  transition: 0.3s;
+}

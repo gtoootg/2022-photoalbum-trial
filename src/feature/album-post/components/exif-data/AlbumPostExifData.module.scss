@@ -1,0 +1,26 @@
+@use "src/styles/variables";
+
+.exifData {
+  padding-bottom: variables.$theme-spacing * 2;
+  border-bottom: variables.$border-line-gray;
+}
+
+.camera {
+  align-items: center;
+  &_icon {
+    font-size: 3.5rem;
+    margin-right: 1rem;
+  }
+}
+
+.otherInfo {
+  &_element {
+    display: flex;
+    align-items: center;
+  }
+
+  &_icon {
+    font-size: 2rem;
+    margin-right: 0.5rem;
+  }
+}

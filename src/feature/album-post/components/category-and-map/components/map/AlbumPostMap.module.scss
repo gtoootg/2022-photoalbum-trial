@@ -1,0 +1,33 @@
+@use 'src/styles/variables';
+
+.mapContainer{
+  width:100%;
+  height:100%;
+  position:relative;
+
+  &_dialogLink{
+    position: absolute;
+    width:100%;
+    height:100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    opacity: 1;
+    z-index: 100;
+
+    &_button{
+      color:black;
+      background-color: variables.$gray-transparent;
+    }
+
+    &_button:hover{
+      background-color: variables.$gray;
+    }
+  }
+
+  &_map{
+    width:100%;
+    height:100%;
+    opacity: 0.5;
+  }
+}
