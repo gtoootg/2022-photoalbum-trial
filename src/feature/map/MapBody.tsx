@@ -26,14 +26,15 @@ export const MapBody = () => {
 
   useGetUploadedPosts(setUploadedPosts, uploadedPosts);
   useGetFlickrImages(setFlickrImages, flickrImages);
-
-  const getLocationOfUploadedPosts =
-    uploadedPosts &&
+  
+  const getClusterItems =
+    uploadedPosts && flickrImages &&
     uploadedPosts.map((post) => {
       return {
         id: post.id,
         lat: post.lat,
         lng: post.lng,
+        imageUrl:flickrImages && flickrImages.find((flickrImage)=>flickrImage.id === post.flickrPhotoId[0].toString()).url_n
       };
     });
 
@@ -42,8 +43,8 @@ export const MapBody = () => {
       <GoogleMapApi
         center={{ lat: 0, lng: 0 }}
         zoom={3}
-        clusterLocations={
-          getLocationOfUploadedPosts ? getLocationOfUploadedPosts : []
+        clusterItems={
+          getClusterItems ? getClusterItems : []
         }
         handleClickMarkerOfCluster={(uploadedPostId) => {
           setOpeningDialogType(MapBodyDialogType.PREVIEW_DIALOG);

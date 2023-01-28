@@ -5,7 +5,8 @@
       "region": "Region",
       "upload": "Upload",
       "category": "Category",
-      "country": "Country"
+      "country": "Country",
+      "map": "Map"
     }
   }
 }
