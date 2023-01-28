@@ -5,14 +5,25 @@ export const CommonDialog = ({
   isOpen,
   maxWidth,
   content,
-  handleClose,
+  buttonConfig,
 }: CommonDialogProps) => {
   return (
     <Dialog open={isOpen} maxWidth={maxWidth} fullWidth={true}>
       <DialogContent>{content}</DialogContent>
-      <DialogActions>
-        {handleClose && <Button onClick={handleClose}>Close</Button>}
-      </DialogActions>
+      {/*{buttonConfig && (*/}
+      {/*  <>*/}
+      {/*    <DialogActions>*/}
+      {/*      <Button onClick={() => cancelButton.handleCancel}>*/}
+      {/*        {cancelButton.label}*/}
+      {/*      </Button>*/}
+      {/*    </DialogActions>*/}
+      {/*    <DialogActions>*/}
+      {/*      <Button onClick={() => submitButton.handleSubmit}>*/}
+      {/*        {submitButton.label}*/}
+      {/*      </Button>*/}
+      {/*    </DialogActions>*/}
+      {/*  </>*/}
+      {/*)}*/}
     </Dialog>
   );
 };

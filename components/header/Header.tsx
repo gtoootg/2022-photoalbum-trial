@@ -58,6 +58,12 @@ export default function Header() {
           />
           <CommonButton
             className={classes.header_container_navigation_element}
+            variant={"text"}
+            text={t("header.navigation.map")}
+            link={"/map"}
+          />
+          <CommonButton
+            className={classes.header_container_navigation_element}
             startIcon={<UploadIcon />}
             variant={"contained"}
             text={t("header.navigation.upload")}
