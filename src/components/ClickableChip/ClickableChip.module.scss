@@ -1,0 +1,25 @@
+@use "src/styles/variables";
+
+.green {
+  background-color: variables.$green-transparent;
+}
+
+.green:hover {
+  background-color: variables.$green;
+}
+
+.orange {
+  background-color: variables.$orange-transparent;
+}
+
+.orange:hover {
+  background-color: variables.$orange;
+}
+
+.blue {
+  background-color: variables.$blue-transparent;
+}
+
+.blue:hover {
+  background-color: variables.$blue;
+}
