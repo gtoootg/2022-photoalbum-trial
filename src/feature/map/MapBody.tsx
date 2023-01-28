@@ -26,7 +26,13 @@ export const MapBody = () => {
 
   useGetUploadedPosts(setUploadedPosts, uploadedPosts);
   useGetFlickrImages(setFlickrImages, flickrImages);
-  
+
+  const getUrlOfFirstImageOfUploadedPost = (post)=>{
+    if(!flickrImages){return undefined}
+
+    return flickrImages.find((flickrImage)=>flickrImage.id === post.flickrPhotoId[0].toString()).url_n
+  }
+
   const getClusterItems =
     uploadedPosts && flickrImages &&
     uploadedPosts.map((post) => {
@@ -34,7 +40,7 @@ export const MapBody = () => {
         id: post.id,
         lat: post.lat,
         lng: post.lng,
-        imageUrl:flickrImages && flickrImages.find((flickrImage)=>flickrImage.id === post.flickrPhotoId[0].toString()).url_n
+        imageUrl:getUrlOfFirstImageOfUploadedPost(post)
       };
     });
 
