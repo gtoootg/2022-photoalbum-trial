@@ -8,10 +8,12 @@ export interface CommonDialogProps {
 export type CommonDialogButtonProps = {
   submitButton: {
     label: string;
-    handleSubmit: () => void;
+    link?:string
+    handleSubmit?: () => void;
   };
   cancelButton: {
     label: string;
-    handleCancel: () => void;
+    link?:string
+    handleCancel?: () => void;
   };
 };

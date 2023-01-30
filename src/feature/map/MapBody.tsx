@@ -1,5 +1,5 @@
 import GoogleMapApi from "../../components/google-map/GoogleMapApi";
-import { useContext, useState } from "react";
+import { useContext } from "react";
 import {
   flickrImagesContext,
   uploadedPostsContext,
@@ -12,17 +12,17 @@ import {
   MapBodyDialogs,
   MapBodyDialogType,
 } from "./components/dialog/MapBodyDialogs";
+import {
+  MapBodyOpeningDialogTypeContext,
+  MapBodySelectedUploadedPostIdContext
+} from "../../pages/map/context-provider/MapBodyContextProvider";
 
 export const MapBody = () => {
   const [flickrImages, setFlickrImages] = useContext(flickrImagesContext);
   const [uploadedPosts, setUploadedPosts] = useContext(uploadedPostsContext);
 
-  const [selectedPostId, setSelectedPostId] = useState<number | undefined>(
-    undefined
-  );
-  const [openingDialogType, setOpeningDialogType] = useState<
-    MapBodyDialogType | undefined
-  >(undefined);
+  const [selectedPostId, setSelectedPostId] = useContext(MapBodySelectedUploadedPostIdContext)
+  const [openingDialogType, setOpeningDialogType] = useContext(MapBodyOpeningDialogTypeContext)
 
   useGetUploadedPosts(setUploadedPosts, uploadedPosts);
   useGetFlickrImages(setFlickrImages, flickrImages);
@@ -57,7 +57,7 @@ export const MapBody = () => {
           setSelectedPostId(uploadedPostId);
         }}
       />
-      <MapBodyDialogs dialogType={openingDialogType} />
+      <MapBodyDialogs/>
     </div>
   );
 };

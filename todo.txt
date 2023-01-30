@@ -9,9 +9,11 @@ HERO component with transition
 make Map size constant
 
 
+
 - scss
 -preview of category
 
+-image size adjust(h,n,l) for all places
 
 
 -differ size of photo url_m, url_n ...

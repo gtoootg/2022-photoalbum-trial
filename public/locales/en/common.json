@@ -1,4 +1,10 @@
 {
+  "label": {
+    "cancel": "Cancel",
+    "close": "Close",
+    "save": "Save",
+    "see-details": "See details"
+  },
   "header": {
     "navigation": {
       "top": "Top",
