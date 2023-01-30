@@ -6,7 +6,7 @@ import {
   uploadedPostsContext,
 } from "../../pages/_app";
 import { filterImageSourcesOfPostForMediaCard } from "../../components/media-card/MediaCardGroup";
-import AlbumPostImageSlider from "./components/image-slider/AlbumPostImageSlider";
+import ImageSlider from "../../components/image-slider/ImageSlider";
 import {
   useGetCategories,
   useGetFlickrImages,
@@ -59,7 +59,7 @@ const AlbumPostBody = () => {
     <AlbumPostContextProvider>
       <Grid container spacing={2}>
         <Grid item md={8} xs={12}>
-          <AlbumPostImageSlider
+          <ImageSlider
             indexOfMainImage={indexOfMainImage}
             handleClickSubImage={(index) => {
               setIndexOfMainImage(index);

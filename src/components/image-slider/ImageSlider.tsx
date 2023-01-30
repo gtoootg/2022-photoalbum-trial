@@ -1,28 +1,32 @@
 import { Grid } from "@mui/material";
 import Image from "next/image";
-import { useEffect, useState } from "react";
-import styles from "./AlbumPostImageSlider.module.scss";
+import styles from "./ImageSlider.module.scss";
+import {useState} from "react";
 
-interface AlbumPostImageSliderProps {
+interface ImageSliderProps {
   imagesSrc: string[];
-  indexOfMainImage: number;
-  handleClickSubImage: (index: number) => void;
+  indexOfMainImage?: number;
+  handleClickSubImage?: (index: number) => void;
 }
 
-const AlbumPostImageSlider = ({
+const ImageSlider = ({
   imagesSrc,
   handleClickSubImage,
   indexOfMainImage,
-}: AlbumPostImageSliderProps) => {
-  const mainImageToRender = imagesSrc[indexOfMainImage];
+}: ImageSliderProps) => {
+  const [defaultIndexOfMainImage,setDefaultIndexOfMainImage]= useState(0)
+  const mainImageToRender = indexOfMainImage ? imagesSrc[indexOfMainImage]: imagesSrc[defaultIndexOfMainImage]
 
   return (
     <Grid container>
       <MainImage imageSrc={mainImageToRender} />
       <SubImageGroup
         subImagesSrc={imagesSrc}
-        indexOfMainImage={indexOfMainImage}
-        handleClickSubImage={handleClickSubImage}
+        indexOfMainImage={ indexOfMainImage? indexOfMainImage: defaultIndexOfMainImage}
+        handleClickSubImage={(i)=>{
+          handleClickSubImage && handleClickSubImage
+          setDefaultIndexOfMainImage(i)
+        }}
       />
     </Grid>
   );
@@ -90,4 +94,4 @@ const SubImageGroup = ({
   );
 };
 
-export default AlbumPostImageSlider;
+export default ImageSlider;
