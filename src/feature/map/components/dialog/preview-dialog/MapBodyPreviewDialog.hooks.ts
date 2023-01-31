@@ -15,11 +15,11 @@ export const useMapBodyPreviewDialogConfig = ()=>{
 
   const buttonConfig = {
     submitButton:{
-      label:t("common.label.see-details."),
+      label:t("label.see-details"),
       link:`album-posts/${selectedPostId}`
     },
     cancelButton:{
-      label:t("common.label.cancel"),
+      label:t("label.close"),
       handleCancel:()=>{setOpeningDialogType(undefined)}
     }
 

@@ -1,14 +1,20 @@
 import { CircularProgress, Grid } from "@mui/material";
 import MediaCard from "./MediaCard";
 
-export const MediaCardGroup = ({ flickrImages, uploadedPosts }) => {
+
+export const MediaCardGroup = ({
+                                 flickrImages,
+                                 uploadedPosts,
+                                 uniqueId
+
+}) => {
   if (flickrImages === undefined || uploadedPosts === undefined) {
     return <CircularProgress />;
   }
 
   return (
     <Grid container spacing={2} sx={{ marginTop: "3rem" }}>
-      {uploadedPosts?.map((uploadedPost, index) => {
+      {uploadedPosts?.map((uploadedPost,index) => {
         const imageSrcForMediaCard = filterImageSourcesOfPostForMediaCard(
           flickrImages,
           uploadedPost
@@ -20,7 +26,7 @@ export const MediaCardGroup = ({ flickrImages, uploadedPosts }) => {
               imageSrc={imageSrcForMediaCard}
               title={uploadedPost.title}
               description={uploadedPost.description}
-              index={index}
+              index={uploadedPost[uniqueId]}
             />
           </Grid>
         );

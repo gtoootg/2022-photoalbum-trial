@@ -30,7 +30,7 @@ const AlbumPostBody = () => {
   const [indexOfMainImage, setIndexOfMainImage] = useState(0);
   const [categories, setCategories] = useContext(categoriesContext);
   const { postId } = router.query;
-  const uploadedPost = uploadedPosts?.length && uploadedPosts[Number(postId)];
+  const uploadedPost = uploadedPosts?.length && uploadedPosts.find((uploadedPost)=>uploadedPost.id === Number(postId));
 
   useGetFlickrImages(setFlickrImages, flickrImages);
   useGetUploadedPosts(setUploadedPosts, uploadedPosts);

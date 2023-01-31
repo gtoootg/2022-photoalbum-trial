@@ -1,7 +1,7 @@
 import { CommonDialog } from "../../../../../components/dialog/CommonDialog";
 import {useMapBodyPreviewDialogConfig} from "./MapBodyPreviewDialog.hooks";
 import ImageSlider from "../../../../../components/image-slider/ImageSlider";
-import {useContext, useState} from "react";
+import {useContext} from "react";
 import {filterImageSourcesOfPostForMediaCard} from "../../../../../components/media-card/MediaCardGroup";
 import {flickrImagesContext, uploadedPostsContext} from "../../../../../pages/_app";
 import {MapBodySelectedUploadedPostIdContext} from "../../../../../pages/map/context-provider/MapBodyContextProvider";
@@ -15,7 +15,7 @@ export const MapBodyPreviewDialog = ({ isOpen }) => {
       isOpen={isOpen}
       content={<MapBodyPreviewDialogContent />}
       buttonConfig={buttonConfig}
-      maxWidth={'lg'}
+      maxWidth={'md'}
     />
   )
 };

@@ -45,7 +45,7 @@ export const MapBody = () => {
     });
 
   return (
-    <div style={{ height: "90vh", width: "100%" }}>
+    <div style={{ height: "90vh", width: "100%" ,marginTop:"2rem",marginBottom:"2rem"}}>
       <GoogleMapApi
         center={{ lat: 0, lng: 0 }}
         zoom={3}

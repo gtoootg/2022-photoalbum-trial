@@ -24,6 +24,7 @@ export const HomeBody = () => {
       <MediaCardGroup
         flickrImages={flickrImages}
         uploadedPosts={uploadedPosts}
+        uniqueId={'id'}
       />
     </>
   );
