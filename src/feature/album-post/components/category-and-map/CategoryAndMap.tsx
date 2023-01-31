@@ -1,5 +1,5 @@
 import { CircularProgress, Grid } from "@mui/material";
-import { ClickableChip } from "../../../../components/ClickableChip/ClickableChip";
+import { ClickableChip } from "../../../../components/clickable-chip/ClickableChip";
 
 import styles from "./CategoryAndMap.module.scss";
 import { Category, IconFactory } from "./CategoryIconFactory";

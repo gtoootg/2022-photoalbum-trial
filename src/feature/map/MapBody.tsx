@@ -1,5 +1,5 @@
 import GoogleMapApi from "../../components/google-map/GoogleMapApi";
-import { useContext, useState } from "react";
+import { useContext } from "react";
 import {
   flickrImagesContext,
   uploadedPostsContext,
@@ -12,45 +12,52 @@ import {
   MapBodyDialogs,
   MapBodyDialogType,
 } from "./components/dialog/MapBodyDialogs";
+import {
+  MapBodyOpeningDialogTypeContext,
+  MapBodySelectedUploadedPostIdContext
+} from "../../pages/map/context-provider/MapBodyContextProvider";
 
 export const MapBody = () => {
   const [flickrImages, setFlickrImages] = useContext(flickrImagesContext);
   const [uploadedPosts, setUploadedPosts] = useContext(uploadedPostsContext);
 
-  const [selectedPostId, setSelectedPostId] = useState<number | undefined>(
-    undefined
-  );
-  const [openingDialogType, setOpeningDialogType] = useState<
-    MapBodyDialogType | undefined
-  >(undefined);
+  const [selectedPostId, setSelectedPostId] = useContext(MapBodySelectedUploadedPostIdContext)
+  const [openingDialogType, setOpeningDialogType] = useContext(MapBodyOpeningDialogTypeContext)
 
   useGetUploadedPosts(setUploadedPosts, uploadedPosts);
   useGetFlickrImages(setFlickrImages, flickrImages);
 
-  const getLocationOfUploadedPosts =
-    uploadedPosts &&
+  const getUrlOfFirstImageOfUploadedPost = (post)=>{
+    if(!flickrImages){return undefined}
+
+    return flickrImages.find((flickrImage)=>flickrImage.id === post.flickrPhotoId[0].toString()).url_n
+  }
+
+  const getClusterItems =
+    uploadedPosts && flickrImages &&
     uploadedPosts.map((post) => {
       return {
         id: post.id,
         lat: post.lat,
         lng: post.lng,
+        imageUrl:getUrlOfFirstImageOfUploadedPost(post)
       };
     });
 
   return (
-    <div style={{ height: "90vh", width: "100%" }}>
+    <div style={{ height: "90vh", width: "100%" ,marginTop:"2rem",marginBottom:"2rem"}}>
       <GoogleMapApi
         center={{ lat: 0, lng: 0 }}
         zoom={3}
-        clusterLocations={
-          getLocationOfUploadedPosts ? getLocationOfUploadedPosts : []
+        clusterItems={
+          getClusterItems ? getClusterItems : []
         }
         handleClickMarkerOfCluster={(uploadedPostId) => {
           setOpeningDialogType(MapBodyDialogType.PREVIEW_DIALOG);
           setSelectedPostId(uploadedPostId);
         }}
       />
-      <MapBodyDialogs dialogType={openingDialogType} />
+      <MapBodyDialogs/>
     </div>
   );
 };

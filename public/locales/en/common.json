@@ -1,11 +1,18 @@
 {
+  "label": {
+    "cancel": "Cancel",
+    "close": "Close",
+    "save": "Save",
+    "see-details": "See details"
+  },
   "header": {
     "navigation": {
       "top": "Top",
       "region": "Region",
       "upload": "Upload",
       "category": "Category",
-      "country": "Country"
+      "country": "Country",
+      "map": "Map"
     }
   }
 }
