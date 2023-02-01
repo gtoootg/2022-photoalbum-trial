@@ -1,12 +1,10 @@
 import express, { Request, Response } from "express";
 import next from "next";
-import env from "../env";
-const bodyParser = require("body-parser");
 
-const dev = process.env.NODE_ENV !== "production";
+const dev = process.env.NODE_ENV !== "development";
 const app = next({ dev });
 const handle = app.getRequestHandler();
-const port = process.env.PORT || 3000;
+const port = process.env.PORT;
 
 app.prepare().then(() => {
   const server = express();
@@ -16,6 +14,6 @@ app.prepare().then(() => {
   });
   server.listen(port, (err?: any) => {
     if (err) throw err;
-    console.log(`> Ready on localhost:${port} - env ${process.env.NODE_ENV}`);
+    console.log(`> Ready on port:${port} - env ${process.env.NODE_ENV}`);
   });
 });

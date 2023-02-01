@@ -38,11 +38,12 @@ export default function Upload() {
 }
 
 export const useGetCountries = (setCountries) => {
-  const restCountriesUrl = process.env.COUNTRY_LIST_URL;
+
   useEffect(() => {
     const handleGetCountries = async () => {
       await axios
-        .get(restCountriesUrl)
+        .get(
+          process.env.NEXT_PUBLIC_COUNTRY_LIST)
         .then((res) => {
           setCountries(res.data);
         })
