@@ -1,16 +1,12 @@
 import type { NextApiRequest, NextApiResponse } from "next";
 import mysql from "mysql";
+import {DataBase} from "../../../../../../server/data-base/database";
 
 export default async function handler(
   req: NextApiRequest,
   res: NextApiResponse
 ) {
-  const connection = mysql.createConnection({
-    host: "localhost",
-    user: "root",
-    password: "njVjyI5CstMQ4VaYl2m1",
-    database: "common",
-  });
+  const connection = new DataBase().getDataBaseConnection()
 
   connection.query("SELECT * from common.category", (error, data) => {
     if (error) {

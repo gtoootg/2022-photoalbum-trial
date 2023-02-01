@@ -6,7 +6,7 @@ import {
   uploadFlickrPhotoIdAndPostId,
   uploadPost,
 } from "./uploadHelper";
-import mysql from "mysql";
+import {DataBase} from "../../../../server/data-base/database";
 
 export default async function uploadHandler(
   req: NextApiRequest,
@@ -16,12 +16,7 @@ export default async function uploadHandler(
 
   let responseOfUploadFlickrPhotoId;
 
-  const connection = mysql.createConnection({
-    host: "localhost",
-    user: "root",
-    password: "njVjyI5CstMQ4VaYl2m1",
-    database: "photoalbum",
-  });
+  const connection = new DataBase().getDataBaseConnection()
 
   await uploadPost(connection, req).then((res) => {
     responseOfUploadPost = res;
