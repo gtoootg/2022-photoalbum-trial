@@ -38,7 +38,7 @@ export default function Upload() {
 }
 
 export const useGetCountries = (setCountries) => {
-  const restCountriesUrl = "https://restcountries.com/v3.1/all";
+  const restCountriesUrl = process.env.COUNTRY_LIST_URL;
   useEffect(() => {
     const handleGetCountries = async () => {
       await axios

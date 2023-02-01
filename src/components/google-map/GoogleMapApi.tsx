@@ -16,7 +16,7 @@ type GoogleMapApiProps = {
   handleClickMarkerOfCluster?: (id: number) => void;
 };
 
-const API_KEY = "AIzaSyAhf8RgW3KVsaUK5Oqr-JKTpASBBrHlXd8";
+const API_KEY = process.env.GOOGLE_MAP_API_KEY;
 
 const GoogleMapAPI: React.FC<GoogleMapApiProps> = ({
   center,

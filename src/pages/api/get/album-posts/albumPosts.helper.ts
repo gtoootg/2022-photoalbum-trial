@@ -1,4 +1,4 @@
-import { PhotoAlbumTable } from "../../../../../server/mysql";
+import { PhotoAlbumTable } from "../../../../../server/data-base/mysql";
 
 export const getAllPosts = (connection) =>
   new Promise((resolve, reject) => {

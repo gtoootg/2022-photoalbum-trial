@@ -3,7 +3,7 @@ import {
   SqlValueDataType,
   TableColumnProps,
 } from "../../../helper/server/sqlHelperFunction";
-import { PhotoAlbumTable } from "../../../../server/mysql";
+import { PhotoAlbumTable } from "../../../../server/data-base/mysql";
 
 export const uploadPost = (connection, req) => {
   const { title, description, country, lat, lng } = req.body;

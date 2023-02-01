@@ -1,7 +1,7 @@
 import Flickr from "flickr-sdk";
 import { NextApiRequest, NextApiResponse } from "next";
 
-const flickr = new Flickr("3bbbbcbca484db8972d0a979c293030f");
+const flickr = new Flickr(process.env.FLICKR_API_KEY);
 
 export default async function handler(
   req: NextApiRequest,
@@ -9,7 +9,7 @@ export default async function handler(
 ) {
   flickr.people
     .getPhotos({
-      user_id: "135315222@N04",
+      user_id: process.env.FLICKR_USER_ID,
       extras: ["url_h", "url_n"],
       per_page: 500,
     })
