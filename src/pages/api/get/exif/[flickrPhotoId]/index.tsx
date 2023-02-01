@@ -1,7 +1,7 @@
 import Flickr from "flickr-sdk";
 import { NextApiRequest, NextApiResponse } from "next";
 
-const flickr = new Flickr("3bbbbcbca484db8972d0a979c293030f");
+const flickr = new Flickr(process.env.FLICKR_API_KEY);
 
 export default async function handler(
   req: NextApiRequest,
