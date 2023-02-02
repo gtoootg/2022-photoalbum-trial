@@ -34,6 +34,7 @@ export const CountryBody = () => {
       <MediaCardGroup
         flickrImages={flickrImages}
         uploadedPosts={uploadedPostOFCurrentCountry}
+        uniqueId={'id'}
       />
     </>
   );
