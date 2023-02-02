@@ -17,7 +17,7 @@ const nextConfig = {
   },
 
   env: {
-    API_DEV: "http://localhost:3000/api/",
+    API_DEV: process.env.API_BASE_URL,
   },
 };
 
