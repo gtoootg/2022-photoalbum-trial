@@ -8,7 +8,7 @@
   "scripts": {
     "dev": "tsc -p tsconfig.server.json && node ./dist/server/index.js",
     "build": "tsc -p tsconfig.server.json && next build",
-    "start": "NODE_ENV=production node server.js",
+    "start": "SET NODE_ENV=production tsc -p tsconfig.server.json && node ./dist/server/index.js",
     "lint": "next lint",
     "format": "prettier --write ."
   },
@@ -29,7 +29,8 @@
     "prohairesis": "1.2.5",
     "react": "18.2.0",
     "react-dom": "18.2.0",
-    "sass": "^1.53.0"
+    "sass": "^1.53.0",
+    "win-node-env": "^0.6.1"
   },
   "devDependencies": {
     "@types/express": "^4.17.13",
