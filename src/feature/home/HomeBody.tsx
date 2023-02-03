@@ -1,6 +1,6 @@
 import axios from "axios";
 import { useContext, useEffect } from "react";
-import { getFlickrImages } from "../../pages/flickrApi";
+import { getFlickrImages } from "../../helper/flickrApi/flickrApi";
 import {
   categoriesContext,
   flickrImagesContext,

@@ -1,7 +1,7 @@
 import { MapBodyPreviewDialog } from "./preview-dialog/MapBodyPreviewDialog";
 import { useContext} from "react";
 import {
-  MapBodyOpeningDialogTypeContext,} from "../../../../pages/map/context-provider/MapBodyContextProvider";
+  MapBodyOpeningDialogTypeContext,} from "../../MapBodyContextProvider";
 
 export enum MapBodyDialogType {
   PREVIEW_DIALOG,

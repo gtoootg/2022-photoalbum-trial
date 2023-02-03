@@ -3,7 +3,7 @@ import {useContext} from "react";
 import {
   MapBodyOpeningDialogTypeContext,
   MapBodySelectedUploadedPostIdContext
-} from "../../../../../pages/map/context-provider/MapBodyContextProvider";
+} from "../../../MapBodyContextProvider";
 
 
 export const useMapBodyPreviewDialogConfig = ()=>{

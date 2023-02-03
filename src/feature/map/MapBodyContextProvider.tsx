@@ -1,5 +1,5 @@
 import {createContext, useState} from "react";
-import {MapBodyDialogType} from "../../../feature/map/components/dialog/MapBodyDialogs";
+import {MapBodyDialogType} from "./components/dialog/MapBodyDialogs";
 
 
 export const MapBodyOpeningDialogTypeContext = createContext([])

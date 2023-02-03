@@ -6,7 +6,7 @@ import { CheckboxGroup } from "../../../../../components/checkbox-group/Checkbox
 import GoogleMapApi from "../../../../../components/google-map/GoogleMapApi";
 import { PreviewImageListBox } from "../../../../../components/preview-image-list-box/PreviewImageListBox";
 import { Text } from "../../../../../components/text/Text";
-import { filterFlickrImagesByUploadDataImageId } from "../../../../../pages/flickrApi";
+import { filterFlickrImagesByUploadDataImageId } from "../../../../../helper/flickrApi/flickrApi";
 import {
   categoriesContext,
   flickrImagesContext,

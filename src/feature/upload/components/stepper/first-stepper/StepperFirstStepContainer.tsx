@@ -1,6 +1,6 @@
 import ImageListBox from "../../image-list-box/ImageListBox";
 import { StepperFirstStepContainerProps } from "../UploadStepper.types";
-import { filterFlickrImagesByUploadDataImageId } from "../../../../../pages/flickrApi";
+import { filterFlickrImagesByUploadDataImageId } from "../../../../../helper/flickrApi/flickrApi";
 import { PreviewImageListBox } from "../../../../../components/preview-image-list-box/PreviewImageListBox";
 
 export default function StepperFirstStepContainer({

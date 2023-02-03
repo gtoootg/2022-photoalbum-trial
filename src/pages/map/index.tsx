@@ -1,6 +1,6 @@
 import { serverSideTranslations } from "next-i18next/serverSideTranslations";
 import { MapBody } from "../../feature/map/MapBody";
-import {MapBodyContextProvider} from "./context-provider/MapBodyContextProvider";
+import {MapBodyContextProvider} from "../../feature/map/MapBodyContextProvider";
 
 export default function Map() {
   return (

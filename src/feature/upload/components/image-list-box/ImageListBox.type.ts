@@ -1,4 +1,4 @@
-import { FlickrImageProps } from "../../../../pages/flickrApi";
+import { FlickrImageProps } from "../../../../helper/flickrApi/flickrApi";
 import { UploadingDataProps } from "../../Upload.types";
 
 export interface ImageListBoxProps {

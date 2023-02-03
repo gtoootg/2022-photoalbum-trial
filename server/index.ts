@@ -1,7 +1,7 @@
 import express, { Request, Response } from "express";
 import next from "next";
 
-const dev = process.env.NODE_ENV !== "development";
+const dev = process.env.NODE_ENV === "development";
 const app = next({ dev });
 const handle = app.getRequestHandler();
 const port = process.env.PORT;

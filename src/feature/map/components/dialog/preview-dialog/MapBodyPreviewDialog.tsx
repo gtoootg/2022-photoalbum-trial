@@ -4,7 +4,7 @@ import ImageSlider from "../../../../../components/image-slider/ImageSlider";
 import {useContext} from "react";
 import {filterImageSourcesOfPostForMediaCard} from "../../../../../components/media-card/MediaCardGroup";
 import {flickrImagesContext, uploadedPostsContext} from "../../../../../pages/_app";
-import {MapBodySelectedUploadedPostIdContext} from "../../../../../pages/map/context-provider/MapBodyContextProvider";
+import {MapBodySelectedUploadedPostIdContext} from "../../../MapBodyContextProvider";
 
 export const MapBodyPreviewDialog = ({ isOpen }) => {
 

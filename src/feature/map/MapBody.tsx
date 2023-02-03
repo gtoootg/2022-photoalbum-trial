@@ -15,7 +15,7 @@ import {
 import {
   MapBodyOpeningDialogTypeContext,
   MapBodySelectedUploadedPostIdContext
-} from "../../pages/map/context-provider/MapBodyContextProvider";
+} from "./MapBodyContextProvider";
 
 export const MapBody = () => {
   const [flickrImages, setFlickrImages] = useContext(flickrImagesContext);
