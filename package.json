@@ -2,6 +2,9 @@
   "name": "photoalbum2022",
   "version": "0.1.0",
   "private": true,
+  "engines": {
+    "node": "16.15.1"
+  },
   "scripts": {
     "dev": "tsc -p tsconfig.server.json && node ./dist/server/index.js",
     "build": "tsc -p tsconfig.server.json && next build",
