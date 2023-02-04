@@ -10,7 +10,8 @@
     "build": "tsc -p tsconfig.server.json && next build",
     "start": " tsc -p tsconfig.server.json && node ./dist/server/index.js",
     "lint": "next lint",
-    "format": "prettier --write ."
+    "format": "prettier --write .",
+    "heroku-postbuild": "npm run build"
   },
   "dependencies": {
     "@emotion/react": "11.9.3",
