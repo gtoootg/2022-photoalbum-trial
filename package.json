@@ -6,9 +6,9 @@
     "node": "16.15.1"
   },
   "scripts": {
-    "dev": "tsc -p tsconfig.server.json && set NODE_ENV=development && node ./dist/server/index.js",
+    "dev": "tsc -p tsconfig.server.json && set NODE_ENV=development && node ./dist/index.js",
     "build": "tsc -p tsconfig.server.json",
-    "start": "set NODE_ENV=production && node ./dist/server/index.js",
+    "start": "set NODE_ENV=production && node ./dist/index.js",
     "lint": "next lint",
     "format": "prettier --write .",
     "heroku-postbuild": "npm run build"
