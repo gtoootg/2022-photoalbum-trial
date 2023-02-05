@@ -1,5 +1,6 @@
 import type { NextApiRequest, NextApiResponse } from "next";
 import {DataBase} from "../../../../../data-base/database";
+import {PhotoAlbumTable} from "../../../../../data-base/mysql";
 
 export default async function handler(
   req: NextApiRequest,
@@ -7,7 +8,7 @@ export default async function handler(
 ) {
   const connection = new DataBase().getDataBaseConnection()
 
-  connection.query("SELECT * from common.category", (error, data) => {
+  connection.query(`SELECT * from ${PhotoAlbumTable.COMMON_CATEGORY}`, (error, data) => {
     if (error) {
       throw "error";
     }

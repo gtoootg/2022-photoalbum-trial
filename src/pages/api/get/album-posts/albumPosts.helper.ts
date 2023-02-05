@@ -2,7 +2,7 @@ import { PhotoAlbumTable } from "../../../../data-base/mysql";
 
 export const getAllPosts = (connection) =>
   new Promise((resolve, reject) => {
-    connection.query(`SELECT * FROM ${PhotoAlbumTable.POST}`, (error, data) => {
+    connection.query(`SELECT * FROM ${PhotoAlbumTable.PHOTOALBUM_POST}`, (error, data) => {
       if (error) {
         reject(error);
       }
@@ -13,7 +13,7 @@ export const getAllPosts = (connection) =>
 export const getAllFlickrPhotoIdsOfAllPosts = (connection) =>
   new Promise((resolve, reject) => {
     connection.query(
-      `SELECT * from ${PhotoAlbumTable.FLICKR_IMAGE}`,
+      `SELECT * from ${PhotoAlbumTable.PHOTOALBUM_FLICKR_IMAGE}`,
       (error, data) => {
         if (error) {
           return reject(error);
@@ -26,7 +26,7 @@ export const getAllFlickrPhotoIdsOfAllPosts = (connection) =>
 export const getCategoriesWithFlickrImageId = (connection) =>
   new Promise((resolve, reject) => {
     connection.query(
-      `SELECT * FROM ${PhotoAlbumTable.CATEGORY} LEFT OUTER JOIN ${PhotoAlbumTable.FLICKR_IMAGE} ON  ${PhotoAlbumTable.CATEGORY}.flickrImageTablePrimaryKeyId = ${PhotoAlbumTable.FLICKR_IMAGE}.id`,
+      `SELECT * FROM ${PhotoAlbumTable.PHOTOALBUM_CATEGORY} LEFT OUTER JOIN ${PhotoAlbumTable.PHOTOALBUM_FLICKR_IMAGE} ON  ${PhotoAlbumTable.PHOTOALBUM_CATEGORY}.flickrImageTablePrimaryKeyId = ${PhotoAlbumTable.PHOTOALBUM_FLICKR_IMAGE}.id`,
       (error, data) => {
         if (error) {
           reject(error);

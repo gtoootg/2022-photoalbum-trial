@@ -20,11 +20,11 @@ export const uploadPost = (connection, req) => {
     { key: "lng", dataType: SqlValueDataType.BIG_INT },
   ];
 
-  buildSqlInsertValue(PhotoAlbumTable.POST, tableColumn, payload);
+  buildSqlInsertValue(PhotoAlbumTable.PHOTOALBUM_POST, tableColumn, payload);
 
   return new Promise((resolve, reject) => {
     connection.query(
-      buildSqlInsertValue(PhotoAlbumTable.POST, tableColumn, payload),
+      buildSqlInsertValue(PhotoAlbumTable.PHOTOALBUM_POST, tableColumn, payload),
       (error, data) => {
         if (!error) {
           resolve(data);
@@ -69,7 +69,7 @@ export const uploadFlickrPhotoIdAndPostId = (
 
   return new Promise((resolve, reject) => {
     connection.query(
-      buildSqlInsertValue(PhotoAlbumTable.FLICKR_IMAGE, tableColumn, payload),
+      buildSqlInsertValue(PhotoAlbumTable.PHOTOALBUM_FLICKR_IMAGE, tableColumn, payload),
       (error, data) => {
         if (error) {
           console.log(error);
@@ -87,7 +87,7 @@ export const getDataFromFlickrPhotoIdTableWherePostIdIsLatest = (
 ) => {
   return new Promise((resolve, reject) => {
     connection.query(
-      `SELECT * from ${PhotoAlbumTable.FLICKR_IMAGE} where postId= ${lastInsertIdOfPostTable}`,
+      `SELECT * from ${PhotoAlbumTable.PHOTOALBUM_FLICKR_IMAGE} where postId= ${lastInsertIdOfPostTable}`,
       (error, data) => {
         if (error) {
           reject("error");
@@ -117,7 +117,7 @@ export const insertIntoCategoryTable = (
 
   return new Promise((resolve, reject) => {
     connection.query(
-      buildSqlInsertValue(PhotoAlbumTable.CATEGORY, tableColumn, payload),
+      buildSqlInsertValue(PhotoAlbumTable.PHOTOALBUM_CATEGORY, tableColumn, payload),
       (error, data) => {
         if (!error) {
           resolve(data);
