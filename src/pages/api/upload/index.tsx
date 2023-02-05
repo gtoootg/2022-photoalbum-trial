@@ -6,7 +6,7 @@ import {
   uploadFlickrPhotoIdAndPostId,
   uploadPost,
 } from "./uploadHelper";
-import {DataBase} from "../../../../server/data-base/database";
+import {DataBase} from "../../../data-base/database";
 
 export default async function uploadHandler(
   req: NextApiRequest,

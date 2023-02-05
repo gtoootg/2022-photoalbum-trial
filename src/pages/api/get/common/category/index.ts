@@ -1,6 +1,5 @@
 import type { NextApiRequest, NextApiResponse } from "next";
-import mysql from "mysql";
-import {DataBase} from "../../../../../../server/data-base/database";
+import {DataBase} from "../../../../../data-base/database";
 
 export default async function handler(
   req: NextApiRequest,

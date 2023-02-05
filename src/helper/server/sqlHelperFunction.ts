@@ -1,4 +1,4 @@
-import { PhotoAlbumTable } from "../../../server/data-base/mysql";
+import { PhotoAlbumTable } from "../../data-base/mysql";
 
 export enum SqlValueDataType {
   VARCHAR,
