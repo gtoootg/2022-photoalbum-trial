@@ -63,7 +63,7 @@ export const useGetCategories = (categories, setCategories) => {
     if (categories) {
       return;
     }
-    axios.get(`${process.env.API_DEV}/get/common/category`).then((res) => {
+    axios.get(`/api/get/common/category`).then((res) => {
       const getCategoriesForSelectField = res.data.map((category) => {
         return {
           value: category.id,

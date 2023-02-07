@@ -19,7 +19,7 @@ export interface FlickrImageProps {
 }
 
 export async function getFlickrImages() {
-  const res2 = await axios.get(`${process.env.API_DEV}/flickrImages`);
+  const res2 = await axios.get(`api/flickrImages`);
   const imagesArray = res2.data.photos.photo;
   return imagesArray;
 }
