@@ -1,13 +1,12 @@
+(Googlemap)
+correctly display for production env
 
 
 (TOP)
-
-HERO component with transition
-
+HERO component text
 
 (upload)
 make Map size constant
-
 
 
 - scss
