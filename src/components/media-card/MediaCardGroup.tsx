@@ -15,6 +15,7 @@ export const MediaCardGroup = ({
   return (
     <Grid container spacing={2} sx={{ marginTop: "3rem" }}>
       {uploadedPosts?.map((uploadedPost,index) => {
+
         const imageSrcForMediaCard = filterImageSourcesOfPostForMediaCard(
           flickrImages,
           uploadedPost
@@ -40,7 +41,7 @@ export const filterImageSourcesOfPostForMediaCard = (
   uploadedPost
 ) => {
   return (flickrImages || []).filter((flickrImage) => {
-    const flickrPhotoIdOfUploadedPostInArray = uploadedPost?.flickrPhotoId?.map(
+    const flickrPhotoIdOfUploadedPostInArray = uploadedPost?.imageIds?.map(
       (e) => e.toString()
     );
     const flickrImageId = flickrImage.id.toString();

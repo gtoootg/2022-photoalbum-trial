@@ -45,9 +45,19 @@ export const useGetFlickrImages = (setFlickrImages, flickrImages) => {
 };
 
 export const useGetUploadedPosts = (setUploadedPosts, uploadedPosts) => {
+
+
+  const api = axios.create({
+    baseURL: "http://localhost:8080/api",
+    headers: {
+      'Referrer-Policy': 'strict-origin-when-cross-origin'
+    }
+  });
+
+
   useEffect(() => {
     const getUploadedPosts = async () => {
-      const res = await axios.get("/api/get/album-posts");
+      const res = await  api.get("/albumposts");
 
       setUploadedPosts(res.data);
     };
