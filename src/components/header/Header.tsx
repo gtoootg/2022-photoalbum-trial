@@ -24,8 +24,8 @@ export default function Header() {
   const countriesLabel =
     countryDataOfAllUploadedPosts &&
     countryDataOfAllUploadedPosts.map((country) => ({
-      label: country.name.common,
-      link: `/country/${country.ccn3}`,
+      label: country?.name.common,
+      link: `/country/${country?.ccn3}`,
     }));
 
   return (

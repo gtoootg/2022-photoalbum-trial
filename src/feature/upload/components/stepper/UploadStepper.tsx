@@ -145,9 +145,16 @@ const useStepperConfig = ({
 };
 
 const handleUpload = (uploadingData) => {
+
+  const transformData = {
+    ...uploadingData,
+    imageIds:uploadingData.flickrImageIds,
+    categoryIds: uploadingData.categories
+  }
+
   const uploadPost = () =>
     axios
-      .post("/api/upload", uploadingData)
+      .post("http://localhost:8080/api/albumpost", transformData )
       .then((res) => {
         console.log(res.status);
       })

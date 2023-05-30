@@ -19,7 +19,7 @@ export const MediaCardGroup = ({
         const imageSrcForMediaCard = filterImageSourcesOfPostForMediaCard(
           flickrImages,
           uploadedPost
-        )[0]["url_n"];
+        )[0]?.["url_n"];
 
         return (
           <Grid item xs={4} key={index}>
