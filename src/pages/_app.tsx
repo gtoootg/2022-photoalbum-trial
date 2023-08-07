@@ -18,7 +18,7 @@ function MyApp({ Component, pageProps }: AppProps) {
     <flickrImagesContext.Provider value={[flickrImages, setFlickrImages]}>
       <uploadedPostsContext.Provider value={[uploadedPosts, setUploadedPosts]}>
         <categoriesContext.Provider value={[categories, setCategories]}>
-          <Layout heroProps={pageProps.heroProps}>
+          <Layout heroProps={pageProps.heroProps} header={pageProps.header}>
             <Component />
           </Layout>
         </categoriesContext.Provider>

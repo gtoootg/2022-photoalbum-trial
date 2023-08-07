@@ -24,7 +24,7 @@ export const HomeBody = () => {
       <MediaCardGroup
         flickrImages={flickrImages}
         uploadedPosts={uploadedPosts}
-        uniqueId={'id'}
+        uniqueId={"id"}
       />
     </>
   );
@@ -45,19 +45,16 @@ export const useGetFlickrImages = (setFlickrImages, flickrImages) => {
 };
 
 export const useGetUploadedPosts = (setUploadedPosts, uploadedPosts) => {
-
-
   const api = axios.create({
     baseURL: "http://localhost:8080/api",
     headers: {
-      'Referrer-Policy': 'strict-origin-when-cross-origin'
-    }
+      "Referrer-Policy": "strict-origin-when-cross-origin",
+    },
   });
-
 
   useEffect(() => {
     const getUploadedPosts = async () => {
-      const res = await  api.get("/albumposts");
+      const res = await api.get("/albumposts");
 
       setUploadedPosts(res.data);
     };

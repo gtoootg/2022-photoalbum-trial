@@ -4,7 +4,11 @@ import Header from "../header/Header";
 import { Hero } from "../hero/Hero";
 import { HeroProps } from "../hero/Hero.types";
 
-function Layout(props: {
+function Layout({
+  children,
+  heroProps,
+  header = true,
+}: {
   children:
     | boolean
     | ReactFragment
@@ -13,13 +17,14 @@ function Layout(props: {
     | undefined
     | ReactChild;
   heroProps?: HeroProps;
+  header?: boolean;
 }) {
   return (
     <div>
-      <Header />
-      {props.heroProps && <Hero {...props.heroProps} />}
-      <Container maxWidth="xl" >
-        <main>{props.children}</main>
+      {header && <Header />}
+      {heroProps && <Hero {...heroProps} />}
+      <Container maxWidth="xl">
+        <main>{children}</main>
       </Container>
     </div>
   );
