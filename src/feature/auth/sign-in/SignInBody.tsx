@@ -18,13 +18,16 @@ export const SignInBody = () => {
   const handleSubmit = (event: React.FormEvent<HTMLFormElement>) => {
     event.preventDefault();
     const data = new FormData(event.currentTarget);
-
-    axios
-      .get("api/login", {
-        auth: {
-          username: "gotosan0131@yahoo.co.jp",
-          password: "b0123038",
-        },
+    const api = axios.create({
+      baseURL: "http://localhost:8080/api",
+      headers: {
+        "Referrer-Policy": "strict-origin-when-cross-origin",
+      },
+    });
+    api
+      .post("/login", {
+        userName: "mgoto",
+        password: "b0123038",
       })
       .then(() => {
         console.log("ok");
