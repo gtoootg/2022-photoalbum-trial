@@ -6,14 +6,13 @@ import { CheckboxGroup } from "../../../../../components/checkbox-group/Checkbox
 import GoogleMapApi from "../../../../../components/google-map/GoogleMapApi";
 import { PreviewImageListBox } from "../../../../../components/preview-image-list-box/PreviewImageListBox";
 import { Text } from "../../../../../components/text/Text";
-import { filterFlickrImagesByUploadDataImageId } from "../../../../../helper/flickrApi/flickrApi";
-import {
-  categoriesContext,
-  flickrImagesContext,
-} from "../../../../../pages/_app";
-import { useGetCategories } from "../../../../home/HomeBody";
+
+import { flickrImagesContext } from "../../../../../pages/_app";
+
 import { StepperThirdStepContainerProps } from "../UploadStepper.types";
 import styles from "./StepperThirdStepContainer.module.scss";
+import { filterFlickrImagesByUploadDataImageId } from "../../../../../api/flickr-images/use-get-flickr-images.hooks";
+import { useGetCommonCategories } from "../../../../../api/common/use-get-common-categories.hooks";
 
 export default function StepperThirdStepContainer({
   activeStep,
@@ -22,7 +21,7 @@ export default function StepperThirdStepContainer({
   setUploadingData,
 }: StepperThirdStepContainerProps) {
   const { t } = useTranslation();
-  const [categories, setCategories] = useContext(categoriesContext);
+  const { data: categories } = useGetCommonCategories();
   const [flickrImages] = useContext(flickrImagesContext);
   useGetCategories(categories, setCategories);
 

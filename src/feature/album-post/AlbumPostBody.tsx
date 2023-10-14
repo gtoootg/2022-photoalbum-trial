@@ -1,17 +1,9 @@
 import { useRouter } from "next/router";
 import { useContext, useState } from "react";
-import {
-  categoriesContext,
-  flickrImagesContext,
-  uploadedPostsContext,
-} from "../../pages/_app";
+import { flickrImagesContext } from "../../pages/_app";
 import { filterImageSourcesOfPostForMediaCard } from "../../components/media-card/MediaCardGroup";
 import ImageSlider from "../../components/image-slider/ImageSlider";
-import {
-  useGetCategories,
-  useGetFlickrImages,
-  useGetUploadedPosts,
-} from "../home/HomeBody";
+import { useGetFlickrImages } from "../home/HomeBody";
 import axios from "axios";
 import AlbumPostTitleAndDescription from "./components/title-and-description/AlbumPostTitleAndDescription";
 import { useEffect } from "react";
@@ -20,21 +12,25 @@ import { Grid } from "@mui/material";
 import { CategoryAndMap } from "./components/category-and-map/CategoryAndMap";
 import { AlbumPostDialogs } from "./dialog/AlbumPostDialogs";
 import { AlbumPostContextProvider } from "./context-provider/AlbumPostContextProvider";
+import { useGetCommonCategories } from "../../api/common/use-get-common-categories.hooks";
+import { useGetAlbumPosts } from "../../api/album-posts/use-get-album-posts.hooks";
 
 const AlbumPostBody = () => {
   const router = useRouter();
   const [flickrImages, setFlickrImages] = useContext(flickrImagesContext);
-  const [uploadedPosts, setUploadedPosts] = useContext(uploadedPostsContext);
+
+  const { data: uploadedPosts } = useGetAlbumPosts();
 
   const [exifDataOfMainImage, setexifDataOfMainImage] = useState(undefined);
   const [indexOfMainImage, setIndexOfMainImage] = useState(0);
-  const [categories, setCategories] = useContext(categoriesContext);
   const { postId } = router.query;
-  const uploadedPost = uploadedPosts?.length && uploadedPosts.find((uploadedPost)=>uploadedPost.id === Number(postId));
+  const uploadedPost =
+    uploadedPosts?.length &&
+    uploadedPosts.find((uploadedPost) => uploadedPost.id === Number(postId));
 
   useGetFlickrImages(setFlickrImages, flickrImages);
-  useGetUploadedPosts(setUploadedPosts, uploadedPosts);
-  useGetCategories(categories, setCategories);
+
+  const { data: categories } = useGetCommonCategories();
 
   const imagesSrc = filterImageSourcesOfPostForMediaCard(
     flickrImages,

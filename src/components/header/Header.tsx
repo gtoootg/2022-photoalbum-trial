@@ -3,18 +3,16 @@ import { useTranslation } from "next-i18next";
 import { DropDownMenu } from "../drop-down-menu/DropDownMenu";
 import { CommonButton } from "../button/CommonButton";
 import UploadIcon from "@mui/icons-material/Upload";
-import { useContext, useState } from "react";
-import { useGetCountries } from "../../feature/upload/UploadBody";
+import { useState } from "react";
 import { getCountryDataOfAllUploadedPosts } from "../../helper/ui/UiHelperFunction.helper";
-import { uploadedPostsContext } from "../../pages/_app";
+import { useGetAlbumPosts } from "../../api/album-posts/use-get-album-posts.hooks";
 
 export default function Header() {
   const { t } = useTranslation();
 
   const [countries, setCountries] = useState<any[]>();
-  const [uploadedPosts, setUploadedPosts] = useContext(uploadedPostsContext);
 
-  useGetCountries(setCountries);
+  const { data: uploadedPosts } = useGetAlbumPosts();
 
   const countryDataOfAllUploadedPosts = getCountryDataOfAllUploadedPosts(
     uploadedPosts,
