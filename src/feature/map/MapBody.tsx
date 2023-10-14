@@ -1,63 +1,72 @@
 import GoogleMapApi from "../../components/google-map/GoogleMapApi";
 import { useContext } from "react";
-import {
-  flickrImagesContext,
-  uploadedPostsContext,
-} from "../../pages/_app";
-import {
-  useGetFlickrImages,
-  useGetUploadedPosts,
-} from "../home/HomeBody";
+import { flickrImagesContext, uploadedPostsContext } from "../../pages/_app";
+import { useGetFlickrImages } from "../home/HomeBody";
 import {
   MapBodyDialogs,
   MapBodyDialogType,
 } from "./components/dialog/MapBodyDialogs";
 import {
   MapBodyOpeningDialogTypeContext,
-  MapBodySelectedUploadedPostIdContext
+  MapBodySelectedUploadedPostIdContext,
 } from "./MapBodyContextProvider";
+import { useGetAlbumPosts } from "../../api/album-posts/use-get-album-posts.hooks";
 
 export const MapBody = () => {
   const [flickrImages, setFlickrImages] = useContext(flickrImagesContext);
-  const [uploadedPosts, setUploadedPosts] = useContext(uploadedPostsContext);
 
-  const [selectedPostId, setSelectedPostId] = useContext(MapBodySelectedUploadedPostIdContext)
-  const [openingDialogType, setOpeningDialogType] = useContext(MapBodyOpeningDialogTypeContext)
+  const [selectedPostId, setSelectedPostId] = useContext(
+    MapBodySelectedUploadedPostIdContext
+  );
+  const [openingDialogType, setOpeningDialogType] = useContext(
+    MapBodyOpeningDialogTypeContext
+  );
 
-  useGetUploadedPosts(setUploadedPosts, uploadedPosts);
+  const { data: uploadedPosts } = useGetAlbumPosts();
+
   useGetFlickrImages(setFlickrImages, flickrImages);
 
-  const getUrlOfFirstImageOfUploadedPost = (post)=>{
-    if(!flickrImages){return undefined}
+  const getUrlOfFirstImageOfUploadedPost = (post) => {
+    if (!flickrImages) {
+      return undefined;
+    }
 
-    return flickrImages.find((flickrImage)=>flickrImage.id === post.flickrPhotoId[0].toString()).url_n
-  }
+    return flickrImages.find(
+      (flickrImage) => flickrImage.id === post.flickrPhotoId[0].toString()
+    ).url_n;
+  };
 
   const getClusterItems =
-    uploadedPosts && flickrImages &&
+    uploadedPosts &&
+    flickrImages &&
     uploadedPosts.map((post) => {
       return {
         id: post.id,
         lat: post.lat,
         lng: post.lng,
-        imageUrl:getUrlOfFirstImageOfUploadedPost(post)
+        imageUrl: getUrlOfFirstImageOfUploadedPost(post),
       };
     });
 
   return (
-    <div style={{ height: "90vh", width: "100%" ,marginTop:"2rem",marginBottom:"2rem"}}>
+    <div
+      style={{
+        height: "90vh",
+        width: "100%",
+        marginTop: "2rem",
+        marginBottom: "2rem",
+      }}
+    >
       <GoogleMapApi
         center={{ lat: 0, lng: 0 }}
         zoom={3}
-        clusterItems={
-          getClusterItems ? getClusterItems : []
-        }
+        clusterItems={getClusterItems ? getClusterItems : []}
         handleClickMarkerOfCluster={(uploadedPostId) => {
           setOpeningDialogType(MapBodyDialogType.PREVIEW_DIALOG);
           setSelectedPostId(uploadedPostId);
         }}
       />
-      <MapBodyDialogs/>
+      <MapBodyDialogs />
     </div>
   );
 };

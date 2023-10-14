@@ -1,21 +1,23 @@
-import { CircularProgress, Grid } from "@mui/material";
+import { Grid } from "@mui/material";
 import MediaCard from "./MediaCard";
-
+import { GetAlbumPostsResponse } from "../../api/album-posts/album-posts.api.types";
 
 export const MediaCardGroup = ({
-                                 flickrImages,
-                                 uploadedPosts,
-                                 uniqueId
-
+  flickrImages,
+  uploadedPosts,
+  uniqueId,
+}: {
+  flickrImages: any;
+  uploadedPosts: GetAlbumPostsResponse;
+  uniqueId: string;
 }) => {
-  if (flickrImages === undefined || uploadedPosts === undefined) {
-    return <CircularProgress />;
+  if (!flickrImages) {
+    return null;
   }
 
   return (
     <Grid container spacing={2} sx={{ marginTop: "3rem" }}>
-      {uploadedPosts?.map((uploadedPost,index) => {
-
+      {uploadedPosts.map((uploadedPost, index) => {
         const imageSrcForMediaCard = filterImageSourcesOfPostForMediaCard(
           flickrImages,
           uploadedPost
