@@ -11,7 +11,7 @@ export const useGetFlickrImages = () => {
     queryKey: ["flickrImages"],
     queryFn: () =>
       axios
-        .get("http://localhost:3000/api/flickrImages")
+        .get(process.env.NEXT_PUBLIC_FLICKR_API_URL)
         .then((res) => res.data.photos.photo),
   });
 

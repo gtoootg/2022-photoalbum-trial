@@ -15,7 +15,8 @@ app.prepare().then(() => {
 
   server.listen(port, (err?: any) => {
     if (err) throw err;
-    console.log(port)
-    console.log(`> Ready on port:${process.env.PORT} - env ${process.env.NODE_ENV}`);
+    console.log(
+      `> Ready on port:${process.env.PORT} - env ${process.env.NEXT_PUBLIC_NODE_ENV}`
+    );
   });
 });

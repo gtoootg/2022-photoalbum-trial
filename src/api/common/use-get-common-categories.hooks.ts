@@ -9,7 +9,8 @@ export const useGetCommonCategories = () => {
     AxiosError
   >({
     queryKey: ["commonCategories"],
-    queryFn: () => axios.get("http://localhost:8080/api/common/categories"),
+    queryFn: () =>
+      axios.get(`${process.env.NEXT_PUBLIC_API_BASE_URL}/categories`),
   });
 
   const result = data;

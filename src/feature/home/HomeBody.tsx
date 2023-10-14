@@ -7,6 +7,9 @@ export const HomeBody = () => {
 
   const { data: flickrImages } = useGetFlickrImages();
 
+  console.log(process.env.NEXT_PUBLIC_NODE_ENV);
+  console.log(process.env.NEXT_PUBLIC_API_BASE_URL);
+
   if (!uploadedPosts || !flickrImages) {
     return null;
   }

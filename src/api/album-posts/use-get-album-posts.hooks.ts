@@ -8,7 +8,8 @@ export const useGetAlbumPosts = () => {
     AxiosError
   >({
     queryKey: ["albumPosts"],
-    queryFn: () => axios.get("http://localhost:8080/api/albumposts"),
+    queryFn: () =>
+      axios.get(`${process.env.NEXT_PUBLIC_API_BASE_URL}/albumposts`),
   });
 
   const result = data;
