@@ -1,6 +1,6 @@
 import { useContext } from "react";
 import { flickrImagesContext, uploadedPostsContext } from "../../pages/_app";
-import { useGetFlickrImages, useGetUploadedPosts } from "../home/HomeBody";
+import { useFlickrImages, useGetUploadedPosts } from "../home/HomeBody";
 import { useRouter } from "next/router";
 import { MediaCardGroup } from "../../components/media-card/MediaCardGroup";
 

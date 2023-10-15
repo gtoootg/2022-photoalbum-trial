@@ -6,48 +6,40 @@ import GoogleMapApi from "../../../../../components/google-map/GoogleMapApi";
 import { PreviewImageListBox } from "../../../../../components/preview-image-list-box/PreviewImageListBox";
 import { Text } from "../../../../../components/text/Text";
 
-import { StepperThirdStepContainerProps } from "../UploadStepper.types";
 import styles from "./StepperThirdStepContainer.module.scss";
-import {
-  filterFlickrImagesByUploadDataImageId,
-  useGetFlickrImages
-} from "../../../../../api/flickr-images/use-get-flickr-images.hooks";
 import { useGetCommonCategories } from "../../../../../api/common/categories/use-get-common-categories.hooks";
+import {
+  useUploadActiveStep,
+  useUploadingCountry,
+  useUploadingLocation,
+} from "../../../state/use-upload-data.reactive-vars";
+import { useGetCommonCountries } from "../../../../../api/common/countries/use-get-common-countries.hooks";
 
-export default function StepperThirdStepContainer({
-  activeStep,
-  countries,
-  uploadingData,
-  setUploadingData,
-}: StepperThirdStepContainerProps) {
+export default function StepperThirdStepContainer({}) {
   const { t } = useTranslation();
   const { data: categories } = useGetCommonCategories();
-  const {data:flickrImages} = useGetFlickrImages()
+  const { data: countries } = useGetCommonCountries();
+  const [activeStep] = useUploadActiveStep();
+  const [uploadingCountry, setUploadingCountry] = useUploadingCountry();
+  const [uploadingLocation, setUploadingLocation] = useUploadingLocation();
+  const { lat, lng } = uploadingLocation || {};
 
   const countriesForAutoCompleteOptions = countries?.map((country) => ({
     label: country.name.common,
     value: country.ccn3,
   }));
 
-  const categryOptions = (categories||[]).map(({id,label})=>({
-    value:id,
-    label
-  }))
+  const categryOptions = (categories || []).map(({ id, label }) => ({
+    value: id,
+    label,
+  }));
 
-  console.log(categryOptions)
-
-  const filterSetectedFlickrImages = filterFlickrImagesByUploadDataImageId(
-    uploadingData.flickrImageIds,
-    flickrImages
-  );
-
-  const filterUploadingDataCountryInfo = countries
-    ?.slice()
-    .filter((country) => {
-      if (uploadingData.country) {
-        return country.ccn3 === uploadingData.country;
-      }
-    });
+  const getCountryInfo = () => {
+    if (!countries || !uploadingCountry) {
+      return undefined;
+    }
+    countries?.find((country) => country.ccn3 === uploadingCountry);
+  };
 
   if (activeStep >= 3) {
     return (
@@ -59,28 +51,29 @@ export default function StepperThirdStepContainer({
               ns: "upload",
             })}
           />
-          <Text variant={"body2"} content={uploadingData.country} />
+          <Text variant={"body2"} content={uploadingCountry} />
           <Text
             variant={"subtitle2"}
             content={t("stepper.thirdStep.uploadData.category", {
               ns: "upload",
             })}
           />
-          {/* <Text variant={"body2"} content={uploadingData.categories} /> */}
         </Box>
-        <Box sx={{ width: "30rem", height: "15rem" }}>
-          <GoogleMapApi
-            center={{
-              lat: filterUploadingDataCountryInfo[0].latlng[0] as number,
-              lng: filterUploadingDataCountryInfo[0].latlng[1] as number,
-            }}
-            zoom={5}
-            uploadingDataLatLng={{
-              lat: uploadingData.lat,
-              lng: uploadingData.lng,
-            }}
-          />
-        </Box>
+        {uploadingLocation && getCountryInfo() && (
+          <Box sx={{ width: "30rem", height: "15rem" }}>
+            <GoogleMapApi
+              center={{
+                lat: getCountryInfo().latlng[0],
+                lng: getCountryInfo().latlng[1],
+              }}
+              zoom={5}
+              uploadingDataLatLng={{
+                lat,
+                lng,
+              }}
+            />
+          </Box>
+        )}
       </Box>
     );
   }
@@ -114,11 +107,10 @@ export default function StepperThirdStepContainer({
             )}
             options={countriesForAutoCompleteOptions}
             onChange={(event, selectedCountry) => {
-              handleChangeSelectedCountry(
-                selectedCountry,
-                uploadingData,
-                setUploadingData
-              );
+              if (typeof selectedCountry !== "string") {
+                return;
+              }
+              setUploadingCountry(selectedCountry);
             }}
           />
           <br />
@@ -132,32 +124,24 @@ export default function StepperThirdStepContainer({
           <CheckboxGroup
             className={styles.formField}
             options={categryOptions}
-            subComponents={
-              PreviewImageListBoxesForEachCategory(
-                categryOptions,
-                filterSetectedFlickrImages,
-                uploadingData,
-                setUploadingData
-              )
-            }
+            subComponents={PreviewImageListBoxesForEachCategory()}
           />
         </Grid>
         <Grid item xs={5}>
-          {uploadingData.country && filterUploadingDataCountryInfo ? (
+          {uploadingCountry && getCountryInfo && uploadingLocation ? (
             <GoogleMapApi
               center={{
-                lat: filterUploadingDataCountryInfo[0].latlng[0] as number,
-                lng: filterUploadingDataCountryInfo[0].latlng[1] as number,
+                lat: getCountryInfo[0].latlng[0] as number,
+                lng: getCountryInfo[0].latlng[1] as number,
               }}
               zoom={5}
               uploadingDataLatLng={{
-                lat: uploadingData.lat,
-                lng: uploadingData.lng,
+                lat,
+                lng,
               }}
               onClickAction={true}
               setUploadingDataLatLng={(e) => {
-                setUploadingData({
-                  ...uploadingData,
+                setUploadingLocation({
                   lat: e.lat,
                   lng: e.lng,
                 });
@@ -168,13 +152,12 @@ export default function StepperThirdStepContainer({
               center={{ lat: 0, lng: 0 }}
               zoom={5}
               uploadingDataLatLng={{
-                lat: uploadingData.lat,
-                lng: uploadingData.lng,
+                lat: lat,
+                lng: lng,
               }}
               onClickAction={true}
               setUploadingDataLatLng={(e) => {
-                setUploadingData({
-                  ...uploadingData,
+                setUploadingLocation({
                   lat: e.lat,
                   lng: e.lng,
                 });
@@ -187,54 +170,10 @@ export default function StepperThirdStepContainer({
   );
 }
 
-const PreviewImageListBoxesForEachCategory = (
-  categories,
-  filterSetectedFlickrImages,
-  uploadingData,
-  setUploadingData
-) =>
-  categories.map((category, i) => {
-    return (
-      <PreviewImageListBox
-        key={i}
-        imagesSrc={filterSetectedFlickrImages.map(
-          (flickrImage) => flickrImage["url_n"]
-        )}
-        helperText="select photos"
-        handleClickImages={(selectedImages) => {
-          const getFlickrImagesIdOfSelectedImages = selectedImages.map(
-            (selectedImage) => {
-              return uploadingData.flickrImageIds[selectedImage];
-            }
-          );
-          console.log(uploadingData);
-          setUploadingData({
-            ...uploadingData,
-            categories: {
-              ...uploadingData.categories,
-              [category.value]: getFlickrImagesIdOfSelectedImages,
-            },
-          });
-        }}
-      />
-    );
-  });
+const PreviewImageListBoxesForEachCategory = () => {
+  const { data: categories } = useGetCommonCategories();
 
-const handleChangeSelectedCountry = (
-  selectedCountry,
-  uploadingData,
-  setUploadingData
-) => {
-  if (!selectedCountry) {
-    setUploadingData({
-      ...uploadingData,
-      country: undefined,
-    });
-    return;
-  }
-
-  setUploadingData({
-    ...uploadingData,
-    country: selectedCountry["value"],
+  return (categories || []).map((category, i) => {
+    return <PreviewImageListBox key={i} helperText="select photos" />;
   });
 };

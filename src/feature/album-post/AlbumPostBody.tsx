@@ -3,7 +3,7 @@ import { useContext, useState } from "react";
 import { flickrImagesContext } from "../../pages/_app";
 import { filterImageSourcesOfPostForMediaCard } from "../../components/media-card/MediaCardGroup";
 import ImageSlider from "../../components/image-slider/ImageSlider";
-import { useGetFlickrImages } from "../home/HomeBody";
+import { useFlickrImages } from "../home/HomeBody";
 import axios from "axios";
 import AlbumPostTitleAndDescription from "./components/title-and-description/AlbumPostTitleAndDescription";
 import { useEffect } from "react";

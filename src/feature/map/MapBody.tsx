@@ -1,7 +1,7 @@
 import GoogleMapApi from "../../components/google-map/GoogleMapApi";
 import { useContext } from "react";
 import { flickrImagesContext, uploadedPostsContext } from "../../pages/_app";
-import { useGetFlickrImages } from "../home/HomeBody";
+import { useFlickrImages } from "../home/HomeBody";
 import {
   MapBodyDialogs,
   MapBodyDialogType,

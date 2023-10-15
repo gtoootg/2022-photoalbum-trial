@@ -1,86 +1,46 @@
-import { Box, Card } from "@mui/material";
+import { Box } from "@mui/material";
 import ImageList from "@mui/material/ImageList";
 import ImageListItem from "@mui/material/ImageListItem";
 import Image from "next/image";
-import { useEffect } from "react";
-import { UploadingDataProps } from "../../Upload.types";
-import { ImageListBoxProps } from "./ImageListBox.type";
 import styles from "./ImageListBox.module.scss";
+import { useSetUploadingImages } from "../stepper/first-stepper/hooks/use-set-uploading-images.hooks";
+import { useUploadingImages } from "../../state/use-upload-data.reactive-vars";
+import { useFlickrImages } from "../../../../api/flickr-images/use-get-flickr-images.hooks";
 
-export default function ImageListBox({
-  flickrImages,
-  uploadingData,
-  setUploadingData,
-}: ImageListBoxProps) {
+export default function ImageListBox() {
+  const { data: flickrImages } = useFlickrImages();
+  const [uploadingImages] = useUploadingImages();
+  const setUploadingImages = useSetUploadingImages();
+
+  const getImageOpacity = (id: string) => {
+    if (uploadingImages.includes(id)) {
+      return "1";
+    }
+    return "0.6";
+  };
+
   return (
     <Box className={styles.box}>
       <ImageList className={styles.box_imageList} cols={3}>
-        {flickrImages?.map((flickrImage, i) => (
+        {(flickrImages || []).map(({ id, url_n }, i) => (
           <ImageListItem key={i}>
-            <div
+            <Box
               className={styles.box_imageList_item}
               style={{
-                opacity: uploadingData.flickrImageIds.includes(
-                  flickrImage["id"]
-                )
-                  ? "1"
-                  : "0.6",
+                opacity: getImageOpacity(id),
               }}
             >
               <Image
-                onClick={() =>
-                  selectOrUnselectFlickrImage(
-                    flickrImage["id"],
-                    uploadingData,
-                    setUploadingData
-                  )
-                }
-                src={flickrImage["url_h"]}
+                onClick={() => setUploadingImages(id)}
+                src={url_n}
                 height={200}
                 width={300}
                 alt={"image"}
               />
-            </div>
+            </Box>
           </ImageListItem>
         ))}
       </ImageList>
     </Box>
   );
 }
-
-const selectOrUnselectFlickrImage = async (
-  idOfClickedFlickrImage: string,
-  uploadingData: UploadingDataProps,
-  setUploadingData: (value: UploadingDataProps) => void
-) => {
-  const isClickedFlickrImageAlreadySelected =
-    uploadingData.flickrImageIds.includes(idOfClickedFlickrImage);
-
-  const currentUploadingDataFlickrImageIdsArray =
-    uploadingData.flickrImageIds.slice();
-
-  if (isClickedFlickrImageAlreadySelected) {
-    const removeClickedFlickrImage =
-      currentUploadingDataFlickrImageIdsArray.filter((uploadingDataImage) => {
-        return uploadingDataImage !== idOfClickedFlickrImage;
-      });
-
-    setUploadingData({
-      ...uploadingData,
-      flickrImageIds: removeClickedFlickrImage,
-    });
-    return;
-  }
-
-  if (currentUploadingDataFlickrImageIdsArray.length >= 5) {
-    alert("You can select up to only 5 images ");
-    return;
-  }
-
-  currentUploadingDataFlickrImageIdsArray.push(idOfClickedFlickrImage);
-
-  setUploadingData({
-    ...uploadingData,
-    flickrImageIds: currentUploadingDataFlickrImageIdsArray,
-  });
-};

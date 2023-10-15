@@ -13,5 +13,6 @@ export interface FlickrImageProps {
   server: string;
   title: string;
   url_h: string;
+  url_n: string;
   width_h: number;
 }

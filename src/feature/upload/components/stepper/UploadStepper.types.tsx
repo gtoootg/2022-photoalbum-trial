@@ -34,9 +34,7 @@ export interface StepperButtonGroupProps {
   isButtonDisabledCondition?: any;
 }
 
-export interface StepperFirstStepContainerProps extends ImageListBoxProps {
-  activeStep: number;
-}
+export interface StepperFirstStepContainerProps extends ImageListBoxProps {}
 
 export type StepperSecondStepContainerProps = Omit<
   StepperFirstStepContainerProps,

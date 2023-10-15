@@ -2,20 +2,24 @@ import styled from "@emotion/styled";
 import { Box, TextField } from "@mui/material";
 import { useTranslation } from "next-i18next";
 import { Text } from "../../../../../components/text/Text";
-import { StepperSecondStepContainerProps } from "../UploadStepper.types";
 
 import styles from "./StepperSecondStepContainer.module.scss";
+import {
+  useUploadActiveStep,
+  useUploadingDescription,
+  useUploadingTitle,
+} from "../../../state/use-upload-data.reactive-vars";
 
 const StepperSecondStepTextFieldStyled = styled(TextField)(() => ({
   marginBottom: "1rem",
 }));
 
-export default function StepperSecondStepContainer({
-  uploadingData,
-  setUploadingData,
-  activeStep,
-}: StepperSecondStepContainerProps) {
+export default function StepperSecondStepContainer() {
   const { t } = useTranslation();
+  const [activeStep] = useUploadActiveStep();
+  const [uploadingTitle, setUploadingTitle] = useUploadingTitle();
+  const [uploadingDescription, setUploadingDescription] =
+    useUploadingDescription();
 
   if (activeStep >= 2) {
     return (
@@ -25,7 +29,7 @@ export default function StepperSecondStepContainer({
           className={styles.preview_title}
           content={t("stepper.secondStep.uploadData.title", { ns: "upload" })}
         />
-        <Text variant={"body2"} content={uploadingData.title} />
+        <Text variant={"body2"} content={uploadingTitle} />
         <br />
         <Text
           variant={"subtitle2"}
@@ -33,7 +37,7 @@ export default function StepperSecondStepContainer({
             ns: "upload",
           })}
         />
-        <Text variant={"body2"} content={uploadingData.description} />
+        <Text variant={"body2"} content={uploadingDescription} />
       </Box>
     );
   }
@@ -44,10 +48,8 @@ export default function StepperSecondStepContainer({
         required
         id="outlined-required"
         label={t("stepper.secondStep.uploadData.title", { ns: "upload" })}
-        onChange={(e) =>
-          setUploadingData({ ...uploadingData, title: e.target.value })
-        }
-        value={uploadingData.title}
+        onChange={(e) => setUploadingTitle(e.target.value)}
+        value={uploadingTitle}
       />
       <StepperSecondStepTextFieldStyled
         required
@@ -55,10 +57,8 @@ export default function StepperSecondStepContainer({
         rows={6}
         id="outlined-required"
         label={t("stepper.secondStep.uploadData.description", { ns: "upload" })}
-        onChange={(e) =>
-          setUploadingData({ ...uploadingData, description: e.target.value })
-        }
-        value={uploadingData.description}
+        onChange={(e) => setUploadingDescription(e.target.value)}
+        value={uploadingDescription}
       />
     </Box>
   );

@@ -3,11 +3,8 @@ import { AxiosError } from "axios/index";
 import { useQuery } from "react-query";
 import { FlickrImageProps } from "./flickr-images.api.types";
 
-export const useGetFlickrImages = () => {
-  const { isLoading, error, data } = useQuery<
-    FlickrImageProps[],
-    AxiosError
-  >({
+export const useFlickrImages = () => {
+  const { isLoading, error, data } = useQuery<FlickrImageProps[], AxiosError>({
     queryKey: ["flickrImages"],
     queryFn: () =>
       axios

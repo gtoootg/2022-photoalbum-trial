@@ -3,57 +3,41 @@ import Image from "next/image";
 import styles from "./PreviewImageListBox.module.scss";
 import { Text } from "../text/Text";
 import { useState } from "react";
+import { useUploadingFlickrImages } from "../../feature/upload/components/stepper/first-stepper/hooks/use-uploading-flickr-images.hooks";
 
 export const PreviewImageListBox = ({
-  imagesSrc,
   helperText,
-  handleClickImages,
+  onClickImageCallback,
+  getImageOpacity,
 }: {
-  imagesSrc: string[];
   helperText?: string;
-  handleClickImages?: any;
+  onClickImageCallback?: (id: string) => void;
+  getImageOpacity?: (id: string) => string;
 }) => {
-  const [selectedImagesId, setSelectedImagesId] = useState([]);
-
-  const isImageSelected = (index) => selectedImagesId.includes(index);
+  const flickrImagesToUse = useUploadingFlickrImages();
 
   return (
     <>
       <Box>
         <Text variant={"body2"} content={helperText} />
         <Grid container spacing={1}>
-          {imagesSrc.map((imageSrc: string, i: number) => (
+          {flickrImagesToUse.map(({ url_n, id }, i: number) => (
             <Grid key={i} item xs={2.4}>
-              <div
-                className={`${styles.image} ${
-                  handleClickImages && !isImageSelected(i) && styles.transparent
-                }`}
+              <Box
+                sx={{ opacity: getImageOpacity ? getImageOpacity(id) : "1" }}
                 onClick={() => {
-                  let newSelectedImagesId = [...selectedImagesId];
-                  if (isImageSelected(i)) {
-                    const excludeClickedImageId = newSelectedImagesId.filter(
-                      (imageId) => {
-                        return imageId !== i;
-                      }
-                    );
-
-                    handleClickImages(excludeClickedImageId);
-                    setSelectedImagesId(excludeClickedImageId);
-                    return;
-                  }
-                  newSelectedImagesId.push(i);
-                  handleClickImages(newSelectedImagesId);
-                  setSelectedImagesId(newSelectedImagesId);
+                  onClickImageCallback && onClickImageCallback(id);
                 }}
               >
                 <Image
+                  className={styles.image}
                   alt="image"
-                  src={imageSrc}
+                  src={url_n}
                   width={300}
                   height={200}
                   layout="responsive"
                 />
-              </div>
+              </Box>
             </Grid>
           ))}
         </Grid>

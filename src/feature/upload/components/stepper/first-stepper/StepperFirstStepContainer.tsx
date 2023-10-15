@@ -1,34 +1,13 @@
 import ImageListBox from "../../image-list-box/ImageListBox";
-import { StepperFirstStepContainerProps } from "../UploadStepper.types";
 import { PreviewImageListBox } from "../../../../../components/preview-image-list-box/PreviewImageListBox";
-import { filterFlickrImagesByUploadDataImageId } from "../../../../../api/flickr-images/use-get-flickr-images.hooks";
+import { useUploadActiveStep } from "../../../state/use-upload-data.reactive-vars";
 
-export default function StepperFirstStepContainer({
-  activeStep,
-  uploadingData,
-  setUploadingData,
-  flickrImages,
-}: StepperFirstStepContainerProps) {
-  const filterSetectedFlickrImages = filterFlickrImagesByUploadDataImageId(
-    uploadingData.flickrImageIds,
-    flickrImages
-  );
+export default function StepperFirstStepContainer() {
+  const [activeStep] = useUploadActiveStep();
 
   if (activeStep !== 0) {
-    return (
-      <PreviewImageListBox
-        imagesSrc={filterSetectedFlickrImages.map(
-          (flickrImage) => flickrImage["url_n"]
-        )}
-      />
-    );
+    return <PreviewImageListBox />;
   }
 
-  return (
-    <ImageListBox
-      flickrImages={flickrImages}
-      uploadingData={uploadingData}
-      setUploadingData={setUploadingData}
-    />
-  );
+  return <ImageListBox />;
 }
