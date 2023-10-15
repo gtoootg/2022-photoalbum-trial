@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useMemo } from "react";
 import Box from "@mui/material/Box";
 import Stepper from "@mui/material/Stepper";
 import Button from "@mui/material/Button";
@@ -25,55 +25,51 @@ export function UploadStepperGroup({}) {
   const { t } = useTranslation();
   const [activeStep, setActiveStep] = useUploadActiveStep();
 
-  const { steps } = useStepperConfig();
-
-  const handleNext = () => {
-    setActiveStep((prevActiveStep) => prevActiveStep + 1);
-  };
+  const steps = useStepperConfig();
 
   return (
     <Box className={styles.uploadStepperBox}>
-      <Stepper activeStep={activeStep} orientation="vertical">
-        {steps &&
-          steps.map((step, index) => (
-            <Step
-              key={index}
-              active={index <= activeStep || index === activeStep}
-            >
-              <StepLabel>
-                <Typography variant={"h6"}>{step.label}</Typography>
-              </StepLabel>
-              <Box>
-                <StepContent>
-                  {index === activeStep && (
-                    <Typography style={{ marginBottom: "1rem" }}>
-                      {step.description}
-                    </Typography>
-                  )}
-                  {step.content}
-                  <StepperButtonGroup
-                    index={index}
-                    steps={steps}
-                    handleNext={handleNext}
-                    handleUpload={() => {}}
-                    handleBack={() => handleBack(setActiveStep)}
-                    activeStep={activeStep}
-                    isButtonDisabledCondition={step.isButtonDisabledCondition}
-                  />
-                </StepContent>
-              </Box>
-            </Step>
-          ))}
+      <Stepper
+        activeStep={activeStep}
+        orientation="vertical"
+        className={styles.stepper}
+      >
+        {steps.map((step, index) => (
+          <Step
+            key={index}
+            active={index <= activeStep || index === activeStep}
+          >
+            <StepLabel>
+              <Typography variant={"h6"}>{step.label}</Typography>
+            </StepLabel>
+            <Box>
+              <StepContent>
+                {index === activeStep && (
+                  <Typography style={{ marginBottom: "1rem" }}>
+                    {step.description}
+                  </Typography>
+                )}
+                {step.content}
+                <StepperButtonGroup
+                  index={index}
+                  steps={steps}
+                  handleNext={() => setActiveStep((prev) => prev + 1)}
+                  handleUpload={() => {}}
+                  handleBack={() => setActiveStep((prev) => prev - 1)}
+                  activeStep={activeStep}
+                  isButtonDisabledCondition={step.isButtonDisabledCondition}
+                />
+              </StepContent>
+            </Box>
+          </Step>
+        ))}
       </Stepper>
-      {steps && activeStep === steps.length && (
+      {activeStep === steps.length && (
         <Paper square elevation={0} sx={{ p: 3 }}>
           <Typography>
             {t("stepper.completed.explanation", { ns: "upload" })}
           </Typography>
-          <Button
-            onClick={() => handleReset(setActiveStep)}
-            sx={{ mt: 1, mr: 1 }}
-          >
+          <Button onClick={() => setActiveStep(0)} sx={{ mt: 1, mr: 1 }}>
             {t("stepper.completed.link", { ns: "upload" })}
           </Button>
         </Paper>
@@ -90,32 +86,40 @@ const useStepperConfig = () => {
   const [uploadingCountry] = useUploadingCountry();
   const [uploadingLocation] = useUploadingLocation();
 
-  const steps = [
-    {
-      label: t("stepper.firstStep.label", { ns: "upload" }),
-      description: t("stepper.firstStep.description", { ns: "upload" }),
-      content: <StepperFirstStepContainer />,
-      isButtonDisabledCondition: uploadingImages.length === 0,
-    },
-    {
-      label: t("stepper.secondStep.label", { ns: "upload" }),
-      description: t("stepper.secondStep.description", { ns: "upload" }),
-      content: <StepperSecondStepContainer />,
-      isButtonDisabledCondition: !uploadingTitle || !uploadingDescription,
-    },
-    {
-      label: t("stepper.thirdStep.label", { ns: "upload" }),
-      description: t("stepper.thirdStep.description", { ns: "upload" }),
-      content: <StepperThirdStepContainer />,
-      isButtonDisabledCondition: !uploadingCountry || !uploadingLocation,
-    },
-    // {
-    //   label: t("stepper.finalStep.label", { ns: "upload" }),
-    //   description: t("stepper.finalStep.description", { ns: "upload" }),
-    // },
-  ];
-
-  return { steps };
+  return useMemo(
+    () => [
+      {
+        label: t("stepper.firstStep.label", { ns: "upload" }),
+        description: t("stepper.firstStep.description", { ns: "upload" }),
+        content: <StepperFirstStepContainer />,
+        isButtonDisabledCondition: uploadingImages.length === 0,
+      },
+      {
+        label: t("stepper.secondStep.label", { ns: "upload" }),
+        description: t("stepper.secondStep.description", { ns: "upload" }),
+        content: <StepperSecondStepContainer />,
+        isButtonDisabledCondition: !uploadingTitle || !uploadingDescription,
+      },
+      {
+        label: t("stepper.thirdStep.label", { ns: "upload" }),
+        description: t("stepper.thirdStep.description", { ns: "upload" }),
+        content: <StepperThirdStepContainer />,
+        isButtonDisabledCondition: !uploadingCountry || !uploadingLocation,
+      },
+      // {
+      //   label: t("stepper.finalStep.label", { ns: "upload" }),
+      //   description: t("stepper.finalStep.description", { ns: "upload" }),
+      // },
+    ],
+    [
+      uploadingCountry,
+      uploadingDescription,
+      uploadingImages,
+      uploadingLocation,
+      uploadingTitle,
+      t,
+    ]
+  );
 };
 
 const handleUpload = (uploadingData) => {
@@ -136,12 +140,4 @@ const handleUpload = (uploadingData) => {
       });
 
   uploadPost();
-};
-
-const handleBack = (setActiveStep) => {
-  setActiveStep((prevActiveStep) => prevActiveStep - 1);
-};
-
-const handleReset = (setActiveStep) => {
-  setActiveStep(0);
 };

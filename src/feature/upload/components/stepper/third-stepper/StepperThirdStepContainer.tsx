@@ -15,7 +15,7 @@ import {
 } from "../../../state/use-upload-data.reactive-vars";
 import { useGetCommonCountries } from "../../../../../api/common/countries/use-get-common-countries.hooks";
 
-export default function StepperThirdStepContainer({}) {
+export default function StepperThirdStepContainer() {
   const { t } = useTranslation();
   const { data: categories } = useGetCommonCategories();
   const { data: countries } = useGetCommonCountries();
@@ -79,12 +79,10 @@ export default function StepperThirdStepContainer({}) {
   }
 
   return (
-    <Container
-      sx={{
-        display: "flex",
-        flexDirection: "row",
-        justifyContent: "space-between",
-      }}
+    <Box
+      display={"flex"}
+      flexDirection={"row"}
+      justifyContent={"space-between"}
     >
       <Grid container spacing={5}>
         <Grid item xs={7}>
@@ -166,7 +164,7 @@ export default function StepperThirdStepContainer({}) {
           )}
         </Grid>
       </Grid>
-    </Container>
+    </Box>
   );
 }
 
