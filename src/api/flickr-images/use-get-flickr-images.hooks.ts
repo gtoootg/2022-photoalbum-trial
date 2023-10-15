@@ -1,5 +1,4 @@
-import axios, { AxiosResponse } from "axios";
-import { AxiosError } from "axios/index";
+import axios, { AxiosError } from "axios";
 import { useQuery } from "react-query";
 import { FlickrImageProps } from "./flickr-images.api.types";
 
@@ -14,12 +13,3 @@ export const useFlickrImages = () => {
 
   return { isLoading, error, data };
 };
-
-export function filterFlickrImagesByUploadDataImageId(
-  uploadingDataImageIds: string[],
-  flickrImages
-): string[] {
-  return flickrImages?.filter((flickrImage) =>
-    uploadingDataImageIds.includes(flickrImage.id)
-  );
-}

@@ -1,18 +1,12 @@
-import { useContext } from "react";
-import { flickrImagesContext, uploadedPostsContext } from "../../pages/_app";
-import { useFlickrImages, useGetUploadedPosts } from "../home/HomeBody";
 import { useRouter } from "next/router";
 import { MediaCardGroup } from "../../components/media-card/MediaCardGroup";
+import { useFlickrImages } from "../../api/flickr-images/use-get-flickr-images.hooks";
 
 export const CountryBody = () => {
   const router = useRouter();
 
-  const [flickrImages, setFlickrImages] = useContext(flickrImagesContext);
-  // const [uploadedPosts, setUploadedPosts] = useContext(uploadedPostsContext);
-
   const { data: uploadedPosts } = useGetUploadedPosts();
-
-  useGetFlickrImages(setFlickrImages, flickrImages);
+  const { data: flickrImages } = useFlickrImages();
 
   const { countryId } = router.query;
 
@@ -21,12 +15,10 @@ export const CountryBody = () => {
   );
 
   return (
-    <>
-      <MediaCardGroup
-        flickrImages={flickrImages}
-        uniqueId={"id"}
-        uploadedPosts={uploadedPostOFCurrentCountry}
-      />
-    </>
+    <MediaCardGroup
+      flickrImages={flickrImages}
+      uniqueId={"id"}
+      uploadedPosts={uploadedPostOFCurrentCountry}
+    />
   );
 };

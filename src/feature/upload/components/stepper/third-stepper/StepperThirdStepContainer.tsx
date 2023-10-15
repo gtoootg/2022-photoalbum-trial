@@ -1,4 +1,4 @@
-import { Autocomplete, Box, Container, Grid, TextField } from "@mui/material";
+import { Autocomplete, Box, Grid, TextField } from "@mui/material";
 
 import { useTranslation } from "next-i18next";
 import { CheckboxGroup } from "../../../../../components/checkbox-group/CheckboxGroup";
