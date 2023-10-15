@@ -3,7 +3,7 @@ import { Box, TextField } from "@mui/material";
 import { useTranslation } from "next-i18next";
 import { Text } from "../../../../../components/text/Text";
 
-import styles from "./StepperSecondStepContainer.module.scss";
+import styles from "./UploadSecondStepContainer.module.scss";
 import {
   useUploadActiveStep,
   useUploadingDescription,
@@ -14,7 +14,7 @@ const StepperSecondStepTextFieldStyled = styled(TextField)(() => ({
   marginBottom: "1rem",
 }));
 
-export default function StepperSecondStepContainer() {
+export default function UploadSecondStepContainer() {
   const { t } = useTranslation();
   const [activeStep] = useUploadActiveStep();
   const [uploadingTitle, setUploadingTitle] = useUploadingTitle();

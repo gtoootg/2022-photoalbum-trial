@@ -1,9 +1,7 @@
 import { useRouter } from "next/router";
-import { useContext, useState } from "react";
-import { flickrImagesContext } from "../../pages/_app";
+import { useState } from "react";
 import { filterImageSourcesOfPostForMediaCard } from "../../components/media-card/MediaCardGroup";
 import ImageSlider from "../../components/image-slider/ImageSlider";
-import { useFlickrImages } from "../home/HomeBody";
 import axios from "axios";
 import AlbumPostTitleAndDescription from "./components/title-and-description/AlbumPostTitleAndDescription";
 import { useEffect } from "react";
@@ -14,12 +12,13 @@ import { AlbumPostDialogs } from "./dialog/AlbumPostDialogs";
 import { AlbumPostContextProvider } from "./context-provider/AlbumPostContextProvider";
 import { useGetCommonCategories } from "../../api/common/categories/use-get-common-categories.hooks";
 import { useGetAlbumPosts } from "../../api/album-posts/use-get-album-posts.hooks";
+import { useFlickrImages } from "../../api/flickr-images/use-get-flickr-images.hooks";
 
 const AlbumPostBody = () => {
   const router = useRouter();
-  const [flickrImages, setFlickrImages] = useContext(flickrImagesContext);
-
+  const { data: flickrImages } = useFlickrImages();
   const { data: uploadedPosts } = useGetAlbumPosts();
+  const { data: categories } = useGetCommonCategories();
 
   const [exifDataOfMainImage, setexifDataOfMainImage] = useState(undefined);
   const [indexOfMainImage, setIndexOfMainImage] = useState(0);
@@ -27,10 +26,6 @@ const AlbumPostBody = () => {
   const uploadedPost =
     uploadedPosts?.length &&
     uploadedPosts.find((uploadedPost) => uploadedPost.id === Number(postId));
-
-  useGetFlickrImages(setFlickrImages, flickrImages);
-
-  const { data: categories } = useGetCommonCategories();
 
   const imagesSrc = filterImageSourcesOfPostForMediaCard(
     flickrImages,

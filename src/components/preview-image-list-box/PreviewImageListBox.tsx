@@ -2,7 +2,6 @@ import { Box, Grid } from "@mui/material";
 import Image from "next/image";
 import styles from "./PreviewImageListBox.module.scss";
 import { Text } from "../text/Text";
-import { useState } from "react";
 import { useUploadingFlickrImages } from "../../feature/upload/components/stepper/first-stepper/hooks/use-uploading-flickr-images.hooks";
 
 export const PreviewImageListBox = ({

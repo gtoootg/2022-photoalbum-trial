@@ -7,8 +7,8 @@ import Typography from "@mui/material/Typography";
 import { useTranslation } from "next-i18next";
 import { Step, StepContent, StepLabel } from "@mui/material";
 import StepperButtonGroup from "./components/StepperButtonGroup";
-import StepperSecondStepContainer from "./second-stepper/StepperSecondStepContainer";
-import StepperFirstStepContainer from "./first-stepper/StepperFirstStepContainer";
+import UploadSecondStepContainer from "./second-stepper/UploadSecondStepContainer";
+import UploadFirstStepContainer from "./first-stepper/UploadFirstStepContainer";
 import axios from "axios";
 import styles from "./UploadStepper.module.scss";
 import {
@@ -19,7 +19,7 @@ import {
   useUploadingLocation,
   useUploadingTitle,
 } from "../../state/use-upload-data.reactive-vars";
-import StepperThirdStepContainer from "./third-stepper/StepperThirdStepContainer";
+import UploadThirdStepContainer from "./third-stepper/UploadThirdStepContainer";
 
 export function UploadStepperGroup({}) {
   const { t } = useTranslation();
@@ -91,19 +91,19 @@ const useStepperConfig = () => {
       {
         label: t("stepper.firstStep.label", { ns: "upload" }),
         description: t("stepper.firstStep.description", { ns: "upload" }),
-        content: <StepperFirstStepContainer />,
+        content: <UploadFirstStepContainer />,
         isButtonDisabledCondition: uploadingImages.length === 0,
       },
       {
         label: t("stepper.secondStep.label", { ns: "upload" }),
         description: t("stepper.secondStep.description", { ns: "upload" }),
-        content: <StepperSecondStepContainer />,
+        content: <UploadSecondStepContainer />,
         isButtonDisabledCondition: !uploadingTitle || !uploadingDescription,
       },
       {
         label: t("stepper.thirdStep.label", { ns: "upload" }),
         description: t("stepper.thirdStep.description", { ns: "upload" }),
-        content: <StepperThirdStepContainer />,
+        content: <UploadThirdStepContainer />,
         isButtonDisabledCondition: !uploadingCountry || !uploadingLocation,
       },
       // {

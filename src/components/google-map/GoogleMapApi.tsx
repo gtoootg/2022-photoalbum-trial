@@ -10,9 +10,9 @@ type GoogleMapApiProps = {
   center: { lat: number; lng: number };
   zoom: number;
   onClickAction?: boolean;
-  uploadingDataLatLng?: { lat: number; lng: number };
-  setUploadingDataLatLng?: (e: any) => void;
-  clusterItems?: { lat: number; lng: number; id: number ,imageUrl?:string}[];
+  uploadingDataLatLng?: { lat: number; lng: number } | null;
+  setUploadingDataLatLng?: (e: { lat: number; lng: number } | null) => void;
+  clusterItems?: { lat: number; lng: number; id: number; imageUrl?: string }[];
   handleClickMarkerOfCluster?: (id: number) => void;
 };
 
@@ -27,7 +27,6 @@ const GoogleMapAPI: React.FC<GoogleMapApiProps> = ({
   clusterItems,
   handleClickMarkerOfCluster,
 }) => {
-
   const setMarkerPosition = (e) => {
     const lat = e.latLng.lat();
     const lng = e.latLng.lng();
@@ -64,10 +63,12 @@ const GoogleMapAPI: React.FC<GoogleMapApiProps> = ({
                     position={location}
                     clusterer={clusterer}
                     onClick={() => handleClickMarkerOfCluster(location.id)}
-                    options={{icon: {
+                    options={{
+                      icon: {
                         url: location.imageUrl && location.imageUrl,
                         scaledSize: new window.google.maps.Size(90, 60),
-                      }}}
+                      },
+                    }}
                   />
                 ))}
               </div>
