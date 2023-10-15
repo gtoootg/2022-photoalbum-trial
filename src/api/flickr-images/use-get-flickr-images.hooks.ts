@@ -5,7 +5,7 @@ import { FlickrImageProps } from "./flickr-images.api.types";
 
 export const useGetFlickrImages = () => {
   const { isLoading, error, data } = useQuery<
-    AxiosResponse<FlickrImageProps[]>,
+    FlickrImageProps[],
     AxiosError
   >({
     queryKey: ["flickrImages"],

@@ -1,18 +1,18 @@
 import { Autocomplete, Box, Container, Grid, TextField } from "@mui/material";
 
 import { useTranslation } from "next-i18next";
-import { useContext } from "react";
 import { CheckboxGroup } from "../../../../../components/checkbox-group/CheckboxGroup";
 import GoogleMapApi from "../../../../../components/google-map/GoogleMapApi";
 import { PreviewImageListBox } from "../../../../../components/preview-image-list-box/PreviewImageListBox";
 import { Text } from "../../../../../components/text/Text";
 
-import { flickrImagesContext } from "../../../../../pages/_app";
-
 import { StepperThirdStepContainerProps } from "../UploadStepper.types";
 import styles from "./StepperThirdStepContainer.module.scss";
-import { filterFlickrImagesByUploadDataImageId } from "../../../../../api/flickr-images/use-get-flickr-images.hooks";
-import { useGetCommonCategories } from "../../../../../api/common/use-get-common-categories.hooks";
+import {
+  filterFlickrImagesByUploadDataImageId,
+  useGetFlickrImages
+} from "../../../../../api/flickr-images/use-get-flickr-images.hooks";
+import { useGetCommonCategories } from "../../../../../api/common/categories/use-get-common-categories.hooks";
 
 export default function StepperThirdStepContainer({
   activeStep,
@@ -22,13 +22,19 @@ export default function StepperThirdStepContainer({
 }: StepperThirdStepContainerProps) {
   const { t } = useTranslation();
   const { data: categories } = useGetCommonCategories();
-  const [flickrImages] = useContext(flickrImagesContext);
-  useGetCategories(categories, setCategories);
+  const {data:flickrImages} = useGetFlickrImages()
 
   const countriesForAutoCompleteOptions = countries?.map((country) => ({
     label: country.name.common,
     value: country.ccn3,
   }));
+
+  const categryOptions = (categories||[]).map(({id,label})=>({
+    value:id,
+    label
+  }))
+
+  console.log(categryOptions)
 
   const filterSetectedFlickrImages = filterFlickrImagesByUploadDataImageId(
     uploadingData.flickrImageIds,
@@ -125,19 +131,10 @@ export default function StepperThirdStepContainer({
 
           <CheckboxGroup
             className={styles.formField}
-            options={categories && categories}
-            // handleClickCheckbox={(eventTargetValue, eventTargetChecked) => {
-            //   handleClickCheckboxOfCategory(
-            //     eventTargetValue,
-            //     eventTargetChecked,
-            //     uploadingData,
-            //     setUploadingData
-            //   );
-            // }}
+            options={categryOptions}
             subComponents={
-              categories &&
               PreviewImageListBoxesForEachCategory(
-                categories,
+                categryOptions,
                 filterSetectedFlickrImages,
                 uploadingData,
                 setUploadingData

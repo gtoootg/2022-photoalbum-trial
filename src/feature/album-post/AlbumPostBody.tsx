@@ -12,7 +12,7 @@ import { Grid } from "@mui/material";
 import { CategoryAndMap } from "./components/category-and-map/CategoryAndMap";
 import { AlbumPostDialogs } from "./dialog/AlbumPostDialogs";
 import { AlbumPostContextProvider } from "./context-provider/AlbumPostContextProvider";
-import { useGetCommonCategories } from "../../api/common/use-get-common-categories.hooks";
+import { useGetCommonCategories } from "../../api/common/categories/use-get-common-categories.hooks";
 import { useGetAlbumPosts } from "../../api/album-posts/use-get-album-posts.hooks";
 
 const AlbumPostBody = () => {
