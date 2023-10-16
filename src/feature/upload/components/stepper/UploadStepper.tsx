@@ -13,7 +13,7 @@ import { useUploadStepperConfig } from "./hooks/use-upload-stepper-config.hooks"
 
 export function UploadStepperGroup({}) {
   const { t } = useTranslation();
-  const [activeStep, setActiveStep] = useUploadActiveStep();
+  const [activeStep] = useUploadActiveStep();
 
   const steps = useUploadStepperConfig();
 
