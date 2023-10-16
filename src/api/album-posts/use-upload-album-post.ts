@@ -19,7 +19,7 @@ export const useUploadAlbumPost = () => {
     unknown
   >((payload) => {
     return axios.post(
-      `${process.env.NEXT_PUBLIC_API_BASE_URL}/albumposts`,
+      `${process.env.NEXT_PUBLIC_API_BASE_URL}/albumpost`,
       payload
     );
   });
@@ -36,13 +36,7 @@ export const useComposeUploadingAlbumPostPayload = () => {
   const [categories] = useUploadingCategories();
 
   return useMemo(() => {
-    if (
-      images.length === 0 ||
-      !title ||
-      !country ||
-      Object.values(location).length === 0 ||
-      Object.values(location).length === 0
-    ) {
+    if (images.length === 0 || !title || !country || location === null) {
       return undefined;
     }
 

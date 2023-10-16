@@ -1,31 +1,32 @@
 import { Box, Button } from "@mui/material";
 import { StepperButtonGroupProps } from "../UploadStepper.types";
+import { useUploadActiveStep } from "../../../state/use-upload-data.reactive-vars";
+import { useHandleClickUploadStepperConfirmButton } from "./use-stepper-button-actions.hooks";
 
 export default function StepperButtonGroup(props: StepperButtonGroupProps) {
-  const {
-    index,
-    steps,
-    handleNext,
-    handleUpload,
-    handleBack,
-    activeStep,
-    isButtonDisabledCondition,
-  } = props;
+  const { index, steps, isButtonDisabledCondition } = props;
+  const handleClickConfirm = useHandleClickUploadStepperConfirmButton(steps);
+  const [activeStep, setActiveStep] = useUploadActiveStep();
 
   if (activeStep !== index) {
     return null;
   }
+
   return (
     <Box>
       <Button
         variant="contained"
-        onClick={index === steps.length - 1 ? handleUpload : handleNext}
+        onClick={handleClickConfirm}
         sx={{ mt: 1, mr: 1 }}
         disabled={isButtonDisabledCondition}
       >
         {index === steps.length - 1 ? "Upload" : "Next"}
       </Button>
-      <Button disabled={index === 0} onClick={handleBack} sx={{ mt: 1, mr: 1 }}>
+      <Button
+        disabled={index === 0}
+        onClick={() => setActiveStep(activeStep - 1)}
+        sx={{ mt: 1, mr: 1 }}
+      >
         Back
       </Button>
     </Box>

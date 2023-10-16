@@ -47,7 +47,6 @@ const useSetCategoryToUploadingImage = () => {
   return useCallback(
     (id: string, categoryId: number) => {
       const imagesForCategory = categories[categoryId];
-      console.log(categories);
       if (!imagesForCategory) {
         setCategories({ ...categories, [categoryId]: [id] });
         return;

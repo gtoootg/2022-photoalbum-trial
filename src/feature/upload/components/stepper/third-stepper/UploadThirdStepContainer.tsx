@@ -1,12 +1,9 @@
 import { Autocomplete, Box, Grid, TextField } from "@mui/material";
 
 import { useTranslation } from "next-i18next";
-import { CheckboxGroup } from "../../../../../components/checkbox-group/CheckboxGroup";
-import { PreviewImageListBox } from "../../../../../components/preview-image-list-box/PreviewImageListBox";
 import { Text } from "../../../../../components/text/Text";
 
 import styles from "./UploadThirdStepContainer.module.scss";
-import { useGetCommonCategories } from "../../../../../api/common/categories/use-get-common-categories.hooks";
 import {
   useUploadActiveStep,
   useUploadingCountry,
@@ -19,7 +16,6 @@ import { UploadThirdStepCategory } from "./components/category/UploadThirdStepCa
 
 export default function UploadThirdStepContainer() {
   const { t } = useTranslation();
-  const { data: categories } = useGetCommonCategories();
   const { data: countries } = useGetCommonCountries();
   const [activeStep] = useUploadActiveStep();
   const [, setUploadingCountry] = useUploadingCountry();
@@ -28,11 +24,6 @@ export default function UploadThirdStepContainer() {
   const countriesForAutoCompleteOptions = countries?.map((country) => ({
     label: country.name.common,
     value: country.ccn3,
-  }));
-
-  const categryOptions = (categories || []).map(({ id, label }) => ({
-    value: id,
-    label,
   }));
 
   if (activeStep >= 3) {
