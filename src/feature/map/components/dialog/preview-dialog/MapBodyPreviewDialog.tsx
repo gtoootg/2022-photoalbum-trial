@@ -1,43 +1,39 @@
 import { CommonDialog } from "../../../../../components/dialog/CommonDialog";
-import {useMapBodyPreviewDialogConfig} from "./MapBodyPreviewDialog.hooks";
+import { useMapBodyPreviewDialogConfig } from "./MapBodyPreviewDialog.hooks";
 import ImageSlider from "../../../../../components/image-slider/ImageSlider";
-import {useContext} from "react";
-import {filterImageSourcesOfPostForMediaCard} from "../../../../../components/media-card/MediaCardGroup";
-import {flickrImagesContext, uploadedPostsContext} from "../../../../../pages/_app";
-import {MapBodySelectedUploadedPostIdContext} from "../../../MapBodyContextProvider";
+import { filterImageSourcesOfPostForMediaCard } from "../../../../../components/media-card/MediaCardGroup";
 
-export const MapBodyPreviewDialog = ({ isOpen }) => {
+import { useFlickrImages } from "../../../../../api/flickr-images/use-get-flickr-images.hooks";
+import { useGetAlbumPosts } from "../../../../../api/album-posts/use-get-album-posts.hooks";
+import { useMapSelectedPostId } from "../../../state/use-map-selected-post-id.reactive-vars";
 
-  const {buttonConfig }=useMapBodyPreviewDialogConfig()
+export const MapBodyPreviewDialog = () => {
+  const { buttonConfig } = useMapBodyPreviewDialogConfig();
 
-  return(
+  return (
     <CommonDialog
-      isOpen={isOpen}
+      isOpen={true}
       content={<MapBodyPreviewDialogContent />}
       buttonConfig={buttonConfig}
-      maxWidth={'md'}
+      maxWidth={"md"}
     />
-  )
+  );
 };
 
+const MapBodyPreviewDialogContent = () => {
+  const { data: flickrImages } = useFlickrImages();
+  const { data: uploadedPosts } = useGetAlbumPosts();
 
-const MapBodyPreviewDialogContent = ()=>{
-  const [flickrImages, setFlickrImages] = useContext(flickrImagesContext);
-  const [uploadedPosts, setUploadedPosts] = useContext(uploadedPostsContext);
-  const [selectedPostId, setSelectedPostId] = useContext(MapBodySelectedUploadedPostIdContext)
+  const [selectedPostId] = useMapSelectedPostId();
 
-  const uploadedPost =    uploadedPosts?.length && uploadedPosts.find(uploadedPost=>uploadedPost.id === selectedPostId)
+  const uploadedPost =
+    uploadedPosts?.length &&
+    uploadedPosts.find((uploadedPost) => uploadedPost.id === selectedPostId);
 
   const imagesSrc = filterImageSourcesOfPostForMediaCard(
     flickrImages,
     uploadedPost
   ).map((flickrImage) => flickrImage["url_h"]);
 
-  return (
-    <ImageSlider
-      imagesSrc={imagesSrc }
-    />
-
-  )
-
-}
+  return <ImageSlider imagesSrc={imagesSrc} />;
+};

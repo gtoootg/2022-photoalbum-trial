@@ -2,7 +2,7 @@ export const getCountryDataOfAllUploadedPosts = (
   uploadedPosts,
   allCountries
 ) => {
-  let arrayOfCountryId: number[] = [];
+  const arrayOfCountryId: number[] = [];
 
   if (!uploadedPosts || !allCountries) {
     return;

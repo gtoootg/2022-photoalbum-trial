@@ -3,15 +3,17 @@ import { useTranslation } from "next-i18next";
 import { DropDownMenu } from "../drop-down-menu/DropDownMenu";
 import { CommonButton } from "../button/CommonButton";
 import UploadIcon from "@mui/icons-material/Upload";
-import { useState } from "react";
 import { getCountryDataOfAllUploadedPosts } from "../../helper/ui/UiHelperFunction.helper";
 import { useGetAlbumPosts } from "../../api/album-posts/use-get-album-posts.hooks";
+import { useGetCommonCountries } from "../../api/common/countries/use-get-common-countries.hooks";
+import Box from "@mui/material/Box";
+import { useRouter } from "next/router";
 
 export default function Header() {
+  const router = useRouter();
   const { t } = useTranslation();
 
-  const [countries, setCountries] = useState<any[]>();
-
+  const { data: countries } = useGetCommonCountries();
   const { data: uploadedPosts } = useGetAlbumPosts();
 
   const countryDataOfAllUploadedPosts = getCountryDataOfAllUploadedPosts(
@@ -27,12 +29,12 @@ export default function Header() {
     }));
 
   return (
-    <div className={classes.header}>
-      <div className={classes.header_container}>
-        <div className={classes.header_container_brand}>
+    <Box className={classes.header}>
+      <Box className={classes.header_container}>
+        <Box className={classes.header_container_brand}>
           <h1>Michihiro Goto`s Gallery</h1>
-        </div>
-        <div className={classes.header_container_navigation}>
+        </Box>
+        <Box className={classes.header_container_navigation}>
           <CommonButton
             className={classes.header_container_navigation_element}
             variant={"text"}
@@ -43,14 +45,12 @@ export default function Header() {
             classNameForLabelColor={classes.header_container_navigation_element}
             label={t("header.navigation.country")}
             menuItems={countriesLabel ? countriesLabel : []}
-            handleClickMenuItem={(countryData) => {
-              console.log(countryData);
-            }}
+            handleClickMenuItem={({ link }) => router.push(link)}
           />
           <DropDownMenu
             classNameForLabelColor={classes.header_container_navigation_element}
             label={t("header.navigation.category")}
-            menuItems={[{ label: "japan" }, { label: "germany" }]}
+            menuItems={[]}
           />
           <CommonButton
             className={classes.header_container_navigation_element}
@@ -65,8 +65,8 @@ export default function Header() {
             text={t("header.navigation.upload")}
             link={"/upload"}
           />
-        </div>
-      </div>
-    </div>
+        </Box>
+      </Box>
+    </Box>
   );
 }

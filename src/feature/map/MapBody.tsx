@@ -1,30 +1,14 @@
 import GoogleMapApi from "../../components/google-map/GoogleMapApi";
-import { useContext } from "react";
-import { flickrImagesContext, uploadedPostsContext } from "../../pages/_app";
-import { useFlickrImages } from "../home/HomeBody";
-import {
-  MapBodyDialogs,
-  MapBodyDialogType,
-} from "./components/dialog/MapBodyDialogs";
-import {
-  MapBodyOpeningDialogTypeContext,
-  MapBodySelectedUploadedPostIdContext,
-} from "./MapBodyContextProvider";
+
 import { useGetAlbumPosts } from "../../api/album-posts/use-get-album-posts.hooks";
+import { useMapSelectedPostId } from "./state/use-map-selected-post-id.reactive-vars";
+import { useFlickrImages } from "../../api/flickr-images/use-get-flickr-images.hooks";
+import { MapBodyPreviewDialog } from "./components/dialog/preview-dialog/MapBodyPreviewDialog";
 
 export const MapBody = () => {
-  const [flickrImages, setFlickrImages] = useContext(flickrImagesContext);
-
-  const [selectedPostId, setSelectedPostId] = useContext(
-    MapBodySelectedUploadedPostIdContext
-  );
-  const [openingDialogType, setOpeningDialogType] = useContext(
-    MapBodyOpeningDialogTypeContext
-  );
-
+  const { data: flickrImages } = useFlickrImages();
   const { data: uploadedPosts } = useGetAlbumPosts();
-
-  useGetFlickrImages(setFlickrImages, flickrImages);
+  const [selectedPostId, setSelectedPostId] = useMapSelectedPostId();
 
   const getUrlOfFirstImageOfUploadedPost = (post) => {
     if (!flickrImages) {
@@ -32,7 +16,7 @@ export const MapBody = () => {
     }
 
     return flickrImages.find(
-      (flickrImage) => flickrImage.id === post.flickrPhotoId[0].toString()
+      (flickrImage) => flickrImage.id === post.imageIds[0].toString()
     ).url_n;
   };
 
@@ -62,11 +46,10 @@ export const MapBody = () => {
         zoom={3}
         clusterItems={getClusterItems ? getClusterItems : []}
         handleClickMarkerOfCluster={(uploadedPostId) => {
-          setOpeningDialogType(MapBodyDialogType.PREVIEW_DIALOG);
           setSelectedPostId(uploadedPostId);
         }}
       />
-      <MapBodyDialogs />
+      {selectedPostId && <MapBodyPreviewDialog />}
     </div>
   );
 };

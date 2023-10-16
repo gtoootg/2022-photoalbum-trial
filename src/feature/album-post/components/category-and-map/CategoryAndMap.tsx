@@ -4,12 +4,18 @@ import { ClickableChip } from "../../../../components/clickable-chip/ClickableCh
 import styles from "./CategoryAndMap.module.scss";
 import { Category, IconFactory } from "./CategoryIconFactory";
 import { AlbumPostMapWithLinkButton } from "./components/map/AlbumPostMap";
+import { useGetCommonCategories } from "../../../../api/common/categories/use-get-common-categories.hooks";
 
-export const CategoryAndMap = ({ uploadedPost, allCategories }) => {
+export const CategoryAndMap = ({ uploadedPost }) => {
+  const { data: allCategories } = useGetCommonCategories();
   const { categories } = uploadedPost;
 
-  if (!uploadedPost || !allCategories) {
+  if (!uploadedPost || !allCategories || !categories) {
     return <CircularProgress />;
+  }
+
+  if (Object.keys(categories).length === 0) {
+    return null;
   }
 
   return (

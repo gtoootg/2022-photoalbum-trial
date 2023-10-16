@@ -8,10 +8,6 @@ import ShutterSpeedIcon from "@mui/icons-material/ShutterSpeed";
 import IsoIcon from "@mui/icons-material/Iso";
 
 const AlbumPostExifData = ({ exifDataOfMainImage }) => {
-  if (!exifDataOfMainImage) {
-    return <CircularProgress />;
-  }
-
   const { camera, fNumber, exposure, focalLength, iso } = exifDataOfMainImage;
 
   return (

@@ -7,7 +7,7 @@ export const useFlickrImages = () => {
     queryKey: ["flickrImages"],
     queryFn: () =>
       axios
-        .get(process.env.NEXT_PUBLIC_FLICKR_API_URL)
+        .get(process.env.NEXT_PUBLIC_CLIENT_API_URL + "/flickrImages")
         .then((res) => res.data.photos.photo),
   });
 

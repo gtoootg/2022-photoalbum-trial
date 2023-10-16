@@ -5,6 +5,7 @@ import {
   useUploadAlbumPost,
 } from "../../../../../api/album-posts/use-upload-album-post";
 import { useCallback } from "react";
+import { useRouter } from "next/router";
 
 export const useHandleClickUploadStepperConfirmButton = (
   steps: StepProps[]
@@ -12,12 +13,16 @@ export const useHandleClickUploadStepperConfirmButton = (
   const [activeStep, setActiveStep] = useUploadActiveStep();
   const payload = useComposeUploadingAlbumPostPayload();
   const { mutate: uploadAlbumPost } = useUploadAlbumPost();
-
+  const router = useRouter();
   const confirmUploadStep = steps.length - 1;
 
   return useCallback(() => {
     if (activeStep === confirmUploadStep && payload) {
-      uploadAlbumPost(payload);
+      uploadAlbumPost(payload, {
+        onSuccess: () => {
+          router.push("/");
+        },
+      });
       return;
     }
     setActiveStep(activeStep + 1);

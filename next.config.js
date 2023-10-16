@@ -10,7 +10,7 @@ const nextConfig = {
   i18n,
   webpackDevMiddleware: (config) => {
     config.watchOptions = {
-      poll: 800,
+      poll: 5000,
       aggregateTimeout: 300,
     };
     return config;
