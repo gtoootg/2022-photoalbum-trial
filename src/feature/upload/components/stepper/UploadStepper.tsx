@@ -106,10 +106,10 @@ const useStepperConfig = () => {
         content: <UploadThirdStepContainer />,
         isButtonDisabledCondition: !uploadingCountry || !uploadingLocation,
       },
-      // {
-      //   label: t("stepper.finalStep.label", { ns: "upload" }),
-      //   description: t("stepper.finalStep.description", { ns: "upload" }),
-      // },
+      {
+        label: t("stepper.finalStep.label", { ns: "upload" }),
+        description: t("stepper.finalStep.description", { ns: "upload" }),
+      },
     ],
     [
       uploadingCountry,
