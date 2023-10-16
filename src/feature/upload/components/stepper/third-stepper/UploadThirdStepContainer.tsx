@@ -15,6 +15,7 @@ import {
 import { useGetCommonCountries } from "../../../../../api/common/countries/use-get-common-countries.hooks";
 import { UploadThirdStepGoogleMap } from "./components/map/UploadThirdStepGoogleMap";
 import { UploadThirdStepPreview } from "./components/preview/UploadThirdStepPreview";
+import { UploadThirdStepCategory } from "./components/category/UploadThirdStepCategory";
 
 export default function UploadThirdStepContainer() {
   const { t } = useTranslation();
@@ -76,18 +77,7 @@ export default function UploadThirdStepContainer() {
             }}
           />
           <br />
-          <Text
-            variant={"h6"}
-            content={t("stepper.thirdStep.uploadData.category.headline", {
-              ns: "upload",
-            })}
-          />
-
-          <CheckboxGroup
-            className={styles.formField}
-            options={categryOptions}
-            subComponents={PreviewImageListBoxesForEachCategory()}
-          />
+          <UploadThirdStepCategory />
         </Grid>
         <Grid item xs={5}>
           <UploadThirdStepGoogleMap
@@ -101,11 +91,3 @@ export default function UploadThirdStepContainer() {
     </Box>
   );
 }
-
-const PreviewImageListBoxesForEachCategory = () => {
-  const { data: categories } = useGetCommonCategories();
-
-  return (categories || []).map((category, i) => {
-    return <PreviewImageListBox key={i} helperText="select photos" />;
-  });
-};

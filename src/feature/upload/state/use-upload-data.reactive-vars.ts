@@ -14,3 +14,7 @@ export const useUploadingLocation = createGlobalState<{
   lat: number;
   lng: number;
 } | null>(null);
+
+export const useUploadingCategories = createGlobalState<
+  Record<number, string[]>
+>({});
