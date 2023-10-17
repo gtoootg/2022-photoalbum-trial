@@ -45,7 +45,6 @@ export default function Header() {
             classNameForLabelColor={classes.header_container_navigation_element}
             label={t("header.navigation.country")}
             menuItems={countriesLabel ? countriesLabel : []}
-            handleClickMenuItem={({ link }) => router.push(link)}
           />
           <DropDownMenu
             classNameForLabelColor={classes.header_container_navigation_element}

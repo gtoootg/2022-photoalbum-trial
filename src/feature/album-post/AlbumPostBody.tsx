@@ -1,44 +1,20 @@
-import { useRouter } from "next/router";
-import { useMemo, useState } from "react";
-import { filterImageSourcesOfPostForMediaCard } from "../../components/media-card/MediaCardGroup";
+import { useState } from "react";
 import ImageSlider from "../../components/image-slider/ImageSlider";
-import axios from "axios";
 import AlbumPostTitleAndDescription from "./components/title-and-description/AlbumPostTitleAndDescription";
-import { useEffect } from "react";
 import AlbumPostExifData from "./components/exif-data/AlbumPostExifData";
 import { Grid } from "@mui/material";
 import { CategoryAndMap } from "./components/category-and-map/CategoryAndMap";
 import { AlbumPostDialogs } from "./dialog/AlbumPostDialogs";
 import { AlbumPostContextProvider } from "./context-provider/AlbumPostContextProvider";
-import { useGetAlbumPosts } from "../../api/album-posts/use-get-album-posts.hooks";
-import { useFlickrImages } from "../../api/flickr-images/use-get-flickr-images.hooks";
-import { useGetExifData } from "../../api/flickr-images/use-get-exif-data.hooks";
+import { useGetAlbumPostData } from "./hooks/use-get-album-post.hooks";
 
 const AlbumPostBody = () => {
-  const router = useRouter();
-  const { data: flickrImages } = useFlickrImages();
-  const { data: uploadedPosts } = useGetAlbumPosts();
   const [indexOfMainImage, setIndexOfMainImage] = useState(0);
-  const { postId } = router.query;
-  const uploadedPost = uploadedPosts?.find(
-    (uploadedPost) => uploadedPost.id === Number(postId)
-  );
-  const mainImageId = useMemo(
-    () => uploadedPost?.imageIds[indexOfMainImage],
-    [uploadedPosts, indexOfMainImage]
-  );
 
-  const { data: exifDataOfMainImage } = useGetExifData(mainImageId);
+  const { albumPost, mainImageId, imageSrcs, exifDataToUse } =
+    useGetAlbumPostData(indexOfMainImage);
 
-  const imagesSrc = filterImageSourcesOfPostForMediaCard(
-    flickrImages,
-    uploadedPost
-  ).map((flickrImage) => flickrImage["url_h"]);
-
-  const exifDataToUse =
-    transformExifDataForAlbumPostContent(exifDataOfMainImage);
-
-  if (!uploadedPost || !flickrImages || !exifDataToUse) {
+  if (!albumPost) {
     return null;
   }
 
@@ -51,19 +27,19 @@ const AlbumPostBody = () => {
             handleClickSubImage={(index) => {
               setIndexOfMainImage(index);
             }}
-            imagesSrc={imagesSrc}
+            imagesSrc={imageSrcs || []}
           />
         </Grid>
         <Grid item md={4} xs={12}>
           <AlbumPostTitleAndDescription
-            title={uploadedPost.title}
-            description={uploadedPost.description}
+            title={albumPost.title}
+            description={albumPost.description}
           />
           <AlbumPostExifData exifDataOfMainImage={exifDataToUse} />
-          <CategoryAndMap uploadedPost={uploadedPost} />
+          <CategoryAndMap uploadedPost={exifDataToUse} />
         </Grid>
       </Grid>
-      <AlbumPostDialogs uploadedPost={uploadedPost} />
+      <AlbumPostDialogs uploadedPost={exifDataToUse} />
     </AlbumPostContextProvider>
   );
 };

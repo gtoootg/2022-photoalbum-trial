@@ -1,5 +1,5 @@
 import axios, { AxiosError } from "axios";
-import { useQuery } from "react-query";
+import { useQuery, useQueryClient } from "react-query";
 import { FlickrImageProps } from "./flickr-images.api.types";
 
 export const useFlickrImages = () => {
@@ -12,4 +12,10 @@ export const useFlickrImages = () => {
   });
 
   return { isLoading, error, data };
+};
+
+export const useFlickrImagesSelector = (): FlickrImageProps[] => {
+  const queryClient = useQueryClient();
+
+  return queryClient.getQueryData("flickrImage");
 };

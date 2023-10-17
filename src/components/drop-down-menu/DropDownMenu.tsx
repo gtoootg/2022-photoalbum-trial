@@ -48,12 +48,12 @@ export const DropDownMenu = <T extends any>({
           "aria-labelledby": "basic-button",
         }}
       >
-        {menuItems.map((item,i) => {
+        {menuItems.map((item, i) => {
           return (
             <MenuItem
               key={i}
               onClick={() => {
-                handleClickMenuItem(item);
+                handleClickMenuItem && handleClickMenuItem(item);
               }}
             >
               {item.link ? (

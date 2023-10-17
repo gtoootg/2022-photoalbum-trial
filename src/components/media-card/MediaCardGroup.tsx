@@ -1,6 +1,7 @@
 import { Grid } from "@mui/material";
 import MediaCard from "./MediaCard";
 import { GetAlbumPostsResponse } from "../../api/album-posts/album-posts.api.types";
+import { filterImageSourcesOfPostForMediaCard } from "../../feature/album-post/hooks/use-get-album-post.hooks";
 
 export const MediaCardGroup = ({
   flickrImages,
@@ -36,18 +37,4 @@ export const MediaCardGroup = ({
       })}
     </Grid>
   );
-};
-
-export const filterImageSourcesOfPostForMediaCard = (
-  flickrImages,
-  uploadedPost
-) => {
-  return (flickrImages || []).filter((flickrImage) => {
-    const flickrPhotoIdOfUploadedPostInArray = uploadedPost?.imageIds?.map(
-      (e) => e.toString()
-    );
-    const flickrImageId = flickrImage.id.toString();
-
-    return flickrPhotoIdOfUploadedPostInArray?.includes(flickrImageId);
-  });
 };
