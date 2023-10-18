@@ -37,10 +37,11 @@ export const useCategoriesFromAlbumPostsForHeader = () => {
   const { data: categories } = useGetCommonCategories();
 
   return useMemo(() => {
-    const categoryIdsToUse: Set<string> = new Set([]);
     if (!albumPosts || !categories) {
       return undefined;
     }
+
+    const categoryIdsToUse: Set<string> = new Set([]);
 
     const categoryIdsFromAllPosts = albumPosts
       .map(({ categoryIds }) => Object.keys(categoryIds))

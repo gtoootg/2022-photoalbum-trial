@@ -6,6 +6,8 @@ import Typography from "@mui/material/Typography";
 import Image from "next/image";
 import Link from "next/link";
 import { useRouter } from "next/router";
+import { MgLink } from "../link/MgLink";
+import Box from "@mui/material/Box";
 
 interface MediaCardProps {
   imageSrc: string;
@@ -23,8 +25,8 @@ export default function MediaCard({
   const router = useRouter();
   return (
     <Card>
-      <div
-        style={{
+      <Box
+        sx={{
           width: "100%",
           position: "relative",
         }}
@@ -37,7 +39,7 @@ export default function MediaCard({
           src={imageSrc}
           alt="image"
         />
-      </div>
+      </Box>
       <CardContent>
         <Typography gutterBottom variant="h5" component="div">
           {title}
@@ -47,9 +49,16 @@ export default function MediaCard({
         </Typography>
       </CardContent>
       <CardActions>
-        <Typography onClick={() => router.push(`/album-posts/${index}`)}>
-          See detail
-        </Typography>
+        <Box
+          display={"flex"}
+          justifyContent={"flex-end"}
+          sx={{ width: "100%" }}
+        >
+          <MgLink
+            href={`/album-posts/${index}`}
+            children={<Typography color={"black"}>See detail</Typography>}
+          />
+        </Box>
       </CardActions>
     </Card>
   );

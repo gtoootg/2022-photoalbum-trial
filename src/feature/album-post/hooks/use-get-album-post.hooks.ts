@@ -8,9 +8,16 @@ import { useMemo } from "react";
 import { useFlickrImagesSelector } from "../../../api/flickr-images/use-get-flickr-images.hooks";
 import { useQueryClient } from "react-query";
 import { AxiosResponse } from "axios";
-import { GetAlbumPostsResponse } from "../../../api/album-posts/album-posts.api.types";
+import {
+  GetAlbumPostResponse,
+  GetAlbumPostsResponse,
+} from "../../../api/album-posts/album-posts.api.types";
+import {
+  ExifData,
+  FlickrImageProps,
+} from "../../../api/flickr-images/flickr-images.api.types";
 
-const transformExifDataForAlbumPostContent = (exifData) => {
+const transformExifDataForAlbumPostContent = (exifData?: ExifData) => {
   if (!exifData) {
     return undefined;
   }
@@ -31,10 +38,14 @@ const transformExifDataForAlbumPostContent = (exifData) => {
 };
 
 export const filterImageSourcesOfPostForMediaCard = (
-  flickrImages,
-  uploadedPost
+  flickrImages?: FlickrImageProps[],
+  uploadedPost?: GetAlbumPostResponse
 ) => {
-  return (flickrImages || []).filter((flickrImage) => {
+  if (!uploadedPost || !flickrImages) {
+    return [];
+  }
+
+  return flickrImages.filter((flickrImage) => {
     const flickrPhotoIdOfUploadedPostInArray = uploadedPost?.imageIds?.map(
       (e) => e.toString()
     );
@@ -50,9 +61,9 @@ export const useGetAlbumPostData = (indexOfMainImage: number) => {
   const { postId } = router.query;
   const flickrImages = useFlickrImagesSelector();
 
-  const queryClient = useQueryClient();
   const getAlbumPostsSelector = useGetAlbumPostsSelector();
   // return useMemo(() => {
+
   const albumPost = getAlbumPostsSelector?.data?.find(
     ({ id }) => id === Number(postId)
   );

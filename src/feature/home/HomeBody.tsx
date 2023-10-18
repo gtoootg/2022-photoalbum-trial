@@ -9,18 +9,11 @@ export const HomeBody = () => {
 
   const { data: flickrImages } = useFlickrImages();
 
-  console.log(process.env.NEXT_PUBLIC_NODE_ENV);
-  console.log(process.env.NEXT_PUBLIC_API_BASE_URL);
-
   if (!uploadedPosts || !flickrImages) {
     return null;
   }
 
   return (
-    <MediaCardGroup
-      flickrImages={flickrImages}
-      uploadedPosts={uploadedPosts}
-      uniqueId={"id"}
-    />
+    <MediaCardGroup flickrImages={flickrImages} uploadedPosts={uploadedPosts} />
   );
 };

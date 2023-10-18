@@ -16,3 +16,13 @@ export interface FlickrImageProps {
   url_n: string;
   width_h: number;
 }
+
+export interface ExifData {
+  photo: {
+    camera: string;
+    fNumber: string;
+    exposure: string;
+    focalLength: string;
+    iso: string;
+  };
+}

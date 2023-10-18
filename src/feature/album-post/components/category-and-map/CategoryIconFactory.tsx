@@ -2,8 +2,9 @@ import LandscapeIcon from "@mui/icons-material/Landscape";
 import FlightTakeoffIcon from "@mui/icons-material/FlightTakeoff";
 import DarkModeIcon from "@mui/icons-material/DarkMode";
 import LocationCityIcon from "@mui/icons-material/LocationCity";
+import { JSXElement } from "@typescript-eslint/types/dist/generated/ast-spec";
 
-export const IconFactory = ({ iconType }) => {
+export const IconFactory = ({ iconType }: { iconType: Category }) => {
   const iconRootStyles = {
     sx: { paddingLeft: "8px", fontSize: "2rem" },
   };
@@ -23,6 +24,8 @@ export const IconFactory = ({ iconType }) => {
   if (iconType === Category.CITY_VIEW) {
     return <LocationCityIcon {...iconRootStyles} />;
   }
+
+  return <></>;
 };
 
 export enum Category {

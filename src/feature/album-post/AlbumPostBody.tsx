@@ -12,8 +12,6 @@ import { useGetAlbumPosts } from "../../api/album-posts/use-get-album-posts.hook
 const AlbumPostBody = () => {
   const [indexOfMainImage, setIndexOfMainImage] = useState(0);
 
-  const { data } = useGetAlbumPosts();
-
   const { albumPost, mainImageId, imageSrcs, exifDataToUse } =
     useGetAlbumPostData(indexOfMainImage);
 
@@ -39,7 +37,7 @@ const AlbumPostBody = () => {
             description={albumPost.description}
           />
           <AlbumPostExifData exifDataOfMainImage={exifDataToUse} />
-          <CategoryAndMap uploadedPost={exifDataToUse} />
+          <CategoryAndMap uploadedPost={albumPost} />
         </Grid>
       </Grid>
       <AlbumPostDialogs uploadedPost={exifDataToUse} />

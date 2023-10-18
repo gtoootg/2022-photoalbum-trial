@@ -2,20 +2,15 @@ import { Grid } from "@mui/material";
 import MediaCard from "./MediaCard";
 import { GetAlbumPostsResponse } from "../../api/album-posts/album-posts.api.types";
 import { filterImageSourcesOfPostForMediaCard } from "../../feature/album-post/hooks/use-get-album-post.hooks";
+import { FlickrImageProps } from "../../api/flickr-images/flickr-images.api.types";
 
 export const MediaCardGroup = ({
   flickrImages,
   uploadedPosts,
-  uniqueId,
 }: {
-  flickrImages: any;
+  flickrImages: FlickrImageProps[];
   uploadedPosts: GetAlbumPostsResponse;
-  uniqueId: string;
 }) => {
-  if (!flickrImages) {
-    return null;
-  }
-
   return (
     <Grid container spacing={2} sx={{ marginTop: "3rem" }}>
       {uploadedPosts.map((uploadedPost, index) => {
@@ -30,7 +25,7 @@ export const MediaCardGroup = ({
               imageSrc={imageSrcForMediaCard}
               title={uploadedPost.title}
               description={uploadedPost.description}
-              index={uploadedPost[uniqueId]}
+              index={uploadedPost.id}
             />
           </Grid>
         );

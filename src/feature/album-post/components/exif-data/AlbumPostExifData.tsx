@@ -6,8 +6,19 @@ import CameraIcon from "@mui/icons-material/Camera";
 import NetworkWifi1BarIcon from "@mui/icons-material/NetworkWifi1Bar";
 import ShutterSpeedIcon from "@mui/icons-material/ShutterSpeed";
 import IsoIcon from "@mui/icons-material/Iso";
+import { ExifData } from "../../../../api/flickr-images/flickr-images.api.types";
+import { JSXElement } from "@typescript-eslint/types/dist/generated/ast-spec";
+import { ReactNode } from "react";
 
-const AlbumPostExifData = ({ exifDataOfMainImage }) => {
+const AlbumPostExifData = ({
+  exifDataOfMainImage,
+}: {
+  exifDataOfMainImage?: ExifData;
+}) => {
+  if (!exifDataOfMainImage) {
+    return null;
+  }
+
   const { camera, fNumber, exposure, focalLength, iso } = exifDataOfMainImage;
 
   return (
@@ -40,7 +51,13 @@ const AlbumPostExifData = ({ exifDataOfMainImage }) => {
 
 export default AlbumPostExifData;
 
-const IconAndExifData = ({ icon, exifData }) => {
+const IconAndExifData = ({
+  icon,
+  exifData,
+}: {
+  icon: ReactNode;
+  exifData: ReactNode;
+}) => {
   return (
     <Grid item className={styles.otherInfo_element} xs={5}>
       {icon}

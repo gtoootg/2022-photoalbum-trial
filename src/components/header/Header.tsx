@@ -3,12 +3,8 @@ import { useTranslation } from "next-i18next";
 import { DropDownMenu } from "../drop-down-menu/DropDownMenu";
 import { CommonButton } from "../button/CommonButton";
 import UploadIcon from "@mui/icons-material/Upload";
-import { getCountryDataOfAllUploadedPosts } from "../../helper/ui/UiHelperFunction.helper";
 import { useGetAlbumPosts } from "../../api/album-posts/use-get-album-posts.hooks";
-import {
-  useGetCommonCountries,
-  useGetCommonCountriesSelector,
-} from "../../api/common/countries/use-get-common-countries.hooks";
+import { useGetCommonCountries } from "../../api/common/countries/use-get-common-countries.hooks";
 import Box from "@mui/material/Box";
 import React from "react";
 import {

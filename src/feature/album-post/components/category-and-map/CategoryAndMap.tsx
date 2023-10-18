@@ -5,28 +5,36 @@ import styles from "./CategoryAndMap.module.scss";
 import { Category, IconFactory } from "./CategoryIconFactory";
 import { AlbumPostMapWithLinkButton } from "./components/map/AlbumPostMap";
 import { useGetCommonCategories } from "../../../../api/common/categories/use-get-common-categories.hooks";
+import { GetAlbumPostResponse } from "../../../../api/album-posts/album-posts.api.types";
 
-export const CategoryAndMap = ({ uploadedPost }) => {
+export const CategoryAndMap = ({
+  uploadedPost,
+}: {
+  uploadedPost: GetAlbumPostResponse;
+}) => {
   const { data: allCategories } = useGetCommonCategories();
-  const { categories } = uploadedPost;
+  const { categoryIds } = uploadedPost;
 
-  if (!uploadedPost || !allCategories || !categories) {
+  if (!allCategories || !categoryIds) {
     return <CircularProgress />;
   }
 
-  if (Object.keys(categories).length === 0) {
+  if (Object.keys(categoryIds).length === 0) {
     return null;
   }
 
   return (
     <Grid container item xs={12}>
       <Grid item xs={6} className={styles.category}>
-        {Object.keys(categories)?.map((categoryId, i) => {
+        {Object.keys(categoryIds)?.map((categoryId, i) => {
           const categoryIdAsNumber = Number(categoryId);
+          const category = allCategories.find(
+            ({ id }) => categoryIdAsNumber === id
+          );
           return (
             <ClickableChip
               key={i}
-              label={allCategories[categoryId].label}
+              label={category?.label || ""}
               color={chipColorByCategory(categoryIdAsNumber)}
               icon={<IconFactory iconType={categoryIdAsNumber} />}
               rootStyles={{ margin: "8px" }}
