@@ -5,10 +5,10 @@ export default function Map() {
   return <MapBody />;
 }
 
-// export async function getStaticProps({ locale }: { locale: string }) {
-//   return {
-//     props: {
-//       ...(await serverSideTranslations(locale, ["common", "map"])),
-//     },
-//   };
-// }
+export async function getStaticProps({ locale }: { locale: string }) {
+  return {
+    props: {
+      ...(await serverSideTranslations(locale, ["common", "map"])),
+    },
+  };
+}

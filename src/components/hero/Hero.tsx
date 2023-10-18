@@ -1,7 +1,7 @@
 import style from "./Hero.module.scss";
 import Image from "next/image";
 import { HeroProps } from "./Hero.types";
-import { Text } from "../text/Text";
+import { MgText } from "../text/MgText";
 import { ImageTransition } from "../image-transition/ImageTransition";
 
 export const Hero = ({
@@ -24,8 +24,8 @@ export const Hero = ({
           />
         </div>
         <div className={style.hero_text}>
-          <Text variant={"h1"} content={title} />
-          <Text variant={"h3"} content={caption} />
+          <MgText variant={"h1"} content={title} />
+          <MgText variant={"h3"} content={caption} />
         </div>
       </div>
     );
@@ -45,8 +45,8 @@ export const Hero = ({
       </div>
 
       <div className={style.hero_text}>
-        <Text variant={"h1"} content={title} />
-        <Text variant={"h3"} content={caption} />
+        <MgText variant={"h1"} content={title} />
+        <MgText variant={"h3"} content={caption} />
       </div>
     </div>
   );

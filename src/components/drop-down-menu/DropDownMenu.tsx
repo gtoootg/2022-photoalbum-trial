@@ -1,8 +1,9 @@
 import Button from "@mui/material/Button";
 import Menu from "@mui/material/Menu";
 import MenuItem from "@mui/material/MenuItem";
-import { useState } from "react";
-import Link from "next/link";
+import React, { useState } from "react";
+import { MgLink } from "../link/MgLink";
+import { MgText } from "../text/MgText";
 
 interface DropDownMenuProps<DropDownMenuItemProps> {
   label: string;
@@ -57,11 +58,11 @@ export const DropDownMenu = <T extends any>({
               }}
             >
               {item.link ? (
-                <Link href={item.link} color="inherit">
-                  {item.label}
-                </Link>
+                <MgLink href={item.link}>
+                  <MgText content={item.label} />
+                </MgLink>
               ) : (
-                <>{item.label}</>
+                <MgText content={item.label} />
               )}
             </MenuItem>
           );

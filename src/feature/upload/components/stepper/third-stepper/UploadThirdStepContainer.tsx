@@ -1,7 +1,7 @@
 import { Autocomplete, Box, Grid, TextField } from "@mui/material";
 
 import { useTranslation } from "next-i18next";
-import { Text } from "../../../../../components/text/Text";
+import { MgText } from "../../../../../components/text/MgText";
 
 import styles from "./UploadThirdStepContainer.module.scss";
 import {
@@ -38,7 +38,7 @@ export default function UploadThirdStepContainer() {
     >
       <Grid container spacing={5}>
         <Grid item xs={7}>
-          <Text
+          <MgText
             variant={"h6"}
             className={styles.formField_headline}
             content={t("stepper.thirdStep.uploadData.country.headline", {

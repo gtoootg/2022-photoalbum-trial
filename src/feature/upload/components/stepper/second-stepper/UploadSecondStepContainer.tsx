@@ -1,7 +1,7 @@
 import styled from "@emotion/styled";
 import { Box, TextField } from "@mui/material";
 import { useTranslation } from "next-i18next";
-import { Text } from "../../../../../components/text/Text";
+import { MgText } from "../../../../../components/text/MgText";
 
 import styles from "./UploadSecondStepContainer.module.scss";
 import {
@@ -24,20 +24,20 @@ export default function UploadSecondStepContainer() {
   if (activeStep >= 2) {
     return (
       <Box className={styles.box}>
-        <Text
+        <MgText
           variant={"subtitle2"}
           className={styles.preview_title}
           content={t("stepper.secondStep.uploadData.title", { ns: "upload" })}
         />
-        <Text variant={"body2"} content={uploadingTitle} />
+        <MgText variant={"body2"} content={uploadingTitle} />
         <br />
-        <Text
+        <MgText
           variant={"subtitle2"}
           content={t("stepper.secondStep.uploadData.description", {
             ns: "upload",
           })}
         />
-        <Text variant={"body2"} content={uploadingDescription} />
+        <MgText variant={"body2"} content={uploadingDescription} />
       </Box>
     );
   }

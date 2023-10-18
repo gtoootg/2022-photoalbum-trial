@@ -1,8 +1,9 @@
-import { Typography } from "@mui/material";
+import { SxProps, Typography } from "@mui/material";
+import { ReactNode } from "react";
 
-export const Text = ({ content, variant, className }: TextProps) => {
+export const MgText = ({ content, variant, className, sx }: TextProps) => {
   return (
-    <Typography className={className} variant={variant}>
+    <Typography className={className} variant={variant} sx={sx}>
       {content}
     </Typography>
   );
@@ -25,6 +26,7 @@ interface TextProps {
     | "overline"
     | "inherit";
 
-  content: string;
+  content: ReactNode;
   className?: string;
+  sx?: SxProps;
 }

@@ -1,7 +1,7 @@
 import { Box, Grid } from "@mui/material";
 import Image from "next/image";
 import styles from "./PreviewImageListBox.module.scss";
-import { Text } from "../text/Text";
+import { MgText } from "../text/MgText";
 import { useUploadingFlickrImages } from "../../feature/upload/components/stepper/first-stepper/hooks/use-uploading-flickr-images.hooks";
 
 export const PreviewImageListBox = ({
@@ -17,7 +17,7 @@ export const PreviewImageListBox = ({
 
   return (
     <Box>
-      <Text variant={"body2"} content={helperText} />
+      <MgText variant={"body2"} content={helperText} />
       <Grid container spacing={1}>
         {flickrImagesToUse.map(({ url_n, id }) => (
           <Grid key={id} item xs={2.4}>

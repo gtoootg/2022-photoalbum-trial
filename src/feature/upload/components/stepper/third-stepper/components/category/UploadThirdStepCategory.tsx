@@ -1,4 +1,4 @@
-import { Text } from "../../../../../../../components/text/Text";
+import { MgText } from "../../../../../../../components/text/MgText";
 import { CheckboxGroup } from "../../../../../../../components/checkbox-group/CheckboxGroup";
 import styles from "../../UploadThirdStepContainer.module.scss";
 
@@ -19,7 +19,7 @@ export const UploadThirdStepCategory = () => {
 
   return (
     <>
-      <Text
+      <MgText
         variant={"h6"}
         content={t("stepper.thirdStep.uploadData.category.headline", {
           ns: "upload",

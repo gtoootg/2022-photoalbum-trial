@@ -7,13 +7,9 @@ import { getCountryDataOfAllUploadedPosts } from "../../helper/ui/UiHelperFuncti
 import { useGetAlbumPosts } from "../../api/album-posts/use-get-album-posts.hooks";
 import { useGetCommonCountries } from "../../api/common/countries/use-get-common-countries.hooks";
 import Box from "@mui/material/Box";
-import { useRouter } from "next/router";
-import { Link } from "@mui/material";
 import React from "react";
-import Typography from "@mui/material/Typography";
 
 export default function Header() {
-  const router = useRouter();
   const { t } = useTranslation();
 
   const { data: countries } = useGetCommonCountries();
@@ -42,7 +38,7 @@ export default function Header() {
             className={classes.header_container_navigation_element}
             variant={"text"}
             text={t("header.navigation.top")}
-            onClick={() => router.push("/")}
+            link={"/"}
           />
           <DropDownMenu
             classNameForLabelColor={classes.header_container_navigation_element}
@@ -59,14 +55,13 @@ export default function Header() {
             variant={"text"}
             text={t("header.navigation.map")}
             link={"/map"}
-            // onClick={() => router.push("/map")}
           />
           <CommonButton
             className={classes.header_container_navigation_element}
             startIcon={<UploadIcon />}
             variant={"contained"}
             text={t("header.navigation.upload")}
-            onClick={() => router.push("/upload")}
+            link={"/upload"}
           />
         </Box>
       </Box>
