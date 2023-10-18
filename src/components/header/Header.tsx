@@ -8,6 +8,9 @@ import { useGetAlbumPosts } from "../../api/album-posts/use-get-album-posts.hook
 import { useGetCommonCountries } from "../../api/common/countries/use-get-common-countries.hooks";
 import Box from "@mui/material/Box";
 import { useRouter } from "next/router";
+import { Link } from "@mui/material";
+import React from "react";
+import Typography from "@mui/material/Typography";
 
 export default function Header() {
   const router = useRouter();
@@ -39,7 +42,7 @@ export default function Header() {
             className={classes.header_container_navigation_element}
             variant={"text"}
             text={t("header.navigation.top")}
-            link={"/"}
+            onClick={() => router.push("/")}
           />
           <DropDownMenu
             classNameForLabelColor={classes.header_container_navigation_element}
@@ -56,13 +59,14 @@ export default function Header() {
             variant={"text"}
             text={t("header.navigation.map")}
             link={"/map"}
+            // onClick={() => router.push("/map")}
           />
           <CommonButton
             className={classes.header_container_navigation_element}
             startIcon={<UploadIcon />}
             variant={"contained"}
             text={t("header.navigation.upload")}
-            link={"/upload"}
+            onClick={() => router.push("/upload")}
           />
         </Box>
       </Box>

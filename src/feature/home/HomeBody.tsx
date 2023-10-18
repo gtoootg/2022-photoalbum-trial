@@ -1,3 +1,5 @@
+"use client";
+
 import { MediaCardGroup } from "../../components/media-card/MediaCardGroup";
 import { useGetAlbumPosts } from "../../api/album-posts/use-get-album-posts.hooks";
 import { useFlickrImages } from "../../api/flickr-images/use-get-flickr-images.hooks";

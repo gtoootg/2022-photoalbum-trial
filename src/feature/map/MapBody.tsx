@@ -1,13 +1,16 @@
+"use client";
+
 import GoogleMapApi from "../../components/google-map/GoogleMapApi";
 
-import { useGetAlbumPosts } from "../../api/album-posts/use-get-album-posts.hooks";
+import { useGetAlbumPostsSelector } from "../../api/album-posts/use-get-album-posts.hooks";
 import { useMapSelectedPostId } from "./state/use-map-selected-post-id.reactive-vars";
 import { useFlickrImages } from "../../api/flickr-images/use-get-flickr-images.hooks";
 import { MapBodyPreviewDialog } from "./components/dialog/preview-dialog/MapBodyPreviewDialog";
+import { useQueryClient } from "react-query";
 
 export const MapBody = () => {
   const { data: flickrImages } = useFlickrImages();
-  const { data: uploadedPosts } = useGetAlbumPosts();
+  const getAlbumPostsSelector = useGetAlbumPostsSelector();
   const [selectedPostId, setSelectedPostId] = useMapSelectedPostId();
 
   const getUrlOfFirstImageOfUploadedPost = (post) => {
@@ -21,9 +24,9 @@ export const MapBody = () => {
   };
 
   const getClusterItems =
-    uploadedPosts &&
+    getAlbumPostsSelector?.data &&
     flickrImages &&
-    uploadedPosts.map((post) => {
+    getAlbumPostsSelector.data.map((post) => {
       return {
         id: post.id,
         lat: post.lat,

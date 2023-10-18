@@ -51,11 +51,11 @@ export const useGetAlbumPostData = (indexOfMainImage: number) => {
   const flickrImages = useFlickrImagesSelector();
 
   const queryClient = useQueryClient();
-  console.log("aaa", queryClient.getQueryData("albumPosts"));
+  const getAlbumPostsSelector = useGetAlbumPostsSelector();
   // return useMemo(() => {
-  const albumPost = queryClient
-    .getQueryData("albumPosts")
-    ?.data?.find(({ id }) => id === Number(postId));
+  const albumPost = getAlbumPostsSelector?.data?.find(
+    ({ id }) => id === Number(postId)
+  );
   const mainImageId = albumPost?.imageIds[indexOfMainImage];
   const { data: exifDataOfMainImage } = useGetExifData(mainImageId);
   const exifDataToUse =
@@ -64,10 +64,6 @@ export const useGetAlbumPostData = (indexOfMainImage: number) => {
     flickrImages,
     albumPost
   ).map((flickrImage) => flickrImage["url_h"]);
-
-  console.log("albumPost", albumPost);
-  console.log("mainImageId", mainImageId);
-  console.log("imageSrcs", imageSrcs);
 
   return { albumPost, mainImageId, imageSrcs, exifDataToUse };
   // }, [postId, albumPosts, flickrImages]);

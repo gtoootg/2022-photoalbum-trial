@@ -5,6 +5,7 @@ import CardContent from "@mui/material/CardContent";
 import Typography from "@mui/material/Typography";
 import Image from "next/image";
 import Link from "next/link";
+import { useRouter } from "next/router";
 
 interface MediaCardProps {
   imageSrc: string;
@@ -19,6 +20,7 @@ export default function MediaCard({
   description,
   index,
 }: MediaCardProps) {
+  const router = useRouter();
   return (
     <Card>
       <div
@@ -45,9 +47,9 @@ export default function MediaCard({
         </Typography>
       </CardContent>
       <CardActions>
-        <Link href={`/album-posts/[index]`} as={`/album-posts/${index}`}>
+        <Typography onClick={() => router.push(`/album-posts/${index}`)}>
           See detail
-        </Link>
+        </Typography>
       </CardActions>
     </Card>
   );

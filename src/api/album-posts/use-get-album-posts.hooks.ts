@@ -19,5 +19,5 @@ export const useGetAlbumPosts = () => {
 export const useGetAlbumPostsSelector =
   (): AxiosResponse<GetAlbumPostsResponse> => {
     const queryClient = useQueryClient();
-    return useMemo(() => queryClient.getQueryData("albumPosts"), [queryClient]);
+    return queryClient.getQueryData("albumPosts");
   };

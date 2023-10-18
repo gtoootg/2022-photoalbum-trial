@@ -7,9 +7,12 @@ import { CategoryAndMap } from "./components/category-and-map/CategoryAndMap";
 import { AlbumPostDialogs } from "./dialog/AlbumPostDialogs";
 import { AlbumPostContextProvider } from "./context-provider/AlbumPostContextProvider";
 import { useGetAlbumPostData } from "./hooks/use-get-album-post.hooks";
+import { useGetAlbumPosts } from "../../api/album-posts/use-get-album-posts.hooks";
 
 const AlbumPostBody = () => {
   const [indexOfMainImage, setIndexOfMainImage] = useState(0);
+
+  const { data } = useGetAlbumPosts();
 
   const { albumPost, mainImageId, imageSrcs, exifDataToUse } =
     useGetAlbumPostData(indexOfMainImage);
