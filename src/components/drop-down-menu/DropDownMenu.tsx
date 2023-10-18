@@ -59,7 +59,7 @@ export const DropDownMenu = <T extends any>({
             >
               {item.link ? (
                 <MgLink href={item.link}>
-                  <MgText content={item.label} />
+                  <MgText content={item.label} color={"black"} />
                 </MgLink>
               ) : (
                 <MgText content={item.label} />

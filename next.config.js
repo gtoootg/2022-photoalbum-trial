@@ -15,9 +15,8 @@ const nextConfig = {
     };
     return config;
   },
-
   env: {
-    API_DEV: process.env.NEXT_PUBLIC_API_BASE_URL_BASE_URL,
+    API_DEV: process.env.NEXT_PUBLIC_API_BASE_URL,
   },
 };
 

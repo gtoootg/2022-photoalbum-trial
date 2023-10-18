@@ -3,6 +3,7 @@ import React from "react";
 import { MgText } from "../text/MgText";
 import Link from "next/link";
 import classes from "./CommonButton.module.scss";
+import { MgLink } from "../link/MgLink";
 
 interface CommonButtonProps {
   onClick?: () => void;
@@ -33,9 +34,7 @@ export const CommonButton = ({
       className={className}
     >
       {link ? (
-        <Link href={link} className={classes.textLink}>
-          {text}
-        </Link>
+        <MgLink href={link} children={text} />
       ) : (
         <MgText content={text} variant={"body1"} />
       )}

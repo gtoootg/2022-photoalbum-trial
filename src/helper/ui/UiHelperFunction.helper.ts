@@ -1,6 +1,9 @@
+import { GetAlbumPostsResponse } from "../../api/album-posts/album-posts.api.types";
+import { GetCommonCountriesResponse } from "../../api/common/countries/common-countries.api.types";
+
 export const getCountryDataOfAllUploadedPosts = (
-  uploadedPosts,
-  allCountries
+  uploadedPosts: GetAlbumPostsResponse,
+  allCountries: GetCommonCountriesResponse
 ) => {
   const arrayOfCountryId: number[] = [];
 

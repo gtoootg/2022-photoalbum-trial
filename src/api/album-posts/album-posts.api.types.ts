@@ -6,7 +6,7 @@ export interface GetAlbumPostResponse {
   lat: number;
   lng: number;
   imageIds: number[];
-  categoryIds: number[];
+  categoryIds: Record<number, number[]>;
 }
 
 export type GetAlbumPostsResponse = GetAlbumPostResponse[];

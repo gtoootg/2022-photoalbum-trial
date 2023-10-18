@@ -16,8 +16,9 @@ export const useGetAlbumPosts = () => {
   return { isLoading, error, result, data: result?.data };
 };
 
-export const useGetAlbumPostsSelector =
-  (): AxiosResponse<GetAlbumPostsResponse> => {
-    const queryClient = useQueryClient();
-    return queryClient.getQueryData("albumPosts");
-  };
+export const useGetAlbumPostsSelector = ():
+  | AxiosResponse<GetAlbumPostsResponse>
+  | undefined => {
+  const queryClient = useQueryClient();
+  return queryClient.getQueryData("albumPosts");
+};

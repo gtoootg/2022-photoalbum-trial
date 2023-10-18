@@ -5,27 +5,24 @@ import { CommonButton } from "../button/CommonButton";
 import UploadIcon from "@mui/icons-material/Upload";
 import { getCountryDataOfAllUploadedPosts } from "../../helper/ui/UiHelperFunction.helper";
 import { useGetAlbumPosts } from "../../api/album-posts/use-get-album-posts.hooks";
-import { useGetCommonCountries } from "../../api/common/countries/use-get-common-countries.hooks";
+import {
+  useGetCommonCountries,
+  useGetCommonCountriesSelector,
+} from "../../api/common/countries/use-get-common-countries.hooks";
 import Box from "@mui/material/Box";
 import React from "react";
+import {
+  useCategoriesFromAlbumPostsForHeader,
+  useCountriesFromAlbumPostsForHeader,
+} from "./hooks/use-data-for-header.hooks";
 
 export default function Header() {
   const { t } = useTranslation();
-
   const { data: countries } = useGetCommonCountries();
   const { data: uploadedPosts } = useGetAlbumPosts();
 
-  const countryDataOfAllUploadedPosts = getCountryDataOfAllUploadedPosts(
-    uploadedPosts,
-    countries
-  );
-
-  const countriesLabel =
-    countryDataOfAllUploadedPosts &&
-    countryDataOfAllUploadedPosts.map((country) => ({
-      label: country?.name.common,
-      link: `/country/${country?.ccn3}`,
-    }));
+  const countryMenu = useCountriesFromAlbumPostsForHeader();
+  const categoryMenu = useCategoriesFromAlbumPostsForHeader();
 
   return (
     <Box className={classes.header}>
@@ -43,12 +40,12 @@ export default function Header() {
           <DropDownMenu
             classNameForLabelColor={classes.header_container_navigation_element}
             label={t("header.navigation.country")}
-            menuItems={countriesLabel ? countriesLabel : []}
+            menuItems={countryMenu || []}
           />
           <DropDownMenu
             classNameForLabelColor={classes.header_container_navigation_element}
             label={t("header.navigation.category")}
-            menuItems={[]}
+            menuItems={categoryMenu || []}
           />
           <CommonButton
             className={classes.header_container_navigation_element}
