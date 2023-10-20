@@ -4,8 +4,7 @@ import { useMemo } from "react";
 import { useGetCommonCategories } from "../../../api/common/categories/use-get-common-categories.hooks";
 
 export const useCountriesFromAlbumPostsForHeader = () => {
-  const getAlbumPostsSelector = useGetAlbumPostsSelector();
-  const albumPosts = getAlbumPostsSelector?.data;
+  const { data: albumPosts } = useGetAlbumPostsSelector();
   const { data: allCountries } = useGetCommonCountries();
 
   return useMemo(() => {
@@ -32,8 +31,7 @@ export const useCountriesFromAlbumPostsForHeader = () => {
 };
 
 export const useCategoriesFromAlbumPostsForHeader = () => {
-  const getAlbumPostsSelector = useGetAlbumPostsSelector();
-  const albumPosts = getAlbumPostsSelector?.data;
+  const { data: albumPosts } = useGetAlbumPostsSelector();
   const { data: categories } = useGetCommonCategories();
 
   return useMemo(() => {

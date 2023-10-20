@@ -1,7 +1,7 @@
 import { Grid } from "@mui/material";
 import Image from "next/image";
 import styles from "./ImageSlider.module.scss";
-import {useState} from "react";
+import { useState } from "react";
 
 interface ImageSliderProps {
   imagesSrc: string[];
@@ -14,25 +14,29 @@ const ImageSlider = ({
   handleClickSubImage,
   indexOfMainImage,
 }: ImageSliderProps) => {
-  const [defaultIndexOfMainImage,setDefaultIndexOfMainImage]= useState(0)
-  const mainImageToRender = indexOfMainImage ? imagesSrc[indexOfMainImage]: imagesSrc[defaultIndexOfMainImage]
+  const [defaultIndexOfMainImage, setDefaultIndexOfMainImage] = useState(0);
+  const mainImageToRender = indexOfMainImage
+    ? imagesSrc[indexOfMainImage]
+    : imagesSrc[defaultIndexOfMainImage];
 
   return (
     <Grid container>
       <MainImage imageSrc={mainImageToRender} />
       <SubImageGroup
         subImagesSrc={imagesSrc}
-        indexOfMainImage={ indexOfMainImage? indexOfMainImage: defaultIndexOfMainImage}
-        handleClickSubImage={(i)=>{
-          handleClickSubImage && handleClickSubImage
-          setDefaultIndexOfMainImage(i)
+        indexOfMainImage={
+          indexOfMainImage ? indexOfMainImage : defaultIndexOfMainImage
+        }
+        handleClickSubImage={(i) => {
+          handleClickSubImage && handleClickSubImage(i);
+          setDefaultIndexOfMainImage(i);
         }}
       />
     </Grid>
   );
 };
 
-const MainImage = ({ imageSrc }) => {
+const MainImage = ({ imageSrc }: { imageSrc: string }) => {
   return (
     <Grid item xs={12}>
       <div className={styles.mainImage}>
@@ -53,6 +57,10 @@ const SubImageGroup = ({
   subImagesSrc,
   indexOfMainImage,
   handleClickSubImage,
+}: {
+  subImagesSrc: string[];
+  indexOfMainImage: number;
+  handleClickSubImage: (i: number) => void;
 }) => {
   return (
     <Grid

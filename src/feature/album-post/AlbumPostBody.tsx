@@ -6,14 +6,19 @@ import { Grid } from "@mui/material";
 import { CategoryAndMap } from "./components/category-and-map/CategoryAndMap";
 import { AlbumPostDialogs } from "./dialog/AlbumPostDialogs";
 import { AlbumPostContextProvider } from "./context-provider/AlbumPostContextProvider";
-import { useGetAlbumPostData } from "./hooks/use-get-album-post.hooks";
-import { useGetAlbumPosts } from "../../api/album-posts/use-get-album-posts.hooks";
+import {
+  useExifDataOfAlbumPost,
+  useGetAlbumPostData,
+} from "./hooks/use-get-album-post.hooks";
 
 const AlbumPostBody = () => {
   const [indexOfMainImage, setIndexOfMainImage] = useState(0);
 
-  const { albumPost, mainImageId, imageSrcs, exifDataToUse } =
-    useGetAlbumPostData(indexOfMainImage);
+  const { albumPost, imageSrcs } = useGetAlbumPostData(indexOfMainImage);
+
+  const exifDataToUse = useExifDataOfAlbumPost(indexOfMainImage);
+
+  console.log(exifDataToUse);
 
   if (!albumPost) {
     return null;
@@ -46,45 +51,3 @@ const AlbumPostBody = () => {
 };
 
 export default AlbumPostBody;
-
-// const getExifDataOfFlickrImage = async (uploadedPost, indexOfMainImage) => {
-//   let result;
-//   const res = () => {
-//     return new Promise((resolve) => {
-//       axios
-//         .get(
-//           `http://localhost:3000/api/get/exif/${uploadedPost.flickrPhotoId[indexOfMainImage]}`
-//         )
-//         .then((res) => {
-//           result = res.data;
-//           resolve(res);
-//         })
-//         .catch((error) => {
-//           console.log(error);
-//         });
-//     });
-//   };
-//
-//   await res();
-//   return result;
-// };
-
-const transformExifDataForAlbumPostContent = (exifData) => {
-  if (!exifData) {
-    return undefined;
-  }
-
-  const filterExifData = (tagName) => {
-    return exifData.photo.exif.filter((data) => data.tag === tagName)[0]?.raw[
-      "_content"
-    ];
-  };
-
-  return {
-    camera: exifData.photo.camera,
-    iso: filterExifData("ISO"),
-    fNumber: filterExifData("FNumber"),
-    exposure: filterExifData("ExposureTime"),
-    focalLength: filterExifData("FocalLength"),
-  };
-};

@@ -3,7 +3,7 @@ import { serverSideTranslations } from "next-i18next/serverSideTranslations";
 
 import { HomeBody } from "../feature/home/HomeBody";
 
-const Home: NextPage = () => {
+const Home = () => {
   return <HomeBody />;
 };
 

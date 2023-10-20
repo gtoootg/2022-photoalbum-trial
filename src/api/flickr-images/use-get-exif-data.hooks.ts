@@ -1,10 +1,10 @@
 import axios, { AxiosError, AxiosResponse } from "axios";
 import { useQuery } from "react-query";
-import { ExifData } from "./flickr-images.api.types";
+import { ExifData, GetExifDataResponse } from "./flickr-images.api.types";
 
 export const useGetExifData = (imageId?: number) => {
   const { isLoading, error, data } = useQuery<
-    AxiosResponse<ExifData>,
+    AxiosResponse<GetExifDataResponse>,
     AxiosError
   >({
     queryKey: ["getExifData"],

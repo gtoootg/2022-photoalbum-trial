@@ -1,6 +1,7 @@
-import axios, { AxiosError } from "axios";
+import axios, { AxiosError, AxiosResponse } from "axios";
 import { useQuery, useQueryClient } from "react-query";
 import { FlickrImageProps } from "./flickr-images.api.types";
+import { QueryState } from "react-query/types/core/query";
 
 export const useFlickrImages = () => {
   const { isLoading, error, data } = useQuery<FlickrImageProps[], AxiosError>({
@@ -14,8 +15,14 @@ export const useFlickrImages = () => {
   return { isLoading, error, data };
 };
 
-export const useFlickrImagesSelector = (): FlickrImageProps[] => {
+export const useFlickrImagesSelector = () => {
   const queryClient = useQueryClient();
 
-  return queryClient.getQueryData("flickrImage");
+  const result: QueryState<FlickrImageProps[]> | undefined =
+    queryClient.getQueryState("flickrImages");
+
+  const data = result?.data;
+  const isLoading = result?.status === "loading";
+
+  return { data, isLoading };
 };

@@ -1,7 +1,7 @@
 import { useQuery, useQueryClient } from "react-query";
 import axios, { AxiosError, AxiosResponse } from "axios";
 import { GetAlbumPostsResponse } from "./album-posts.api.types";
-import { useMemo } from "react";
+import { QueryState } from "react-query/types/core/query";
 
 export const useGetAlbumPosts = () => {
   const { isLoading, error, data } = useQuery<
@@ -16,9 +16,13 @@ export const useGetAlbumPosts = () => {
   return { isLoading, error, result, data: result?.data };
 };
 
-export const useGetAlbumPostsSelector = ():
-  | AxiosResponse<GetAlbumPostsResponse>
-  | undefined => {
+export const useGetAlbumPostsSelector = () => {
   const queryClient = useQueryClient();
-  return queryClient.getQueryData("albumPosts");
+  const result: QueryState<AxiosResponse<GetAlbumPostsResponse>> | undefined =
+    queryClient?.getQueryState("albumPosts");
+
+  const data = result?.data?.data;
+  const isLoading = result?.status === "loading";
+
+  return { data, isLoading };
 };

@@ -17,12 +17,30 @@ export interface FlickrImageProps {
   width_h: number;
 }
 
-export interface ExifData {
+export interface GetExifDataResponse {
   photo: {
+    id: string;
+    secret: string;
+    server: string;
+    fam: number;
     camera: string;
-    fNumber: string;
-    exposure: string;
-    focalLength: string;
-    iso: string;
+    exif: {
+      tagspace: string;
+      tagspaceid: number;
+      tag: string;
+      label: string;
+      raw: {
+        _content: string;
+      };
+    }[];
   };
+  stat: string;
+}
+
+export interface ExifData {
+  camera: string;
+  fNumber: string;
+  exposure: string;
+  focalLength: string;
+  iso: string;
 }
