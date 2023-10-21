@@ -14,11 +14,9 @@ import {
 const AlbumPostBody = () => {
   const [indexOfMainImage, setIndexOfMainImage] = useState(0);
 
-  const { albumPost, imageSrcs } = useGetAlbumPostData(indexOfMainImage);
+  const { albumPost, imageSrcs } = useGetAlbumPostData();
 
   const exifDataToUse = useExifDataOfAlbumPost(indexOfMainImage);
-
-  console.log(exifDataToUse);
 
   if (!albumPost) {
     return null;

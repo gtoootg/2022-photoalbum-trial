@@ -19,10 +19,6 @@ export const CategoryAndMap = ({
     return <CircularProgress />;
   }
 
-  if (Object.keys(categoryIds).length === 0) {
-    return null;
-  }
-
   return (
     <Grid container item xs={12}>
       <Grid item xs={6} className={styles.category}>

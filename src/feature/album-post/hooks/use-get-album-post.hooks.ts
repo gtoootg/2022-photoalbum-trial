@@ -36,10 +36,10 @@ const transformExifDataForAlbumPostContent = (
 
   return {
     camera: exifData.photo.camera,
-    iso: filterExifData("ISO") || "",
-    fNumber: filterExifData("FNumber") || "",
-    exposure: filterExifData("ExposureTime") || "",
-    focalLength: filterExifData("FocalLength") || "",
+    iso: filterExifData("ISO") || "---",
+    fNumber: filterExifData("FNumber") || "---",
+    exposure: filterExifData("ExposureTime") || "---",
+    focalLength: filterExifData("FocalLength") || "---",
   };
 };
 
@@ -61,12 +61,12 @@ export const filterImageSourcesOfPostForMediaCard = (
   });
 };
 
-export const useGetAlbumPostData = (indexOfMainImage: number) => {
+export const useGetAlbumPostData = () => {
   const router = useRouter();
   const { postId } = router.query;
 
-  const { data: albumPosts } = useGetAlbumPostsSelector();
-  const { data: flickrImages } = useFlickrImagesSelector();
+  const { data: albumPosts } = useGetAlbumPosts();
+  const { data: flickrImages } = useFlickrImages();
 
   const albumPost = albumPosts?.find(({ id }) => id === Number(postId));
 
@@ -74,12 +74,6 @@ export const useGetAlbumPostData = (indexOfMainImage: number) => {
     flickrImages,
     albumPost
   ).map((flickrImage) => flickrImage["url_h"]);
-  // const mainImageId = useMemo(
-  //   () => albumPost?.imageIds[indexOfMainImage],
-  //   [albumPost, indexOfMainImage]
-  // );
-  // const { data: exifDataOfMainImage } = useGetExifData(mainImageId);
-  // const exifDataToUse =transformExifDataForAlbumPostContent(exifDataOfMainImage)
 
   return { albumPost, imageSrcs };
 };
@@ -91,10 +85,6 @@ export const useExifDataOfAlbumPost = (indexOfMainImage: number) => {
     () => albumPost?.imageIds[indexOfMainImage],
     [albumPost, indexOfMainImage]
   );
-
-  useEffect(() => {
-    console.log(mainImageId);
-  }, [indexOfMainImage]);
 
   const { data: exifDataOfMainImage } = useGetExifData(mainImageId);
 
