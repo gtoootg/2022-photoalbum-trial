@@ -5,18 +5,28 @@ import {
   AlbumPostGeneralInformationTextGroupStyled,
 } from "./AlbumPostGeneralInformationTextGroup.styled";
 import { useState } from "react";
-import TextField from "@mui/material/TextField";
 import { useTranslation } from "next-i18next";
 import { Box } from "@mui/material";
 import { StepperSecondStepTextFieldStyled } from "../../../../../upload/components/stepper/second-stepper/UploadSecondStepContainer";
 import { CommonButton } from "../../../../../../components/button/CommonButton";
-import Button from "@mui/material/Button";
+import { useUpdateAlbumPost } from "../../../../../../api/album-posts/use-update-album-post.hooks";
+import { router } from "next/client";
 
 export const AlbumPostGeneralInformationTextGroup = () => {
+  const { postId } = router.query;
   const { t } = useTranslation();
-  const [isEditMode, setIsEditMode] = useState(false);
-
   const { albumPost } = useGetAlbumPostData();
+  const [isEditMode, setIsEditMode] = useState(false);
+  const [titleToUpdate, setTitleToUpdate] = useState(albumPost?.title || "");
+  const [descriptionToUpdate, setDescriptionToUpdate] = useState(
+    albumPost?.description || ""
+  );
+
+  const { mutate: updateAlbumPost } = useUpdateAlbumPost({
+    onSuccessCallback: () => {
+      setIsEditMode(false);
+    },
+  });
 
   if (!albumPost) {
     return null;
@@ -34,26 +44,33 @@ export const AlbumPostGeneralInformationTextGroup = () => {
         <StepperSecondStepTextFieldStyled
           required
           id="outlined-required"
-          label={t("stepper.secondStep.uploadData.title", { ns: "upload" })}
-          onChange={(e) => {}}
-          value={title}
+          label={t("generalInformation.edit.title", { ns: "album-post" })}
+          onChange={(e) => setTitleToUpdate(e.target.value)}
+          value={titleToUpdate}
         />
         <StepperSecondStepTextFieldStyled
           required
           multiline
           id="outlined-required"
-          label={t("stepper.secondStep.uploadData.description", {
-            ns: "upload",
+          label={t("generalInformation.edit.title", {
+            ns: "album-post",
           })}
-          onChange={(e) => {}}
-          value={description}
+          onChange={(e) => setDescriptionToUpdate(e.target.value)}
+          value={descriptionToUpdate}
         />
         <Box display={"flex"} justifyContent={"flex-end"}>
           <CommonButton
             variant={"contained"}
             text={"submit"}
             onClick={() => {
-              setIsEditMode(false);
+              if (typeof postId !== "string") {
+                return;
+              }
+              updateAlbumPost({
+                id: Number(postId),
+                title: titleToUpdate,
+                description: descriptionToUpdate,
+              });
             }}
           />
         </Box>

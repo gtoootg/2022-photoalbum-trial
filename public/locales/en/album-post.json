@@ -3,5 +3,11 @@
     "dialog-link": {
       "button": "Open the map"
     }
+  },
+  "generalInformation": {
+    "edit": {
+      "title": "Title",
+      "description":"Description"
+    }
   }
 }

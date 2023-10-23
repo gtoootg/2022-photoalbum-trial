@@ -20,3 +20,9 @@ export interface UploadAlbumPostRequest {
   imageIds: string[];
   categoryIds: Record<number, string[]>;
 }
+
+export interface UpdateAlbumPostRequest {
+  id: number;
+  title?: string;
+  description?: string;
+}
