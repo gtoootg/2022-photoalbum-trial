@@ -10,7 +10,7 @@ import {
   useUploadingTitle,
 } from "../../../state/use-upload-data.reactive-vars";
 
-const StepperSecondStepTextFieldStyled = styled(TextField)(() => ({
+export const StepperSecondStepTextFieldStyled = styled(TextField)(() => ({
   marginBottom: "1rem",
 }));
 

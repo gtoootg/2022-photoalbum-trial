@@ -79,7 +79,7 @@ export const useGetAlbumPostData = () => {
 };
 
 export const useExifDataOfAlbumPost = (indexOfMainImage: number) => {
-  const { albumPost } = useGetAlbumPostData(indexOfMainImage);
+  const { albumPost } = useGetAlbumPostData();
 
   const mainImageId = useMemo(
     () => albumPost?.imageIds[indexOfMainImage],

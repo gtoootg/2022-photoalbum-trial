@@ -1,23 +1,22 @@
 import { CommonDialog } from "../../../../../components/dialog/CommonDialog";
-import { useContext } from "react";
-import { AlbumPostOpeningDialogContext } from "../../../context-provider/AlbumPostContextProvider";
 import styles from "./AlbumPostMapDialog.module.scss";
 import { AlbumPostMap } from "../../../components/category-and-map/components/map/AlbumPostMap";
+import { GetAlbumPostResponse } from "../../../../../api/album-posts/album-posts.api.types";
 
-export const AlbumPostMapDialog = ({ isOpen, uploadedPost }) => {
-  const [openingDialog, setOpeningDialog] = useContext(
-    AlbumPostOpeningDialogContext
-  );
-
+export const AlbumPostMapDialog = ({
+  isOpen,
+  uploadedPost,
+}: {
+  isOpen: boolean;
+  uploadedPost: GetAlbumPostResponse;
+}) => {
   return (
     <CommonDialog
       isOpen={isOpen}
       content={
         <AlbumPostMap uploadedPost={uploadedPost} className={styles.map} />
       }
-      // handleCancel={() => setOpeningDialog(undefined)}
       maxWidth={"md"}
     />
-
   );
 };

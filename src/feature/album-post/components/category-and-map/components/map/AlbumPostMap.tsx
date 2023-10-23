@@ -3,25 +3,21 @@ import styles from "./AlbumPostMap.module.scss";
 import { CommonButton } from "../../../../../../components/button/CommonButton";
 import MapIcon from "@mui/icons-material/Map";
 import { useTranslation } from "next-i18next";
-import { useContext } from "react";
-import { AlbumPostDialogsType } from "../../../../dialog/AlbumPostDialogs";
-import { AlbumPostOpeningDialogContext } from "../../../../context-provider/AlbumPostContextProvider";
+import { GetAlbumPostResponse } from "../../../../../../api/album-posts/album-posts.api.types";
 
-export const AlbumPostMapWithLinkButton = ({ uploadedPost }) => {
+export const AlbumPostMapWithLinkButton = ({
+  uploadedPost,
+}: {
+  uploadedPost: GetAlbumPostResponse;
+}) => {
   const { t } = useTranslation();
-
-  const [openingDialog, setOpeningDialog] = useContext(
-    AlbumPostOpeningDialogContext
-  );
 
   return (
     <div className={styles.mapContainer}>
       <div className={styles.mapContainer_dialogLink}>
         <CommonButton
           text={t("map.dialog-link.button", { ns: "album-post" })}
-          onClick={() => {
-            setOpeningDialog(AlbumPostDialogsType.MAP);
-          }}
+          onClick={() => {}}
           variant={"contained"}
           endIcon={<MapIcon />}
           className={styles.mapContainer_dialogLink_button}
@@ -36,7 +32,13 @@ export const AlbumPostMapWithLinkButton = ({ uploadedPost }) => {
   );
 };
 
-export const AlbumPostMap = ({ uploadedPost, className }) => {
+export const AlbumPostMap = ({
+  uploadedPost,
+  className,
+}: {
+  uploadedPost: GetAlbumPostResponse;
+  className: string;
+}) => {
   return (
     <div className={className}>
       <GoogleMapApi

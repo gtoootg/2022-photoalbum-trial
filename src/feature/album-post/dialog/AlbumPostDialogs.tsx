@@ -1,20 +1,18 @@
 import { AlbumPostMapDialog } from "./components/album-post-map-dialog/AlbumPostMapDialog";
-import { useContext } from "react";
-import { AlbumPostOpeningDialogContext } from "../context-provider/AlbumPostContextProvider";
+import { GetAlbumPostResponse } from "../../../api/album-posts/album-posts.api.types";
 
 export enum AlbumPostDialogsType {
   MAP,
 }
 
-export const AlbumPostDialogs = ({ uploadedPost }) => {
-  const [openingDialog] = useContext(AlbumPostOpeningDialogContext);
-
+export const AlbumPostDialogs = ({
+  uploadedPost,
+}: {
+  uploadedPost: GetAlbumPostResponse;
+}) => {
   return (
     <>
-      <AlbumPostMapDialog
-        isOpen={openingDialog === AlbumPostDialogsType.MAP}
-        uploadedPost={uploadedPost}
-      />
+      <AlbumPostMapDialog isOpen={false} uploadedPost={uploadedPost} />
     </>
   );
 };

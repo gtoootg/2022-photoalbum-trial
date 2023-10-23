@@ -1,27 +1,57 @@
-import { Grid } from "@mui/material";
+import { Box, Grid } from "@mui/material";
 import Image from "next/image";
 import styles from "./ImageSlider.module.scss";
-import { useState } from "react";
+import React, { useState } from "react";
+import ArrowLeftIcon from "@mui/icons-material/ArrowLeft";
+import ArrowRightIcon from "@mui/icons-material/ArrowRight";
 
 interface ImageSliderProps {
   imagesSrc: string[];
-  indexOfMainImage?: number;
+  indexOfMainImage: number;
   handleClickSubImage?: (index: number) => void;
+  arrowIconProps?: {
+    onClickRight?: () => void;
+    onClickLeft?: () => void;
+    size: string;
+    color: string;
+  };
 }
 
 const ImageSlider = ({
   imagesSrc,
   handleClickSubImage,
   indexOfMainImage,
+  arrowIconProps,
 }: ImageSliderProps) => {
   const [defaultIndexOfMainImage, setDefaultIndexOfMainImage] = useState(0);
   const mainImageToRender = indexOfMainImage
     ? imagesSrc[indexOfMainImage]
     : imagesSrc[defaultIndexOfMainImage];
+  const { onClickRight, onClickLeft, size, color } = arrowIconProps || {};
 
   return (
-    <Grid container>
-      <MainImage imageSrc={mainImageToRender} />
+    <Box>
+      <Box display={"flex"} justifyContent={"center"} alignItems={"center"}>
+        <ArrowLeftIcon
+          onClick={onClickLeft}
+          htmlColor={color}
+          sx={{
+            height: size,
+            width: size,
+            visibility: !onClickLeft ? "hidden" : undefined,
+          }}
+        />
+        <MainImage imageSrc={mainImageToRender} />
+        <ArrowRightIcon
+          onClick={onClickRight}
+          htmlColor={color}
+          sx={{
+            height: size,
+            width: size,
+            visibility: !onClickRight ? "hidden" : undefined,
+          }}
+        />
+      </Box>
       <SubImageGroup
         subImagesSrc={imagesSrc}
         indexOfMainImage={
@@ -32,7 +62,7 @@ const ImageSlider = ({
           setDefaultIndexOfMainImage(i);
         }}
       />
-    </Grid>
+    </Box>
   );
 };
 
