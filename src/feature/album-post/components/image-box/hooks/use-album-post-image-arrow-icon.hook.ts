@@ -4,11 +4,15 @@ import {
   useGetAlbumPosts,
   useGetAlbumPostsSelector,
 } from "../../../../../api/album-posts/use-get-album-posts.hooks";
+import {
+  useAlbumPostTitleAndDescriptionEditMode
+} from "../../general-information/components/text-box/edit-mode/state/use-edit-title-and-desription-in-album-post.hooks";
 
 export const useAlbumPostImageArrowIconConfig = () => {
   const router = useRouter();
   const { postId } = router.query;
   const { data: albumPosts } = useGetAlbumPostsSelector();
+  const [,setEditMode] = useAlbumPostTitleAndDescriptionEditMode()
 
   return useMemo(() => {
     if (!albumPosts) {
@@ -38,12 +42,14 @@ export const useAlbumPostImageArrowIconConfig = () => {
       if (incrementedAlbumPostId === undefined) {
         return;
       }
+      setEditMode(false)
       router.push(`/album-posts/${incrementedAlbumPostId}`);
     };
     const handleClickLeft = () => {
       if (decrementedAlbumPostId === undefined) {
         return;
       }
+      setEditMode(false)
       router.push(`/album-posts/${decrementedAlbumPostId}`);
     };
 

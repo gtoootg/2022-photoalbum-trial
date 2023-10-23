@@ -14,6 +14,8 @@ interface CommonButtonProps {
   endIcon?: React.ReactElement<SvgIconProps>;
   className?: string;
   link?: string;
+  disabled?:boolean
+  color?:string
 }
 
 export const CommonButton = ({
@@ -24,14 +26,18 @@ export const CommonButton = ({
   endIcon,
   className,
   link,
+    disabled,
+    color
 }: CommonButtonProps) => {
   return (
     <Button
+        disabled={disabled}
       variant={variant}
       onClick={onClick}
       startIcon={startIcon}
       endIcon={endIcon}
       className={className}
+        color={color}
     >
       {link ? (
         <MgLink href={link} children={text} />

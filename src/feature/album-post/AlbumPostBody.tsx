@@ -1,10 +1,6 @@
 import { useState } from "react";
-import AlbumPostTitleAndDescription from "./components/title-and-description/AlbumPostTitleAndDescription";
-import AlbumPostExifData from "./components/exif-data/AlbumPostExifData";
 import { Box, Grid } from "@mui/material";
-import { CategoryAndMap } from "./components/category-and-map/CategoryAndMap";
 import {
-  useExifDataOfAlbumPost,
   useGetAlbumPostData,
 } from "./hooks/use-get-album-post.hooks";
 import { AlbumPostImageBox } from "./components/image-box/AlbumPostImageBox";
@@ -14,8 +10,6 @@ const AlbumPostBody = () => {
   const [indexOfMainImage, setIndexOfMainImage] = useState(0);
 
   const { albumPost } = useGetAlbumPostData();
-
-  const exifDataToUse = useExifDataOfAlbumPost(indexOfMainImage);
 
   if (!albumPost) {
     return null;

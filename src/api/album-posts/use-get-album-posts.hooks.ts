@@ -4,7 +4,7 @@ import { GetAlbumPostsResponse } from "./album-posts.api.types";
 import { QueryState } from "react-query/types/core/query";
 
 export const useGetAlbumPosts = () => {
-  const { isLoading, error, data } = useQuery<
+  const { isLoading, error, data,refetch } = useQuery<
     AxiosResponse<GetAlbumPostsResponse>,
     AxiosError
   >("albumPosts", () =>
@@ -13,7 +13,7 @@ export const useGetAlbumPosts = () => {
 
   const result = data;
 
-  return { isLoading, error, result, data: result?.data };
+  return { isLoading, error, result, data: result?.data,refetch };
 };
 
 export const useGetAlbumPostsSelector = () => {

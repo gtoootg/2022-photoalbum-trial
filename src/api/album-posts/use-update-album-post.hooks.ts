@@ -7,7 +7,7 @@ export const useUpdateAlbumPost = ({
 }: {
   onSuccessCallback?: () => void;
 }) => {
-  const { mutate, isLoading } = useMutation<
+  const { mutate, isLoading} = useMutation<
     unknown,
     unknown,
     UpdateAlbumPostRequest,

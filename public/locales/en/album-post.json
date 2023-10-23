@@ -7,7 +7,9 @@
   "generalInformation": {
     "edit": {
       "title": "Title",
-      "description":"Description"
+      "description":"Description",
+      "confirm": "update",
+      "cancel": "cancel"
     }
   }
 }
