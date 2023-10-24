@@ -30,10 +30,10 @@ const GoogleMapAPI: React.FC<GoogleMapApiProps> = ({
   const setMarkerPosition = (e) => {
     const lat = e.latLng.lat();
     const lng = e.latLng.lng();
-    setUploadingDataLatLng({ ...uploadingDataLatLng, lat: lat, lng: lng });
+    setUploadingDataLatLng && setUploadingDataLatLng({ ...uploadingDataLatLng, lat: lat, lng: lng });
   };
 
-  function createKey(location) {
+  function createKey(location:{lat:number,lng:number}) {
     return location.lat + location.lng;
   }
 

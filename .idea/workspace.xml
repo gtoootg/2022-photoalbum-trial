@@ -4,7 +4,15 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="5e61a10c-b0e0-4e25-ad22-99e278e703dc" name="Changes" comment="make it work" />
+    <list default="true" id="5e61a10c-b0e0-4e25-ad22-99e278e703dc" name="Changes" comment="make it work">
+      <change afterPath="$PROJECT_DIR$/src/feature/album-post/components/category/AlbumPostCategory.tsx" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/feature/album-post/components/category/helper/get-chip-color-by-category.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/components/google-map/GoogleMapApi.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/google-map/GoogleMapApi.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/feature/album-post/AlbumPostBody.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/feature/album-post/AlbumPostBody.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/feature/album-post/components/category-and-map/components/map/AlbumPostMap.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/feature/album-post/components/category-and-map/components/map/AlbumPostMap.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/feature/album-post/components/exif-data/AlbumPostExifData.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/feature/album-post/components/exif-data/AlbumPostExifData.tsx" afterDir="false" />
+    </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
@@ -18,10 +26,18 @@
       </list>
     </option>
   </component>
+  <component name="Git.Settings">
+    <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
+  </component>
   <component name="ProjectLevelVcsManager" settingsEditedManually="true" />
   <component name="PropertiesComponent"><![CDATA[{
   "keyToString": {
+    "node.js.detected.package.eslint": "true",
+    "node.js.selected.package.eslint": "(autodetect)",
     "node.js.selected.package.tslint": "(autodetect)",
+    "nodejs_package_manager_path": "yarn",
+    "prettierjs.PrettierConfiguration.Package": "C:\\Users\\michihiro.goto\\Documents\\code\\portfolio\\photo-album-2022\\node_modules\\prettier",
+    "settings.editor.selected.configurable": "settings.javascript.prettier",
     "ts.external.directory.path": "C:\\Users\\michihiro.goto\\Documents\\code\\portfolio\\photo-album-2022\\node_modules\\typescript\\lib"
   }
 }]]></component>

@@ -26,7 +26,6 @@ export const AlbumPostMapWithLinkButton = ({
 
       <AlbumPostMap
         uploadedPost={uploadedPost}
-        className={styles.mapContainer_map}
       />
     </div>
   );
@@ -34,18 +33,16 @@ export const AlbumPostMapWithLinkButton = ({
 
 export const AlbumPostMap = ({
   uploadedPost,
-  className,
 }: {
   uploadedPost: GetAlbumPostResponse;
-  className: string;
 }) => {
   return (
-    <div className={className}>
+
       <GoogleMapApi
         center={{ lat: uploadedPost.lat, lng: uploadedPost.lng }}
         zoom={10}
         uploadingDataLatLng={{ lat: uploadedPost.lat, lng: uploadedPost.lng }}
       />
-    </div>
+
   );
 };

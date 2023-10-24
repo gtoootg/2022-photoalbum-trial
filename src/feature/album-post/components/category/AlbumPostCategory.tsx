@@ -1,0 +1,44 @@
+import { useGetAlbumPostData } from "../../hooks/use-get-album-post.hooks";
+import { ClickableChip } from "../../../../components/clickable-chip/ClickableChip";
+import { IconFactory } from "../category-and-map/CategoryIconFactory";
+import Box from "@mui/material/Box";
+import { useGetCommonCategories } from "../../../../api/common/categories/use-get-common-categories.hooks";
+import { chipColorByCategory } from "./helper/get-chip-color-by-category";
+import Grid from "@mui/material/Grid";
+import Typography from "@mui/material/Typography";
+
+export const AlbumPostCategory = () => {
+  const { data: allCategories } = useGetCommonCategories();
+  const { albumPost } = useGetAlbumPostData();
+  const { categoryIds } = albumPost || {};
+  if (!categoryIds || !allCategories) {
+    return null;
+  }
+
+  return (
+    <>
+      <Typography variant={"h5"} fontWeight={"semi-bold"}>
+        Category
+      </Typography>
+      <Grid container>
+        {Object.keys(categoryIds)?.map((categoryId, i) => {
+          const categoryIdAsNumber = Number(categoryId);
+          const category = allCategories.find(
+            ({ id }) => categoryIdAsNumber === id
+          );
+          return (
+            <Grid item xs={6}>
+              <ClickableChip
+                key={i}
+                label={category?.label || ""}
+                color={chipColorByCategory(categoryIdAsNumber)}
+                icon={<IconFactory iconType={categoryIdAsNumber} />}
+                rootStyles={{ margin: "8px" }}
+              />
+            </Grid>
+          );
+        })}
+      </Grid>
+    </>
+  );
+};

@@ -9,12 +9,16 @@ import IsoIcon from "@mui/icons-material/Iso";
 import { ExifData } from "../../../../api/flickr-images/flickr-images.api.types";
 import { JSXElement } from "@typescript-eslint/types/dist/generated/ast-spec";
 import { ReactNode } from "react";
+import {useExifDataOfAlbumPost} from "../../hooks/use-get-album-post.hooks";
 
 const AlbumPostExifData = ({
-  exifDataOfMainImage,
+                             indexOfMainImage,
 }: {
-  exifDataOfMainImage?: ExifData;
+  indexOfMainImage: number;
 }) => {
+
+  const exifDataOfMainImage = useExifDataOfAlbumPost(indexOfMainImage)
+
   if (!exifDataOfMainImage) {
     return null;
   }
