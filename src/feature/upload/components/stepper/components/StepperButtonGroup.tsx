@@ -16,18 +16,19 @@ export default function StepperButtonGroup(props: StepperButtonGroupProps) {
     <Box>
       <Button
         variant="contained"
-        onClick={handleClickConfirm}
-        sx={{ mt: 1, mr: 1 }}
-        disabled={isButtonDisabledCondition}
-      >
-        {index === steps.length - 1 ? "Upload" : "Next"}
-      </Button>
-      <Button
         disabled={index === 0}
         onClick={() => setActiveStep(activeStep - 1)}
         sx={{ mt: 1, mr: 1 }}
       >
         Back
+      </Button>
+      <Button
+        variant="contained"
+        onClick={handleClickConfirm}
+        sx={{ mt: 1, mr: 1 }}
+        disabled={isButtonDisabledCondition}
+      >
+        {index === steps.length - 1 ? "Upload" : "Next"}
       </Button>
     </Box>
   );

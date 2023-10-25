@@ -1,4 +1,4 @@
-import { CircularProgress, Grid } from "@mui/material";
+import { Grid } from "@mui/material";
 import styles from "./AlbumPostExifData.module.scss";
 import { MgText } from "../../../../components/text/MgText";
 import CameraAltIcon from "@mui/icons-material/CameraAlt";
@@ -6,18 +6,15 @@ import CameraIcon from "@mui/icons-material/Camera";
 import NetworkWifi1BarIcon from "@mui/icons-material/NetworkWifi1Bar";
 import ShutterSpeedIcon from "@mui/icons-material/ShutterSpeed";
 import IsoIcon from "@mui/icons-material/Iso";
-import { ExifData } from "../../../../api/flickr-images/flickr-images.api.types";
-import { JSXElement } from "@typescript-eslint/types/dist/generated/ast-spec";
 import { ReactNode } from "react";
-import {useExifDataOfAlbumPost} from "../../hooks/use-get-album-post.hooks";
+import { useExifDataOfAlbumPost } from "../../hooks/use-get-album-post.hooks";
 
 const AlbumPostExifData = ({
-                             indexOfMainImage,
+  indexOfMainImage,
 }: {
   indexOfMainImage: number;
 }) => {
-
-  const exifDataOfMainImage = useExifDataOfAlbumPost(indexOfMainImage)
+  const exifDataOfMainImage = useExifDataOfAlbumPost(indexOfMainImage);
 
   if (!exifDataOfMainImage) {
     return null;

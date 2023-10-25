@@ -24,9 +24,10 @@ const ImageSlider = ({
   arrowIconProps,
 }: ImageSliderProps) => {
   const [defaultIndexOfMainImage, setDefaultIndexOfMainImage] = useState(0);
-  const mainImageToRender = indexOfMainImage
-    ? imagesSrc[indexOfMainImage]
-    : imagesSrc[defaultIndexOfMainImage];
+  const mainImageToRender =
+    indexOfMainImage !== undefined
+      ? imagesSrc[indexOfMainImage]
+      : imagesSrc[defaultIndexOfMainImage];
   const { onClickRight, onClickLeft, size, color } = arrowIconProps || {};
 
   return (
@@ -55,7 +56,9 @@ const ImageSlider = ({
       <SubImageGroup
         subImagesSrc={imagesSrc}
         indexOfMainImage={
-          indexOfMainImage ? indexOfMainImage : defaultIndexOfMainImage
+          indexOfMainImage !== undefined
+            ? indexOfMainImage
+            : defaultIndexOfMainImage
         }
         handleClickSubImage={(i) => {
           handleClickSubImage && handleClickSubImage(i);

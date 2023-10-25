@@ -5,13 +5,13 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="5e61a10c-b0e0-4e25-ad22-99e278e703dc" name="Changes" comment="make it work">
-      <change afterPath="$PROJECT_DIR$/src/feature/album-post/components/category/AlbumPostCategory.tsx" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/feature/album-post/components/category/helper/get-chip-color-by-category.ts" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/feature/album-post/AlbumPostBody.module.scss" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/components/google-map/GoogleMapApi.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/google-map/GoogleMapApi.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/components/image-slider/ImageSlider.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/image-slider/ImageSlider.tsx" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/feature/album-post/AlbumPostBody.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/feature/album-post/AlbumPostBody.tsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/feature/album-post/components/category-and-map/components/map/AlbumPostMap.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/feature/album-post/components/category-and-map/components/map/AlbumPostMap.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/feature/album-post/components/exif-data/AlbumPostExifData.module.scss" beforeDir="false" afterPath="$PROJECT_DIR$/src/feature/album-post/components/exif-data/AlbumPostExifData.module.scss" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/feature/album-post/components/exif-data/AlbumPostExifData.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/feature/album-post/components/exif-data/AlbumPostExifData.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/feature/upload/components/stepper/components/StepperButtonGroup.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/feature/upload/components/stepper/components/StepperButtonGroup.tsx" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -23,22 +23,39 @@
       <list>
         <option value="TypeScript JSX File" />
         <option value="TypeScript File" />
+        <option value="CSS File" />
       </list>
     </option>
   </component>
   <component name="Git.Settings">
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
   </component>
+  <component name="GitToolBoxStore">
+    <option name="projectConfigVersion" value="5" />
+  </component>
+  <component name="MarkdownSettingsMigration">
+    <option name="stateVersion" value="1" />
+  </component>
+  <component name="ProjectId" id="2XF5MhLDFjvvJZmPKykpfw7Egip" />
   <component name="ProjectLevelVcsManager" settingsEditedManually="true" />
+  <component name="ProjectViewState">
+    <option name="hideEmptyMiddlePackages" value="true" />
+    <option name="showLibraryContents" value="true" />
+  </component>
   <component name="PropertiesComponent"><![CDATA[{
   "keyToString": {
+    "RunOnceActivity.OpenProjectViewOnStart": "true",
+    "RunOnceActivity.ShowReadmeOnStart": "true",
+    "WebServerToolWindowFactoryState": "false",
+    "list.type.of.created.stylesheet": "CSS",
     "node.js.detected.package.eslint": "true",
     "node.js.selected.package.eslint": "(autodetect)",
     "node.js.selected.package.tslint": "(autodetect)",
     "nodejs_package_manager_path": "yarn",
     "prettierjs.PrettierConfiguration.Package": "C:\\Users\\michihiro.goto\\Documents\\code\\portfolio\\photo-album-2022\\node_modules\\prettier",
     "settings.editor.selected.configurable": "settings.javascript.prettier",
-    "ts.external.directory.path": "C:\\Users\\michihiro.goto\\Documents\\code\\portfolio\\photo-album-2022\\node_modules\\typescript\\lib"
+    "ts.external.directory.path": "C:\\Users\\michihiro.goto\\Documents\\code\\portfolio\\photo-album-2022\\node_modules\\typescript\\lib",
+    "vue.rearranger.settings.migration": "true"
   }
 }]]></component>
   <component name="RecentsManager">
@@ -46,7 +63,32 @@
       <recent name="C:\Users\michihiro.goto\Documents\code\portfolio\photo-album-2022\src\feature\album-post\components\general-information\components\text-box\edit-mode\hooks" />
     </key>
   </component>
+  <component name="SpellCheckerSettings" RuntimeDictionaries="0" Folders="0" CustomDictionaries="0" DefaultDictionary="application-level" UseSingleDictionary="true" transferred="true" />
   <component name="TaskManager">
+    <task id="LOCAL-00001" summary="make it work">
+      <option name="closed" value="true" />
+      <created>1698182302662</created>
+      <option name="number" value="00001" />
+      <option name="presentableId" value="LOCAL-00001" />
+      <option name="project" value="LOCAL" />
+      <updated>1698182302662</updated>
+    </task>
+    <task active="true" id="Default" summary="Default task">
+      <changelist id="5e61a10c-b0e0-4e25-ad22-99e278e703dc" name="Changes" comment="make it work" />
+      <created>1698211961042</created>
+      <option name="number" value="Default" />
+      <option name="presentableId" value="Default" />
+      <updated>1698211961042</updated>
+      <workItem from="1698211963681" duration="2773000" />
+    </task>
+    <option name="localTasksCounter" value="2" />
     <servers />
+  </component>
+  <component name="TypeScriptGeneratedFilesManager">
+    <option name="version" value="3" />
+  </component>
+  <component name="VcsManagerConfiguration">
+    <MESSAGE value="make it work" />
+    <option name="LAST_COMMIT_MESSAGE" value="make it work" />
   </component>
 </project>
