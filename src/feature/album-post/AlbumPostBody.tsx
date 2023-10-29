@@ -32,7 +32,7 @@ const AlbumPostBody = () => {
         </Grid>
         <Grid item xs={7}>
           <Box className={styles.exifAndCategory}>
-            <Grid container>
+            <Grid container spacing={5}>
               <Grid item xs={6}>
                 <AlbumPostExifData indexOfMainImage={indexOfMainImage} />
               </Grid>
