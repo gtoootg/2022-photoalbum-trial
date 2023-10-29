@@ -6,14 +6,14 @@ import { useGetAlbumPostsSelector } from "../../api/album-posts/use-get-album-po
 import { useMapSelectedPostId } from "./state/use-map-selected-post-id.reactive-vars";
 import { useFlickrImages } from "../../api/flickr-images/use-get-flickr-images.hooks";
 import { MapBodyPreviewDialog } from "./components/dialog/preview-dialog/MapBodyPreviewDialog";
-import { useQueryClient } from "react-query";
+import { GetAlbumPostResponse } from "../../api/album-posts/album-posts.api.types";
 
 export const MapBody = () => {
   const { data: flickrImages } = useFlickrImages();
   const getAlbumPostsSelector = useGetAlbumPostsSelector();
   const [selectedPostId, setSelectedPostId] = useMapSelectedPostId();
 
-  const getUrlOfFirstImageOfUploadedPost = (post) => {
+  const getUrlOfFirstImageOfUploadedPost = (post: GetAlbumPostResponse) => {
     if (!flickrImages) {
       return undefined;
     }

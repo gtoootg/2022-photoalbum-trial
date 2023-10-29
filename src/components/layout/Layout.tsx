@@ -1,8 +1,9 @@
-import { Box, Container } from "@mui/material";
+import { Box } from "@mui/material";
 import { ReactChild, ReactFragment, ReactPortal } from "react";
 import Header from "../header/Header";
 import { Hero } from "../hero/Hero";
 import { HeroProps } from "../hero/Hero.types";
+import styles from "./Layout.module.scss";
 
 function Layout({
   children,
@@ -24,7 +25,7 @@ function Layout({
       display={"flex"}
       flexDirection={"column"}
       alignItems={"center"}
-      mb={10}
+      className={styles.background}
     >
       {header && <Header />}
       {heroProps && <Hero {...heroProps} />}
