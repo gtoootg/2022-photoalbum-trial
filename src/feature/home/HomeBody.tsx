@@ -5,6 +5,7 @@ import { useGetAlbumPosts } from "../../api/album-posts/use-get-album-posts.hook
 import { useFlickrImages } from "../../api/flickr-images/use-get-flickr-images.hooks";
 import { GetAlbumPostsResponse } from "../../api/album-posts/album-posts.api.types";
 import { FlickrImageProps } from "../../api/flickr-images/flickr-images.api.types";
+import { Box } from "@mui/material";
 
 export const HomeBody = () => {
   const { data: albumPosts } = useGetAlbumPosts();
@@ -16,6 +17,8 @@ export const HomeBody = () => {
   }
 
   return (
-    <MediaCardGroup flickrImages={flickrImages} uploadedPosts={albumPosts} />
+    <Box maxWidth={"xl"}>
+      <MediaCardGroup flickrImages={flickrImages} uploadedPosts={albumPosts} />
+    </Box>
   );
 };

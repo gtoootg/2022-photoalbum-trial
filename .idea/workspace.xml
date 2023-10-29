@@ -5,13 +5,10 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="5e61a10c-b0e0-4e25-ad22-99e278e703dc" name="Changes" comment="make it work">
-      <change afterPath="$PROJECT_DIR$/src/feature/album-post/AlbumPostBody.module.scss" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/components/image-slider/ImageSlider.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/image-slider/ImageSlider.tsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/feature/album-post/AlbumPostBody.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/feature/album-post/AlbumPostBody.tsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/feature/album-post/components/exif-data/AlbumPostExifData.module.scss" beforeDir="false" afterPath="$PROJECT_DIR$/src/feature/album-post/components/exif-data/AlbumPostExifData.module.scss" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/feature/album-post/components/exif-data/AlbumPostExifData.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/feature/album-post/components/exif-data/AlbumPostExifData.tsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/feature/upload/components/stepper/components/StepperButtonGroup.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/feature/upload/components/stepper/components/StepperButtonGroup.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/components/button/CommonButton.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/button/CommonButton.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/feature/country/CountryBody.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/feature/country/CountryBody.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/feature/home/HomeBody.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/feature/home/HomeBody.tsx" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -42,22 +39,22 @@
     <option name="hideEmptyMiddlePackages" value="true" />
     <option name="showLibraryContents" value="true" />
   </component>
-  <component name="PropertiesComponent"><![CDATA[{
-  "keyToString": {
-    "RunOnceActivity.OpenProjectViewOnStart": "true",
-    "RunOnceActivity.ShowReadmeOnStart": "true",
-    "WebServerToolWindowFactoryState": "false",
-    "list.type.of.created.stylesheet": "CSS",
-    "node.js.detected.package.eslint": "true",
-    "node.js.selected.package.eslint": "(autodetect)",
-    "node.js.selected.package.tslint": "(autodetect)",
-    "nodejs_package_manager_path": "yarn",
-    "prettierjs.PrettierConfiguration.Package": "C:\\Users\\michihiro.goto\\Documents\\code\\portfolio\\photo-album-2022\\node_modules\\prettier",
-    "settings.editor.selected.configurable": "settings.javascript.prettier",
-    "ts.external.directory.path": "C:\\Users\\michihiro.goto\\Documents\\code\\portfolio\\photo-album-2022\\node_modules\\typescript\\lib",
-    "vue.rearranger.settings.migration": "true"
+  <component name="PropertiesComponent">{
+  &quot;keyToString&quot;: {
+    &quot;RunOnceActivity.OpenProjectViewOnStart&quot;: &quot;true&quot;,
+    &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,
+    &quot;WebServerToolWindowFactoryState&quot;: &quot;false&quot;,
+    &quot;list.type.of.created.stylesheet&quot;: &quot;CSS&quot;,
+    &quot;node.js.detected.package.eslint&quot;: &quot;true&quot;,
+    &quot;node.js.selected.package.eslint&quot;: &quot;(autodetect)&quot;,
+    &quot;node.js.selected.package.tslint&quot;: &quot;(autodetect)&quot;,
+    &quot;nodejs_package_manager_path&quot;: &quot;yarn&quot;,
+    &quot;prettierjs.PrettierConfiguration.Package&quot;: &quot;C:\\Users\\michihiro.goto\\Documents\\code\\portfolio\\photo-album-2022\\node_modules\\prettier&quot;,
+    &quot;settings.editor.selected.configurable&quot;: &quot;settings.javascript.prettier&quot;,
+    &quot;ts.external.directory.path&quot;: &quot;C:\\Users\\michihiro.goto\\Documents\\code\\portfolio\\photo-album-2022\\node_modules\\typescript\\lib&quot;,
+    &quot;vue.rearranger.settings.migration&quot;: &quot;true&quot;
   }
-}]]></component>
+}</component>
   <component name="RecentsManager">
     <key name="MoveFile.RECENT_KEYS">
       <recent name="C:\Users\michihiro.goto\Documents\code\portfolio\photo-album-2022\src\feature\album-post\components\general-information\components\text-box\edit-mode\hooks" />
@@ -81,7 +78,23 @@
       <updated>1698211961042</updated>
       <workItem from="1698211963681" duration="2773000" />
     </task>
-    <option name="localTasksCounter" value="2" />
+    <task id="LOCAL-00002" summary="make it work">
+      <option name="closed" value="true" />
+      <created>1698567700267</created>
+      <option name="number" value="00002" />
+      <option name="presentableId" value="LOCAL-00002" />
+      <option name="project" value="LOCAL" />
+      <updated>1698567700267</updated>
+    </task>
+    <task id="LOCAL-00003" summary="make it work">
+      <option name="closed" value="true" />
+      <created>1698567704965</created>
+      <option name="number" value="00003" />
+      <option name="presentableId" value="LOCAL-00003" />
+      <option name="project" value="LOCAL" />
+      <updated>1698567704965</updated>
+    </task>
+    <option name="localTasksCounter" value="4" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
