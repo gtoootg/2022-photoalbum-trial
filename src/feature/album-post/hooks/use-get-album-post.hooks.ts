@@ -35,7 +35,7 @@ const transformExifDataForAlbumPostContent = (
   };
 
   return {
-    camera: exifData.photo.camera,
+    camera: exifData.photo.camera || "---",
     iso: filterExifData("ISO") || "---",
     fNumber: filterExifData("FNumber") || "---",
     exposure: filterExifData("ExposureTime") || "---",

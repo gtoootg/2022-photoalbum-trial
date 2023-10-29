@@ -11,5 +11,15 @@
       "confirm": "update",
       "cancel": "cancel"
     }
+  },
+  "exif": {
+    "empty":{
+      "text": "No Exif data for this image"
+    }
+  },
+  "category": {
+    "empty":{
+      "text": "No categories for this post"
+    }
   }
 }
