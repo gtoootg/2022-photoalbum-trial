@@ -1,12 +1,14 @@
 import { Button, SvgIconProps } from "@mui/material";
-import React from "react";
+import React, { MouseEventHandler } from "react";
 import { MgText } from "../text/MgText";
 import Link from "next/link";
 import classes from "./CommonButton.module.scss";
 import { MgLink } from "../link/MgLink";
+import { OverridableStringUnion } from "@mui/types";
+import { ButtonPropsColorOverrides } from "@mui/material/Button/Button";
 
 interface CommonButtonProps {
-  onClick?: () => void;
+  onClick?: MouseEventHandler<HTMLElement> | undefined;
   variant: "text" | "contained" | "outlined";
   text: string;
 
@@ -15,7 +17,16 @@ interface CommonButtonProps {
   className?: string;
   link?: string;
   disabled?: boolean;
-  color?: string;
+  color?: OverridableStringUnion<
+    | "inherit"
+    | "primary"
+    | "secondary"
+    | "success"
+    | "error"
+    | "info"
+    | "warning",
+    ButtonPropsColorOverrides
+  >;
 }
 
 export const CommonButton = ({

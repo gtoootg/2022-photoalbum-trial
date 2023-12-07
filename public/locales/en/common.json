@@ -12,7 +12,8 @@
       "upload": "Upload",
       "category": "Category",
       "country": "Country",
-      "map": "Map"
+      "map": "Map",
+      "login": "Login"
     }
   }
 }

@@ -11,6 +11,7 @@ import {
   useCategoriesFromAlbumPostsForHeader,
   useCountriesFromAlbumPostsForHeader,
 } from "./hooks/use-data-for-header.hooks";
+import { HeaderAuth } from "./auth/HeaderAuth";
 
 export default function Header() {
   const { t } = useTranslation();
@@ -56,6 +57,7 @@ export default function Header() {
             text={t("header.navigation.upload")}
             link={"/upload"}
           />
+          <HeaderAuth />
         </Box>
       </Box>
     </Box>
