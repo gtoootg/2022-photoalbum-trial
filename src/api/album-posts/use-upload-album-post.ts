@@ -10,8 +10,16 @@ import {
 } from "../../feature/upload/state/use-upload-data.reactive-vars";
 import { useMemo } from "react";
 import { UploadAlbumPostRequest } from "./album-posts.api.types";
+import { useAuthAccessToken, useAuthUserId } from "../../app/auth/state/use-auth.reactive-vars";
 
 export const useUploadAlbumPost = () => {
+  const [token] = useAuthAccessToken()
+
+  const config = {
+    headers: { 'Authorization': `Bearer ${token}` , 'Content-Type':'application/json'}
+  };
+
+
   const { mutate, isLoading } = useMutation<
     unknown,
     AxiosError,
@@ -19,7 +27,8 @@ export const useUploadAlbumPost = () => {
   >((payload) => {
     return axios.post(
       `${process.env.NEXT_PUBLIC_API_BASE_URL}/albumpost`,
-      payload
+      payload,
+      config
     );
   });
 

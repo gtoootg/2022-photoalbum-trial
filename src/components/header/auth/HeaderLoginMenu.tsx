@@ -1,14 +1,15 @@
 import { CommonButton } from "../../button/CommonButton";
 import classes from "../Header.module.scss";
 import React, { useCallback, useState } from "react";
-import { t } from "i18next";
 import Menu from "@mui/material/Menu";
 import TextField from "@mui/material/TextField";
 import Button from "@mui/material/Button";
 import { Box } from "@mui/material";
 import { useRequestAuth } from "../../../api/auth/use-request-auth.hooks";
+import { useTranslation } from "next-i18next";
 
 export const HeaderLoginMenu = () => {
+  const { t } = useTranslation();
   const [anchorEl, setAnchorEl] = useState<HTMLElement | null>(null);
   const [username, setUsername] = useState("");
   const [password, setPassword] = useState("");

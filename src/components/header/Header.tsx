@@ -11,6 +11,7 @@ import {
 } from "./hooks/use-data-for-header.hooks";
 import { HeaderLoginMenu } from "./auth/HeaderLoginMenu";
 import { useAuthAccessToken } from "../../app/auth/state/use-auth.reactive-vars";
+import { HeaderUserMenu } from "./auth/HeaderUserMenu";
 
 export default function Header() {
   const { t } = useTranslation();
@@ -56,8 +57,10 @@ export default function Header() {
             text={t("header.navigation.map")}
             link={"/map"}
           />
+          {
+            accessToken? <HeaderUserMenu/>:     <HeaderLoginMenu />
+          }
 
-          <HeaderLoginMenu />
         </Box>
       </Box>
     </Box>
