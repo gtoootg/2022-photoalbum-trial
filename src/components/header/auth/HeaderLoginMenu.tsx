@@ -13,7 +13,7 @@ export const HeaderLoginMenu = () => {
   const [username, setUsername] = useState("");
   const [password, setPassword] = useState("");
 
-  const { mutate: requestAuth, data } = useRequestAuth();
+  const { mutate: requestAuth } = useRequestAuth();
   const handleSubmit = async () => {
     await requestAuth({ username, password });
   };

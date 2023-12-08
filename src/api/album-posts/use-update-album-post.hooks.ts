@@ -19,7 +19,7 @@ export const useUpdateAlbumPost = ({
         payload
       );
     },
-    onSuccess: (data) => {
+    onSuccess: () => {
       onSuccessCallback && onSuccessCallback();
     },
   });
