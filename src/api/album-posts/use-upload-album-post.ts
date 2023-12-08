@@ -1,5 +1,5 @@
 import { useMutation } from "react-query";
-import axios from "axios";
+import axios, { AxiosError } from "axios";
 import {
   useUploadingCategories,
   useUploadingCountry,
@@ -14,9 +14,8 @@ import { UploadAlbumPostRequest } from "./album-posts.api.types";
 export const useUploadAlbumPost = () => {
   const { mutate, isLoading } = useMutation<
     unknown,
-    unknown,
-    UploadAlbumPostRequest,
-    unknown
+    AxiosError,
+    UploadAlbumPostRequest
   >((payload) => {
     return axios.post(
       `${process.env.NEXT_PUBLIC_API_BASE_URL}/albumpost`,

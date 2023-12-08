@@ -11,13 +11,12 @@ import {
   useCategoriesFromAlbumPostsForHeader,
   useCountriesFromAlbumPostsForHeader,
 } from "./hooks/use-data-for-header.hooks";
-import { HeaderAuth } from "./auth/HeaderAuth";
+import { HeaderLoginMenu } from "./auth/HeaderLoginMenu";
+import { useAuthAccessToken } from "../../app/auth/state/use-auth.reactive-vars";
 
 export default function Header() {
   const { t } = useTranslation();
-  const { data: countries } = useGetCommonCountries();
-  const { data: uploadedPosts } = useGetAlbumPosts();
-
+  const [accessToken] = useAuthAccessToken();
   const countryMenu = useCountriesFromAlbumPostsForHeader();
   const categoryMenu = useCategoriesFromAlbumPostsForHeader();
 
@@ -28,6 +27,15 @@ export default function Header() {
           <h1>Michihiro Goto`s Gallery</h1>
         </Box>
         <Box className={classes.header_container_navigation}>
+          {accessToken && (
+            <CommonButton
+              className={classes.header_container_navigation_element}
+              startIcon={<UploadIcon />}
+              variant={"contained"}
+              text={t("header.navigation.upload")}
+              link={"/upload"}
+            />
+          )}
           <CommonButton
             className={classes.header_container_navigation_element}
             variant={"text"}
@@ -50,14 +58,8 @@ export default function Header() {
             text={t("header.navigation.map")}
             link={"/map"}
           />
-          <CommonButton
-            className={classes.header_container_navigation_element}
-            startIcon={<UploadIcon />}
-            variant={"contained"}
-            text={t("header.navigation.upload")}
-            link={"/upload"}
-          />
-          <HeaderAuth />
+
+          <HeaderLoginMenu />
         </Box>
       </Box>
     </Box>

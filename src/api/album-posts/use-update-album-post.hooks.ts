@@ -7,7 +7,7 @@ export const useUpdateAlbumPost = ({
 }: {
   onSuccessCallback?: () => void;
 }) => {
-  const { mutate, isLoading} = useMutation<
+  const { mutate, isLoading } = useMutation<
     unknown,
     unknown,
     UpdateAlbumPostRequest,
@@ -20,7 +20,6 @@ export const useUpdateAlbumPost = ({
       );
     },
     onSuccess: (data) => {
-      console.log(data);
       onSuccessCallback && onSuccessCallback();
     },
   });
