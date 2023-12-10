@@ -8,18 +8,16 @@ import { useEffect, useState } from "react";
 import { useTranslation } from "next-i18next";
 import { Box } from "@mui/material";
 import { StepperSecondStepTextFieldStyled } from "../../../../../upload/components/stepper/second-stepper/UploadSecondStepContainer";
-import { CommonButton } from "../../../../../../components/button/CommonButton";
+import { MgButton } from "../../../../../../components/button/MgButton";
 import { useUpdateAlbumPost } from "../../../../../../api/album-posts/use-update-album-post.hooks";
 import { useRouter } from "next/router";
 import { useGetAlbumPosts } from "../../../../../../api/album-posts/use-get-album-posts.hooks";
 import { AlbumPostGeneralInformationEditTextGroup } from "./edit-mode/AlbumPostGeneralInformationEditTextGroup";
-import {
-  useAlbumPostTitleAndDescriptionEditMode
-} from "./edit-mode/state/use-edit-title-and-desription-in-album-post.hooks";
+import { useAlbumPostTitleAndDescriptionEditMode } from "./edit-mode/state/use-edit-title-and-desription-in-album-post.hooks";
 
 export const AlbumPostGeneralInformationTextGroup = () => {
   const { albumPost } = useGetAlbumPostData();
-  const [isEditMode, setIsEditMode] = useAlbumPostTitleAndDescriptionEditMode()
+  const [isEditMode, setIsEditMode] = useAlbumPostTitleAndDescriptionEditMode();
 
   if (!albumPost) {
     return null;
@@ -28,9 +26,7 @@ export const AlbumPostGeneralInformationTextGroup = () => {
   const { title, description } = albumPost;
 
   if (isEditMode) {
-    return (
-      <AlbumPostGeneralInformationEditTextGroup />
-    )
+    return <AlbumPostGeneralInformationEditTextGroup />;
   }
 
   return (

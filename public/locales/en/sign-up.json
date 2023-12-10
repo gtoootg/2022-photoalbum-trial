@@ -1,0 +1,7 @@
+{
+  "username": "User name",
+  "email": "E-mail",
+  "email-error": "E-mail (Please input in a correct format)",
+  "password": "Password",
+  "password-error": "Password(you need at least 8 characters)"
+}

@@ -1,7 +1,5 @@
 export interface HeroProps {
-  image?: string;
-
-  imageGroupForTransition?: string[];
+  images?: string[];
 
   title?: string;
   caption?: string;

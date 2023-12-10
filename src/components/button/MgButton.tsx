@@ -29,7 +29,7 @@ interface CommonButtonProps {
   >;
 }
 
-export const CommonButton = ({
+export const MgButton = ({
   variant,
   onClick,
   text,

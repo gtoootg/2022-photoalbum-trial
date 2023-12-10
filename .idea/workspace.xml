@@ -4,12 +4,26 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="5e61a10c-b0e0-4e25-ad22-99e278e703dc" name="Changes" comment="make it work">
-      <change afterPath="$PROJECT_DIR$/src/components/layout/Layout.module.scss" afterDir="false" />
+    <list default="true" id="5e61a10c-b0e0-4e25-ad22-99e278e703dc" name="Changes" comment="temp commit">
+      <change afterPath="$PROJECT_DIR$/public/locales/en/sign-up.json" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/api/auth/use-register-user.hooks.ts" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/feature/auth/sign-up/SignUpBody.tsx" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/feature/auth/sign-up/hooks/use-sign-up.hooks.ts" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/helper/regex/use-regex.ts" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/pages/sign-up/index.tsx" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/components/layout/Layout.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/layout/Layout.tsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/feature/map/MapBody.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/feature/map/MapBody.tsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/styles/variables.scss" beforeDir="false" afterPath="$PROJECT_DIR$/src/styles/variables.scss" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/components/button/CommonButton.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/button/MgButton.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/components/dialog/CommonDialog.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/dialog/CommonDialog.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/components/header/Header.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/header/Header.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/components/header/auth/HeaderLoginMenu.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/header/auth/HeaderLoginMenu.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/components/header/auth/HeaderUserMenu.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/header/auth/HeaderUserMenu.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/components/hero/Hero.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/hero/Hero.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/components/hero/Hero.types.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/hero/Hero.types.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/components/link/MgLink.module.scss" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/components/link/MgLink.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/link/MgLink.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/feature/album-post/components/category-and-map/components/map/AlbumPostMap.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/feature/album-post/components/category-and-map/components/map/AlbumPostMap.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/feature/album-post/components/general-information/components/text-box/AlbumPostGeneralInformationTextGroup.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/feature/album-post/components/general-information/components/text-box/AlbumPostGeneralInformationTextGroup.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/feature/album-post/components/general-information/components/text-box/edit-mode/AlbumPostGeneralInformationEditTextGroup.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/feature/album-post/components/general-information/components/text-box/edit-mode/AlbumPostGeneralInformationEditTextGroup.tsx" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -19,10 +33,10 @@
   <component name="FileTemplateManagerImpl">
     <option name="RECENT_TEMPLATES">
       <list>
-        <option value="TypeScript JSX File" />
-        <option value="TypeScript File" />
         <option value="CSS File" />
         <option value="SCSS File" />
+        <option value="TypeScript JSX File" />
+        <option value="TypeScript File" />
       </list>
     </option>
   </component>
@@ -46,6 +60,7 @@
     "RunOnceActivity.OpenProjectViewOnStart": "true",
     "RunOnceActivity.ShowReadmeOnStart": "true",
     "WebServerToolWindowFactoryState": "false",
+    "last_opened_file_path": "C:/Users/michihiro.goto/Documents/code/tp-react-component-library",
     "list.type.of.created.stylesheet": "SCSS",
     "node.js.detected.package.eslint": "true",
     "node.js.selected.package.eslint": "(autodetect)",
@@ -58,7 +73,11 @@
   }
 }]]></component>
   <component name="RecentsManager">
+    <key name="CopyFile.RECENT_KEYS">
+      <recent name="C:\Users\michihiro.goto\Documents\code\portfolio\photo-album-2022\public\locales\en" />
+    </key>
     <key name="MoveFile.RECENT_KEYS">
+      <recent name="C:\Users\michihiro.goto\Documents\code\portfolio\photo-album-2022\src\feature\auth\sign-up\hooks" />
       <recent name="C:\Users\michihiro.goto\Documents\code\portfolio\photo-album-2022\src\feature\album-post\components\general-information\components\text-box\edit-mode\hooks" />
     </key>
   </component>
@@ -79,6 +98,9 @@
       <option name="presentableId" value="Default" />
       <updated>1698211961042</updated>
       <workItem from="1698211963681" duration="2773000" />
+      <workItem from="1702042855041" duration="2700000" />
+      <workItem from="1702053405795" duration="4552000" />
+      <workItem from="1702195769052" duration="10483000" />
     </task>
     <task id="LOCAL-00002" summary="make it work">
       <option name="closed" value="true" />
@@ -104,7 +126,23 @@
       <option name="project" value="LOCAL" />
       <updated>1698568844556</updated>
     </task>
-    <option name="localTasksCounter" value="5" />
+    <task id="LOCAL-00005" summary="updated config">
+      <option name="closed" value="true" />
+      <created>1702042609448</created>
+      <option name="number" value="00005" />
+      <option name="presentableId" value="LOCAL-00005" />
+      <option name="project" value="LOCAL" />
+      <updated>1702042609448</updated>
+    </task>
+    <task id="LOCAL-00006" summary="temp commit">
+      <option name="closed" value="true" />
+      <created>1702057428176</created>
+      <option name="number" value="00006" />
+      <option name="presentableId" value="LOCAL-00006" />
+      <option name="project" value="LOCAL" />
+      <updated>1702057428176</updated>
+    </task>
+    <option name="localTasksCounter" value="7" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -112,6 +150,8 @@
   </component>
   <component name="VcsManagerConfiguration">
     <MESSAGE value="make it work" />
-    <option name="LAST_COMMIT_MESSAGE" value="make it work" />
+    <MESSAGE value="updated config" />
+    <MESSAGE value="temp commit" />
+    <option name="LAST_COMMIT_MESSAGE" value="temp commit" />
   </component>
 </project>

@@ -1,16 +1,28 @@
 import Link from "next/link";
-import classes from "./MgLink.module.scss";
-import { LinkProps } from "next/dist/client/link";
 import { ReactNode } from "react";
+import { styled } from "@mui/material";
 
-interface MgLinkProps extends LinkProps {
+interface MgLinkProps {
+  href: string;
   children: ReactNode;
+  color?: string;
 }
 
-export const MgLink = ({ children, ...restProps }: MgLinkProps) => {
+const MgLinkStyled = styled(Link, {
+  shouldForwardProp: (props) => props !== "color",
+})<{ color?: string }>(({ color }) => ({
+  textDecoration: "none",
+  color: color ? color : "white",
+
+  "&:hover": {
+    textDecoration: "underline",
+  },
+}));
+
+export const MgLink = ({ children, href, color }: MgLinkProps) => {
   return (
-    <Link className={classes.textLink} {...restProps}>
+    <MgLinkStyled href={href} color={color}>
       {children}
-    </Link>
+    </MgLinkStyled>
   );
 };

@@ -1,12 +1,15 @@
-import { CommonButton } from "../../button/CommonButton";
+import { MgButton } from "../../button/MgButton";
 import classes from "../Header.module.scss";
 import React, { useCallback, useState } from "react";
 import Menu from "@mui/material/Menu";
 import TextField from "@mui/material/TextField";
 import Button from "@mui/material/Button";
-import { Box } from "@mui/material";
+import { Box, Grid } from "@mui/material";
 import { useRequestAuth } from "../../../api/auth/use-request-auth.hooks";
 import { useTranslation } from "next-i18next";
+import Link from "next/link";
+import Typography from "@mui/material/Typography";
+import { MgLink } from "../../link/MgLink";
 
 export const HeaderLoginMenu = () => {
   const { t } = useTranslation();
@@ -30,7 +33,7 @@ export const HeaderLoginMenu = () => {
 
   return (
     <div>
-      <CommonButton
+      <MgButton
         className={classes.header_container_navigation_element}
         variant={"text"}
         text={t("header.navigation.login")}
@@ -38,6 +41,9 @@ export const HeaderLoginMenu = () => {
       />
       <Menu anchorEl={anchorEl} open={Boolean(anchorEl)} onClose={handleClose}>
         <Box sx={{ padding: "24px" }} width={300}>
+          <Typography variant={"h6"} fontWeight={"bold"}>
+            {t("header.navigation.login")}
+          </Typography>
           <TextField
             margin="normal"
             required
@@ -60,20 +66,11 @@ export const HeaderLoginMenu = () => {
             onClick={handleSubmit}
             disabled={!username || !password}
           >
-            Sign In
+            {t("header.navigation.login")}
           </Button>
-          {/*<Grid container>*/}
-          {/*  <Grid item xs>*/}
-          {/*    <Link href="#" variant="body2">*/}
-          {/*      Forgot password?*/}
-          {/*    </Link>*/}
-          {/*  </Grid>*/}
-          {/*  <Grid item>*/}
-          {/*    <Link href="#" variant="body2">*/}
-          {/*      {"Don't have an account? Sign Up"}*/}
-          {/*    </Link>*/}
-          {/*  </Grid>*/}
-          {/*</Grid>*/}
+          <MgLink href="/sign-up" color={"black"}>
+            {t("Don't have an account? Sign Up")}
+          </MgLink>
         </Box>
       </Menu>
     </div>

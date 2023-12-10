@@ -1,7 +1,7 @@
 import classes from "./Header.module.scss";
 import { useTranslation } from "next-i18next";
 import { DropDownMenu } from "../drop-down-menu/DropDownMenu";
-import { CommonButton } from "../button/CommonButton";
+import { MgButton } from "../button/MgButton";
 import UploadIcon from "@mui/icons-material/Upload";
 import Box from "@mui/material/Box";
 import React from "react";
@@ -27,7 +27,7 @@ export default function Header() {
         </Box>
         <Box className={classes.header_container_navigation}>
           {accessToken && (
-            <CommonButton
+            <MgButton
               className={classes.header_container_navigation_element}
               startIcon={<UploadIcon />}
               variant={"contained"}
@@ -35,7 +35,7 @@ export default function Header() {
               link={"/upload"}
             />
           )}
-          <CommonButton
+          <MgButton
             className={classes.header_container_navigation_element}
             variant={"text"}
             text={t("header.navigation.top")}
@@ -51,16 +51,13 @@ export default function Header() {
             label={t("header.navigation.category")}
             menuItems={categoryMenu || []}
           />
-          <CommonButton
+          <MgButton
             className={classes.header_container_navigation_element}
             variant={"text"}
             text={t("header.navigation.map")}
             link={"/map"}
           />
-          {
-            accessToken? <HeaderUserMenu/>:     <HeaderLoginMenu />
-          }
-
+          {accessToken ? <HeaderUserMenu /> : <HeaderLoginMenu />}
         </Box>
       </Box>
     </Box>
