@@ -4,6 +4,8 @@ import {
   useAuthAccessToken,
   useAuthUserId,
 } from "../../app/auth/state/use-auth.reactive-vars";
+import { useShowSnackbar } from "../../components/snackbar/use-show-snackbar.hooks";
+import { StatusAndMessageResponse } from "../ApiResponse.types";
 
 interface AuthRequest {
   username: string;
@@ -17,12 +19,13 @@ interface AuthResponse {
 }
 
 export const useRequestAuth = () => {
+  const showSnackbar = useShowSnackbar();
   const [, setAuthUserId] = useAuthUserId();
   const [, setAccessToken] = useAuthAccessToken();
 
   const { mutate, data } = useMutation<
     AxiosResponse<AuthResponse>,
-    AxiosError,
+    AxiosError<StatusAndMessageResponse>,
     AuthRequest
   >({
     mutationFn: (payload) => {
@@ -32,10 +35,15 @@ export const useRequestAuth = () => {
       );
     },
     onSuccess: (data) => {
+      showSnackbar({ message: "Login is successful", status: 200 });
       setAuthUserId(data.data.userId);
       setAccessToken(data.data.accessToken);
     },
-    onError: () => {
+    onError: (error) => {
+      showSnackbar({
+        message: error.response?.data.message,
+        status: error.response?.status,
+      });
       setAuthUserId(null);
       setAccessToken(null);
     },

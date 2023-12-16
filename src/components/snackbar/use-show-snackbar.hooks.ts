@@ -8,7 +8,11 @@ export const useShowSnackbar = () => {
   const [, setSnackbarMessage] = useSnackbarMessageState();
 
   return useCallback(
-    (message: string, status: number) => {
+    ({ message, status }: { message?: string; status?: number }) => {
+      if (!status) {
+        return;
+      }
+
       let type: SnackbarType["type"];
       if (status === 200) {
         type = "success";

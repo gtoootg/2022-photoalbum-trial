@@ -1,7 +1,7 @@
 import { useMutation } from "react-query";
 import axios, { AxiosError, AxiosResponse } from "axios";
 import { useShowSnackbar } from "../../components/snackbar/use-show-snackbar.hooks";
-import { ErrorResponse } from "../error-response.types";
+import { StatusAndMessageResponse } from "../ApiResponse.types";
 
 export interface RegisterUserRequest {
   username: string;
@@ -12,8 +12,8 @@ export interface RegisterUserRequest {
 export const useRegisterUser = () => {
   const showSnackbar = useShowSnackbar();
   const { mutate, isLoading } = useMutation<
-    AxiosResponse,
-    AxiosError<ErrorResponse>,
+    AxiosResponse<StatusAndMessageResponse>,
+    AxiosError<StatusAndMessageResponse>,
     RegisterUserRequest
   >({
     mutationFn: (payload) =>
@@ -22,11 +22,11 @@ export const useRegisterUser = () => {
         payload
       ),
     onSuccess: () => {
-      showSnackbar("user is registered", 200);
+      showSnackbar({ message: "user is registered", status: 200 });
     },
     onError: (status) => {
-      const message = status.response?.data.message || "";
-      showSnackbar(message, 400);
+      const message = status.response?.data.message;
+      showSnackbar({ message, status: 400 });
     },
   });
 

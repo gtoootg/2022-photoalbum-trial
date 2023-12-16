@@ -1,17 +1,19 @@
 import { UpdateAlbumPostRequest } from "./album-posts.api.types";
 import { useMutation } from "react-query";
-import axios from "axios";
+import axios, { AxiosError, AxiosResponse } from "axios";
+import { useShowSnackbar } from "../../components/snackbar/use-show-snackbar.hooks";
+import { StatusAndMessageResponse } from "../ApiResponse.types";
 
 export const useUpdateAlbumPost = ({
   onSuccessCallback,
 }: {
   onSuccessCallback?: () => void;
 }) => {
+  const showSnackbar = useShowSnackbar();
   const { mutate, isLoading } = useMutation<
-    unknown,
-    unknown,
-    UpdateAlbumPostRequest,
-    unknown
+    AxiosResponse<StatusAndMessageResponse>,
+    AxiosError<StatusAndMessageResponse>,
+    UpdateAlbumPostRequest
   >({
     mutationFn: (payload) => {
       return axios.put(
@@ -21,6 +23,10 @@ export const useUpdateAlbumPost = ({
     },
     onSuccess: () => {
       onSuccessCallback && onSuccessCallback();
+      showSnackbar({ message: "Successfully updated!", status: 200 });
+    },
+    onError: (e) => {
+      showSnackbar({ status: e.response?.status });
     },
   });
 
