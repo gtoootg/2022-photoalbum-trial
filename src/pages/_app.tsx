@@ -5,6 +5,7 @@ import Layout from "../components/layout/Layout";
 
 import { Hydrate, QueryClient, QueryClientProvider } from "react-query";
 import { useState } from "react";
+import { MgSnackbar } from "../components/snackbar/MgSnackbar";
 
 function MyApp({ Component, pageProps }: AppProps) {
   const [queryClient] = useState(() => new QueryClient());
@@ -13,6 +14,7 @@ function MyApp({ Component, pageProps }: AppProps) {
     <QueryClientProvider client={queryClient}>
       <Hydrate state={pageProps.dehydratedState}>
         <Layout heroProps={pageProps.heroProps} header={pageProps.header}>
+          <MgSnackbar />
           <Component />
         </Layout>
       </Hydrate>

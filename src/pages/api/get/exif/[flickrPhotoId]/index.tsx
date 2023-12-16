@@ -1,5 +1,5 @@
-import Flickr from "flickr-sdk";
 import { NextApiRequest, NextApiResponse } from "next";
+import Flickr from "flickr-sdk";
 
 const flickr = new Flickr(process.env.FLICKR_API_KEY);
 

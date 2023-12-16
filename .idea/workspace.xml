@@ -5,25 +5,16 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="5e61a10c-b0e0-4e25-ad22-99e278e703dc" name="Changes" comment="temp commit">
-      <change afterPath="$PROJECT_DIR$/public/locales/en/sign-up.json" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/api/auth/use-register-user.hooks.ts" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/feature/auth/sign-up/SignUpBody.tsx" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/feature/auth/sign-up/hooks/use-sign-up.hooks.ts" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/helper/regex/use-regex.ts" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/pages/sign-up/index.tsx" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/api/error-response.types.ts" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/components/snackbar/MgSnackbar.tsx" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/components/snackbar/use-show-snackbar.hooks.ts" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/components/snackbar/use-snackbar-message.reactive-vars.ts" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/components/button/CommonButton.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/button/MgButton.tsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/components/dialog/CommonDialog.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/dialog/CommonDialog.tsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/components/header/Header.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/header/Header.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/api/auth/use-register-user.hooks.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/api/auth/use-register-user.hooks.ts" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/components/header/auth/HeaderLoginMenu.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/header/auth/HeaderLoginMenu.tsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/components/header/auth/HeaderUserMenu.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/header/auth/HeaderUserMenu.tsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/components/hero/Hero.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/hero/Hero.tsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/components/hero/Hero.types.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/hero/Hero.types.ts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/components/link/MgLink.module.scss" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/src/components/link/MgLink.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/link/MgLink.tsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/feature/album-post/components/category-and-map/components/map/AlbumPostMap.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/feature/album-post/components/category-and-map/components/map/AlbumPostMap.tsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/feature/album-post/components/general-information/components/text-box/AlbumPostGeneralInformationTextGroup.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/feature/album-post/components/general-information/components/text-box/AlbumPostGeneralInformationTextGroup.tsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/feature/album-post/components/general-information/components/text-box/edit-mode/AlbumPostGeneralInformationEditTextGroup.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/feature/album-post/components/general-information/components/text-box/edit-mode/AlbumPostGeneralInformationEditTextGroup.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/pages/_app.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/pages/_app.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/pages/api/get/exif/[flickrPhotoId]/index.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/pages/api/get/exif/[flickrPhotoId]/index.tsx" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -41,10 +32,51 @@
     </option>
   </component>
   <component name="Git.Settings">
+    <favorite-branches>
+      <branch-storage>
+        <map>
+          <entry type="LOCAL">
+            <value>
+              <list>
+                <branch-info repo="$PROJECT_DIR$" source="feature/auth" />
+              </list>
+            </value>
+          </entry>
+        </map>
+      </branch-storage>
+    </favorite-branches>
+    <option name="RECENT_BRANCH_BY_REPOSITORY">
+      <map>
+        <entry key="$PROJECT_DIR$" value="feature/auth" />
+      </map>
+    </option>
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
   </component>
   <component name="GitToolBoxStore">
     <option name="projectConfigVersion" value="5" />
+    <option name="recentBranches">
+      <RecentBranches>
+        <option name="branchesForRepo">
+          <list>
+            <RecentBranchesForRepo>
+              <option name="branches">
+                <list>
+                  <RecentBranch>
+                    <option name="branchName" value="main" />
+                    <option name="lastUsedInstant" value="1702668364" />
+                  </RecentBranch>
+                  <RecentBranch>
+                    <option name="branchName" value="feature/auth" />
+                    <option name="lastUsedInstant" value="1702668363" />
+                  </RecentBranch>
+                </list>
+              </option>
+              <option name="repositoryRootUrl" value="file://$PROJECT_DIR$" />
+            </RecentBranchesForRepo>
+          </list>
+        </option>
+      </RecentBranches>
+    </option>
   </component>
   <component name="MarkdownSettingsMigration">
     <option name="stateVersion" value="1" />
@@ -60,7 +92,7 @@
     "RunOnceActivity.OpenProjectViewOnStart": "true",
     "RunOnceActivity.ShowReadmeOnStart": "true",
     "WebServerToolWindowFactoryState": "false",
-    "last_opened_file_path": "C:/Users/michihiro.goto/Documents/code/tp-react-component-library",
+    "last_opened_file_path": "C:/Users/michihiro.goto/Documents/code/portfolio/photo-album-2022",
     "list.type.of.created.stylesheet": "SCSS",
     "node.js.detected.package.eslint": "true",
     "node.js.selected.package.eslint": "(autodetect)",
@@ -101,6 +133,7 @@
       <workItem from="1702042855041" duration="2700000" />
       <workItem from="1702053405795" duration="4552000" />
       <workItem from="1702195769052" duration="10483000" />
+      <workItem from="1702668717705" duration="5380000" />
     </task>
     <task id="LOCAL-00002" summary="make it work">
       <option name="closed" value="true" />
@@ -148,10 +181,31 @@
   <component name="TypeScriptGeneratedFilesManager">
     <option name="version" value="3" />
   </component>
+  <component name="Vcs.Log.Tabs.Properties">
+    <option name="TAB_STATES">
+      <map>
+        <entry key="MAIN">
+          <value>
+            <State />
+          </value>
+        </entry>
+      </map>
+    </option>
+  </component>
   <component name="VcsManagerConfiguration">
     <MESSAGE value="make it work" />
     <MESSAGE value="updated config" />
     <MESSAGE value="temp commit" />
     <option name="LAST_COMMIT_MESSAGE" value="temp commit" />
+  </component>
+  <component name="XDebuggerManager">
+    <breakpoint-manager>
+      <breakpoints>
+        <line-breakpoint enabled="true" type="javascript">
+          <url>file://$PROJECT_DIR$/src/pages/_app.tsx</url>
+          <option name="timeStamp" value="1" />
+        </line-breakpoint>
+      </breakpoints>
+    </breakpoint-manager>
   </component>
 </project>

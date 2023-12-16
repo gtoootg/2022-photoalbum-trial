@@ -68,7 +68,7 @@ export const HeaderLoginMenu = () => {
           >
             {t("header.navigation.login")}
           </Button>
-          <MgLink href="/sign-up" color={"black"}>
+          <MgLink href="/sign-up" color={"black"} onClick={handleClose}>
             {t("Don't have an account? Sign Up")}
           </MgLink>
         </Box>
