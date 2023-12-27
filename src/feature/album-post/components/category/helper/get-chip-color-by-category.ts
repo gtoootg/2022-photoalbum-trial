@@ -1,5 +1,4 @@
-import {Category} from "../../category-and-map/CategoryIconFactory";
-
+import { Category } from "../../category-and-map/CategoryIconFactory";
 
 export const chipColorByCategory = (category: Category) => {
   if (category === Category.NATURE) {
@@ -17,4 +16,6 @@ export const chipColorByCategory = (category: Category) => {
   if (category === Category.TRAFFIC) {
     return "gray";
   }
+
+  return "primary";
 };

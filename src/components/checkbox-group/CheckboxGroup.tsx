@@ -1,29 +1,19 @@
-import { Checkbox, FormControlLabel, FormGroup } from "@mui/material";
+import { Box, Checkbox, FormControlLabel } from "@mui/material";
 import { useState } from "react";
-import styles from "./CheckboxGroupWithSubComponent.module.scss";
-
-interface CheckboxGroupProps {
-  options: {
-    label: string;
-    value: number | string;
-  }[];
-  handleClickCheckbox?: (
-    eventTargetValue: string | number,
-    eventTargetChecked: boolean
-  ) => void;
-  className?: string;
-  subComponents?: JSX.Element[];
-}
+import {
+  CheckboxGroupProps,
+  CheckboxWithSubComponentProps,
+} from "./CheckboxGroup.types";
+import { CheckboxSubcomponentStyled } from "./CheckboxGroup.styled";
 
 export const CheckboxGroup = ({
   options,
   handleClickCheckbox,
-  className,
   subComponents,
 }: CheckboxGroupProps) => {
   return (
-    <div className={className}>
-      {(options || []).map((option, i) => {
+    <Box>
+      {options.map((option, i) => {
         return (
           <CheckBoxWithSubComponent
             key={option.label}
@@ -33,7 +23,7 @@ export const CheckboxGroup = ({
           />
         );
       })}
-    </div>
+    </Box>
   );
 };
 
@@ -41,12 +31,12 @@ const CheckBoxWithSubComponent = ({
   subComponent,
   handleClickCheckbox,
   option,
-}) => {
+}: CheckboxWithSubComponentProps) => {
   const [isChecked, setIsChecked] = useState(false);
 
   return (
-    <div>
-      <div>
+    <Box>
+      <Box>
         <FormControlLabel
           control={
             <Checkbox
@@ -59,12 +49,12 @@ const CheckBoxWithSubComponent = ({
           }
           label={option.label}
         />
-      </div>
-      <div
-        className={isChecked ? styles.subComponent : styles.subComponentHidden}
-      >
-        {subComponent}
-      </div>
-    </div>
+      </Box>
+      {isChecked && (
+        <CheckboxSubcomponentStyled mb={2}>
+          {subComponent}
+        </CheckboxSubcomponentStyled>
+      )}
+    </Box>
   );
 };

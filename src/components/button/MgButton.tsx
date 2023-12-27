@@ -1,33 +1,8 @@
-import { Button, SvgIconProps } from "@mui/material";
-import React, { MouseEventHandler } from "react";
+import { Button } from "@mui/material";
+import React from "react";
 import { MgText } from "../text/MgText";
-import Link from "next/link";
-import classes from "./CommonButton.module.scss";
 import { MgLink } from "../link/MgLink";
-import { OverridableStringUnion } from "@mui/types";
-import { ButtonPropsColorOverrides } from "@mui/material/Button/Button";
-
-interface CommonButtonProps {
-  onClick?: MouseEventHandler<HTMLElement> | undefined;
-  variant: "text" | "contained" | "outlined";
-  text: string;
-
-  startIcon?: React.ReactElement<SvgIconProps>;
-  endIcon?: React.ReactElement<SvgIconProps>;
-  className?: string;
-  link?: string;
-  disabled?: boolean;
-  color?: OverridableStringUnion<
-    | "inherit"
-    | "primary"
-    | "secondary"
-    | "success"
-    | "error"
-    | "info"
-    | "warning",
-    ButtonPropsColorOverrides
-  >;
-}
+import { MgButtonProps } from "./MgButton.types";
 
 export const MgButton = ({
   variant,
@@ -39,7 +14,7 @@ export const MgButton = ({
   link,
   disabled,
   color,
-}: CommonButtonProps) => {
+}: MgButtonProps) => {
   return (
     <Button
       disabled={disabled}

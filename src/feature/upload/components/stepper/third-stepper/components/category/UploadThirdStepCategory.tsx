@@ -1,6 +1,5 @@
 import { MgText } from "../../../../../../../components/text/MgText";
 import { CheckboxGroup } from "../../../../../../../components/checkbox-group/CheckboxGroup";
-import styles from "../../UploadThirdStepContainer.module.scss";
 
 import { useGetCommonCategories } from "../../../../../../../api/common/categories/use-get-common-categories.hooks";
 import { useTranslation } from "next-i18next";
@@ -25,12 +24,7 @@ export const UploadThirdStepCategory = () => {
           ns: "upload",
         })}
       />
-
-      <CheckboxGroup
-        className={styles.formField}
-        options={categryOptions}
-        subComponents={subComponents}
-      />
+      <CheckboxGroup options={categryOptions} subComponents={subComponents} />
     </>
   );
 };

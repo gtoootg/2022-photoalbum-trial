@@ -6,6 +6,7 @@ import {
 } from "../../app/auth/state/use-auth.reactive-vars";
 import { useShowSnackbar } from "../../components/snackbar/use-show-snackbar.hooks";
 import { StatusAndMessageResponse } from "../ApiResponse.types";
+import { useRouter } from "next/router";
 
 interface AuthRequest {
   username: string;
@@ -22,6 +23,7 @@ export const useRequestAuth = () => {
   const showSnackbar = useShowSnackbar();
   const [, setAuthUserId] = useAuthUserId();
   const [, setAccessToken] = useAuthAccessToken();
+  const router = useRouter();
 
   const { mutate, data } = useMutation<
     AxiosResponse<AuthResponse>,
@@ -38,6 +40,7 @@ export const useRequestAuth = () => {
       showSnackbar({ message: "Login is successful", status: 200 });
       setAuthUserId(data.data.userId);
       setAccessToken(data.data.accessToken);
+      router.push("/");
     },
     onError: (error) => {
       showSnackbar({

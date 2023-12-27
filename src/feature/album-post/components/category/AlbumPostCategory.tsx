@@ -24,7 +24,7 @@ export const AlbumPostCategory = () => {
 
   return (
     <>
-      <Box>
+      <Box mb={2}>
         <Typography variant={"h5"} fontWeight={"semi-bold"}>
           Category
         </Typography>
@@ -50,7 +50,6 @@ export const AlbumPostCategory = () => {
                 label={category?.label || ""}
                 color={chipColorByCategory(categoryIdAsNumber)}
                 icon={<IconFactory iconType={categoryIdAsNumber} />}
-                rootStyles={{ margin: "8px" }}
               />
             </Grid>
           );

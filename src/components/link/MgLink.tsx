@@ -6,7 +6,7 @@ interface MgLinkProps {
   href: string;
   children: ReactNode;
   color?: string;
-  onClick: () => void;
+  onClick?: () => void;
 }
 
 const MgLinkStyled = styled(Link, {
