@@ -20,7 +20,7 @@ export const MapBody = () => {
 
     return flickrImages.find(
       (flickrImage) => flickrImage.id === post.imageIds[0].toString()
-    ).url_n;
+    )?.url_n;
   };
 
   const getClusterItems =

@@ -7,7 +7,6 @@ import styles from "./UploadThirdStepContainer.module.scss";
 import {
   useUploadActiveStep,
   useUploadingCountry,
-  useUploadingLocation,
 } from "../../../state/use-upload-data.reactive-vars";
 import { useGetCommonCountries } from "../../../../../api/common/countries/use-get-common-countries.hooks";
 import { UploadThirdStepGoogleMap } from "./components/map/UploadThirdStepGoogleMap";
@@ -54,7 +53,7 @@ export default function UploadThirdStepContainer() {
                 })}
               />
             )}
-            options={countriesForAutoCompleteOptions}
+            options={countriesForAutoCompleteOptions || []}
             onChange={(event, selectedCountry) => {
               if (typeof selectedCountry === "string") {
                 return;

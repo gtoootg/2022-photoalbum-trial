@@ -16,6 +16,7 @@ const AlbumPostBody = () => {
   useEffect(() => {
     setIndexOfMainImage(0);
   }, [albumPost]);
+
   if (!albumPost) {
     return null;
   }
@@ -41,12 +42,11 @@ const AlbumPostBody = () => {
               </Grid>
             </Grid>
           </Box>
-
           <Box mt={3} height={400} sx={{ width: "100%" }}>
             <GoogleMapApi
               center={{ lat: albumPost.lat, lng: albumPost.lng }}
               zoom={10}
-              uploadingDataLatLng={{ lat: albumPost.lat, lng: albumPost.lng }}
+              markerPositions={[{ lat: albumPost.lat, lng: albumPost.lng }]}
             />
           </Box>
         </Grid>

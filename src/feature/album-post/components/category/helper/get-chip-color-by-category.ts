@@ -1,4 +1,4 @@
-import { Category } from "../../category-and-map/CategoryIconFactory";
+import { Category } from "../CategoryIconFactory";
 
 export const chipColorByCategory = (category: Category) => {
   if (category === Category.NATURE) {

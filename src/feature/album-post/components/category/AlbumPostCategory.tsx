@@ -1,12 +1,11 @@
 import { useGetAlbumPostData } from "../../hooks/use-get-album-post.hooks";
 import { ClickableChip } from "../../../../components/clickable-chip/ClickableChip";
-import { IconFactory } from "../category-and-map/CategoryIconFactory";
+import { IconFactory } from "./CategoryIconFactory";
 import Box from "@mui/material/Box";
 import { useGetCommonCategories } from "../../../../api/common/categories/use-get-common-categories.hooks";
 import { chipColorByCategory } from "./helper/get-chip-color-by-category";
 import Grid from "@mui/material/Grid";
 import Typography from "@mui/material/Typography";
-import styles from "../exif-data/AlbumPostExifData.module.scss";
 import VisibilityIcon from "@mui/icons-material/Visibility";
 import { useTranslation } from "next-i18next";
 
