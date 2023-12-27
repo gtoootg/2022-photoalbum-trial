@@ -5,73 +5,67 @@ import {
   Marker,
   MarkerClusterer,
 } from "@react-google-maps/api";
-
-type GoogleMapApiProps = {
-  center: { lat: number; lng: number };
-  zoom: number;
-  onClickAction?: boolean;
-  uploadingDataLatLng?: { lat: number; lng: number } | null;
-  setUploadingDataLatLng?: (e: { lat: number; lng: number } | null) => void;
-  clusterItems?: { lat: number; lng: number; id: number; imageUrl?: string }[];
-  handleClickMarkerOfCluster?: (id: number) => void;
-};
+import { GoogleMapApiProps } from "./GoogleMapApi.types";
 
 const API_KEY = process.env.GOOGLE_MAP_API_KEY;
 
 const GoogleMapAPI: React.FC<GoogleMapApiProps> = ({
   center,
   zoom,
-  onClickAction,
-  uploadingDataLatLng,
-  setUploadingDataLatLng,
   clusterItems,
   handleClickMarkerOfCluster,
+  markerPositions,
+  handleClickMap,
 }) => {
-  const setMarkerPosition = (e) => {
-    const lat = e.latLng.lat();
-    const lng = e.latLng.lng();
-    setUploadingDataLatLng && setUploadingDataLatLng({ ...uploadingDataLatLng, lat: lat, lng: lng });
-  };
-
-  function createKey(location:{lat:number,lng:number}) {
+  function createKey(location: { lat: number; lng: number }) {
     return location.lat + location.lng;
   }
 
+  console.log(markerPositions);
+
   return (
-    <LoadScript googleMapsApiKey={API_KEY} language={"en"}>
+    <LoadScript
+      googleMapsApiKey={"AIzaSyAhf8RgW3KVsaUK5Oqr-JKTpASBBrHlXd8"}
+      language={"en"}
+    >
       <GoogleMap
         mapContainerStyle={{ width: "100%", height: "100%" }}
         center={center}
         zoom={zoom}
-        onClick={onClickAction && setMarkerPosition}
+        onClick={handleClickMap}
       >
-        {uploadingDataLatLng && (
+        {(markerPositions || []).map(({ lat, lng }) => (
           <Marker
             position={{
-              lat: uploadingDataLatLng.lat,
-              lng: uploadingDataLatLng.lng,
+              lat,
+              lng,
             }}
           />
-        )}
+        ))}
         {clusterItems && (
           <MarkerClusterer>
             {(clusterer) => (
-              <div>
+              <>
                 {clusterItems.map((location) => (
                   <Marker
                     key={createKey(location)}
                     position={location}
                     clusterer={clusterer}
-                    onClick={() => handleClickMarkerOfCluster(location.id)}
+                    onClick={() => {
+                      if (!handleClickMarkerOfCluster) {
+                        return;
+                      }
+                      handleClickMarkerOfCluster(location.id);
+                    }}
                     options={{
                       icon: {
-                        url: location.imageUrl && location.imageUrl,
+                        url: location.imageUrl || "",
                         scaledSize: new window.google.maps.Size(90, 60),
                       },
                     }}
                   />
                 ))}
-              </div>
+              </>
             )}
           </MarkerClusterer>
         )}

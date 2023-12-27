@@ -1,19 +1,19 @@
-export interface CommonDialogProps {
+export interface MgDialogProps {
   isOpen: boolean;
   maxWidth?: "md" | "xs" | "sm" | "lg" | "xl";
   content: JSX.Element;
-  buttonConfig?: CommonDialogButtonProps;
+  buttonConfig?: MgDialogButtonProps;
 }
 
-export type CommonDialogButtonProps = {
+export type MgDialogButtonProps = {
   submitButton: {
     label: string;
-    link?:string
+    link?: string;
     handleSubmit?: () => void;
   };
   cancelButton: {
     label: string;
-    link?:string
+    link?: string;
     handleCancel?: () => void;
   };
 };

@@ -19,7 +19,6 @@ export default function UploadThirdStepContainer() {
   const { data: countries } = useGetCommonCountries();
   const [activeStep] = useUploadActiveStep();
   const [, setUploadingCountry] = useUploadingCountry();
-  const [, setUploadingLocation] = useUploadingLocation();
 
   const countriesForAutoCompleteOptions = countries?.map((country) => ({
     label: country.name.common,
@@ -71,12 +70,7 @@ export default function UploadThirdStepContainer() {
           <UploadThirdStepCategory />
         </Grid>
         <Grid item xs={5}>
-          <UploadThirdStepGoogleMap
-            onClickAction={true}
-            setUploadingDataLatLng={(e) => {
-              setUploadingLocation({ lat: e.lat, lng: e.lng });
-            }}
-          />
+          <UploadThirdStepGoogleMap />
         </Grid>
       </Grid>
     </Box>

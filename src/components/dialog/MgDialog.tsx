@@ -1,13 +1,13 @@
-import { Button, Dialog, DialogActions, DialogContent } from "@mui/material";
-import { CommonDialogProps } from "./CommonDialog.types";
+import { Dialog, DialogActions, DialogContent } from "@mui/material";
+import { MgDialogProps } from "./MgDialog.types";
 import { MgButton } from "../button/MgButton";
 
-export const CommonDialog = ({
+export const MgDialog = ({
   isOpen,
   maxWidth,
   content,
   buttonConfig,
-}: CommonDialogProps) => {
+}: MgDialogProps) => {
   return (
     <Dialog open={isOpen} maxWidth={maxWidth} fullWidth={true}>
       <DialogContent>{content}</DialogContent>

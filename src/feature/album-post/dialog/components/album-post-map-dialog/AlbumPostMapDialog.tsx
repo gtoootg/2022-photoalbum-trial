@@ -1,4 +1,4 @@
-import { CommonDialog } from "../../../../../components/dialog/CommonDialog";
+import { MgDialog } from "../../../../../components/dialog/MgDialog";
 import styles from "./AlbumPostMapDialog.module.scss";
 import { AlbumPostMap } from "../../../components/category-and-map/components/map/AlbumPostMap";
 import { GetAlbumPostResponse } from "../../../../../api/album-posts/album-posts.api.types";
@@ -11,7 +11,7 @@ export const AlbumPostMapDialog = ({
   uploadedPost: GetAlbumPostResponse;
 }) => {
   return (
-    <CommonDialog
+    <MgDialog
       isOpen={isOpen}
       content={
         <AlbumPostMap uploadedPost={uploadedPost} className={styles.map} />

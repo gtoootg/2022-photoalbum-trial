@@ -1,4 +1,7 @@
 
+
+GoogleMap 治す
+
 ログアウト
 
 test post put with auth and without auth

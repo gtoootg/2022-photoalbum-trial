@@ -34,11 +34,13 @@ export const AlbumPostMap = ({
 }: {
   uploadedPost: GetAlbumPostResponse;
 }) => {
+  const { lat, lng } = uploadedPost;
   return (
-    <GoogleMapApi
-      center={{ lat: uploadedPost.lat, lng: uploadedPost.lng }}
-      zoom={10}
-      uploadingDataLatLng={{ lat: uploadedPost.lat, lng: uploadedPost.lng }}
-    />
+    <></>
+    // <GoogleMapApi
+    //   center={{ lat: 1, lng: 1 }}
+    //   zoom={10}
+    //   markerPositions={[{ lat: 1, lng: 1 }]}
+    // />
   );
 };

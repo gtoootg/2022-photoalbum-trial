@@ -1,4 +1,4 @@
-import { CommonDialog } from "../../../../../components/dialog/CommonDialog";
+import { MgDialog } from "../../../../../components/dialog/MgDialog";
 import { useMapBodyPreviewDialogConfig } from "./MapBodyPreviewDialog.hooks";
 import ImageSlider from "../../../../../components/image-slider/ImageSlider";
 import { filterImageSourcesOfPostForMediaCard } from "../../../../../components/media-card/MediaCardGroup";
@@ -11,7 +11,7 @@ export const MapBodyPreviewDialog = () => {
   const { buttonConfig } = useMapBodyPreviewDialogConfig();
 
   return (
-    <CommonDialog
+    <MgDialog
       isOpen={true}
       content={<MapBodyPreviewDialogContent />}
       buttonConfig={buttonConfig}

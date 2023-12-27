@@ -4,6 +4,7 @@ import MenuItem from "@mui/material/MenuItem";
 import React, { useState } from "react";
 import { MgLink } from "../link/MgLink";
 import { MgText } from "../text/MgText";
+import { Box } from "@mui/material";
 
 interface DropDownMenuProps<DropDownMenuItemProps> {
   label: string;
@@ -30,7 +31,7 @@ export const DropDownMenu = <T extends any>({
   const open = Boolean(anchorEl);
 
   return (
-    <div>
+    <Box>
       <Button
         id="basic-button"
         aria-controls={open ? "basic-menu" : undefined}
@@ -68,6 +69,6 @@ export const DropDownMenu = <T extends any>({
           );
         })}
       </Menu>
-    </div>
+    </Box>
   );
 };
