@@ -14,6 +14,7 @@ export const MgButton = ({
   link,
   disabled,
   color,
+  labelColor,
 }: MgButtonProps) => {
   return (
     <Button
@@ -27,11 +28,12 @@ export const MgButton = ({
     >
       {link ? (
         <MgLink
+          color={labelColor}
           href={link}
           children={<MgText content={text} variant={"body1"} />}
         />
       ) : (
-        <MgText content={text} variant={"body1"} />
+        <MgText content={text} variant={"body1"} color={labelColor} />
       )}
     </Button>
   );

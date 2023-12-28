@@ -1,5 +1,4 @@
 import { MgButton } from "../../button/MgButton";
-import classes from "../Header.module.scss";
 import React, { useCallback, useState } from "react";
 import Menu from "@mui/material/Menu";
 import TextField from "@mui/material/TextField";
@@ -32,12 +31,12 @@ export const HeaderLoginMenu = () => {
   };
 
   return (
-    <div>
+    <Box>
       <MgButton
-        className={classes.header_container_navigation_element}
         variant={"text"}
         text={t("header.navigation.login")}
         onClick={handleOpen}
+        labelColor={"white"}
       />
       <Menu anchorEl={anchorEl} open={Boolean(anchorEl)} onClose={handleClose}>
         <Box sx={{ padding: "24px" }} width={300}>
@@ -73,6 +72,6 @@ export const HeaderLoginMenu = () => {
           </MgLink>
         </Box>
       </Menu>
-    </div>
+    </Box>
   );
 };

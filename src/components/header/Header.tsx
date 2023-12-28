@@ -1,4 +1,3 @@
-import classes from "./Header.module.scss";
 import { useTranslation } from "next-i18next";
 import { DropDownMenu } from "../drop-down-menu/DropDownMenu";
 import { MgButton } from "../button/MgButton";
@@ -12,6 +11,11 @@ import {
 import { HeaderLoginMenu } from "./auth/HeaderLoginMenu";
 import { useAuthAccessToken } from "../../app/auth/state/use-auth.reactive-vars";
 import { HeaderUserMenu } from "./auth/HeaderUserMenu";
+import {
+  HeaderContainerStyled,
+  HeaderNavigationStyled,
+  HeaderRootStyled,
+} from "./Header.styled";
 
 export default function Header() {
   const { t } = useTranslation();
@@ -20,15 +24,25 @@ export default function Header() {
   const categoryMenu = useCategoriesFromAlbumPostsForHeader();
 
   return (
-    <Box className={classes.header}>
-      <Box className={classes.header_container}>
-        <Box className={classes.header_container_brand}>
+    <HeaderRootStyled
+      width={1}
+      height={96}
+      display={"flex"}
+      alignItems={"center"}
+      justifyContent={"center"}
+    >
+      <HeaderContainerStyled
+        width={1440}
+        display={"flex"}
+        alignItems={"center"}
+        justifyContent={"space-between"}
+      >
+        <Box fontWeight={"bold"}>
           <h1>Michihiro Goto`s Gallery</h1>
         </Box>
-        <Box className={classes.header_container_navigation}>
+        <HeaderNavigationStyled display={"flex"} alignItems={"center"}>
           {accessToken && (
             <MgButton
-              className={classes.header_container_navigation_element}
               startIcon={<UploadIcon />}
               variant={"contained"}
               text={t("header.navigation.upload")}
@@ -36,30 +50,26 @@ export default function Header() {
             />
           )}
           <MgButton
-            className={classes.header_container_navigation_element}
             variant={"text"}
             text={t("header.navigation.top")}
             link={"/"}
           />
           <DropDownMenu
-            classNameForLabelColor={classes.header_container_navigation_element}
             label={t("header.navigation.country")}
             menuItems={countryMenu || []}
           />
           <DropDownMenu
-            classNameForLabelColor={classes.header_container_navigation_element}
             label={t("header.navigation.category")}
             menuItems={categoryMenu || []}
           />
           <MgButton
-            className={classes.header_container_navigation_element}
             variant={"text"}
             text={t("header.navigation.map")}
             link={"/map"}
           />
           {accessToken ? <HeaderUserMenu /> : <HeaderLoginMenu />}
-        </Box>
-      </Box>
-    </Box>
+        </HeaderNavigationStyled>
+      </HeaderContainerStyled>
+    </HeaderRootStyled>
   );
 }

@@ -23,4 +23,5 @@ export interface MgButtonProps {
     | "warning",
     ButtonPropsColorOverrides
   >;
+  labelColor?: string;
 }

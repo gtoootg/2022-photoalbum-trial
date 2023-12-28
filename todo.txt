@@ -1,6 +1,7 @@
 
 
-GoogleMap 治す
+GoogleMap api key
+css 削除
 
 ログアウト
 
@@ -8,6 +9,5 @@ test post put with auth and without auth
 
 reflesh token
 
-user registration (check duplicated user)
 
 

@@ -4,21 +4,21 @@ import MenuItem from "@mui/material/MenuItem";
 import React, { useState } from "react";
 import { MgLink } from "../link/MgLink";
 import { MgText } from "../text/MgText";
-import { Box } from "@mui/material";
+import { Box, Typography } from "@mui/material";
 
 interface DropDownMenuProps<DropDownMenuItemProps> {
   label: string;
   menuItems: (DropDownMenuItemProps & { label: string; link?: string })[];
-  classNameForLabelColor?: string;
   handleClickMenuItem?: (value: DropDownMenuItemProps) => void;
   linkWithoutParam?: string;
+  color?: string;
 }
 
 export const DropDownMenu = <T extends any>({
   label,
   menuItems,
-  classNameForLabelColor,
   handleClickMenuItem,
+  color,
 }: DropDownMenuProps<T>) => {
   const [anchorEl, setAnchorEl] = useState<null | HTMLElement>(null);
   const handleClick = (event: React.MouseEvent<HTMLButtonElement>) => {
@@ -39,7 +39,7 @@ export const DropDownMenu = <T extends any>({
         aria-expanded={open ? "true" : undefined}
         onClick={handleClick}
       >
-        <h3 className={classNameForLabelColor}>{label}</h3>
+        <Typography color={color || "white"}>{label}</Typography>
       </Button>
       <Menu
         id="basic-menu"
