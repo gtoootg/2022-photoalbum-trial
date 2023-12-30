@@ -31,7 +31,7 @@ export const ImageTransition = ({
   }, 10000);
 
   return (
-    <>
+    <div>
       {transitions((style, i) => (
         <animated.div style={style} className={className}>
           <Image
@@ -45,6 +45,6 @@ export const ImageTransition = ({
           />
         </animated.div>
       ))}
-    </>
+    </div>
   );
 };

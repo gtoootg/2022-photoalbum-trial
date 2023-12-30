@@ -1,5 +1,4 @@
-import { Typography, Container } from "@mui/material";
-import styles from "./HeadlineWithCaption.module.scss";
+import { Typography, Box } from "@mui/material";
 
 export interface HeadlineWithCaptionProps {
   headline: string;
@@ -11,11 +10,11 @@ export const HeadlineWithCaption = ({
   caption,
 }: HeadlineWithCaptionProps) => {
   return (
-    <>
-      <Typography className={styles.headline} variant={"h4"}>
+    <Box>
+      <Typography mb={0.5} variant={"h4"}>
         {headline}
       </Typography>
-      <Typography className={styles.caption}>{caption}</Typography>
-    </>
+      <Typography>{caption}</Typography>
+    </Box>
   );
 };

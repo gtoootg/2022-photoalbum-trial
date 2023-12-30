@@ -1,8 +1,9 @@
-import style from "./Hero.module.scss";
 import Image from "next/image";
 import { HeroProps } from "./Hero.types";
 import { MgText } from "../text/MgText";
 import { ImageTransition } from "../image-transition/ImageTransition";
+import { HeroImageStyled, HeroRootStyled, HeroTextStyled } from "./Hero.styled";
+import { Typography } from "@mui/material";
 
 export const Hero = ({ images, title, caption }: HeroProps) => {
   if (!images || images.length === 0) {
@@ -11,34 +12,33 @@ export const Hero = ({ images, title, caption }: HeroProps) => {
 
   if (images.length > 1) {
     return (
-      <div className={style.hero}>
-        <div className={style.hero_image_wrapper}>
-          <ImageTransition images={images} className={style.hero_image} />
-        </div>
-        <div className={style.hero_text}>
-          <MgText variant={"h1"} content={title} />
-          <MgText variant={"h3"} content={caption} />
-        </div>
-      </div>
+      <HeroRootStyled>
+        <HeroImageStyled>
+          <ImageTransition images={images} />
+        </HeroImageStyled>
+        <HeroTextStyled>
+          <Typography variant={"h1"}>{title}</Typography>
+          <Typography variant={"h3"}>{caption}</Typography>
+        </HeroTextStyled>
+      </HeroRootStyled>
     );
   }
 
   return (
-    <div className={style.hero}>
-      <div className={style.hero_image_wrapper}>
+    <HeroRootStyled>
+      <HeroImageStyled>
         <Image
           width={3}
           height={2}
           layout="responsive"
           src={images[0]}
           alt="image"
-          className={style.image}
         />
-      </div>
-      <div className={style.hero_text}>
+      </HeroImageStyled>
+      <HeroTextStyled>
         <MgText variant={"h1"} content={title} />
         <MgText variant={"h3"} content={caption} />
-      </div>
-    </div>
+      </HeroTextStyled>
+    </HeroRootStyled>
   );
 };

@@ -14,7 +14,7 @@ export async function getStaticProps({ locale }: { locale: string }) {
     props: {
       ...(await serverSideTranslations(locale, ["common"])),
       heroProps: {
-        imageGroupForTransition: [
+        images: [
           "https://live.staticflickr.com/65535/51973839886_56f413f231_h.jpg",
           "https://live.staticflickr.com/65535/49802283783_5ab06de39c_k.jpg",
           "https://live.staticflickr.com/593/33022311841_93724faf1f_k.jpg",
