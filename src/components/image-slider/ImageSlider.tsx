@@ -1,6 +1,5 @@
 import { Box, Grid } from "@mui/material";
 import Image from "next/image";
-import styles from "./ImageSlider.module.scss";
 import React, { useState } from "react";
 import ArrowLeftIcon from "@mui/icons-material/ArrowLeft";
 import ArrowRightIcon from "@mui/icons-material/ArrowRight";
@@ -32,7 +31,12 @@ const ImageSlider = ({
 
   return (
     <Box>
-      <Box display={"flex"} justifyContent={"center"} alignItems={"center"}>
+      <Box
+        display={"flex"}
+        justifyContent={"center"}
+        alignItems={"center"}
+        mb={2}
+      >
         <ArrowLeftIcon
           onClick={onClickLeft}
           htmlColor={color}
@@ -72,16 +76,14 @@ const ImageSlider = ({
 const MainImage = ({ imageSrc }: { imageSrc: string }) => {
   return (
     <Grid item xs={12}>
-      <div className={styles.mainImage}>
-        <Image
-          width={3}
-          height={2}
-          layout="responsive"
-          objectFit="contain"
-          src={imageSrc}
-          alt="image"
-        />
-      </div>
+      <Image
+        width={3}
+        height={2}
+        layout="responsive"
+        objectFit="contain"
+        src={imageSrc}
+        alt="image"
+      />
     </Grid>
   );
 };
@@ -96,39 +98,30 @@ const SubImageGroup = ({
   handleClickSubImage: (i: number) => void;
 }) => {
   return (
-    <Grid
-      item
-      container
-      xs={12}
-      spacing={2}
-      className={styles.subImageGroup}
-      justifyContent="center"
-    >
+    <Grid item container xs={12} spacing={2} justifyContent="center">
       {subImagesSrc.map((imageSrc, index) => {
         return (
-          <>
-            <Grid item xs={2}>
-              <div
-                className={styles.subImageGroup_image}
-                key={index}
-                style={{
-                  opacity: indexOfMainImage === index ? 1 : 0.6,
-                }}
-                onClick={() => {
-                  handleClickSubImage(index);
-                }}
-              >
-                <Image
-                  width={3}
-                  height={2}
-                  layout="responsive"
-                  objectFit="contain"
-                  src={imageSrc}
-                  alt="image"
-                />
-              </div>
-            </Grid>
-          </>
+          <Grid item xs={2}>
+            <Box
+              mt={2}
+              key={index}
+              sx={{
+                opacity: indexOfMainImage === index ? 1 : 0.6,
+              }}
+              onClick={() => {
+                handleClickSubImage(index);
+              }}
+            >
+              <Image
+                width={3}
+                height={2}
+                layout="responsive"
+                objectFit="contain"
+                src={imageSrc}
+                alt="image"
+              />
+            </Box>
+          </Grid>
         );
       })}
     </Grid>
