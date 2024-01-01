@@ -1,9 +1,8 @@
-import { Box } from "@mui/material";
 import { ReactChild, ReactFragment, ReactPortal } from "react";
 import Header from "../header/Header";
 import { Hero } from "../hero/Hero";
 import { HeroProps } from "../hero/Hero.types";
-import styles from "./Layout.module.scss";
+import { LayoutStyled } from "./Layout.styled";
 
 function Layout({
   children,
@@ -21,16 +20,15 @@ function Layout({
   header?: boolean;
 }) {
   return (
-    <Box
+    <LayoutStyled
       display={"flex"}
       flexDirection={"column"}
       alignItems={"center"}
-      className={styles.background}
     >
       {header && <Header />}
       {heroProps && <Hero {...heroProps} />}
       {children}
-    </Box>
+    </LayoutStyled>
   );
 }
 

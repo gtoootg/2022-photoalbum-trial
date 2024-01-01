@@ -1,8 +1,9 @@
-import { Box, Grid } from "@mui/material";
-import Image from "next/image";
-import styles from "./PreviewImageListBox.module.scss";
-import { MgText } from "../text/MgText";
+import { Box, Grid, Typography } from "@mui/material";
 import { useUploadingFlickrImages } from "../../feature/upload/components/stepper/first-stepper/hooks/use-uploading-flickr-images.hooks";
+import {
+  PreviewImageBoxStyled,
+  PreviewImageStyled,
+} from "./PreviewImageListBox.styled";
 
 export const PreviewImageListBox = ({
   helperText,
@@ -17,26 +18,24 @@ export const PreviewImageListBox = ({
 
   return (
     <Box>
-      <MgText variant={"body2"} content={helperText} />
+      <Typography variant={"body2"}>{helperText}</Typography>
       <Grid container spacing={1}>
         {flickrImagesToUse.map(({ url_n, id }) => (
           <Grid key={id} item xs={2.4}>
-            <Box
-              className={styles.imageBox}
-              sx={{ opacity: getImageOpacity ? getImageOpacity(id) : "1" }}
+            <PreviewImageBoxStyled
+              opacity={getImageOpacity && getImageOpacity(id)}
               onClick={() => {
                 onClickImageCallback && onClickImageCallback(id);
               }}
             >
-              <Image
-                className={styles.image}
+              <PreviewImageStyled
                 alt="image"
                 src={url_n}
                 width={300}
                 height={200}
                 layout="responsive"
               />
-            </Box>
+            </PreviewImageBoxStyled>
           </Grid>
         ))}
       </Grid>

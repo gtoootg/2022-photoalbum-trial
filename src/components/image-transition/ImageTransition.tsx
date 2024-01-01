@@ -1,6 +1,7 @@
 import React, { useState } from "react";
 import { useTransition, animated } from "@react-spring/web";
 import Image from "next/image";
+import { Box } from "@mui/material";
 
 export interface ImageTransitionProps {
   images: string[];
@@ -31,7 +32,7 @@ export const ImageTransition = ({
   }, 10000);
 
   return (
-    <div>
+    <Box>
       {transitions((style, i) => (
         <animated.div style={style} className={className}>
           <Image
@@ -45,6 +46,6 @@ export const ImageTransition = ({
           />
         </animated.div>
       ))}
-    </div>
+    </Box>
   );
 };
