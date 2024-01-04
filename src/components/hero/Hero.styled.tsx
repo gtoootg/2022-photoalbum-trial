@@ -14,9 +14,9 @@ export const HeroImageStyled = styled(Box)(() => ({
   width: "100%",
 }));
 
-export const HeroTextStyled = styled(Box)(() => ({
+export const HeroTextStyled = styled(Box)(({ theme }) => ({
   position: "absolute",
-  color: "white",
+  color: theme.palette.common.white,
   bottom: "-180px",
   zIndex: "2",
   width: "100%",

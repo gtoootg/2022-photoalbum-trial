@@ -5,6 +5,7 @@ import React, { useState } from "react";
 import { MgLink } from "../link/MgLink";
 import { MgText } from "../text/MgText";
 import { Box, Typography } from "@mui/material";
+import { useTheme } from "@mui/system";
 
 interface DropDownMenuProps<DropDownMenuItemProps> {
   label: string;
@@ -20,6 +21,7 @@ export const DropDownMenu = <T extends any>({
   handleClickMenuItem,
   color,
 }: DropDownMenuProps<T>) => {
+  const theme = useTheme();
   const [anchorEl, setAnchorEl] = useState<null | HTMLElement>(null);
   const handleClick = (event: React.MouseEvent<HTMLButtonElement>) => {
     setAnchorEl(event.currentTarget);
@@ -39,7 +41,9 @@ export const DropDownMenu = <T extends any>({
         aria-expanded={open ? "true" : undefined}
         onClick={handleClick}
       >
-        <Typography color={color || "white"}>{label}</Typography>
+        <Typography color={color || theme.palette.common.white}>
+          {label}
+        </Typography>
       </Button>
       <Menu
         id="basic-menu"
@@ -60,7 +64,10 @@ export const DropDownMenu = <T extends any>({
             >
               {item.link ? (
                 <MgLink href={item.link}>
-                  <MgText content={item.label} color={"black"} />
+                  <MgText
+                    content={item.label}
+                    color={theme.palette.common.black}
+                  />
                 </MgLink>
               ) : (
                 <MgText content={item.label} />

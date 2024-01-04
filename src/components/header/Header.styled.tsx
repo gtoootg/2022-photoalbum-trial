@@ -5,7 +5,7 @@ export const HeaderRootStyled = styled(Box)(({ theme }) => ({
 }));
 
 export const HeaderContainerStyled = styled(Box)(({ theme }) => ({
-  color: "white",
+  color: theme.palette.common.white,
 }));
 
 export const HeaderNavigationStyled = styled(Box)(({ theme }) => ({

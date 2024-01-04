@@ -1,11 +1,38 @@
 import { PaletteOptions } from "@mui/material";
 
-export const palette: PaletteOptions = {
+export interface ColorPalette {
+  green: {
+    main: string;
+  };
+  blue: {
+    main: string;
+  };
+  orange: {
+    main: string;
+  };
+  // blue: {
+  //   main: string
+  //   light: string
+  //   verylight: string
+  // }
+  // orange: {
+  //   main: string
+  //   light: string
+  //   verylight: string
+  //   veryverylight: string
+  // }
+  // white: string
+  // red: {
+  //   main: string
+  // }
+  // green: {
+  //   main: string
+  // }
+}
+
+export const palette: PaletteOptions & { color: ColorPalette } = {
   background: {
     paper: "#F8F8FF",
-  },
-  primary: {
-    main: "#F0F8FF",
   },
   grey: {
     "200": "#F6F6F6",
@@ -14,5 +41,21 @@ export const palette: PaletteOptions = {
     "500": "#989898",
     "600": "#666666",
     "700": "#333333",
+  },
+  common: {
+    black: "#000000",
+    white: "#ffffff",
+  },
+
+  color: {
+    green: {
+      main: "#7ad87a",
+    },
+    blue: {
+      main: "#3c8fe1",
+    },
+    orange: {
+      main: "#de5c45",
+    },
   },
 };
