@@ -10,23 +10,13 @@ import {
 } from "../../feature/upload/state/use-upload-data.reactive-vars";
 import { useMemo } from "react";
 import { UploadAlbumPostRequest } from "./album-posts.api.types";
-import {
-  useAuthAccessToken,
-  useAuthUserId,
-} from "../../app/auth/state/use-auth.reactive-vars";
 import { useShowSnackbar } from "../../components/snackbar/use-show-snackbar.hooks";
 import { StatusAndMessageResponse } from "../ApiResponse.types";
+import { useApiConfig } from "../use-api-config.hooks";
 
 export const useUploadAlbumPost = () => {
   const showSnackbar = useShowSnackbar();
-  const [token] = useAuthAccessToken();
-
-  const config = {
-    headers: {
-      Authorization: `Bearer ${token}`,
-      "Content-Type": "application/json",
-    },
-  };
+  const config = useApiConfig();
 
   const { mutate, isLoading } = useMutation<
     AxiosResponse<StatusAndMessageResponse>,
