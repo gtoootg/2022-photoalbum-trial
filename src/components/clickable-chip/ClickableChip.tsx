@@ -18,7 +18,8 @@ export const ClickableChip = ({
       label={label}
       onClick={onClick}
       icon={icon}
-      className={styles[`${color}`]}
+      sx={{ backgroundColor: color }}
+      // className={styles[`${color}`]}
     />
   );
 };
