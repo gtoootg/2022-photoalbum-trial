@@ -12,8 +12,6 @@ export const MediaCardGroup = ({
   flickrImages: FlickrImageProps[];
   uploadedPosts: GetAlbumPostsResponse;
 }) => {
-  const { isDownLg } = useBreakPoints();
-
   return (
     <Grid container spacing={2} sx={{ marginTop: "3rem" }}>
       {uploadedPosts.map((uploadedPost, index) => {
@@ -23,7 +21,7 @@ export const MediaCardGroup = ({
         )[0]?.["url_n"];
 
         return (
-          <Grid item md={12} lg={4} key={index}>
+          <Grid item md={6} lg={4} sm={12} key={index}>
             <MediaCard
               imageSrc={imageSrcForMediaCard}
               title={uploadedPost.title}

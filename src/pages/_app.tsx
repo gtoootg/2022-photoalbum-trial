@@ -24,7 +24,6 @@ function MyApp({ Component, pageProps }: AppProps) {
           </Layout>
         </Hydrate>
       </QueryClientProvider>
-      //{" "}
     </ThemeProvider>
   );
 }

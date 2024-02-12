@@ -4,8 +4,6 @@ import CardActions from "@mui/material/CardActions";
 import CardContent from "@mui/material/CardContent";
 import Typography from "@mui/material/Typography";
 import Image from "next/image";
-import Link from "next/link";
-import { useRouter } from "next/router";
 import { MgLink } from "../link/MgLink";
 import Box from "@mui/material/Box";
 
@@ -22,12 +20,10 @@ export default function MediaCard({
   description,
   index,
 }: MediaCardProps) {
-  const router = useRouter();
   return (
     <Card>
       <Box
         sx={{
-          width: "100%",
           aspectRatio: "3/2",
           position: "relative",
         }}
