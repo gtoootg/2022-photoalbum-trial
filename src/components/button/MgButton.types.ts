@@ -7,7 +7,6 @@ export interface MgButtonProps {
   onClick?: MouseEventHandler<HTMLElement> | undefined;
   variant: "text" | "contained" | "outlined";
   text: string;
-
   startIcon?: React.ReactElement<SvgIconProps>;
   endIcon?: React.ReactElement<SvgIconProps>;
   className?: string;

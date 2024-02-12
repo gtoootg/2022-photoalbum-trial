@@ -3,9 +3,12 @@ import { HeadlineWithCaption } from "../../components/headline/HeadlineWithCapti
 import { UploadStepperGroup } from "./components/stepper/UploadStepper";
 import styles from "./UploadBody.module.scss";
 import { useTranslation } from "next-i18next";
+import { useResetUploadState } from "./state/use-reset-upload-state.hooks";
 
 export default function Upload() {
   const { t } = useTranslation();
+
+  useResetUploadState();
 
   return (
     <Container className={styles.uploadBody}>

@@ -10,24 +10,6 @@ export interface ColorPalette {
   orange: {
     main: string;
   };
-  // blue: {
-  //   main: string
-  //   light: string
-  //   verylight: string
-  // }
-  // orange: {
-  //   main: string
-  //   light: string
-  //   verylight: string
-  //   veryverylight: string
-  // }
-  // white: string
-  // red: {
-  //   main: string
-  // }
-  // green: {
-  //   main: string
-  // }
 }
 
 export const palette: PaletteOptions & { color: ColorPalette } = {

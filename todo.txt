@@ -1,11 +1,14 @@
 
 
+reset state of upload
+reset state of edit text and description
+
+responsive design
+
 GoogleMap api key
 css 削除
 
 ログアウト
-
-test post put with auth and without auth
 
 reflesh token
 
