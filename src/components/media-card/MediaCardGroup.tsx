@@ -3,6 +3,7 @@ import MediaCard from "./MediaCard";
 import { GetAlbumPostsResponse } from "../../api/album-posts/album-posts.api.types";
 import { filterImageSourcesOfPostForMediaCard } from "../../feature/album-post/hooks/use-get-album-post.hooks";
 import { FlickrImageProps } from "../../api/flickr-images/flickr-images.api.types";
+import { useBreakPoints } from "../../helper/responsive/use-break-points.hooks.ts.";
 
 export const MediaCardGroup = ({
   flickrImages,
@@ -11,6 +12,8 @@ export const MediaCardGroup = ({
   flickrImages: FlickrImageProps[];
   uploadedPosts: GetAlbumPostsResponse;
 }) => {
+  const { isDownLg } = useBreakPoints();
+
   return (
     <Grid container spacing={2} sx={{ marginTop: "3rem" }}>
       {uploadedPosts.map((uploadedPost, index) => {
@@ -20,7 +23,7 @@ export const MediaCardGroup = ({
         )[0]?.["url_n"];
 
         return (
-          <Grid item xs={4} key={index}>
+          <Grid item md={12} lg={4} key={index}>
             <MediaCard
               imageSrc={imageSrcForMediaCard}
               title={uploadedPost.title}

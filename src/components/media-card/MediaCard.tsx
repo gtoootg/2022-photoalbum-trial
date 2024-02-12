@@ -28,17 +28,11 @@ export default function MediaCard({
       <Box
         sx={{
           width: "100%",
+          aspectRatio: "3/2",
           position: "relative",
         }}
       >
-        <Image
-          width={3}
-          height={2}
-          layout="responsive"
-          objectFit="contain"
-          src={imageSrc}
-          alt="image"
-        />
+        <Image layout="fill" src={imageSrc} alt="image" />
       </Box>
       <CardContent>
         <Typography gutterBottom variant="h5" component="div">

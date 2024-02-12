@@ -1,9 +1,9 @@
 
-
-reset state of upload
 reset state of edit text and description
 
 responsive design
+
+add user to post
 
 GoogleMap api key
 css 削除
