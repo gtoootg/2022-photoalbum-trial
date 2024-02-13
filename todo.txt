@@ -2,15 +2,24 @@
 reset state of edit text and description
 
 responsive design
+1.home
+  -image column :done
+  -navigation of header
 
 add user to post
 
 GoogleMap api key
 css 削除
 
-ログアウト
 
-reflesh token
+(Bug)
+1.Home
+  image card -> hover for see detail
+
+(Auth)
+-Cache token?
+-reflesh token
+-logout?
 
 
 
