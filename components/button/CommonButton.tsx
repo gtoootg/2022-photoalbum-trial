@@ -24,6 +24,7 @@ export const CommonButton = ({
 }: CommonButtonProps) => {
   return (
     <Button
+      data-testid={"commonButton"}
       variant={variant}
       onClick={onClick}
       startIcon={startIcon}
