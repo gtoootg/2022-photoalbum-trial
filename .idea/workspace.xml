@@ -1,21 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
-  <component name="AutoImportSettings">
-    <option name="autoReloadType" value="SELECTIVE" />
-  </component>
   <component name="ChangeListManager">
-    <list default="true" id="5e61a10c-b0e0-4e25-ad22-99e278e703dc" name="Changes" comment="temp commit">
-      <change afterPath="$PROJECT_DIR$/src/api/error-response.types.ts" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/components/snackbar/MgSnackbar.tsx" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/components/snackbar/use-show-snackbar.hooks.ts" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/components/snackbar/use-snackbar-message.reactive-vars.ts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/api/auth/use-register-user.hooks.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/api/auth/use-register-user.hooks.ts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/components/header/auth/HeaderLoginMenu.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/header/auth/HeaderLoginMenu.tsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/components/link/MgLink.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/link/MgLink.tsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/pages/_app.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/pages/_app.tsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/pages/api/get/exif/[flickrPhotoId]/index.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/pages/api/get/exif/[flickrPhotoId]/index.tsx" afterDir="false" />
-    </list>
+    <list default="true" id="30b74459-7f37-4710-80c0-f519a172b6bb" name="Changes" comment="" />
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
@@ -24,36 +10,14 @@
   <component name="FileTemplateManagerImpl">
     <option name="RECENT_TEMPLATES">
       <list>
-        <option value="CSS File" />
-        <option value="SCSS File" />
-        <option value="TypeScript JSX File" />
-        <option value="TypeScript File" />
+        <option value="JavaScript File" />
       </list>
     </option>
   </component>
   <component name="Git.Settings">
-    <favorite-branches>
-      <branch-storage>
-        <map>
-          <entry type="LOCAL">
-            <value>
-              <list>
-                <branch-info repo="$PROJECT_DIR$" source="feature/auth" />
-              </list>
-            </value>
-          </entry>
-        </map>
-      </branch-storage>
-    </favorite-branches>
-    <option name="RECENT_BRANCH_BY_REPOSITORY">
-      <map>
-        <entry key="$PROJECT_DIR$" value="feature/auth" />
-      </map>
-    </option>
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
   </component>
   <component name="GitToolBoxStore">
-    <option name="projectConfigVersion" value="5" />
     <option name="recentBranches">
       <RecentBranches>
         <option name="branchesForRepo">
@@ -62,12 +26,12 @@
               <option name="branches">
                 <list>
                   <RecentBranch>
-                    <option name="branchName" value="main" />
-                    <option name="lastUsedInstant" value="1702668364" />
+                    <option name="branchName" value="feature/jest" />
+                    <option name="lastUsedInstant" value="1708094193" />
                   </RecentBranch>
                   <RecentBranch>
-                    <option name="branchName" value="feature/auth" />
-                    <option name="lastUsedInstant" value="1702668363" />
+                    <option name="branchName" value="main" />
+                    <option name="lastUsedInstant" value="1708094192" />
                   </RecentBranch>
                 </list>
               </option>
@@ -78,134 +42,108 @@
       </RecentBranches>
     </option>
   </component>
-  <component name="MarkdownSettingsMigration">
-    <option name="stateVersion" value="1" />
-  </component>
-  <component name="ProjectId" id="2XF5MhLDFjvvJZmPKykpfw7Egip" />
   <component name="ProjectLevelVcsManager" settingsEditedManually="true" />
-  <component name="ProjectViewState">
-    <option name="hideEmptyMiddlePackages" value="true" />
-    <option name="showLibraryContents" value="true" />
-  </component>
   <component name="PropertiesComponent"><![CDATA[{
   "keyToString": {
-    "RunOnceActivity.OpenProjectViewOnStart": "true",
-    "RunOnceActivity.ShowReadmeOnStart": "true",
-    "WebServerToolWindowFactoryState": "false",
-    "last_opened_file_path": "C:/Users/michihiro.goto/Documents/code/portfolio/photo-album-2022",
-    "list.type.of.created.stylesheet": "SCSS",
-    "node.js.detected.package.eslint": "true",
-    "node.js.selected.package.eslint": "(autodetect)",
-    "node.js.selected.package.tslint": "(autodetect)",
-    "nodejs_package_manager_path": "yarn",
-    "prettierjs.PrettierConfiguration.Package": "C:\\Users\\michihiro.goto\\Documents\\code\\portfolio\\photo-album-2022\\node_modules\\prettier",
-    "settings.editor.selected.configurable": "settings.javascript.prettier",
-    "ts.external.directory.path": "C:\\Users\\michihiro.goto\\Documents\\code\\portfolio\\photo-album-2022\\node_modules\\typescript\\lib",
-    "vue.rearranger.settings.migration": "true"
+    "ts.external.directory.path": "C:\\Users\\michihiro.goto\\Documents\\code\\portfolio\\photo-album-2022\\node_modules\\typescript\\lib"
   }
 }]]></component>
-  <component name="RecentsManager">
-    <key name="CopyFile.RECENT_KEYS">
-      <recent name="C:\Users\michihiro.goto\Documents\code\portfolio\photo-album-2022\public\locales\en" />
-    </key>
-    <key name="MoveFile.RECENT_KEYS">
-      <recent name="C:\Users\michihiro.goto\Documents\code\portfolio\photo-album-2022\src\feature\auth\sign-up\hooks" />
-      <recent name="C:\Users\michihiro.goto\Documents\code\portfolio\photo-album-2022\src\feature\album-post\components\general-information\components\text-box\edit-mode\hooks" />
-    </key>
+  <component name="RunManager" selected="Jest.CommonButton">
+    <configuration name="CommonButton" type="JavaScriptTestRunnerJest" temporary="true" nameIsGenerated="true">
+      <node-interpreter value="project" />
+      <jest-package value="$PROJECT_DIR$/node_modules/jest" />
+      <working-dir value="$PROJECT_DIR$" />
+      <envs />
+      <scope-kind value="SUITE" />
+      <test-file value="$PROJECT_DIR$/components/button/CommoButton.test.tsx" />
+      <test-names>
+        <test-name value="CommonButton" />
+      </test-names>
+      <method v="2" />
+    </configuration>
+    <configuration name="adds 1 + 2 to equal 3 (1)" type="JavaScriptTestRunnerJest" temporary="true" nameIsGenerated="true">
+      <node-interpreter value="project" />
+      <jest-package value="$PROJECT_DIR$/node_modules/jest" />
+      <working-dir value="$PROJECT_DIR$" />
+      <envs />
+      <scope-kind value="TEST" />
+      <test-file value="$PROJECT_DIR$/__test__/sum.test.tsx" />
+      <test-names>
+        <test-name value="adds 1 + 2 to equal 3" />
+      </test-names>
+      <method v="2" />
+    </configuration>
+    <configuration name="adds 1 + 2 to equal 3 (2)" type="JavaScriptTestRunnerJest" temporary="true" nameIsGenerated="true">
+      <node-interpreter value="project" />
+      <jest-package value="$PROJECT_DIR$/node_modules/jest" />
+      <working-dir value="$PROJECT_DIR$" />
+      <envs />
+      <scope-kind value="TEST" />
+      <test-file value="$PROJECT_DIR$/components/button/sum.test.tsx" />
+      <test-names>
+        <test-name value="adds 1 + 2 to equal 3" />
+      </test-names>
+      <method v="2" />
+    </configuration>
+    <configuration name="adds 1 + 2 to equal 3" type="JavaScriptTestRunnerJest" temporary="true" nameIsGenerated="true">
+      <node-interpreter value="project" />
+      <jest-package value="$PROJECT_DIR$/node_modules/jest" />
+      <working-dir value="$PROJECT_DIR$" />
+      <envs />
+      <scope-kind value="TEST" />
+      <test-file value="$PROJECT_DIR$/__test__/sum.test.ts" />
+      <test-names>
+        <test-name value="adds 1 + 2 to equal 3" />
+      </test-names>
+      <method v="2" />
+    </configuration>
+    <configuration name="commonButton.should call callback on click" type="JavaScriptTestRunnerJest" temporary="true" nameIsGenerated="true">
+      <node-interpreter value="project" />
+      <jest-package value="$PROJECT_DIR$/node_modules/jest" />
+      <working-dir value="$PROJECT_DIR$" />
+      <envs />
+      <scope-kind value="TEST" />
+      <test-file value="$PROJECT_DIR$/components/button/CommoButton.test.tsx" />
+      <test-names>
+        <test-name value="commonButton" />
+        <test-name value="should call callback on click" />
+      </test-names>
+      <method v="2" />
+    </configuration>
+    <recent_temporary>
+      <list>
+        <item itemvalue="Jest.CommonButton" />
+        <item itemvalue="Jest.commonButton.should call callback on click" />
+        <item itemvalue="Jest.adds 1 + 2 to equal 3 (2)" />
+        <item itemvalue="Jest.adds 1 + 2 to equal 3 (1)" />
+        <item itemvalue="Jest.adds 1 + 2 to equal 3" />
+      </list>
+    </recent_temporary>
   </component>
-  <component name="SpellCheckerSettings" RuntimeDictionaries="0" Folders="0" CustomDictionaries="0" DefaultDictionary="application-level" UseSingleDictionary="true" transferred="true" />
   <component name="TaskManager">
-    <task id="LOCAL-00001" summary="make it work">
-      <option name="closed" value="true" />
-      <created>1698182302662</created>
-      <option name="number" value="00001" />
-      <option name="presentableId" value="LOCAL-00001" />
-      <option name="project" value="LOCAL" />
-      <updated>1698182302662</updated>
-    </task>
-    <task active="true" id="Default" summary="Default task">
-      <changelist id="5e61a10c-b0e0-4e25-ad22-99e278e703dc" name="Changes" comment="make it work" />
-      <created>1698211961042</created>
-      <option name="number" value="Default" />
-      <option name="presentableId" value="Default" />
-      <updated>1698211961042</updated>
-      <workItem from="1698211963681" duration="2773000" />
-      <workItem from="1702042855041" duration="2700000" />
-      <workItem from="1702053405795" duration="4552000" />
-      <workItem from="1702195769052" duration="10483000" />
-      <workItem from="1702668717705" duration="5380000" />
-    </task>
-    <task id="LOCAL-00002" summary="make it work">
-      <option name="closed" value="true" />
-      <created>1698567700267</created>
-      <option name="number" value="00002" />
-      <option name="presentableId" value="LOCAL-00002" />
-      <option name="project" value="LOCAL" />
-      <updated>1698567700267</updated>
-    </task>
-    <task id="LOCAL-00003" summary="make it work">
-      <option name="closed" value="true" />
-      <created>1698567704965</created>
-      <option name="number" value="00003" />
-      <option name="presentableId" value="LOCAL-00003" />
-      <option name="project" value="LOCAL" />
-      <updated>1698567704965</updated>
-    </task>
-    <task id="LOCAL-00004" summary="make it work">
-      <option name="closed" value="true" />
-      <created>1698568844556</created>
-      <option name="number" value="00004" />
-      <option name="presentableId" value="LOCAL-00004" />
-      <option name="project" value="LOCAL" />
-      <updated>1698568844556</updated>
-    </task>
-    <task id="LOCAL-00005" summary="updated config">
-      <option name="closed" value="true" />
-      <created>1702042609448</created>
-      <option name="number" value="00005" />
-      <option name="presentableId" value="LOCAL-00005" />
-      <option name="project" value="LOCAL" />
-      <updated>1702042609448</updated>
-    </task>
-    <task id="LOCAL-00006" summary="temp commit">
-      <option name="closed" value="true" />
-      <created>1702057428176</created>
-      <option name="number" value="00006" />
-      <option name="presentableId" value="LOCAL-00006" />
-      <option name="project" value="LOCAL" />
-      <updated>1702057428176</updated>
-    </task>
-    <option name="localTasksCounter" value="7" />
     <servers />
-  </component>
-  <component name="TypeScriptGeneratedFilesManager">
-    <option name="version" value="3" />
   </component>
   <component name="Vcs.Log.Tabs.Properties">
     <option name="TAB_STATES">
       <map>
         <entry key="MAIN">
           <value>
-            <State />
+            <State>
+              <option name="FILTERS">
+                <map>
+                  <entry key="branch">
+                    <value>
+                      <list>
+                        <option value="feature/jest" />
+                      </list>
+                    </value>
+                  </entry>
+                </map>
+              </option>
+            </State>
           </value>
         </entry>
       </map>
     </option>
-  </component>
-  <component name="VcsManagerConfiguration">
-    <MESSAGE value="make it work" />
-    <MESSAGE value="updated config" />
-    <MESSAGE value="temp commit" />
-    <option name="LAST_COMMIT_MESSAGE" value="temp commit" />
-  </component>
-  <component name="XDebuggerManager">
-    <breakpoint-manager>
-      <breakpoints>
-        <line-breakpoint enabled="true" type="javascript">
-          <url>file://$PROJECT_DIR$/src/pages/_app.tsx</url>
-          <option name="timeStamp" value="1" />
-        </line-breakpoint>
-      </breakpoints>
-    </breakpoint-manager>
   </component>
 </project>
