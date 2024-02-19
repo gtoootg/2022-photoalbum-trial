@@ -1,7 +1,17 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
+  <component name="AutoImportSettings">
+    <option name="autoReloadType" value="SELECTIVE" />
+  </component>
   <component name="ChangeListManager">
-    <list default="true" id="30b74459-7f37-4710-80c0-f519a172b6bb" name="Changes" comment="" />
+    <list default="true" id="30b74459-7f37-4710-80c0-f519a172b6bb" name="Changes" comment="">
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/components/button/CommoButton.test.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/button/CommoButton.test.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/components/button/CommonButton.tsx" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/components/text/Text.tsx" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/api/album-posts/album-posts.api.types.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/api/album-posts/album-posts.api.types.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/api/album-posts/use-upload-album-post.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/api/album-posts/use-upload-album-post.ts" afterDir="false" />
+    </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
@@ -45,9 +55,15 @@
   <component name="ProjectLevelVcsManager" settingsEditedManually="true" />
   <component name="PropertiesComponent"><![CDATA[{
   "keyToString": {
+    "node.js.selected.package.tslint": "(autodetect)",
     "ts.external.directory.path": "C:\\Users\\michihiro.goto\\Documents\\code\\portfolio\\photo-album-2022\\node_modules\\typescript\\lib"
   }
 }]]></component>
+  <component name="RecentsManager">
+    <key name="MoveFile.RECENT_KEYS">
+      <recent name="C:\Users\michihiro.goto\Documents\code\portfolio\photo-album-2022\src\components\button" />
+    </key>
+  </component>
   <component name="RunManager" selected="Jest.CommonButton">
     <configuration name="CommonButton" type="JavaScriptTestRunnerJest" temporary="true" nameIsGenerated="true">
       <node-interpreter value="project" />

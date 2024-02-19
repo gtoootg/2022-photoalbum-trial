@@ -12,6 +12,7 @@ export interface GetAlbumPostResponse {
 export type GetAlbumPostsResponse = GetAlbumPostResponse[];
 
 export interface UploadAlbumPostRequest {
+  userId:number
   title: string;
   description: string;
   country: string;

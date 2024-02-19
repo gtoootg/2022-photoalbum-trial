@@ -13,6 +13,7 @@ import { UploadAlbumPostRequest } from "./album-posts.api.types";
 import { useShowSnackbar } from "../../components/snackbar/use-show-snackbar.hooks";
 import { StatusAndMessageResponse } from "../ApiResponse.types";
 import { useApiConfig } from "../use-api-config.hooks";
+import {useAuthUserId} from "../../app/auth/state/use-auth.reactive-vars";
 
 export const useUploadAlbumPost = () => {
   const showSnackbar = useShowSnackbar();
@@ -42,6 +43,7 @@ export const useUploadAlbumPost = () => {
 };
 
 export const useComposeUploadingAlbumPostPayload = () => {
+  const [userId] = useAuthUserId()
   const [images] = useUploadingImages();
   const [title] = useUploadingTitle();
   const [description] = useUploadingDescription();
@@ -55,6 +57,7 @@ export const useComposeUploadingAlbumPostPayload = () => {
     }
 
     return {
+      userId,
       title,
       description,
       country,
