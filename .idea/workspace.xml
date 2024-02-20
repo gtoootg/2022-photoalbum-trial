@@ -6,11 +6,13 @@
   <component name="ChangeListManager">
     <list default="true" id="30b74459-7f37-4710-80c0-f519a172b6bb" name="Changes" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/components/button/CommoButton.test.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/button/CommoButton.test.tsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/components/button/CommonButton.tsx" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/components/text/Text.tsx" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/api/album-posts/album-posts.api.types.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/api/album-posts/album-posts.api.types.ts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/api/album-posts/use-upload-album-post.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/api/album-posts/use-upload-album-post.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/jest.config.js" beforeDir="false" afterPath="$PROJECT_DIR$/jest.config.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/next.config.js" beforeDir="false" afterPath="$PROJECT_DIR$/next.config.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/package.json" beforeDir="false" afterPath="$PROJECT_DIR$/package.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/components/button/CommoButton.test.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/button/CommoButton.test.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/components/text/MgText.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/text/MgText.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/tsconfig.json" beforeDir="false" afterPath="$PROJECT_DIR$/tsconfig.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/yarn.lock" beforeDir="false" afterPath="$PROJECT_DIR$/yarn.lock" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -28,6 +30,7 @@
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
   </component>
   <component name="GitToolBoxStore">
+    <option name="projectConfigVersion" value="5" />
     <option name="recentBranches">
       <RecentBranches>
         <option name="branchesForRepo">
@@ -52,11 +55,28 @@
       </RecentBranches>
     </option>
   </component>
+  <component name="MarkdownSettingsMigration">
+    <option name="stateVersion" value="1" />
+  </component>
+  <component name="ProjectId" id="2ccYekCqgycDsicTxp1XZygSifb" />
   <component name="ProjectLevelVcsManager" settingsEditedManually="true" />
+  <component name="ProjectViewState">
+    <option name="hideEmptyMiddlePackages" value="true" />
+    <option name="showLibraryContents" value="true" />
+  </component>
   <component name="PropertiesComponent"><![CDATA[{
   "keyToString": {
+    "RunOnceActivity.OpenProjectViewOnStart": "true",
+    "RunOnceActivity.ShowReadmeOnStart": "true",
+    "WebServerToolWindowFactoryState": "false",
+    "last_opened_file_path": "C:/Users/michihiro.goto/Documents/code/portfolio/photo-album-2022",
+    "node.js.detected.package.eslint": "true",
+    "node.js.selected.package.eslint": "(autodetect)",
     "node.js.selected.package.tslint": "(autodetect)",
-    "ts.external.directory.path": "C:\\Users\\michihiro.goto\\Documents\\code\\portfolio\\photo-album-2022\\node_modules\\typescript\\lib"
+    "nodejs.jest.jest_package": "C:/Users/michihiro.goto/Documents/code/portfolio/photo-album-2022/node_modules/jest",
+    "nodejs_package_manager_path": "yarn",
+    "ts.external.directory.path": "C:\\Users\\michihiro.goto\\Documents\\code\\portfolio\\photo-album-2022\\node_modules\\typescript\\lib",
+    "vue.rearranger.settings.migration": "true"
   }
 }]]></component>
   <component name="RecentsManager">
@@ -64,7 +84,19 @@
       <recent name="C:\Users\michihiro.goto\Documents\code\portfolio\photo-album-2022\src\components\button" />
     </key>
   </component>
-  <component name="RunManager" selected="Jest.CommonButton">
+  <component name="RunManager" selected="Jest.CommonButton (1)">
+    <configuration name="CommonButton (1)" type="JavaScriptTestRunnerJest" temporary="true" nameIsGenerated="true">
+      <node-interpreter value="project" />
+      <jest-package value="$PROJECT_DIR$/node_modules/jest" />
+      <working-dir value="$PROJECT_DIR$" />
+      <envs />
+      <scope-kind value="SUITE" />
+      <test-file value="$PROJECT_DIR$/src/components/button/CommoButton.test.tsx" />
+      <test-names>
+        <test-name value="CommonButton" />
+      </test-names>
+      <method v="2" />
+    </configuration>
     <configuration name="CommonButton" type="JavaScriptTestRunnerJest" temporary="true" nameIsGenerated="true">
       <node-interpreter value="project" />
       <jest-package value="$PROJECT_DIR$/node_modules/jest" />
@@ -77,15 +109,16 @@
       </test-names>
       <method v="2" />
     </configuration>
-    <configuration name="adds 1 + 2 to equal 3 (1)" type="JavaScriptTestRunnerJest" temporary="true" nameIsGenerated="true">
+    <configuration name="CommonButton.renders button with text when link is not provided" type="JavaScriptTestRunnerJest" temporary="true" nameIsGenerated="true">
       <node-interpreter value="project" />
       <jest-package value="$PROJECT_DIR$/node_modules/jest" />
       <working-dir value="$PROJECT_DIR$" />
       <envs />
       <scope-kind value="TEST" />
-      <test-file value="$PROJECT_DIR$/__test__/sum.test.tsx" />
+      <test-file value="$PROJECT_DIR$/src/components/button/CommoButton.test.tsx" />
       <test-names>
-        <test-name value="adds 1 + 2 to equal 3" />
+        <test-name value="CommonButton" />
+        <test-name value="renders button with text when link is not provided" />
       </test-names>
       <method v="2" />
     </configuration>
@@ -96,18 +129,6 @@
       <envs />
       <scope-kind value="TEST" />
       <test-file value="$PROJECT_DIR$/components/button/sum.test.tsx" />
-      <test-names>
-        <test-name value="adds 1 + 2 to equal 3" />
-      </test-names>
-      <method v="2" />
-    </configuration>
-    <configuration name="adds 1 + 2 to equal 3" type="JavaScriptTestRunnerJest" temporary="true" nameIsGenerated="true">
-      <node-interpreter value="project" />
-      <jest-package value="$PROJECT_DIR$/node_modules/jest" />
-      <working-dir value="$PROJECT_DIR$" />
-      <envs />
-      <scope-kind value="TEST" />
-      <test-file value="$PROJECT_DIR$/__test__/sum.test.ts" />
       <test-names>
         <test-name value="adds 1 + 2 to equal 3" />
       </test-names>
@@ -128,16 +149,29 @@
     </configuration>
     <recent_temporary>
       <list>
+        <item itemvalue="Jest.CommonButton (1)" />
+        <item itemvalue="Jest.CommonButton.renders button with text when link is not provided" />
         <item itemvalue="Jest.CommonButton" />
         <item itemvalue="Jest.commonButton.should call callback on click" />
         <item itemvalue="Jest.adds 1 + 2 to equal 3 (2)" />
-        <item itemvalue="Jest.adds 1 + 2 to equal 3 (1)" />
-        <item itemvalue="Jest.adds 1 + 2 to equal 3" />
       </list>
     </recent_temporary>
   </component>
+  <component name="SpellCheckerSettings" RuntimeDictionaries="0" Folders="0" CustomDictionaries="0" DefaultDictionary="application-level" UseSingleDictionary="true" transferred="true" />
   <component name="TaskManager">
+    <task active="true" id="Default" summary="Default task">
+      <changelist id="30b74459-7f37-4710-80c0-f519a172b6bb" name="Changes" comment="" />
+      <created>1708412441941</created>
+      <option name="number" value="Default" />
+      <option name="presentableId" value="Default" />
+      <updated>1708412441941</updated>
+      <workItem from="1708412443007" duration="1320000" />
+      <workItem from="1708432112164" duration="570000" />
+    </task>
     <servers />
+  </component>
+  <component name="TypeScriptGeneratedFilesManager">
+    <option name="version" value="3" />
   </component>
   <component name="Vcs.Log.Tabs.Properties">
     <option name="TAB_STATES">
@@ -150,7 +184,7 @@
                   <entry key="branch">
                     <value>
                       <list>
-                        <option value="feature/jest" />
+                        <option value="main" />
                       </list>
                     </value>
                   </entry>

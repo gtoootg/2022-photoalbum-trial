@@ -8,13 +8,7 @@ const nextConfig = {
     domains: ["live.staticflickr.com"],
   },
   i18n,
-  webpackDevMiddleware: (config) => {
-    config.watchOptions = {
-      poll: 5000,
-      aggregateTimeout: 300,
-    };
-    return config;
-  },
+
   env: {
     API_DEV: process.env.NEXT_PUBLIC_API_BASE_URL,
   },
