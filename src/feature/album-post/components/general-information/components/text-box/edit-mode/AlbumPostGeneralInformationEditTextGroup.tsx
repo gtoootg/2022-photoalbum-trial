@@ -1,3 +1,4 @@
+import React from "react";
 import { useTranslation } from "next-i18next";
 import { AlbumPostGeneralInformationEditTextGroupBoxStyled } from "../AlbumPostGeneralInformationTextGroup.styled";
 import { StepperSecondStepTextFieldStyled } from "../../../../../../upload/components/stepper/second-stepper/UploadSecondStepContainer";

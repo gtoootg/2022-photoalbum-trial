@@ -1,17 +1,8 @@
+import React from "react";
 import { useGetAlbumPostData } from "../../../../hooks/use-get-album-post.hooks";
 import Typography from "@mui/material/Typography";
-import {
-  AlbumPostGeneralInformationEditTextGroupBoxStyled,
-  AlbumPostGeneralInformationTextGroupStyled,
-} from "./AlbumPostGeneralInformationTextGroup.styled";
-import { useEffect, useState } from "react";
-import { useTranslation } from "next-i18next";
-import { Box } from "@mui/material";
-import { StepperSecondStepTextFieldStyled } from "../../../../../upload/components/stepper/second-stepper/UploadSecondStepContainer";
-import { MgButton } from "../../../../../../components/button/MgButton";
-import { useUpdateAlbumPost } from "../../../../../../api/album-posts/use-update-album-post.hooks";
-import { useRouter } from "next/router";
-import { useGetAlbumPosts } from "../../../../../../api/album-posts/use-get-album-posts.hooks";
+import { AlbumPostGeneralInformationTextGroupStyled } from "./AlbumPostGeneralInformationTextGroup.styled";
+
 import { AlbumPostGeneralInformationEditTextGroup } from "./edit-mode/AlbumPostGeneralInformationEditTextGroup";
 import { useAlbumPostTitleAndDescriptionEditMode } from "./edit-mode/state/use-edit-title-and-desription-in-album-post.hooks";
 

@@ -1,6 +1,6 @@
 import { SxProps, Typography } from "@mui/material";
 import { ReactNode } from "react";
-
+import React from "react";
 
 export const MgText = ({
   content,
@@ -9,7 +9,6 @@ export const MgText = ({
   sx,
   color,
 }: TextProps) => {
-
   return (
     <Typography className={className} variant={variant} sx={sx} color={color}>
       {content}

@@ -1,7 +1,7 @@
 import Link from "next/link";
 import { ReactNode } from "react";
 import { styled } from "@mui/material";
-
+import React from "react";
 interface MgLinkProps {
   href: string;
   children: ReactNode;
