@@ -18,7 +18,7 @@
     "noEmit": true,
     "moduleResolution": "node",
     "resolveJsonModule": true,
-    "jsx": "react",
+    "jsx": "preserve",
     "noImplicitAny": true,
     "noImplicitThis": true,
     "strictNullChecks": true,
