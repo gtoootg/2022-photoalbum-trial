@@ -1,5 +1,5 @@
 import { Box, Checkbox, FormControlLabel } from "@mui/material";
-import { useState } from "react";
+import React,{ useState } from "react";
 import {
   CheckboxGroupProps,
   CheckboxWithSubComponentProps,
@@ -16,6 +16,7 @@ export const CheckboxGroup = ({
       {options.map((option, i) => {
         return (
           <CheckBoxWithSubComponent
+            data-testid={`CheckboxId:${i}`}
             key={option.label}
             handleClickCheckbox={handleClickCheckbox}
             option={option}

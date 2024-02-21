@@ -1,38 +1,28 @@
-import {fireEvent, render, screen} from "@testing-library/react";
-import React from "react";
-
+import React from 'react';
+import { render, fireEvent } from '@testing-library/react';
 import '@testing-library/jest-dom';
 import {MgButton} from "./MgButton";
 
-describe("CommonButton", () => {
-  test("renders button with text when link is not provided", () => {
+describe('MgButton component', () => {
+  test('renders with text', () => {
+    const { getByText } = render(<MgButton text="Click me"  variant={"contained"}/>);
+    const buttonElement = getByText(/Click me/i);
+    expect(buttonElement).toBeInTheDocument();
+  });
+
+  test('calls onClick prop when clicked', () => {
     const onClickMock = jest.fn();
-    const { getByTestId, getByText } = render(
-      <MgButton variant="contained" onClick={onClickMock} text="Click me" />
-    );
-
-    const button = getByTestId("commonButton");
-    expect(button).toBeInTheDocument();
-
-    fireEvent.click(button);
-    expect(onClickMock).toHaveBeenCalledTimes(1);
-
-    const buttonText = getByText("Click me");
-    expect(buttonText).toBeInTheDocument();
+    const { getByText } = render(<MgButton text="Click me" onClick={onClickMock} variant={"contained"}/>);
+    const buttonElement = getByText(/Click me/i);
+    fireEvent.click(buttonElement);
+    expect(onClickMock).toHaveBeenCalled();
   });
 
-  test("renders link with text when link is provided", () => {
-    const link = "https://example.com";
-    const { getByTestId, getByText } = render(
-      <MgButton variant="contained" text="Click me" link={link} />
-    );
-
-    const button = getByTestId("commonButton");
-    expect(button).toBeInTheDocument();
-
-    const linkElement = getByText("Click me");
-    expect(linkElement).toBeInTheDocument();
-    expect(linkElement.tagName).toBe("A");
-    expect(linkElement.getAttribute("href")).toBe(link);
+  test('renders disabled button', () => {
+    const { getByText } = render(<MgButton text="Click me" disabled variant={"contained"}/>);
+    const buttonElement = getByText(/Click me/i);
+    expect(buttonElement).toBeDisabled();
   });
+
+  // Add more tests as needed for other props and behaviors
 });

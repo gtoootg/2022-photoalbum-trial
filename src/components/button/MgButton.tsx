@@ -18,6 +18,7 @@ export const MgButton = ({
 }: MgButtonProps) => {
   return (
     <Button
+      data-testid={"MgButton"}
       disabled={disabled}
       variant={variant}
       onClick={onClick}
