@@ -1,26 +1,43 @@
-import {render} from "@testing-library/react";
-import {CheckboxGroup} from "./CheckboxGroup";
-import '@testing-library/jest-dom';
-import React,{ useState } from "react";
+import { fireEvent, render } from "@testing-library/react";
+import { CheckboxGroup } from "./CheckboxGroup";
+import "@testing-library/jest-dom";
+import React, { useState } from "react";
 
-const options =[
-  {label:"A",value:"a"},{label:"B",value:"b"}
-]
+const options = [
+  { label: "A", value: "a" },
+  { label: "B", value: "b" },
+];
 
-describe("CheckGroup",()=>{
-  const onClickMock = jest.fn((value:string|number,isChecked:boolean)=>{
-    return {value,isChecked}
+describe("CheckGroup", () => {
+  const onClickMock = jest.fn((value: string | number, isChecked: boolean) => {
+    return { value, isChecked };
   });
 
-  it("should render",()=>{
+  it("should render 2 Checkbox", () => {
+    const { getByTestId } = render(
+      <CheckboxGroup options={options} handleClickCheckbox={onClickMock} />
+    );
+    const parent = getByTestId("CheckboxGroup");
+    expect(parent.children.length).toBe(2);
+  });
 
+  it("should render correct label", () => {
+    const { getByTestId } = render(
+      <CheckboxGroup options={options} handleClickCheckbox={onClickMock} />
+    );
+    const checkbox = getByTestId("0");
+    expect(checkbox).toHaveTextContent("A");
+  });
 
-    const {getByTestId} = render(<CheckboxGroup options={options} handleClickCheckbox={onClickMock}/>)
+  it("should fire click event", () => {
+    const { getByLabelText } = render(
+      <CheckboxGroup options={options} handleClickCheckbox={onClickMock} />
+    );
+    const checkbox = getByLabelText("A");
 
-    const label = getByTestId("CheckboxId:0")
+    fireEvent.click(checkbox);
 
-    expect(label).toHaveValue("A")
-
-  })
-
-})
+    expect(onClickMock).toHaveBeenCalled();
+    expect(onClickMock).toHaveBeenCalledWith("a", true);
+  });
+});

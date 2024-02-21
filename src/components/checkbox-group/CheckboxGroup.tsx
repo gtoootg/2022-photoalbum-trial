@@ -1,5 +1,5 @@
 import { Box, Checkbox, FormControlLabel } from "@mui/material";
-import React,{ useState } from "react";
+import React, { useState } from "react";
 import {
   CheckboxGroupProps,
   CheckboxWithSubComponentProps,
@@ -12,18 +12,16 @@ export const CheckboxGroup = ({
   subComponents,
 }: CheckboxGroupProps) => {
   return (
-    <Box>
-      {options.map((option, i) => {
-        return (
+    <Box data-testid={"CheckboxGroup"}>
+      {options.map((option, i) => (
+        <Box data-testid={`${i}`} key={i}>
           <CheckBoxWithSubComponent
-            data-testid={`CheckboxId:${i}`}
-            key={option.label}
             handleClickCheckbox={handleClickCheckbox}
             option={option}
             subComponent={subComponents && subComponents[i]}
           />
-        );
-      })}
+        </Box>
+      ))}
     </Box>
   );
 };
