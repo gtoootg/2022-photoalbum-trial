@@ -1,5 +1,5 @@
 import { fireEvent, render } from "@testing-library/react";
-import { CheckboxGroup } from "./CheckboxGroup";
+import { CheckboxGroup, CheckBoxWithSubComponent } from "./CheckboxGroup";
 import "@testing-library/jest-dom";
 import React, { useState } from "react";
 
@@ -39,5 +39,22 @@ describe("CheckGroup", () => {
 
     expect(onClickMock).toHaveBeenCalled();
     expect(onClickMock).toHaveBeenCalledWith("a", true);
+  });
+});
+
+describe("CheckBoxWithSubComponent", () => {
+  it("should render subcomponent when click checkbox", () => {
+    const { getByText, getByLabelText } = render(
+      <CheckBoxWithSubComponent
+        subComponent={<>sub component</>}
+        option={options[0]}
+      />
+    );
+    const checkbox = getByLabelText("A");
+
+    fireEvent.click(checkbox);
+
+    const checkedCheckboxSubcomponent = getByText("sub component");
+    expect(checkedCheckboxSubcomponent).toBeInTheDocument();
   });
 });

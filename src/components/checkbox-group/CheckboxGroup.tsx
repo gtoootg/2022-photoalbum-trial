@@ -26,7 +26,7 @@ export const CheckboxGroup = ({
   );
 };
 
-const CheckBoxWithSubComponent = ({
+export const CheckBoxWithSubComponent = ({
   subComponent,
   handleClickCheckbox,
   option,
