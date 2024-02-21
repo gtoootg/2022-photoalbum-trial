@@ -7,12 +7,13 @@ export interface GetAlbumPostResponse {
   lng: number;
   imageIds: number[];
   categoryIds: Record<number, number[]>;
+  userId: number;
 }
 
 export type GetAlbumPostsResponse = GetAlbumPostResponse[];
 
 export interface UploadAlbumPostRequest {
-  userId:number
+  userId: number;
   title: string;
   description: string;
   country: string;

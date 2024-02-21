@@ -23,3 +23,6 @@ css 削除
 
 
 
+(AWS)
+add user Id to albumpost table
+

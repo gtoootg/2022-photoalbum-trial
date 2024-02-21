@@ -1,6 +1,6 @@
 import { MgButton } from "../../button/MgButton";
 import React, { useCallback, useState } from "react";
-import { useGetUser } from "../../../api/user/use-get-user.hooks";
+import { useGetAuthUser } from "../../../api/user/use-get-user.hooks";
 
 export const HeaderUserMenu = () => {
   const [, setAnchorEl] = useState<HTMLElement | null>(null);
@@ -9,7 +9,7 @@ export const HeaderUserMenu = () => {
     setAnchorEl(event.currentTarget);
   }, []);
 
-  const { data } = useGetUser();
+  const { data } = useGetAuthUser();
 
   const userName = data?.username;
 

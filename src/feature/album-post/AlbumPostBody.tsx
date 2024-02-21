@@ -7,11 +7,16 @@ import AlbumPostExifData from "./components/exif-data/AlbumPostExifData";
 import { AlbumPostCategory } from "./components/category/AlbumPostCategory";
 import GoogleMapApi from "../../components/google-map/GoogleMapApi";
 import styles from "./AlbumPostBody.module.scss";
+import { useGetUserById } from "../../api/user/use-get-user.hooks";
 
 const AlbumPostBody = () => {
   const [indexOfMainImage, setIndexOfMainImage] = useState(0);
 
   const { albumPost } = useGetAlbumPostData();
+
+  const { data: userData } = useGetUserById(albumPost?.userId);
+
+  console.log(userData);
 
   useEffect(() => {
     setIndexOfMainImage(0);
@@ -29,7 +34,7 @@ const AlbumPostBody = () => {
       />
       <Grid container maxWidth={"xl"} display={"flex"} mt={3}>
         <Grid item xs={5}>
-          <AlbumPostGeneralInformation />
+          <AlbumPostGeneralInformation userName={userData?.username} />
         </Grid>
         <Grid item xs={7}>
           <Box className={styles.exifAndCategory}>
