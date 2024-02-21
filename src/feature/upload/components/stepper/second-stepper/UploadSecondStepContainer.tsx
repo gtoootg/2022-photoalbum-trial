@@ -2,8 +2,7 @@ import styled from "@emotion/styled";
 import { Box, TextField } from "@mui/material";
 import { useTranslation } from "next-i18next";
 import { MgText } from "../../../../../components/text/MgText";
-
-import styles from "./UploadSecondStepContainer.module.scss";
+import React from "react";
 import {
   useUploadActiveStep,
   useUploadingDescription,
@@ -23,10 +22,12 @@ export default function UploadSecondStepContainer() {
 
   if (activeStep >= 2) {
     return (
-      <Box className={styles.box}>
+      <Box
+      // className={styles.box}
+      >
         <MgText
           variant={"subtitle2"}
-          className={styles.preview_title}
+          // className={styles.preview_title}
           content={t("stepper.secondStep.uploadData.title", { ns: "upload" })}
         />
         <MgText variant={"body2"} content={uploadingTitle} />
@@ -43,7 +44,9 @@ export default function UploadSecondStepContainer() {
   }
 
   return (
-    <Box className={styles.box}>
+    <Box
+    // className={styles.box}
+    >
       <StepperSecondStepTextFieldStyled
         required
         id="outlined-required"

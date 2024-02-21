@@ -11,6 +11,9 @@ add user to post:done
 only this user can edit post
 responsive design
 
+3 Upload
+remove scss
+
 GoogleMap api key
 css 削除
 
