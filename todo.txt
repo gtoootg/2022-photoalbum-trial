@@ -9,6 +9,7 @@ responsive design
 2 albumpost
 add user to post:done
 only this user can edit post
+responsive design
 
 GoogleMap api key
 css 削除
