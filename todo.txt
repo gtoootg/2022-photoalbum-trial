@@ -6,7 +6,9 @@ responsive design
   -image column :done
   -navigation of header
 
-add user to post
+2 albumpost
+add user to post:done
+only this user can edit post
 
 GoogleMap api key
 css 削除
