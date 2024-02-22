@@ -1,5 +1,5 @@
 import { Chip, SvgIconProps } from "@mui/material";
-import styles from "./ClickableChip.module.scss";
+
 interface ClickableChipProps {
   label: string;
   onClick?: () => void;
@@ -19,7 +19,6 @@ export const ClickableChip = ({
       onClick={onClick}
       icon={icon}
       sx={{ backgroundColor: color }}
-      // className={styles[`${color}`]}
     />
   );
 };
